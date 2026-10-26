@@ -1,9 +1,14 @@
-AUDIT: candidate screening only; NOT a final clean dataset
-Rows: 48092
-IT keyword candidates: 773
-Salary classes:
-negotiable_or_zero: 47497
-range: 471
-single_or_other_numeric: 124
-GO/NO-GO: pending manual title review and salary normalization by TV2.
-Do NOT interpret 0.0 triệu as a zero salary.
+GD1 DATA AUDIT — PRELIMINARY ONLY
+Data: data/raw/vietjobs.csv
+rows=48092
+it_category_candidates=1906
+positive_consistent_salary_bounds_all=34315
+positive_consistent_salary_bounds_it=1144
+Salary string categories (all VietJobs):
+  negotiable_or_zero: 47497
+  range: 471
+  single_or_other_numeric: 124
+Important: salary_min/max are numeric, salary_avg is a formatted text field.
+GO/NO-GO: CONDITIONAL GO for continuing verification; NOT approved for training until TV2 verifies title, salary units/period, outliers, duplicates and clean target.
+449 clean records is a README claim, NOT a result produced by this script.
+IT-Job-Posting has no salary label.

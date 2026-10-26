@@ -1,4 +1,4 @@
 stage,rows
-all_records,48092
-it_title_keyword_candidates,773
-it_candidates_with_numeric_salary,6
+all_vietjobs,48092
+it_category_candidates,1906
+it_category_with_positive_consistent_salary_bounds,1144
