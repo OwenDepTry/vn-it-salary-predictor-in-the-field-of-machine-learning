@@ -1,0 +1,9 @@
+AUDIT: candidate screening only; NOT a final clean dataset
+Rows: 48092
+IT keyword candidates: 773
+Salary classes:
+negotiable_or_zero: 47497
+range: 471
+single_or_other_numeric: 124
+GO/NO-GO: pending manual title review and salary normalization by TV2.
+Do NOT interpret 0.0 triệu as a zero salary.
