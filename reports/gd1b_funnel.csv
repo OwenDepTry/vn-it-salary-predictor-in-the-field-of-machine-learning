@@ -1,4 +1,9 @@
 stage,rows
 all_vietjobs,48092
-it_category_candidates,1906
-it_category_with_positive_consistent_salary_bounds,1144
+country_vietnam,47957
+it_title_screened_candidates,1779
+numeric_salary_stated,1026
+valid_salary_range,887
+full_time_contract,869
+salary_range_3_to_200_million,863
+unique_title_location_salary_description,779

@@ -1,14 +1,19 @@
 {
-  "vietjobs.csv": {
-    "source_url": "https://huggingface.co/datasets/dinhieufam/VietJobs/resolve/main/VietJobs.csv",
-    "sha256": "85862b06fda4e814fe0c1d8622f173d189c92758345f77df16d1232d0c49d477",
-    "bytes": 103110903,
-    "checked_utc": "2026-10-26T20:50:17.913739+00:00"
-  },
-  "it_job_postings.csv": {
-    "source_url": "https://raw.githubusercontent.com/SonPhatTranDeveloper/IT-Job-Posting/main/job_descriptions.csv",
-    "sha256": "68c70420d9a12381a5731f0dbee1cc2b4d2123a94882eb95bd0104a1201e8b69",
-    "bytes": 11087006,
-    "checked_utc": "2026-10-26T20:50:17.922323+00:00"
-  }
+  "downloaded_at_utc": "2026-10-30T12:51:27.233448+00:00",
+  "files": [
+    {
+      "name": "vietjobs",
+      "url": "https://huggingface.co/datasets/dinhieufam/VietJobs/resolve/main/VietJobs.csv",
+      "path": "data/raw/vietjobs/VietJobs.csv",
+      "size_bytes": 103110903,
+      "sha256": "85862b06fda4e814fe0c1d8622f173d189c92758345f77df16d1232d0c49d477"
+    },
+    {
+      "name": "it_job_posting",
+      "url": "https://raw.githubusercontent.com/SonPhatTranDeveloper/IT-Job-Posting/main/job_descriptions.csv",
+      "path": "data/raw/it_job_posting/job_descriptions.csv",
+      "size_bytes": 11087006,
+      "sha256": "68c70420d9a12381a5731f0dbee1cc2b4d2123a94882eb95bd0104a1201e8b69"
+    }
+  ]
 }
