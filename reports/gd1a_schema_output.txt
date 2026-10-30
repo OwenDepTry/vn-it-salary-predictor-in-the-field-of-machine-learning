@@ -1,5 +1,5 @@
 
-vietjobs.csv: 48092 rows, 18 columns
+vietjobs: 48092 rows, 18 columns
 columns: ['job_title', 'location', 'country', 'qualifications', 'technical_skills', 'soft_skills', 'languages_required', 'experience_required', 'salary', 'contract_type', 'working_hours', 'benefits', 'description', 'requirements_text', 'category', 'salary_min', 'salary_max', 'salary_avg']
 has salary: True
 job_title | dtype=object | missing=0 (0.00%) | unique=16720
@@ -21,7 +21,7 @@ salary_min | dtype=int64 | missing=0 (0.00%) | unique=57
 salary_max | dtype=int64 | missing=0 (0.00%) | unique=69
 salary_avg | dtype=object | missing=0 (0.00%) | unique=88
 
-it_job_postings.csv: 3101 rows, 11 columns
+it_job_posting: 3101 rows, 11 columns
 columns: ['title', 'company', 'company_image_url', 'location', 'description', 'site', 'job_url', 'it_role_type', 'main_programming_languages', 'key_technologies', 'city']
 has salary: False
 title | dtype=object | missing=0 (0.00%) | unique=2126

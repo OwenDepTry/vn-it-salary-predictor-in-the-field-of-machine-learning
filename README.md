@@ -84,7 +84,10 @@ Chạy lần lượt từ thư mục gốc của dự án. Mỗi bước đọc 
 python src/download_data.py
 ```
 
-Tải VietJobs và IT-Job-Posting vào `data/raw/`, tính sha256 và ghi vào `data/raw/download_log.json`.
+Tải VietJobs vào `data/raw/vietjobs/VietJobs.csv` và IT-Job-Posting vào
+`data/raw/it_job_posting/job_descriptions.csv`. Script tính SHA-256, kích thước
+file và ghi danh sách `files` cùng thời điểm tải UTC vào
+`data/raw/download_log.json`. Dữ liệu CSV tải về không được đưa lên Git.
 
 ### Bước 2 – Khảo sát dữ liệu (GĐ1)
 
@@ -93,7 +96,10 @@ python notebooks/01a_schema_discovery.py
 python notebooks/01b_data_audit.py
 ```
 
-Đầu ra: `reports/gd1a_schema_output.txt`, `reports/gd1b_audit_output.txt`, `reports/gd1b_funnel.csv`, `reports/gd1b_it_title_review.csv`.
+Đầu ra: `reports/gd1a_schema_output.txt`, `reports/gd1b_audit_output.txt`,
+`reports/gd1b_funnel.csv`, `reports/gd1b_it_title_review.csv`. Phễu GĐ1 ghi
+đủ tám bước từ tổng số tin đến số tin duy nhất; báo cáo nêu rõ ngưỡng GO
+(≥ 800), GO có điều kiện và thu hẹp phạm vi (300–799), hoặc NO-GO (< 300).
 
 ### Bước 3 – Làm sạch dữ liệu (GĐ2)
 
