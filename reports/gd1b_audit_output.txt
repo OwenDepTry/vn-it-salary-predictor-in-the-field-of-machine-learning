@@ -1,21 +1,184 @@
-GD1 DATA AUDIT
-Data: data/raw/vietjobs/VietJobs.csv
-rows=48092
-it_category_candidates_in_vietnam=1903
-it_category_or_title_candidates_before_title_review=2135
-likely_non_it_candidates_excluded=356
-it_title_screened_candidates=1779
-Salary string categories (all VietJobs):
-  range: 32119
-  negotiable: 13727
-  single: 2234
-  range_lower_zero: 10
-  range_reversed: 2
-Title review statuses (candidate set):
-  likely_it: 1556
-  likely_non_it: 356
-  manual_review: 223
-GO/NO-GO thresholds set before decision: GO >= 800; conditional narrowed-scope GO 300-799; NO-GO < 300.
-GO/NO-GO: GO có điều kiện, thu hẹp phạm vi: chỉ tiếp tục sau rà soát chức danh và luật làm sạch.
-Salary bounds are used only for the audit funnel, not as model features.
-IT-Job-Posting has no salary label.
+
+================================================================================
+ĐỌC DỮ LIỆU
+================================================================================
+VietJobs: 48,092 bản ghi, 18 cột
+
+================================================================================
+1. KIỂM TRA CỘT LƯƠNG (toàn bộ VietJobs)
+================================================================================
+salary_class
+range               32119
+negotiable          13727
+single               2234
+range_lower_zero       10
+range_reversed          2
+Tổng: 48,092 (phải bằng số bản ghi)
+
+Đối chiếu "0.0 triệu" với salary_avg == "Thoả thuận":
+salary_avg thỏa thuận  False  True 
+salary là 0.0                      
+False                  34365      0
+True                       0  13727
+salary_min (cột số nguyên) so với giá trị parse từ chuỗi: bằng đúng=97.0% | bằng phần nguyên=100.0%
+salary_max (cột số nguyên) so với giá trị parse từ chuỗi: bằng đúng=98.5% | bằng phần nguyên=100.0%
+=> Dùng giá trị parse từ chuỗi `salary` để giữ phần thập phân.
+
+================================================================================
+2. BỘ LỌC IT
+================================================================================
+it_cat   (category == công_nghệ_thông_tin_kỹ_thuật_số): 1,906
+it_title (từ khóa chức danh, bỏ kinh doanh)       : 1,112
+bị loại vì chức danh kinh doanh/tư vấn/marketing  : 536
+it_final = (cat OR title) AND NOT kinh doanh      : 2,007
+
+Top chức danh: category IT nhưng KHÔNG khớp từ khóa (category có lẫn nghề khác không?):
+job_title
+Nhân Viên Thiết Kế                 43
+Thiết kế đồ họa                    30
+Nhân Viên Thiết Kế Đồ Họa          27
+Chuyên Viên Thiết Kế Đồ Họa        15
+Chuyên Viên Thiết Kế               14
+Project Manager                    12
+Thực Tập Sinh Thiết Kế Đồ Họa      11
+Chuyên Viên Phân Tích Nghiệp Vụ    10
+Game Designer                       9
+Thiết Kế Đồ Họa                     9
+Chủ sở hữu sản phẩm                 8
+Nhân Viên Thiết Kế Đồ Hoạ           6
+Nhân Viên Kỹ Thuật Máy Tính         5
+UI/UX Designer                      5
+Nhân Viên Graphic Designer          5
+Data Analyst                        5
+Lãnh đạo kỹ thuật                   5
+Chuyên Viên Phân Tích Dữ Liệu       5
+Nhà phát triển phụ trợ cao cấp      4
+Nhân Viên Thiết Kế 3D               4
+
+Top chức danh: khớp từ khóa nhưng NGOÀI category IT (từ khóa có bắt nhầm không?):
+job_title
+Kỹ sư phần mềm                                                 64
+Data Scientist                                                 13
+Nhân Viên Triển Khai Phần Mềm                                   8
+Kỹ sư phần mềm cao cấp                                          5
+Chuyên Viên Triển Khai Phần Mềm                                 5
+Kế Toán Kho Kiêm Thủ Kho                                        4
+Nhân Viên Lập Trình Phay, Tiện                                  4
+Nhân Viên Lập Trình Vận Hành Máy Tiện CNC                       4
+Nhân Viên Lập Trình & Vận Hành Máy Phay                         4
+Thực Tập Sinh Ngành Công Nghệ Thông Tin                         3
+Product Photographer (Biết Sử Dụng AI)                          3
+System Admin                                                    3
+Security Manager - Phụ Trách An Ninh                            3
+Thực Tập Sinh Lập Trình                                         3
+Nhân Viên Hỗ Trợ Kỹ Thuật Helpdesk Layer 1                      3
+Nhân Viên Sắp Xếp Phòng Trị Liệu (Có Đào Tạo) - Đi Làm Ngay     2
+Nhân Viên Pha Chế Kiêm Thu Ngân (Part-Time)                     2
+Thực Tập Sinh Phát Hành Nội Dung AI                             2
+Nội dung xã hội & Quản lý cộng đồng (Blockchain)                2
+Chuyên Viên Phát Triển Khách Hàng Phần Mềm Social               2
+
+Top chức danh bị loại vì kinh doanh/tư vấn/marketing:
+job_title
+Nhân Viên Kinh Doanh Phần Mềm                          63
+Nhân Viên Kinh Doanh                                   25
+Nhà phân tích kinh doanh                               23
+Nhân Viên Tư Vấn Phần Mềm                              13
+Chuyên Viên Kinh Doanh Phần Mềm                        10
+Thực Tập Sinh Kinh Doanh                                9
+Chuyên Viên Tư Vấn Phần Mềm                             6
+Nhà phân tích kinh doanh cao cấp                        6
+Nhân Viên Telesales Phần Mềm                            5
+Phát triển kinh doanh                                   5
+Nhân Viên Tư Vấn Triển Khai Phần Mềm                    4
+Business Development/Nhân Viên Kinh Doanh Phần Mềm      4
+Kỹ Sư Tư Vấn Hỗ Trợ Phần Mềm Sản Xuất Đồ Gỗ             4
+Thực Tập Sinh Kinh Doanh Phần Mềm Website               4
+Nhân Viên Kinh Doanh B2B                                4
+Trưởng Phòng Kinh Doanh                                 4
+Phát triển kinh doanh cao cấp                           4
+Giám đốc điều hành bán hàng Fresher (phần mềm)          4
+Nhân Viên Kinh Doanh - Tư Vấn Phần Mềm Doanh Nghiệp     3
+Nhân Viên Sales Phần Mềm Full/Part-Time (Remote)        3
+
+Đã lưu 1,555 chức danh để rà soát: reports/gd1b_it_title_review.csv
+
+================================================================================
+3. PHỄU DỮ LIỆU
+================================================================================
+                                                   it_cat  it_title  it_final
+0. Tổng bản ghi VietJobs                            48092     48092     48092
+1. country == Việt Nam                              47957     47957     47957
+2. thuộc IT                                          1903      1020      1915
+3. có lương (bỏ 0.0 = thỏa thuận)                    1143       589      1129
+4. dạng khoảng a–b hợp lệ (bỏ điểm đơn, 0–b, a>b)    1002       511       990
+5. hợp đồng Toàn thời gian                            974       495       961
+6. 3 ≤ min và max ≤ 200 triệu                         963       493       952
+7. sau gộp trùng (tiêu đề+địa điểm+lương+mô tả)       934       407       852
+Đã lưu: reports/gd1b_funnel.csv
+
+================================================================================
+4. PHÁT HIỆN KHI RÀ SOÁT (it_final, cuối phễu) — chỉ ghi nhận, không loại ở GĐ1
+================================================================================
+Số tin cuối phễu: 852
+
+Chức danh phổ biến nhất:
+job_title
+Nhân Viên Thiết Kế                 31
+Thiết kế đồ họa                    20
+Nhân Viên Thiết Kế Đồ Họa          17
+Chuyên Viên Thiết Kế Đồ Họa        11
+Thiết Kế Đồ Họa                     8
+Chuyên Viên Thiết Kế                8
+Project Manager                     6
+Nhân Viên Tester                    5
+Chuyên Viên Phân Tích Nghiệp Vụ     5
+Java Developer                      5
+Kế Toán Kho Kiêm Thủ Kho            4
+Nhà thiết kế đồ họa cao cấp         4
+Data Engineer                       4
+Nhân Viên IT Helpdesk               3
+Backend Developer                   3
+
+Kỹ năng phổ biến nhất:
+technical_skills
+photoshop            155
+illustrator          107
+python                64
+adobe photoshop       56
+javascript            56
+java                  53
+adobe illustrator     52
+git                   50
+indesign              50
+figma                 47
+
+Chức danh thiết kế đồ họa (không phải web/UI): 209 tin
+job_title
+Nhân Viên Thiết Kế             31
+Thiết kế đồ họa                20
+Nhân Viên Thiết Kế Đồ Họa      17
+Chuyên Viên Thiết Kế Đồ Họa    11
+Thiết Kế Đồ Họa                 8
+Chuyên Viên Thiết Kế            8
+Nhà thiết kế đồ họa cao cấp     4
+Nhân Viên Graphic Designer      3
+Nhân Viên Thiết Kế Đồ Hoạ       3
+Nhân Viên Thiết Kế 3D           2
+
+Từ khóa bắt nhầm đã biết ("kiêm thủ kho" -> "kiểm thử", "Sắp xếp" -> "SAP"): 8 tin
+job_title
+Kế Toán Kho Kiêm Thủ Kho                                              4
+Nhân Viên Sắp Xếp Phòng Trị Liệu (Có Đào Tạo) - Đi Làm Ngay           1
+NV Phục Vụ MIKASA Nhà Hàng Yoshoku Sắp Khai Trương Tại VivoCity Q7    1
+Nhân Viên Kế Toán Kho Kiêm Thủ Kho                                    1
+Kế Toán Kiêm Thủ Kho Công Trình Xây Dựng                              1
+
+================================================================================
+5. GO/NO-GO
+================================================================================
+Ngưỡng đặt trước khi đếm: GO nếu ≥ 800; GO thu hẹp nếu 300–800; NO-GO nếu < 300.
+Bộ lọc ban đầu (category CNTT hoặc từ khóa chức danh, bỏ kinh doanh) cho 852 tin.
+Khi rà soát: category CNTT của VietJobs gộp cả thiết kế đồ họa (xem mục 4: chức danh "Thiết kế", kỹ năng photoshop), và bộ lọc từ khóa bắt nhầm một số tin do bỏ dấu tiếng Việt ("kiêm thủ kho" thành "kiểm thử", "Sắp xếp" thành "SAP").
+Quyết định: GO có điều kiện, thu hẹp phạm vi: chỉ giữ IT theo nghĩa phần mềm/hạ tầng, loại thiết kế đồ họa và lọc theo chức danh thay vì theo category (thực hiện ở GĐ2). Thiết kế đồ họa có mức lương và kỹ năng khác hẳn, gộp chung sẽ lệch khỏi tên đề tài và làm nhiễu mô hình.
+IT-Job-Posting không có cột lương, chỉ dùng để khảo sát.
