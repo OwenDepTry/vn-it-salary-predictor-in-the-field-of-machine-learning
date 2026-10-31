@@ -1,9 +1,9 @@
-stage,rows
-all_vietjobs,48092
-country_vietnam,47957
-it_title_screened_candidates,1779
-numeric_salary_stated,1026
-valid_salary_range,887
-full_time_contract,869
-salary_range_3_to_200_million,863
-unique_title_location_salary_description,779
+﻿,it_cat,it_title,it_final
+0. Tổng bản ghi VietJobs,48092,48092,48092
+1. country == Việt Nam,47957,47957,47957
+2. thuộc IT,1903,1020,1915
+3. có lương (bỏ 0.0 = thỏa thuận),1143,589,1129
+"4. dạng khoảng a–b hợp lệ (bỏ điểm đơn, 0–b, a>b)",1002,511,990
+5. hợp đồng Toàn thời gian,974,495,961
+6. 3 ≤ min và max ≤ 200 triệu,963,493,952
+7. sau gộp trùng (tiêu đề+địa điểm+lương+mô tả),934,407,852

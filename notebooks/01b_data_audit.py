@@ -1,3 +1,13 @@
+"""GĐ1b — Kiểm toán dữ liệu VietJobs (TV1).
+
+Đầu vào : data/raw/vietjobs/VietJobs.csv (không sửa)
+Đầu ra  : reports/gd1b_audit_output.txt    (nhật ký kiểm toán + kết luận GO/NO-GO)
+          reports/gd1b_funnel.csv          (phễu 8 bước x 3 cách lọc IT)
+          reports/gd1b_it_title_review.csv (chức danh để rà soát bộ lọc IT)
+
+Phễu GĐ1 chỉ để KHẢO SÁT: không loại tin chỉ vì nghi ngờ (vd. thiết kế đồ họa).
+Các phát hiện được ghi lại để quyết định phạm vi; việc loại thật sự làm ở GĐ2 (TV2).
+"""
 from pathlib import Path
 import re
 import unicodedata
@@ -6,202 +16,244 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / 'data/raw/vietjobs/VietJobs.csv'
+REPORT_DIR = ROOT / 'reports'
+OUT_TXT = REPORT_DIR / 'gd1b_audit_output.txt'
+OUT_FUNNEL = REPORT_DIR / 'gd1b_funnel.csv'
+OUT_REVIEW = REPORT_DIR / 'gd1b_it_title_review.csv'
+
 IT_CATEGORY = 'công_nghệ_thông_tin_kỹ_thuật_số'
-IT_TITLE_PATTERN = re.compile(
-    r'\b(?:it|cntt)\b|cong nghe thong tin|lap trinh|programmer|developer|'
-    r'devops|software|tester|kiem thu (?:phan mem|game|ung dung|apps?)|'
-    r'\bsap\b|data (?:analyst|engineer|scientist)|'
-    r'system admin|sysadmin|network engineer|quan tri mang|an ninh mang|'
-    r'cybersecurity|backend|front[\s-]?end|full[\s-]?stack|php|java|python',
-)
-GRAPHIC_DESIGN_PATTERN = re.compile(
-    r'thiet ke|graphic designer|designer',
-)
-WEB_DESIGN_PATTERN = re.compile(
-    r'\b(?:ui|ux)\b|web|website|php|frontend|front[\s-]?end',
-)
-FALSE_POSITIVE_PATTERN = re.compile(
-    r'kiem thu kho|sap xep|video editor|digital marketing',
-)
-NUMERIC_RANGE_PATTERN = re.compile(
-    r'(\d+(?:[.,]\d+)?)\s*[-–—]\s*(\d+(?:[.,]\d+)?)\s*trieu',
-)
-NUMERIC_SINGLE_PATTERN = re.compile(r'(\d+(?:[.,]\d+)?)\s*trieu')
+MIN_SALARY = 3.0     # triệu/tháng
+MAX_SALARY = 200.0   # triệu/tháng
+GO_THRESHOLD = 800
+NARROW_THRESHOLD = 300
+
+# ---------------------------------------------------------------- bộ lọc IT
+# So khớp trên chức danh đã bỏ dấu + chữ thường.
+IT_STRONG = re.compile('|'.join([
+    r'\bdeveloper\b', r'\bdev\b', r'lap trinh', r'programmer', r'software', r'phan mem',
+    r'back[\s-]?end', r'front[\s-]?end', r'full[\s-]?stack', r'devops', r'\bsre\b',
+    r'data engineer', r'data scientist', r'machine learning', r'deep learning', r'\bml\b',
+    r'\bios\b', r'android', r'flutter', r'react', r'\bjava\b', r'python', r'\.net\b', r'\bphp\b',
+    r'golang', r'node\.?js', r'c\+\+', r'c#', r'tester', r'kiem thu', r'automation test',
+    r'\bbrse\b', r'ky su cau noi',
+    r'sysadmin|system admin|quan tri he thong|quan tri mang|network engineer|ky su mang',
+    r'bao mat|security|cyber|pentest', r'\bdba\b|database|co so du lieu', r'\bcloud\b',
+    r'\berp\b|\bsap\b|odoo', r'\bcntt\b|cong nghe thong tin', r'helpdesk|it support',
+    r'embedded|lap trinh nhung|phan mem nhung', r'unity|game dev', r'blockchain',
+    r'\bqa engineer\b|\bqc engineer\b|software qa',
+]))
+# "IT", "AI" so trên chức danh giữ nguyên chữ hoa để không bắt nhầm "ít", "ai".
+IT_CASE_SENSITIVE = re.compile(r'\bIT\b|\bAI\b')
+# Vị trí kinh doanh / tư vấn / marketing: không phải IT dù chức danh có từ khóa IT.
+SALES_EXCLUDE = re.compile(r'kinh doanh|ban hang|sales|tu van|telesale|marketing|cham soc khach hang')
+# Chỉ dùng để GHI NHẬN phát hiện, không dùng để loại trong phễu.
+GRAPHIC_DESIGN = re.compile(r'thiet ke|designer|do hoa')
+WEB_UI = re.compile(r'\bweb\b|website|\bui\b|\bux\b')
+KNOWN_FALSE_POSITIVE = re.compile(r'kiem thu kho|sap xep|sap khai truong')
+
+# ---------------------------------------------------------------- lương
+RANGE_RE = re.compile(r'(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*triệu')
+SINGLE_RE = re.compile(r'(\d+(?:\.\d+)?)\s*triệu')
 
 
-def normalize_text(value):
-    text = unicodedata.normalize('NFD', str(value).lower())
-    return ''.join(char for char in text if unicodedata.category(char) != 'Mn')
+def strip_accents(value) -> str:
+    """Bỏ dấu tiếng Việt (kể cả đ/Đ) + chữ thường, dùng để so khớp từ khóa."""
+    text = '' if pd.isna(value) else str(value)
+    text = text.replace('đ', 'd').replace('Đ', 'D')
+    text = unicodedata.normalize('NFD', text)
+    text = ''.join(ch for ch in text if unicodedata.category(ch) != 'Mn')
+    return text.lower()
 
 
-def salary_class(value):
-    text = normalize_text(value).strip()
+def norm_text(value) -> str:
+    """Chuẩn hóa để gộp trùng: chữ thường, gộp khoảng trắng."""
+    return '' if pd.isna(value) else re.sub(r'\s+', ' ', str(value)).strip().lower()
+
+
+def parse_salary(value):
+    """Trả về (min, max, loại). Loại: range | range_lower_zero | range_reversed |
+    single | negotiable | missing | other. "0.0 triệu" = thỏa thuận."""
+    text = '' if pd.isna(value) else str(value).strip().lower()
     if text in ('', 'nan', 'none'):
-        return 'missing'
-    if re.search(r'\b(?:thoa thuan|thuong luong)\b', text):
-        return 'negotiable'
-
-    match = NUMERIC_RANGE_PATTERN.fullmatch(text)
-    if match:
-        lower = float(match.group(1).replace(',', '.'))
-        upper = float(match.group(2).replace(',', '.'))
-        if lower == 0:
-            return 'range_lower_zero'
-        if lower > upper:
-            return 'range_reversed'
-        return 'range'
-
-    match = NUMERIC_SINGLE_PATTERN.fullmatch(text)
-    if match:
-        amount = float(match.group(1).replace(',', '.'))
-        return 'negotiable' if amount == 0 else 'single'
-    return 'other'
+        return None, None, 'missing'
+    m = RANGE_RE.fullmatch(text)
+    if m:
+        lo, hi = float(m.group(1)), float(m.group(2))
+        if lo == 0:
+            return lo, hi, 'range_lower_zero'
+        if lo > hi:
+            return lo, hi, 'range_reversed'
+        return lo, hi, 'range'
+    m = SINGLE_RE.fullmatch(text)
+    if m:
+        amount = float(m.group(1))
+        return (None, None, 'negotiable') if amount == 0 else (amount, amount, 'single')
+    return None, None, 'other'
 
 
-def title_review(title, category_match):
-    normalized = normalize_text(title)
-    false_positive = bool(FALSE_POSITIVE_PATTERN.search(normalized))
-    graphic_design = bool(GRAPHIC_DESIGN_PATTERN.search(normalized))
-    technical_design = bool(WEB_DESIGN_PATTERN.search(normalized))
+LINES = []
 
-    if false_positive:
-        return 'likely_non_it', 'known_keyword_false_positive'
-    if graphic_design and not technical_design:
-        return 'likely_non_it', 'graphic_design_title'
-    if category_match:
-        return 'likely_it', 'it_category'
-    if IT_TITLE_PATTERN.search(normalized):
-        return 'manual_review', 'it_title_keyword'
-    return 'manual_review', 'category_or_title_review'
+
+def log(*parts):
+    line = ' '.join(str(p) for p in parts)
+    print(line)
+    LINES.append(line)
+
+
+def section(title):
+    log('\n' + '=' * 80)
+    log(title)
+    log('=' * 80)
+
+
+def top_titles(df, mask, n=20):
+    return df.loc[mask, 'job_title'].value_counts().head(n).to_string()
+
+
+def build_funnel(df, it_mask):
+    steps = [('0. Tổng bản ghi VietJobs', len(df))]
+    keep = pd.Series(True, index=df.index)
+
+    def add(name, cond):
+        nonlocal keep
+        keep = keep & cond
+        steps.append((name, int(keep.sum())))
+
+    add('1. country == Việt Nam', df['country'].eq('Việt Nam'))
+    add('2. thuộc IT', it_mask)
+    add('3. có lương (bỏ 0.0 = thỏa thuận)', ~df['salary_class'].isin(['negotiable', 'missing', 'other']))
+    add('4. dạng khoảng a–b hợp lệ (bỏ điểm đơn, 0–b, a>b)', df['salary_class'].eq('range'))
+    add('5. hợp đồng Toàn thời gian', df['contract_type'].eq('Toàn thời gian'))
+    add(f'6. {MIN_SALARY:g} ≤ min và max ≤ {MAX_SALARY:g} triệu',
+        (df['sal_min'] >= MIN_SALARY) & (df['sal_max'] <= MAX_SALARY))
+    subset = df.loc[keep]
+    dup_index = subset.index[subset.duplicated(subset=['k_title', 'k_loc', 'salary', 'k_desc'], keep='first')]
+    keep = keep.copy()
+    keep.loc[dup_index] = False
+    steps.append(('7. sau gộp trùng (tiêu đề+địa điểm+lương+mô tả)', int(keep.sum())))
+    return steps, keep
 
 
 def main():
     if not DATA_PATH.exists():
         raise FileNotFoundError(f'{DATA_PATH} not found; run src/download_data.py first')
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
-    df = pd.read_csv(DATA_PATH, low_memory=False)
-    required = {
-        'job_title', 'salary', 'salary_min', 'salary_max', 'category',
-        'country', 'contract_type', 'location', 'description',
-    }
-    missing = required.difference(df.columns)
-    if missing:
-        raise ValueError(f'Missing columns: {sorted(missing)}')
+    section('ĐỌC DỮ LIỆU')
+    df = pd.read_csv(DATA_PATH, encoding='utf-8-sig', low_memory=False)
+    df.columns = [str(c).strip() for c in df.columns]
+    log(f'VietJobs: {len(df):,} bản ghi, {df.shape[1]} cột')
 
-    df = df.copy()
-    df['salary_class'] = df['salary'].map(salary_class)
-    df['salary_min_numeric'] = pd.to_numeric(df['salary_min'], errors='coerce')
-    df['salary_max_numeric'] = pd.to_numeric(df['salary_max'], errors='coerce')
+    parsed = df['salary'].map(parse_salary)
+    df['sal_min'] = [p[0] for p in parsed]
+    df['sal_max'] = [p[1] for p in parsed]
+    df['salary_class'] = [p[2] for p in parsed]
 
-    country_mask = df['country'].fillna('').str.strip().eq('Việt Nam')
-    vietnam = df.loc[country_mask].copy()
-    category_match = vietnam['category'].fillna('').eq(IT_CATEGORY)
-    normalized_titles = vietnam['job_title'].fillna('').map(normalize_text)
-    title_match = normalized_titles.map(lambda title: bool(IT_TITLE_PATTERN.search(title)))
-    title_false_positive = normalized_titles.map(
-        lambda title: bool(FALSE_POSITIVE_PATTERN.search(title))
-    )
-    graphic_design = normalized_titles.map(
-        lambda title: bool(GRAPHIC_DESIGN_PATTERN.search(title))
-    )
-    web_design = normalized_titles.map(
-        lambda title: bool(WEB_DESIGN_PATTERN.search(title))
-    )
-    likely_non_it = title_false_positive | (graphic_design & ~web_design)
+    title_ascii = df['job_title'].map(strip_accents)
+    df['it_cat'] = df['category'].eq(IT_CATEGORY)
+    df['it_title_kw'] = (title_ascii.str.contains(IT_STRONG)
+                         | df['job_title'].astype(str).str.contains(IT_CASE_SENSITIVE))
+    df['sales_title'] = title_ascii.str.contains(SALES_EXCLUDE)
+    df['it_final'] = (df['it_cat'] | df['it_title_kw']) & ~df['sales_title']
+    df['graphic_design'] = title_ascii.str.contains(GRAPHIC_DESIGN) & ~title_ascii.str.contains(WEB_UI)
+    df['known_false_positive'] = title_ascii.str.contains(KNOWN_FALSE_POSITIVE)
 
-    # Keep title false positives in the review output, then exclude them from the funnel.
-    it_candidate = category_match | title_match
-    candidates = vietnam.loc[it_candidate].copy()
-    candidate_category_match = category_match.loc[it_candidate]
-    candidate_review = [
-        title_review(title, is_category)
-        for title, is_category in zip(candidates['job_title'], candidate_category_match)
-    ]
-    candidates['review_status'] = [status for status, _ in candidate_review]
-    candidates['review_reason'] = [reason for _, reason in candidate_review]
-    candidates['likely_non_it'] = likely_non_it.loc[it_candidate].to_numpy()
-    eligible = candidates.loc[~candidates['likely_non_it']].copy()
+    df['k_title'] = df['job_title'].map(norm_text)
+    df['k_loc'] = df['location'].map(norm_text)
+    df['k_desc'] = df['description'].map(norm_text)
 
-    has_numeric_salary = eligible['salary_class'].isin(
-        ['range', 'single', 'range_lower_zero', 'range_reversed']
-    )
-    valid_range = (
-        eligible['salary_class'].eq('range')
-        & eligible['salary_min_numeric'].gt(0)
-        & eligible['salary_max_numeric'].ge(eligible['salary_min_numeric'])
-    )
-    full_time = eligible['contract_type'].fillna('').str.contains(
-        'toàn thời gian', case=False, regex=False
-    )
-    within_salary_limits = (
-        eligible['salary_min_numeric'].ge(3)
-        & eligible['salary_max_numeric'].le(200)
-    )
-    deduplication_columns = ['job_title', 'location', 'salary', 'description']
+    # ------------------------------------------------------------ 1. lương
+    section('1. KIỂM TRA CỘT LƯƠNG (toàn bộ VietJobs)')
+    counts = df['salary_class'].value_counts()
+    log(counts.to_string())
+    log(f'Tổng: {int(counts.sum()):,} (phải bằng số bản ghi)')
+    is_tt = df['salary_avg'].map(strip_accents).str.contains('thoa thuan')
+    log('\nĐối chiếu "0.0 triệu" với salary_avg == "Thoả thuận":')
+    log(pd.crosstab(df['salary_class'].eq('negotiable'), is_tt,
+                    rownames=['salary là 0.0'], colnames=['salary_avg thỏa thuận']).to_string())
+    rng = df['salary_class'].eq('range')
+    for col, p in [('salary_min', 'sal_min'), ('salary_max', 'sal_max')]:
+        exact = (df.loc[rng, col] == df.loc[rng, p]).mean()
+        floor_eq = (df.loc[rng, col] == df.loc[rng, p].astype(float).floordiv(1)).mean()
+        log(f'{col} (cột số nguyên) so với giá trị parse từ chuỗi: bằng đúng={100 * exact:.1f}% | '
+            f'bằng phần nguyên={100 * floor_eq:.1f}%')
+    log('=> Dùng giá trị parse từ chuỗi `salary` để giữ phần thập phân.')
 
-    funnel = [
-        ('all_vietjobs', len(df)),
-        ('country_vietnam', int(country_mask.sum())),
-        ('it_title_screened_candidates', len(eligible)),
-        ('numeric_salary_stated', int(has_numeric_salary.sum())),
-        ('valid_salary_range', int(valid_range.sum())),
-        ('full_time_contract', int((valid_range & full_time).sum())),
-        ('salary_range_3_to_200_million', int(
-            (valid_range & full_time & within_salary_limits).sum()
-        )),
-        ('unique_title_location_salary_description', int(
-            eligible.loc[valid_range & full_time & within_salary_limits]
-            .drop_duplicates(subset=deduplication_columns)
-            .shape[0]
-        )),
-    ]
+    # ------------------------------------------------------------ 2. bộ lọc IT
+    section('2. BỘ LỌC IT')
+    it_title = df['it_title_kw'] & ~df['sales_title']
+    log(f'it_cat   (category == {IT_CATEGORY}): {int(df["it_cat"].sum()):,}')
+    log(f'it_title (từ khóa chức danh, bỏ kinh doanh)       : {int(it_title.sum()):,}')
+    log(f'bị loại vì chức danh kinh doanh/tư vấn/marketing  : '
+        f'{int(((df["it_cat"] | df["it_title_kw"]) & df["sales_title"]).sum()):,}')
+    log(f'it_final = (cat OR title) AND NOT kinh doanh      : {int(df["it_final"].sum()):,}')
+    log('\nTop chức danh: category IT nhưng KHÔNG khớp từ khóa (category có lẫn nghề khác không?):')
+    log(top_titles(df, df['it_cat'] & ~df['it_title_kw'] & ~df['sales_title']))
+    log('\nTop chức danh: khớp từ khóa nhưng NGOÀI category IT (từ khóa có bắt nhầm không?):')
+    log(top_titles(df, ~df['it_cat'] & df['it_title_kw'] & ~df['sales_title']))
+    log('\nTop chức danh bị loại vì kinh doanh/tư vấn/marketing:')
+    log(top_titles(df, (df['it_cat'] | df['it_title_kw']) & df['sales_title']))
 
-    report_dir = ROOT / 'reports'
-    report_dir.mkdir(exist_ok=True)
-    review_columns = [
-        'job_title', 'category', 'salary', 'salary_min', 'salary_max',
-        'location', 'experience_required', 'salary_class', 'review_status',
-        'review_reason', 'likely_non_it',
-    ]
-    review_columns = [column for column in review_columns if column in candidates]
-    candidates[review_columns].to_csv(
-        report_dir / 'gd1b_it_title_review.csv', index=False
-    )
-    pd.DataFrame(funnel, columns=['stage', 'rows']).to_csv(
-        report_dir / 'gd1b_funnel.csv', index=False
-    )
+    review = (df.loc[df['it_cat'] | df['it_title_kw']]
+              .groupby('job_title')
+              .agg(n=('job_title', 'size'),
+                   category_top=('category', lambda s: s.value_counts().index[0]),
+                   it_cat=('it_cat', 'max'), it_title_kw=('it_title_kw', 'max'),
+                   sales_title=('sales_title', 'max'), it_final=('it_final', 'max'),
+                   graphic_design=('graphic_design', 'max'),
+                   known_false_positive=('known_false_positive', 'max'))
+              .sort_values('n', ascending=False))
+    review.to_csv(OUT_REVIEW, encoding='utf-8-sig')
+    log(f'\nĐã lưu {len(review):,} chức danh để rà soát: reports/{OUT_REVIEW.name}')
 
-    final_count = funnel[-1][1]
-    if final_count >= 800:
-        decision = 'GO: đủ ngưỡng dữ liệu; tiếp tục với phạm vi đã loại chức danh không thuộc IT.'
-    elif final_count >= 300:
-        decision = 'GO có điều kiện, thu hẹp phạm vi: chỉ tiếp tục sau rà soát chức danh và luật làm sạch.'
+    # ------------------------------------------------------------ 3. phễu
+    section('3. PHỄU DỮ LIỆU')
+    variants = {'it_cat': df['it_cat'], 'it_title': it_title, 'it_final': df['it_final']}
+    tables, masks = {}, {}
+    for name, mask in variants.items():
+        steps, final_mask = build_funnel(df, mask)
+        tables[name] = pd.Series({s: n for s, n in steps})
+        masks[name] = final_mask
+    funnel_df = pd.DataFrame(tables)
+    log(funnel_df.to_string())
+    funnel_df.to_csv(OUT_FUNNEL, encoding='utf-8-sig')
+    log(f'Đã lưu: reports/{OUT_FUNNEL.name}')
+
+    # ------------------------------------------------------------ 4. phát hiện khi rà soát
+    section('4. PHÁT HIỆN KHI RÀ SOÁT (it_final, cuối phễu) — chỉ ghi nhận, không loại ở GĐ1')
+    final = df.loc[masks['it_final']]
+    log(f'Số tin cuối phễu: {len(final):,}')
+    log('\nChức danh phổ biến nhất:')
+    log(final['job_title'].value_counts().head(15).to_string())
+    skills = (final['technical_skills'].fillna('').str.strip('[]').str.replace("'", '')
+              .str.split(',').explode().str.strip().str.lower())
+    log('\nKỹ năng phổ biến nhất:')
+    log(skills[skills.ne('')].value_counts().head(10).to_string())
+    log(f'\nChức danh thiết kế đồ họa (không phải web/UI): {int(final["graphic_design"].sum()):,} tin')
+    log(final.loc[final['graphic_design'], 'job_title'].value_counts().head(10).to_string())
+    log(f'\nTừ khóa bắt nhầm đã biết ("kiêm thủ kho" -> "kiểm thử", "Sắp xếp" -> "SAP"): '
+        f'{int(final["known_false_positive"].sum()):,} tin')
+    log(final.loc[final['known_false_positive'], 'job_title'].value_counts().head(10).to_string())
+
+    # ------------------------------------------------------------ 5. GO/NO-GO
+    section('5. GO/NO-GO')
+    n_final = int(funnel_df['it_final'].iloc[-1])
+    log(f'Ngưỡng đặt trước khi đếm: GO nếu ≥ {GO_THRESHOLD}; GO thu hẹp nếu {NARROW_THRESHOLD}–{GO_THRESHOLD}; '
+        f'NO-GO nếu < {NARROW_THRESHOLD}.')
+    log(f'Bộ lọc ban đầu (category CNTT hoặc từ khóa chức danh, bỏ kinh doanh) cho {n_final:,} tin.')
+    log('Khi rà soát: category CNTT của VietJobs gộp cả thiết kế đồ họa (xem mục 4: chức danh "Thiết kế", '
+        'kỹ năng photoshop), và bộ lọc từ khóa bắt nhầm một số tin do bỏ dấu tiếng Việt '
+        '("kiêm thủ kho" thành "kiểm thử", "Sắp xếp" thành "SAP").')
+    if n_final < NARROW_THRESHOLD:
+        decision = 'NO-GO: dưới ngưỡng tối thiểu.'
     else:
-        decision = 'NO-GO: số tin còn lại dưới 300.'
+        decision = ('GO có điều kiện, thu hẹp phạm vi: chỉ giữ IT theo nghĩa phần mềm/hạ tầng, loại thiết kế đồ họa '
+                    'và lọc theo chức danh thay vì theo category (thực hiện ở GĐ2). Thiết kế đồ họa có mức lương và '
+                    'kỹ năng khác hẳn, gộp chung sẽ lệch khỏi tên đề tài và làm nhiễu mô hình.')
+    log(f'Quyết định: {decision}')
+    log('IT-Job-Posting không có cột lương, chỉ dùng để khảo sát.')
 
-    salary_counts = df['salary_class'].value_counts(dropna=False)
-    review_counts = candidates['review_status'].value_counts(dropna=False)
-    excluded_title_count = int((likely_non_it & (category_match | title_match)).sum())
-    summary = [
-        'GD1 DATA AUDIT',
-        f'Data: {DATA_PATH.relative_to(ROOT)}',
-        f'rows={len(df)}',
-        f'it_category_candidates_in_vietnam={int(category_match.sum())}',
-        f'it_category_or_title_candidates_before_title_review={len(candidates)}',
-        f'likely_non_it_candidates_excluded={excluded_title_count}',
-        f'it_title_screened_candidates={len(eligible)}',
-        'Salary string categories (all VietJobs):',
-        *[f'  {name}: {count}' for name, count in salary_counts.items()],
-        'Title review statuses (candidate set):',
-        *[f'  {name}: {count}' for name, count in review_counts.items()],
-        'GO/NO-GO thresholds set before decision: GO >= 800; conditional narrowed-scope GO 300-799; NO-GO < 300.',
-        f'GO/NO-GO: {decision}',
-        'Salary bounds are used only for the audit funnel, not as model features.',
-        'IT-Job-Posting has no salary label.',
-    ]
-    text = '\n'.join(summary)
-    (report_dir / 'gd1b_audit_output.txt').write_text(text, encoding='utf-8')
-    print(text)
+    OUT_TXT.write_text('\n'.join(LINES), encoding='utf-8')
 
 
 if __name__ == '__main__':
