@@ -1,0 +1,13 @@
+TV2 - DATA CLEANING LOG
+Input rows: 48092
+IT title candidates: 709
+Rows after salary validation and deduplication: 371
+rows: 371
+duplicate_rows: 0
+missing_job_title: 0
+missing_salary_min: 0
+missing_salary_max: 0
+invalid_salary_ranges: 0
+
+Salary rule: keep 3-200 million VND/month; source 0.0 triệu means negotiated.
+Title rule: exclude sales/marketing/consulting and graphic-design roles; preserve technical software-design roles.
