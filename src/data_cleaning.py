@@ -190,22 +190,68 @@ def classify_job_category(title: object) -> str | None:
     if not raw:
         return None
 
+    # Exclude known false-positive titles.
+    if _has_any(raw, [
+        r"\bsap xep\b",
+        r"\bkiem thu kho\b",
+    ]):
+        return None
+
     # Exclude clearly non-IT roles first.
     exclude_patterns = [
+        # CNC, cơ khí và tự động hóa công nghiệp
         r"\bcnc\b",
         r"\bmay phay\b",
         r"\bmay tien\b",
+        r"\bphay\b",
         r"\blap trinh plc\b",
         r"\bky su plc\b",
         r"\btu dong hoa cong nghiep\b",
         r"\bindustrial automation\b",
         r"\bky su tu dong hoa\b",
+        r"\blap trinh cam\b",
+        r"\blap trinh may moc\b",
+        r"\bmachine vision\b",
+
+        # Xây dựng, BIM, MEP, HVAC
+        r"\bhvac\b",
+        r"\bbim\b",
+        r"\bmep\b",
+        r"\bshopdrawing\b",
+        r"\bshop drawing\b",
+        r"\bky su xay dung\b",
+        r"\bcong trinh xay dung\b",
+        r"\bthiet ke cau duong\b",
+        r"\bban ve ket cau\b",
+        r"\bthiet ke thi cong\b",
+        r"\bdesign and build\b",
+        r"\bchu dau tu\b",
+        r"\bky su he thong dien\b",
+
+        # Kế toán và tài chính
         r"\bke toan\b",
+        r"\bthu ngan\b",
+        r"\btai chinh ke toan\b",
+
+        # Tuyển sinh, giảng dạy
+        r"\btu van tuyen sinh\b",
+        r"\bgiang vien\b",
+        r"\bgiao vien\b",
+        r"\bteacher\b",
+        r"\blearning and development\b",
+
+        # Sản xuất, may mặc
         r"\bnong hoc\b",
         r"\bagronomy\b",
         r"\benvironmental\b",
+        r"\bdet lap trinh\b",
+        r"\blap trinh mau may mac\b",
+
+        # Bảo vệ
         r"\bbao ve\b",
         r"\bsecurity guard\b",
+
+        # Kinh doanh, bán hàng, marketing
         r"\bnhan vien kinh doanh\b",
         r"\bchuyen vien kinh doanh\b",
         r"\bsales\b",
@@ -217,30 +263,26 @@ def classify_job_category(title: object) -> str | None:
         r"\bmarketing\b",
         r"\btiep thi\b",
         r"\bcontent creator\b",
-        r"\bgraphic designer\b",
         r"\bgraphic design\b",
-        r"\bthiet ke do hoa\b",
-        r"\bchinh sua hinh anh\b",
-        r"\bphoto editor\b",
-        r"\bthumbnail\b",
-        r"\bprint on demand\b",
-        r"\bthiet ke bao bi\b",
-        r"\bthiet ke an pham\b",
-        r"\b2d artist\b",
-        r"\b3d artist\b",
-        r"\bgame artist\b",
-        r"\bgame animator\b",
-        r"\bgame designer\b",
-        r"\bmotion graphic\b",
-        r"\bmultimedia designer\b",
         r"\bvideo editor\b",
+
+        # Dữ liệu không phải công việc IT
         r"\bdata labeling\b",
-        r"\bgan nhan du lieu\b",
-        r"\bgiang vien\b",
-        r"\bgiao vien\b",
-        r"\bhanh chinh\b",
-        r"\btu van tuyen sinh\b",
-        r"\btu van du lich\b",
+
+        # Hành chính, tư vấn không thuộc IT
+        r"\bnhan vien admin\b",
+        r"\badmin phong\b",
+        r"\bdu lich\b",
+
+        # Công việc QA/QC ngoài lĩnh vực phần mềm
+        r"\bqa/qc.*co dien\b",
+        r"\bqa qc.*co dien\b",
+        r"\bqa/qc.*san xuat thuc pham\b",
+        r"\bqa/qc.*phong lab\b",
+
+        # Kiến trúc và xây dựng
+        r"\bkien truc su\b",
+        r"\bdesign\s*&\s*build\b",
     ]
 
     if _has_any(raw, exclude_patterns):
@@ -848,7 +890,47 @@ def clean_dataset(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, dict[st
         "salary": norm_col(candidates["salary"]),
         "description": desc_norm,
     }, index=candidates.index)
-    candidates = candidates.loc[~duplicate_key.duplicated(keep="first")].copy()
+        # Diagnostic: inspect duplicate groups before removing them.
+    duplicate_report = duplicate_key.copy()
+    duplicate_report["row_id"] = candidates["row_id"]
+    duplicate_report["job_title"] = candidates["job_title"]
+    duplicate_report["salary"] = candidates["salary"]
+
+    duplicate_groups = (
+        duplicate_key
+        .groupby(list(duplicate_key.columns), dropna=False)
+        .size()
+    )
+    duplicate_groups = duplicate_groups[duplicate_groups > 1].sort_values(
+        ascending=False
+    )
+
+    print("\n--- DUPLICATE CHECK ---")
+    print("Rows before dedup:", len(candidates))
+    print("Duplicate groups:", len(duplicate_groups))
+    print("Rows in duplicate groups:", int(duplicate_groups.sum()))
+    print("Rows removed by dedup:", int((duplicate_groups - 1).sum()))
+
+    if not duplicate_groups.empty:
+        print("\nTop 10 duplicate groups:")
+        for keys, size in duplicate_groups.head(10).items():
+            mask = pd.Series(True, index=duplicate_key.index)
+
+            for column, value in zip(duplicate_key.columns, keys):
+                mask &= duplicate_key[column].eq(value)
+
+            sample = candidates.loc[mask].iloc[0]
+
+            print(
+                f"- {size} rows | "
+                f"Title: {sample['job_title']} | "
+                f"Salary: {sample['salary']} | "
+                f"Row IDs: {candidates.loc[mask, 'row_id'].tolist()}"
+            )
+
+    candidates = candidates.loc[
+        ~duplicate_key.duplicated(keep="first")
+    ].copy()
     counts["after_deduplication"] = len(candidates)
 
     output_columns = [

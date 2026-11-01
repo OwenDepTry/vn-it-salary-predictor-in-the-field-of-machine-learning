@@ -1,8 +1,8 @@
 TV2 - DATA CLEANING LOG
 Input rows: 48092
-IT title candidates: 1221
-Rows after salary validation and deduplication: 456
-rows: 456
+IT title candidates: 1171
+Rows after salary validation and deduplication: 424
+rows: 424
 duplicate_rows: 0
 missing_job_title: 0
 missing_salary_min: 0
@@ -10,14 +10,14 @@ missing_salary_max: 0
 invalid_salary_ranges: 0
 input_rows: 48092
 after_vietnam: 47957
-after_it_title: 1221
-after_negotiable_salary: 663
-after_single_salary: 555
-after_invalid_salary: 555
-after_full_time: 545
-after_salary_bounds: 544
-after_salary_ratio: 540
-after_deduplication: 456
+after_it_title: 1171
+after_negotiable_salary: 615
+after_single_salary: 507
+after_invalid_salary: 507
+after_full_time: 499
+after_salary_bounds: 498
+after_salary_ratio: 494
+after_deduplication: 424
 
 Salary rule: keep 3-200 million VND/month; source 0.0 triệu means negotiated.
 Title rule: exclude sales/marketing/consulting and graphic-design roles; preserve technical software-design roles.
