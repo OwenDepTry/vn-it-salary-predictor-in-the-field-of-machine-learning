@@ -82,7 +82,10 @@ def _fold(value: object) -> str:
     """Lowercase and remove Vietnamese accents for robust matching."""
     value = _text(value).lower()
     value = unicodedata.normalize("NFD", value)
-    value = "".join(ch for ch in value if unicodedata.category(ch) != "Mn")
+    value = "".join(
+        ch for ch in value
+        if unicodedata.category(ch) != "Mn"
+    )
     return value.replace("đ", "d")
 
 
@@ -93,29 +96,46 @@ def _has_any(text: str, patterns: Iterable[str]) -> bool:
 def parse_salary(value: object) -> tuple[float, float]:
     """
     Return (salary_min, salary_max) in million VND/month.
-    Negotiable/unknown/zero salary is represented by (NaN, NaN), not zero.
+    Negotiable or invalid salary is represented by (NaN, NaN).
     """
     raw = _fold(value)
-    if not raw or any(x in raw for x in ("thoa thuan", "deal", "negotiable")):
+
+    if not raw:
+        return np.nan, np.nan
+
+    if any(term in raw for term in ("thoa thuan", "deal", "negotiable")):
         return np.nan, np.nan
 
     numbers = re.findall(r"\d+(?:[.,]\d+)?", raw)
+
     if not numbers:
         return np.nan, np.nan
 
-    values = [float(x.replace(",", ".")) for x in numbers[:2]]
+    values = [
+        float(number.replace(",", "."))
+        for number in numbers[:2]
+    ]
+
+    if len(values) == 1 and values[0] == 0 and "trieu" in raw:
+        return np.nan, np.nan
+
     if len(values) == 1:
         low = high = values[0]
     else:
-        low, high = min(values), max(values)
+        low, high = values
+
+        if low > high:
+            return np.nan, np.nan
 
     if high == 0:
         return np.nan, np.nan
 
-    if "ty" in raw or "tỷ" in _text(value).lower():
-        low, high = low * 1000, high * 1000
-    elif "nghin" in raw or "ngàn" in _text(value).lower():
-        low, high = low / 1000, high / 1000
+    if "ty" in raw:
+        low *= 1000
+        high *= 1000
+    elif "nghin" in raw:
+        low /= 1000
+        high /= 1000
 
     return low, high
 
@@ -142,151 +162,317 @@ def parse_experience_years(value: object) -> float:
 def experience_group(years: object) -> str:
     if pd.isna(years):
         return "unknown"
+
     years = float(years)
+
     if years == 0:
-        return "no_experience"
+        return "0 (không yêu cầu)"
     if years < 1:
-        return "under_1_year"
-    if years < 3:
-        return "1_to_2_years"
-    if years < 5:
-        return "3_to_4_years"
-    return "5_plus_years"
+        return "<1 năm"
+    if years == 1:
+        return "1 năm"
+    if years == 2:
+        return "2 năm"  
+    if years == 3:
+        return "3 năm"
+
+    return "4+ năm"
 
 
-def classify_title(title: object, category: object = "") -> bool:
-    """Return True when the title is plausibly an IT/technical role."""
-    title_folded = _fold(title)
-    category_folded = _fold(category)
 
-    if not title_folded:
-        return False
+def classify_job_category(title: object) -> str | None:
+    """
+    Classify an IT job title into one of the 7 required categories.
+    Return None for non-IT titles.
+    """
+    raw = _fold(title)
 
-    NON_IT_PATTERNS = [
+    if not raw:
+        return None
+
+    # Exclude clearly non-IT roles first.
+    exclude_patterns = [
         r"\bcnc\b",
         r"\bmay phay\b",
         r"\bmay tien\b",
         r"\blap trinh plc\b",
         r"\bky su plc\b",
         r"\btu dong hoa cong nghiep\b",
-        r"\bautomation technician\b",
         r"\bindustrial automation\b",
+        r"\bky su tu dong hoa\b",
         r"\bke toan\b",
         r"\bnong hoc\b",
         r"\bagronomy\b",
         r"\benvironmental\b",
-        r"\bmanagement system\b",
-        r"\bqa/?qc\b.*\b(thuc pham|san xuat thuc pham)\b",
-        r"\bphuc vu\b",
-        r"\btri lieu\b",
-        r"\bnhan vien sap xep\b",
-        r"\bseo\b",
-        r"\bgoogle ads\b",
-        r"\bcontent creator\b",
-        r"\bmarketing\b",
+        r"\bbao ve\b",
+        r"\bsecurity guard\b",
+        r"\bnhan vien kinh doanh\b",
+        r"\bchuyen vien kinh doanh\b",
         r"\bsales\b",
+        r"\bsale\b",
         r"\btelesales\b",
-        r"\btu van\b",
+        r"\bbusiness development\b",
+        r"\bphat trien kinh doanh\b",
         r"\bban hang\b",
-        r"\buser acquisition\b",
+        r"\bmarketing\b",
+        r"\btiep thi\b",
+        r"\bcontent creator\b",
+        r"\bgraphic designer\b",
+        r"\bgraphic design\b",
+        r"\bthiet ke do hoa\b",
+        r"\bchinh sua hinh anh\b",
+        r"\bphoto editor\b",
+        r"\bthumbnail\b",
+        r"\bprint on demand\b",
+        r"\bthiet ke bao bi\b",
+        r"\bthiet ke an pham\b",
+        r"\b2d artist\b",
+        r"\b3d artist\b",
+        r"\bgame artist\b",
+        r"\bgame animator\b",
+        r"\bgame designer\b",
+        r"\bmotion graphic\b",
+        r"\bmultimedia designer\b",
+        r"\bvideo editor\b",
+        r"\bdata labeling\b",
+        r"\bgan nhan du lieu\b",
+        r"\bgiang vien\b",
+        r"\bgiao vien\b",
+        r"\bhanh chinh\b",
+        r"\btu van tuyen sinh\b",
+        r"\btu van du lich\b",
     ]
 
-    if _has_any(title_folded, NON_IT_PATTERNS):
-        return False
+    if _has_any(raw, exclude_patterns):
+        return None
 
-    if _has_any(title_folded, FALSE_POSITIVE_PATTERNS):
-        return False
-
-    if _has_any(title_folded, SALES_PATTERNS):
-        return False
-
-    if _has_any(title_folded, GRAPHIC_PATTERNS):
-        if not _has_any(title_folded, [
-            r"\bui/?ux\b",
-            r"\bgame designer\b",
-            r"\bsoftware design\b",
-            r"\bthiet ke phan mem\b",
-            r"\bky su thiet ke phan mem\b",
-        ]):
-            return False
-
-    IT_TITLE_PATTERNS = [
-        r"\bsoftware\b",
+    # 1. Software development
+    if _has_any(raw, [
         r"\bdeveloper\b",
         r"\bprogrammer\b",
+        r"\blap trinh\b",
+        r"\bky su phan mem\b",
+        r"\bsoftware\b",
         r"\bbackend\b",
         r"\bback end\b",
         r"\bfrontend\b",
         r"\bfront end\b",
         r"\bfullstack\b",
         r"\bfull stack\b",
-        r"\bweb developer\b",
         r"\bmobile developer\b",
+        r"\bweb developer\b",
+        r"\bweb architect\b",
+        r"\bios developer\b",
+        r"\bandroid developer\b",
+        r"\bblockchain\b",
+        r"\bsitecore\b",
+        r"\bliferay\b",
+        r"\bjava\b",
+        r"\bpython\b",
+        r"\bphp\b",
+        r"\b\.net\b",
+        r"\bnodejs\b",
+        r"\bunity developer\b",
+        r"\bnha phat trien thong nhat\b",
+        r"\bnha phat trien phu tro cao cap\b",
+        r"\bsenior backend developer\b",
+        r"\bky su nhung\b",
+        r"\bembedded engineer\b",
+        r"\bembedded software\b",
+        r"\bky su blockchain\b",
+        r"\bky su phat trien ung dung\b",
+        r"\bky su nghien cuu thuat toan\b",
+    ]):
+        return "Phát triển phần mềm"
+
+    # 2. Testing and QA
+    if _has_any(raw, [
+        r"\btester\b",
+        r"\bkiem thu\b",
+        r"\bqa engineer\b",
+        r"\bqc engineer\b",
+        r"\bqa intern\b",
+        r"\bqa/qc\b",
+        r"\bqa qc\b",
+        r"\bmanual test\b",
+        r"\bautomation test\b",
+        r"\btest engineer\b",
+        r"\btest lead\b",
+        r"\bquality assurance\b",
+        r"\bprocess quality assurance\b",
+        r"\bquy trinh dam bao chat luong\b",
+        r"\bkiem tra tu dong hoa\b",
+    ]):
+        return "Kiểm thử & QA"
+
+    # 3. Infrastructure, DevOps and security
+    if _has_any(raw, [
+        r"\bdevops\b",
+        r"\bdevsecops\b",
+        r"\bsre\b",
+        r"\bsite reliability\b",
+        r"\bcloud\b",
+        r"\bopenstack\b",
+        r"\blinux\b",
+        r"\bsystem administrator\b",
+        r"\bsystem admin\b",
+        r"\bsystem engineer\b",
+        r"\bky su he thong\b",
+        r"\bquan tri he thong\b",
+        r"\bquan tri mang\b",
+        r"\bnetwork\b",
+        r"\bky su mang\b",
+        r"\binfrastructure\b",
+        r"\bstorage\b",
+        r"\bdatacenter\b",
+        r"\bdata center\b",
+        r"\bvmware\b",
+        r"\bkubernetes\b",
+        r"\bm365\b",
+        r"\bbao mat\b",
+        r"\bsecurity engineer\b",
+        r"\ban ninh mang\b",
+        r"\ban toan thong tin\b",
+        r"\bdba\b",
+        r"\bdatabase administrator\b",
+        r"\bvoip\b",
+        r"\bky thuat van hanh voip\b",
+        r"\bsystem integration engineer\b",
+        r"\bnetwork consultant\b",
+        r"\binfrastructure architecture\b",
+    ]):
+        return "Hạ tầng, DevOps & bảo mật"
+
+    # 4. Data and AI
+    if _has_any(raw, [
         r"\bdata analyst\b",
         r"\bdata engineer\b",
         r"\bdata scientist\b",
+        r"\bdata science\b",
+        r"\bdata platform\b",
+        r"\bdata architecture\b",
+        r"\bdata warehouse\b",
+        r"\bbusiness intelligence\b",
+        r"\bdata intelligence\b",
+        r"\bphan tich du lieu\b",
+        r"\bky su du lieu\b",
         r"\bmachine learning\b",
+        r"\bdeep learning\b",
         r"\bartificial intelligence\b",
         r"\bai engineer\b",
-        r"\bqa engineer\b",
-        r"\btester\b",
-        r"\btest engineer\b",
-        r"\bdevops\b",
-        r"\bsystem engineer\b",
-        r"\bsystem administrator\b",
-        r"\bnetwork engineer\b",
-        r"\bsecurity engineer\b",
-        r"\bdatabase administrator\b",
+        r"\bai specialist\b",
+        r"\bai analyst\b",
+        r"\bai leader\b",
+        r"\bai/nlp\b",
+        r"\bnlp engineer\b",
+        r"\bllm\b",
+        r"\bgenai\b",
+        r"\bmlops\b",
+        r"\btri tue nhan tao\b",
+        r"\bky su khoa hoc du lieu\b",
+    ]):
+        return "Dữ liệu & AI"
+
+    # 5. PM/BA/PO
+    if _has_any(raw, [
+        r"\bproject manager\b",
+        r"\bquan ly du an\b",
+        r"\bbusiness analyst\b",
+        r"\bphan tich nghiep vu\b",
+        r"\bnha phan tich kinh doanh\b",
+        r"\bproduct owner\b",
+        r"\bchu so huu san pham\b",
+        r"\bproduct manager\b",
+        r"\bscrum master\b",
+        r"\bbrse\b",
+        r"\bbridge system engineer\b",
+    ]):
+        return "Quản lý & phân tích (PM/BA/PO)"
+
+    # 6. Software implementation and ERP
+    if _has_any(raw, [
+        r"\btrien khai phan mem\b",
+        r"\btu van trien khai\b",
+        r"\berp\b",
+        r"\bsap\b",
+        r"\bodoo\b",
+        r"\boracle engineer\b",
+        r"\boracle\b",
+        r"\boig\b",
+        r"\boim\b",
+        r"\bsolution consultant\b",
+        r"\bky su trien khai\b",
+        r"\bky su giai phap\b",
+        r"\bimplementation engineer\b",
+    ]):
+        return "Triển khai & ERP"
+
+    # 7. IT support and general IT
+    if _has_any(raw, [
         r"\bit support\b",
         r"\bit helpdesk\b",
+        r"\bit help desk\b",
+        r"\bhelpdesk\b",
+        r"\bhelp desk\b",
+        r"\bnhan vien it\b",
+        r"\bky thuat it\b",
+        r"\bky thuat vien it\b",
+        r"\bky thuat may tinh\b",
+        r"\bit engineer\b",
+        r"\bit executive\b",
+        r"\bit infrastructure\b",
+        r"\bit specialist\b",
+        r"\bit coordinator\b",
+        r"\bit manager\b",
+        r"\bit system\b",
+        r"\bmiddle it\b",
+        r"\bcntt\b",
+        r"\bcong nghe thong tin\b",
+        r"\bit comtor\b",
         r"\btechnical support\b",
-        r"\bui/?ux\b",
-        r"\bgame designer\b",
-        r"\bgame developer\b",
-        r"\bweb administrator\b",
-        r"\bquan tri web\b",
-        r"\blap trinh\b",
-        r"\bky su phan mem\b",
-        r"\bky su cong nghe thong tin\b",
-    ]
+        r"\btechnical engineer\b",
+    ]):
+        return "Hỗ trợ kỹ thuật & IT chung"
 
-    return _has_any(title_folded, IT_TITLE_PATTERNS)
+    return None
+
+def classify_title(title: object, category: object = "") -> bool:
+    """Return True when the title is classified into one of the IT roles."""
+    return classify_job_category(title) is not None
 
 
 def seniority_from_title(title: object) -> str:
     raw = _fold(title)
-    if _has_any(raw, [r"\bintern\b", r"\binternship\b", r"\bthuc tap\b", r"\bfresher\b", r"\bjunior\b"]):
+    if _has_any(raw, [r"\bintern\b", r"\binternship\b", r"\bthuc tap\b"]):
+        return "intern"
+    if _has_any(raw, [r"\bfresher\b", r"\bgraduate\b"]):
+        return "fresher"
+    if _has_any(raw, [r"\bjunior\b"]):
         return "junior"
-    if _has_any(raw, [r"\bsenior\b", r"\blead\b", r"\bprincipal\b", r"\btruong nhom\b", r"\btruong phong\b"]):
-        return "senior"
-    if _has_any(raw, [r"\bmanager\b", r"\bdirector\b", r"\bquan ly\b", r"\bgiam doc\b", r"\bhead of\b"]):
-        return "manager"
     if _has_any(raw, [r"\bmiddle\b", r"\bmid-level\b", r"\bmid level\b"]):
         return "middle"
-    return "unspecified"
+    if _has_any(raw, [r"\blead\b", r"\bprincipal\b", r"\btruong nhom\b"]):
+        return "lead"
+    if _has_any(raw, [r"\bmanager\b", r"\bdirector\b", r"\bquan ly\b", r"\bgiam doc\b", r"\bhead of\b"]):
+        return "manager"
+    if _has_any(raw, [r"\bsenior\b", r"\bsr\b", r"\bcao cap\b"]):
+        return "senior"
+    return "unknown"
 
 
 def map_city(location: object) -> str:
-    raw = _fold(location)
+    raw = re.sub(r"[^a-z0-9]+", " ", _fold(location))
     if not raw:
-        return "unknown"
-
-    cities = []
+        return "Khác"
     city_patterns = {
-        "ha_noi": [r"\bha noi\b", r"\bha dong\b", r"\bbac tu liem\b"],
-        "ho_chi_minh": [r"\bho chi minh\b", r"\btp hcm\b", r"\bthu duc\b"],
-        "da_nang": [r"\bda nang\b"],
-        "hai_phong": [r"\bhai phong\b"],
-        "can_tho": [r"\bcan tho\b"],
+        "Hà Nội": [r"\bha noi\b", r"\bha dong\b", r"\bbac tu liem\b"],
+        "TP.HCM": [r"\bho chi minh\b", r"\btp hcm\b", r"\bthu duc\b", r"\bsaigon\b"],
+        "Đà Nẵng": [r"\bda nang\b"],
     }
-    for city, patterns in city_patterns.items():
-        if _has_any(raw, patterns):
-            cities.append(city)
-    if len(cities) > 1:
-        return "multiple_cities"
-    if len(cities) == 1:
-        return cities[0]
-    return "other_vietnam"
+    found = [city for city, patterns in city_patterns.items() if _has_any(raw, patterns)]
+    if len(found) > 1:
+        return "Nhiều thành phố"
+    return found[0] if found else "Khác"
 
 
 def normalize_skill(skill: object) -> str:
@@ -338,56 +524,342 @@ def self_check(df: pd.DataFrame) -> dict[str, object]:
     return checks
 
 
+def _normalised_description(value: object) -> str:
+    return re.sub(r"\s+", " ", _fold(value)).strip()
+
+
+def _classify_row(row: pd.Series) -> str | None:
+    title = _text(row.get("job_title", ""))
+    title_fold = _fold(title)
+    category = classify_job_category(title)
+
+    evidence = _fold(" ".join(
+        _text(row.get(column, ""))
+        for column in (
+            "description",
+            "requirements_text",
+            "qualifications",
+            "technical_skills",
+        )
+    ))
+
+    # 1. Bridge System Engineer (BrSE):
+    # Main responsibilities are requirements and project coordination.
+    if _has_any(title_fold, [
+        r"\bbridge system engineer\b",
+        r"\bbrse\b",
+    ]):
+        return "Quản lý & phân tích (PM/BA/PO)"
+
+    # 2. System Engineer:
+    # Classify based on the main responsibilities, not optional skills.
+    if category is None and _has_any(title_fold, [
+        r"\bsystem engineer\b",
+        r"\blinux system engineer\b",
+    ]):
+        infrastructure_title = [
+            r"\blinux\b",
+            r"\bnetwork\b",
+            r"\bkubernetes\b",
+            r"\bvmware\b",
+            r"\bdata center\b",
+            r"\bcloud\b",
+            r"\bgenesys\b",
+        ]
+
+        infrastructure_evidence = [
+            r"\blinux\b",
+            r"\bnetwork\b",
+            r"\bkubernetes\b",
+            r"\bvmware\b",
+            r"\bdata center\b",
+            r"\bserver\b",
+            r"\bstorage\b",
+            r"\bcisco\b",
+            r"\bdell\b",
+            r"\bhpe\b",
+            r"\bfujitsu\b",
+            r"\bredhat\b",
+            r"\bcloud computing\b",
+            r"\bopenstack\b",
+            r"\bvirtualization\b",
+            r"\bha tang\b",
+            r"\bquan tri he thong\b",
+            r"\bvan hanh he thong\b",
+            r"\bnetworking\b",
+            r"\bdatacenter\b",
+        ]
+
+        software_evidence = [
+            r"\bfrontend\b",
+            r"\bfront end\b",
+            r"\bbackend\b",
+            r"\bback end\b",
+            r"\bcoding\b",
+            r"\bcode frontend\b",
+            r"\bcode backend\b",
+            r"\bphat trien chuc nang\b",
+            r"\bphat trien phan mem\b",
+            r"\bsoftware development\b",
+            r"\brefactor\b",
+            r"\bmigrate he thong\b",
+        ]
+
+        # Infrastructure signals take priority over optional programming skills.
+        if _has_any(title_fold, infrastructure_title):
+            category = "Hạ tầng, DevOps & bảo mật"
+
+        elif _has_any(evidence, infrastructure_evidence):
+            category = "Hạ tầng, DevOps & bảo mật"
+
+        elif _has_any(evidence, software_evidence):
+            category = "Phát triển phần mềm"
+
+    # 3. Other Business Analyst titles:
+    # The title alone is not enough; require IT-related evidence.
+    if category is None:
+        is_business_analyst = _has_any(title_fold, [
+            r"\bnha phan tich kinh doanh\b",
+            r"\bbusiness analyst\b",
+            r"\bchuyen vien phan tich nghiep vu\b",
+        ])
+
+        if not is_business_analyst:
+            return None
+
+        category = "Quản lý & phân tích (PM/BA/PO)"
+
+    elif category != "Quản lý & phân tích (PM/BA/PO)":
+        return category
+
+    # 4. Check whether PM/BA/PO work is actually related to IT.
+    non_it = [
+        r"\bconstruction project\b",
+        r"\bdu an xay dung\b",
+        r"\bthi cong cong trinh\b",
+        r"\bmarketing campaign\b",
+        r"\bbrand marketing\b",
+        r"\bmarketing strategy\b",
+        r"\btruyen thong su kien\b",
+        r"\bto chuc su kien\b",
+        r"\bnghien cuu thi truong\b",
+        r"\bmarket research\b",
+        r"\blogistics\b",
+        r"\bmanufacturing\b",
+        r"\bco khi\b",
+        r"\bket cau thep\b",
+        r"\bthang may\b",
+        r"\bnoi that\b",
+        r"\bdien mat troi\b",
+        r"\bgiao duc\b",
+        r"\bielts\b",
+        r"\bban hang\b",
+        r"\baccount executive\b",
+    ]
+
+    if _has_any(evidence, non_it):
+        strong_it_evidence = [
+            r"\bsoftware\b",
+            r"\bphan mem\b",
+            r"\bsaas\b",
+            r"\bweb app\b",
+            r"\bmobile app\b",
+            r"\bphat trien ung dung\b",
+            r"\bphat trien phan mem\b",
+            r"\bteam dev\b",
+            r"\bdeveloper\b",
+            r"\bproduct backlog\b",
+            r"\buser story\b",
+            r"\bbrd\b",
+            r"\bsrs\b",
+            r"\bapi\b",
+            r"\bcrm\b",
+            r"\berp\b",
+            r"\bdata warehouse\b",
+            r"\bdoi ngu ky thuat\b",
+            r"\bnhom phat trien\b",
+            r"\btech company\b",
+            r"\bcomputer science\b",
+            r"\bengineering\b",
+            r"\bagile methodologies\b",
+            r"\bproduct owner\b",
+            r"\bjira\b",
+            r"\btrello\b",
+            r"\basana\b",
+            r"\btechnical teams?\b",
+            r"\bnhom ky thuat\b",
+            r"\bmo hinh hoa he thong\b",
+            r"\bobjects\b",
+            r"\bproperties\b",
+            r"\buser requirements\b",
+            r"\bkiem thu san pham\b",
+            r"\bnghiem thu san pham\b",
+            r"\bui/ux\b",
+            r"\bui ux\b",
+            r"\buser stories\b",
+            r"\bodoo\b",
+            r"\bsap\b",
+            r"\bmicrosoft dynamics\b",
+            r"\bphong it\b",
+        ]
+
+        if not _has_any(evidence, strong_it_evidence):
+            return None
+
+    it_evidence = [
+        r"\bsoftware\b",
+        r"\bphan mem\b",
+        r"\bapplication\b",
+        r"\bweb site\b",
+        r"\bwebsite\b",
+        r"\bmobile app\b",
+        r"\bhe thong\b",
+        r"\bsystem\b",
+        r"\bphat trien phan mem\b",
+        r"\bsoftware development\b",
+        r"\bbrd\b",
+        r"\bsrs\b",
+        r"\burd\b",
+        r"\buse case\b",
+        r"\bwireframe\b",
+        r"\bproduct backlog\b",
+        r"\bscrum\b",
+        r"\bsprint\b",
+        r"\bproduct owner\b",
+        r"\bdata warehouse\b",
+        r"\bbi\b",
+        r"\berp\b",
+        r"\bfintech\b",
+        r"\bapi\b",
+        r"\bdeveloper\b",
+        r"\bdoi ngu ky thuat\b",
+        r"\bteam ky thuat\b",
+        r"\bnhom phat trien\b",
+        r"\bkiem thu\b",
+        r"\btech company\b",
+        r"\bcomputer science\b",
+        r"\bengineering\b",
+        r"\bmobile application\b",
+        r"\bmobile apps?\b",
+        r"\bai platform\b",
+        r"\bproduct development\b",
+        r"\bphat trien ung dung\b",
+        r"\bcong ty cong nghe\b",
+        r"\bcong ty phat trien ung dung\b",
+        r"\bky su\b",
+        r"\bnhom ky thuat\b",
+    ]
+
+    if _has_any(evidence, it_evidence):
+        return category
+
+    return None
+
 def clean_dataset(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, dict[str, object]]:
-    required = {"job_title", "salary", "experience_required", "location", "category"}
+    """Apply the ordered TV2 filters and return candidate rows and model-ready data."""
+    required = {
+        "job_title", "location", "country", "salary", "contract_type",
+        "experience_required", "description", "category",
+    }
     missing = required - set(df.columns)
     if missing:
         raise ValueError(f"Missing required source columns: {sorted(missing)}")
 
     work = df.copy()
+    work["row_id"] = work.index
     work["job_title"] = work["job_title"].fillna("").astype(str).str.strip()
-    work["is_it_title"] = work.apply(
-        lambda row: classify_title(row["job_title"], row["category"]), axis=1
-    )
+    counts: dict[str, object] = {"input_rows": len(work)}
 
-    candidates = work.loc[work["is_it_title"]].copy()
+    # 1. Country
+    work = work.loc[work["country"].fillna("").astype(str).str.strip().eq("Việt Nam")].copy()
+    counts["after_vietnam"] = len(work)
 
+    # 2. Classify by role; PM/BA/PO titles are gated by description evidence.
+    work["job_category"] = work.apply(_classify_row, axis=1)
+    candidates = work.loc[work["job_category"].notna()].copy()
+    counts["after_it_title"] = len(candidates)
+
+    # 3. Negotiable / missing salary.
     salary_pairs = candidates["salary"].apply(parse_salary)
-    candidates[["salary_min_parsed", "salary_max_parsed"]] = pd.DataFrame(
+    candidates[["salary_min", "salary_max"]] = pd.DataFrame(
         salary_pairs.tolist(), index=candidates.index
     )
+    candidates = candidates.loc[
+        candidates["salary_min"].notna() & candidates["salary_max"].notna()
+    ].copy()
+    counts["after_negotiable_salary"] = len(candidates)
 
-    valid_salary = (
-        candidates["salary_min_parsed"].between(3, 200)
-        & candidates["salary_max_parsed"].between(3, 200)
-    )
-    candidates = candidates.loc[valid_salary].copy()
+    # 4. The leader requires a genuine range, not a single salary number.
+    candidates = candidates.loc[candidates["salary_min"].lt(candidates["salary_max"])].copy()
+    counts["after_single_salary"] = len(candidates)
 
-    candidates["experience_years"] = candidates["experience_required"].apply(
-        parse_experience_years
-    )
+    # 5. Validate order and parseability; reversed endpoints are invalid, never swapped.
+    candidates = candidates.loc[
+        candidates["salary_min"].le(candidates["salary_max"])
+    ].copy()
+    counts["after_invalid_salary"] = len(candidates)
+
+    # 6. Full-time only.
+    candidates = candidates.loc[
+        candidates["contract_type"].fillna("").astype(str).str.strip().eq("Toàn thời gian")
+    ].copy()
+    counts["after_full_time"] = len(candidates)
+
+    # 7. Monthly salary bounds.
+    candidates = candidates.loc[
+        candidates["salary_min"].between(3, 200)
+        & candidates["salary_max"].between(3, 200)
+    ].copy()
+    counts["after_salary_bounds"] = len(candidates)
+
+    # 8. Discard implausibly broad ranges.
+    candidates = candidates.loc[
+        candidates["salary_max"].div(candidates["salary_min"]).le(5)
+    ].copy()
+    counts["after_salary_ratio"] = len(candidates)
+
+    candidates["experience_years"] = candidates["experience_required"].apply(parse_experience_years)
     candidates["experience_group"] = candidates["experience_years"].apply(experience_group)
     candidates["seniority"] = candidates["job_title"].apply(seniority_from_title)
-    candidates["city_group"] = candidates["location"].apply(map_city)
+    candidates["city"] = candidates["location"].apply(map_city)
 
     skill_source = next(
-        (col for col in ("technical_skills", "qualifications", "requirements_text") if col in candidates),
+        (column for column in ("technical_skills", "qualifications", "requirements_text") if column in candidates),
         None,
     )
-    candidates["skills_list"] = (
-        candidates[skill_source].apply(parse_skills) if skill_source else [[] for _ in range(len(candidates))]
+    candidates["skills"] = (
+        candidates[skill_source].apply(lambda value: "|".join(parse_skills(value)))
+        if skill_source else ""
+    )
+    candidates["salary_raw"] = candidates["salary"].astype(str)
+    candidates["salary_label"] = (candidates["salary_min"] + candidates["salary_max"]) / 2
+
+    desc_norm = candidates["description"].apply(_normalised_description)
+    candidates["desc_group"] = desc_norm.apply(
+        lambda value: __import__("hashlib").sha1(value.encode("utf-8")).hexdigest()[:12]
     )
 
-    candidates["salary_min"] = candidates["salary_min_parsed"].astype(float)
-    candidates["salary_max"] = candidates["salary_max_parsed"].astype(float)
-    candidates["salary_avg"] = (
-        candidates["salary_min"] + candidates["salary_max"]
-    ) / 2
+    def norm_col(series: pd.Series) -> pd.Series:
+        return series.fillna("").astype(str).map(_normalised_description)
 
-    duplicate_columns = [column for column in candidates.columns if column != "skills_list"]
-    candidates = candidates.drop_duplicates(subset=duplicate_columns).reset_index(drop=True)
-    checks = self_check(candidates)
-    return work.loc[work["is_it_title"]].copy(), candidates, checks
+    duplicate_key = pd.DataFrame({
+        "title": norm_col(candidates["job_title"]),
+        "location": norm_col(candidates["location"]),
+        "salary": norm_col(candidates["salary"]),
+        "description": desc_norm,
+    }, index=candidates.index)
+    candidates = candidates.loc[~duplicate_key.duplicated(keep="first")].copy()
+    counts["after_deduplication"] = len(candidates)
+
+    output_columns = [
+        "row_id", "job_title", "job_category", "city", "experience_years",
+        "experience_group", "seniority", "skills", "salary_raw", "salary_min",
+        "salary_max", "salary_label", "desc_group",
+    ]
+    cleaned = candidates[output_columns].reset_index(drop=True)
+    checks = self_check(cleaned)
+    checks.update(counts)
+    return work.loc[work["job_category"].notna()].copy(), cleaned, checks
 
 
 def main() -> None:
