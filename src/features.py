@@ -113,18 +113,14 @@ def make_groups(df: pd.DataFrame) -> pd.Series:
         salary_min = row.get("salary_min", None)
         salary_max = row.get("salary_max", None)
 
-        description = _normalise_text(row.get("description", ""))
-        requirements = _normalise_text(row.get("requirements_text", ""))
+        salary = _normalise_text(row.get("salary_raw", row.get("salary", "")))
 
-        if title and (description or requirements):
+        if title and salary:
             keys.append((
                 "posting",
                 title,
                 city,
-                salary_min,
-                salary_max,
-                description,
-                requirements,
+                salary,
             ))
 
         # Merge all records sharing at least one key.
