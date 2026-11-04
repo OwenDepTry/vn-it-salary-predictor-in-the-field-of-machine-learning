@@ -307,6 +307,25 @@ def classify_job_category(title: object) -> str | None:
     # 1. Software development
     if _has_any(raw, [
         r"\bdeveloper\b",
+        r"^\s*(junior )?dev\b",
+        r"\bthuc tap sinh dev\b",
+        r"\bjava team leader\b",
+        r"\bjava engineer\b",
+        r"\bandroid.*engineer\b",
+        r"\bios.*engineer\b",
+        r"\bios.*developer\b",
+        r"\b(nha phat trien|ky su).*(java|python|golang)\b",
+        r"\b(nha phat trien|ky su).*(android|ios)\b",
+        r"\bnha phat trien phu tro.*(python|golang|java|django|springboot)\b",
+        r"\bky su phu tro.*(python|golang|java)\b",
+        r"\bnha phat trien stack full\b",
+        r"\bnha phat trien day du\b",
+        r"\bnha phat trien tro choi unity\b",
+        r"\bnha phat trien unity\b",
+        r"\bnha phat trien unreal engine\b",
+        r"\bnhan vien phat trien game\b",
+        r"\bgame unity\b",
+        r"(^|\s)\.net\b",
         r"\bprogrammer\b",
         r"\blap trinh\b",
         r"\bky su phan mem\b",
@@ -349,15 +368,28 @@ def classify_job_category(title: object) -> str | None:
         r"\bios dev\b",
         r"\bback[- ]end\b",
         r"\bfront[- ]end\b",
-        r"\bwordpress\b",
         r"\b(nha )?phat trien python\b",
         r"\b(nha )?phat trien wordpress\b",
         r"\b(nha )?phat trien golang\b",
-        r"\b(nha )?phat trien .net\b",
+        r"\b(nha )?phat trien \.net\b",
         r"\bviet ma phan mem\b",
         r"\bviet code\b",
         r"\bky su thiet ke phan mem\b",
         r"\bthiet ke phan mem\b",
+        r"\bnha phat trien phia truoc\b",
+        r"\bnha phat trien goc canh\b",
+        r"\bnha phat trien phia sau\b",
+        r"\bnha phat trien back[- ]end\b",
+        r"\bnha phat trien front[- ]end\b",
+        r"\bnha phat trien full[- ]stack\b",
+        r"\bky su di dong\b",
+        r"\bky su phat trien ung dung di dong\b",
+        r"\bky su ios\b",
+        r"\bky su android\b",
+        r"\bky su javascript\b",
+        r"\bky su reactjs\b",
+        r"\bky su nodejs\b",
+        r"\bky su unity\b",
     ]):
         return "Phát triển phần mềm"
 
@@ -430,6 +462,13 @@ def classify_job_category(title: object) -> str | None:
         r"\bdata science\b",
         r"\bdata platform\b",
         r"\bdata architecture\b",
+        r"\bdata architect\b",
+        r"\bsenior data architect\b",
+        r"\bdata analyst system\b",
+        r"\bdata systems analyst\b",
+        r"\bkien truc su du lieu\b",
+        r"\bnha phan tich he thong du lieu\b",
+        r"\bchuyen vien phan tich du lieu\b",
         r"\bdata warehouse\b",
         r"\bbusiness intelligence\b",
         r"\bdata intelligence\b",
@@ -468,6 +507,7 @@ def classify_job_category(title: object) -> str | None:
         r"\bquan ly du an phan mem\b",
         r"\bquan ly du an cong nghe thong tin\b",
         r"\bbusiness analyst\b",
+        r"\bmiddle ba\b",
         r"\bphan tich nghiep vu\b",
         r"\bnha phan tich kinh doanh\b",
         r"\bproduct owner\b",
@@ -503,7 +543,16 @@ def classify_job_category(title: object) -> str | None:
     # 7. IT support and general IT
     if _has_any(raw, [
         r"\bit comtor\b",
+        r"\bchuyen vien it\b",
+        r"\bchuyen vien it he thong\b",
+        r"\bchuyen vien it.*quan tri\b",
+        r"\bchuyen vien it.*ho tro\b",
+        r"\bit system coordinator\b",
         r"\bcomtor\b",
+        r"\bnhan vien ky thuat phan cung may tinh\b",
+        r"\bky thuat vien phan cung may tinh\b",
+        r"\bnhan vien sua chua may tinh\b",
+        r"\bky thuat phan cung\b",
         r"\bit support\b",
         r"\bit helpdesk\b",
         r"\bit help desk\b",
@@ -701,6 +750,40 @@ def _classify_row(row: pd.Series) -> str | None:
         )
     ))
 
+    # Nhận diện lãnh đạo kỹ thuật nhưng phải có bằng chứng thuộc IT.
+    technical_leadership_title = [
+        r"\blanh dao ky thuat\b",
+        r"\btechnical director\b",
+        r"\btechnical lead\b",
+        r"\bhead of engineering\b",
+        r"\bengineering manager\b",
+    ]
+
+    technical_leadership_evidence = [
+        r"\bsoftware\b",
+        r"\bphan mem\b",
+        r"\bcong nghe thong tin\b",
+        r"\bphat trien ung dung\b",
+        r"\bsoftware development\b",
+        r"\bdeveloper\b",
+        r"\bdevops\b",
+        r"\binfrastructure\b",
+        r"\bcloud computing\b",
+        r"\bdata engineering\b",
+        r"\bmachine learning\b",
+        r"\bapi\b",
+        r"\bdatabase\b",
+        r"\bsystem architecture\b",
+        r"\bsoftware architecture\b",
+        r"\bdoi ngu lap trinh\b",
+        r"\bnhom phat trien phan mem\b",
+    ]
+
+    if _has_any(title_fold, technical_leadership_title):
+        if _has_any(evidence, technical_leadership_evidence):
+            return "Quản lý & phân tích (PM/BA/PO)"
+        return None
+
     # Loại QA/QC ngoài lĩnh vực phần mềm
     if _has_any(title_fold, [r"\bqa/qc\b", r"\bqa qc\b"]):
         software_evidence = [
@@ -836,7 +919,7 @@ def _classify_row(row: pd.Series) -> str | None:
 
     # 2. System Engineer:
     # Classify based on the main responsibilities, not optional skills.
-    if category is None and _has_any(title_fold, [
+    if _has_any(title_fold, [
         r"\bsystem engineer\b",
         r"\blinux system engineer\b",
     ]):
@@ -905,6 +988,7 @@ def _classify_row(row: pd.Series) -> str | None:
             r"\bnha phan tich kinh doanh\b",
             r"\bbusiness analyst\b",
             r"\bchuyen vien phan tich nghiep vu\b",
+            r"\bmiddle ba\b",
         ])
 
         if not is_business_analyst:
@@ -963,7 +1047,6 @@ def _classify_row(row: pd.Series) -> str | None:
             r"\bnhom phat trien\b",
             r"\btech company\b",
             r"\bcomputer science\b",
-            r"\bengineering\b",
             r"\bagile methodologies\b",
             r"\bproduct owner\b",
             r"\bjira\b",
@@ -1021,7 +1104,6 @@ def _classify_row(row: pd.Series) -> str | None:
         r"\bkiem thu\b",
         r"\btech company\b",
         r"\bcomputer science\b",
-        r"\bengineering\b",
         r"\bmobile application\b",
         r"\bmobile apps?\b",
         r"\bai platform\b",
@@ -1029,7 +1111,6 @@ def _classify_row(row: pd.Series) -> str | None:
         r"\bphat trien ung dung\b",
         r"\bcong ty cong nghe\b",
         r"\bcong ty phat trien ung dung\b",
-        r"\bky su\b",
         r"\bnhom ky thuat\b",
     ]
 
