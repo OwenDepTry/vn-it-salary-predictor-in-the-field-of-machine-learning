@@ -1,26 +1,29 @@
-"""TV2 feature engineering; split is group-aware and reusable."""
-from __future__ import annotations
+# src/features.py
+"""GĐ3 — Đặc trưng: nhóm chống rò rỉ, chia train/test, tiền xử lý (ColumnTransformer).
 
-import hashlib
-import re
-import unicodedata
+Mọi bước có "học" từ dữ liệu (từ vựng kỹ năng, gộp nhóm hiếm, imputation) nằm TRONG Pipeline,
+nên chỉ được fit trên train (hoặc trên fold train khi cross-validation).
+"""
 from pathlib import Path
-from typing import Any
 
 import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.impute import SimpleImputer
+from sklearn.model_selection import GroupShuffleSplit
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder
 
 ROOT = Path(__file__).resolve().parents[1]
-INPUT_FILE = ROOT / "data" / "processed" / "it_salary_clean.csv"
-SPLIT_FILE = ROOT / "data" / "processed" / "split.csv"
+PROCESSED_PATH = ROOT / "data" / "processed" / "it_salary_clean.csv"
+SPLIT_PATH = ROOT / "data" / "processed" / "split.csv"
+
 RANDOM_STATE = 42
 TEST_SIZE = 0.2
-
 TARGET = "salary_label"
-SENIORITY_COARSE = {
+
+SENIORITY_COARSE = {  # 83% "unknown" (GĐ2) -> chỉ dùng dạng gộp thô
     "intern": "entry", "fresher": "entry", "junior": "entry",
     "middle": "senior", "senior": "senior",
     "lead": "lead_manager", "manager": "lead_manager",
@@ -31,312 +34,130 @@ EXPERIENCE_NUM = ["experience_years"]
 EXPERIENCE_CAT = ["experience_group"]
 SKILLS = "skills"
 FEATURE_COLUMNS = CATEGORICAL + EXPERIENCE_NUM + EXPERIENCE_CAT + [SKILLS]
-MIN_FREQUENCY = 10
+
+MIN_FREQUENCY = 10   # nhóm có < 10 tin trong train -> gộp vào "infrequent" (học trên train)
 SKILL_TOP_K = 30
 SKILL_MIN_COUNT = 5
 
 
-def load_clean(path=INPUT_FILE) -> pd.DataFrame:
+# ----------------------------------------------------------------------------- dữ liệu
+def load_clean(path: Path = PROCESSED_PATH) -> pd.DataFrame:
     df = pd.read_csv(path, encoding="utf-8-sig")
-    required = set(CATEGORICAL[:2] + EXPERIENCE_NUM + EXPERIENCE_CAT + [SKILLS, TARGET, "row_id", "seniority"])
-    missing = required - set(df.columns)
-    if missing:
-        raise ValueError(f"Clean dataset missing columns: {sorted(missing)}")
     df["seniority_coarse"] = df["seniority"].map(SENIORITY_COARSE).fillna("unknown")
-    df["skills"] = df["skills"].fillna("").astype(str)
+    df["skills"] = df["skills"].fillna("")
     return df
 
 
-def _normalise_text(value: Any) -> str:
-    if pd.isna(value):
-        return ""
-    text = str(value).lower()
-    text = unicodedata.normalize("NFD", text)
-    text = "".join(ch for ch in text if unicodedata.category(ch) != "Mn")
-    text = text.replace("đ", "d")
-    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9]+", " ", text)).strip()
-
-
-def _as_skill_list(value: Any) -> list[str]:
-    if isinstance(value, (list, tuple, set)):
-        return [_normalise_text(v) for v in value if _normalise_text(v)]
-    if pd.isna(value):
-        return []
-    return [item.strip() for item in str(value).split("|") if item.strip()]
-
-
-class UnionFind:
-    def __init__(self, size: int):
-        self.parent = list(range(size))
-        self.rank = [0] * size
-
-    def find(self, item: int) -> int:
-        if self.parent[item] != item:
-            self.parent[item] = self.find(self.parent[item])
-        return self.parent[item]
-
-    def union(self, left: int, right: int) -> None:
-        left, right = self.find(left), self.find(right)
-        if left == right:
-            return
-        if self.rank[left] < self.rank[right]:
-            left, right = right, left
-        self.parent[right] = left
-        if self.rank[left] == self.rank[right]:
-            self.rank[left] += 1
-
-
-
 def make_groups(df: pd.DataFrame) -> pd.Series:
-    """Create connected duplicate groups using Union-Find."""
-    data = df.reset_index(drop=True)
-    uf = UnionFind(len(data))
-    seen: dict[tuple, int] = {}
+    """Gán group_id: hai tin cùng nhóm nếu trùng mô tả HOẶC trùng (chức danh, địa điểm, chuỗi lương).
+    Dùng union-find để gộp bắc cầu. Mục đích: tin đăng lại không nằm ở cả train và test."""
+    parent = list(range(len(df)))
 
-    for i, row in data.iterrows():
-        keys = []
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
 
-        # Reuse duplicate groups created during data cleaning.
-        desc_group = _normalise_text(row.get("desc_group", ""))
-        if desc_group:
-            keys.append(("desc_group", desc_group))
+    def union(i, j):
+        ri, rj = find(i), find(j)
+        if ri != rj:
+            parent[rj] = ri
 
-        # Match normalized job descriptions and requirements.
-        for col in ("description", "requirements_text"):
-            value = _normalise_text(row.get(col, ""))
-            if len(value) >= 40:
-                keys.append((col, hashlib.sha1(value.encode()).hexdigest()))
-
-        # Match the complete posting identity.
-        title = _normalise_text(row.get("job_title", ""))
-        city = _normalise_text(row.get("city", row.get("location", "")))
-        salary_min = row.get("salary_min", None)
-        salary_max = row.get("salary_max", None)
-
-        salary = _normalise_text(row.get("salary_raw", row.get("salary", "")))
-
-        if title and salary:
-            keys.append((
-                "posting",
-                title,
-                city,
-                salary,
-            ))
-
-        # Merge all records sharing at least one key.
-        for key in keys:
-            if key in seen:
-                uf.union(i, seen[key])
+    pos = np.arange(len(df))
+    keys = [df["desc_group"].astype(str),
+            df["job_title_norm"].astype(str) + "||" + df["location_raw"].astype(str) + "||" + df["salary_raw"].astype(str)]
+    for key in keys:
+        first = {}
+        for i, k in zip(pos, key):
+            if k in first:
+                union(first[k], i)
             else:
-                seen[key] = i
+                first[k] = i
+    roots = [find(i) for i in pos]
+    return pd.Series(pd.factorize(pd.Series(roots))[0], index=df.index, name="group_id")
 
-    roots = [uf.find(i) for i in range(len(data))]
 
-    mapping = {}
-    labels = []
-
-    for root in roots:
-        if root not in mapping:
-            mapping[root] = f"group_{len(mapping):05d}"
-        labels.append(mapping[root])
-
-    return pd.Series(labels, index=df.index, name="group_id")
-
-def get_split(df: pd.DataFrame, groups=None, path=SPLIT_FILE):
-    """Return train/test masks and reuse a matching split."""
-    from sklearn.model_selection import GroupShuffleSplit
-
-    if "row_id" not in df:
-        raise ValueError("df must contain row_id")
-
-    row_ids = df["row_id"].tolist()
-
-    if len(set(row_ids)) != len(row_ids):
-        raise ValueError("row_id must be unique")
-
-    group_values = groups if groups is not None else make_groups(df)
-    group_values = np.asarray(group_values)
-
-    if len(group_values) != len(df):
-        raise ValueError("groups length must match df")
-
-    if pd.isna(group_values).any():
-        raise ValueError("group_id must not contain missing values")
-
-    if pd.Series(group_values).nunique() < 2:
-        raise ValueError("Need at least two distinct groups")
-
-    path = Path(path)
-
+def get_split(df: pd.DataFrame, groups: pd.Series, path: Path = SPLIT_PATH):
+    """Trả về (train_mask, test_mask, created_new). Lưu split ra file để mọi giai đoạn dùng CÙNG một split.
+    Nếu file đã có và khớp đúng tập row_id hiện tại thì dùng lại; nếu không khớp thì báo lỗi
+    (tránh vô tình tạo split mới sau khi đã xem test)."""
     if path.exists():
         saved = pd.read_csv(path)
-
-        if not {"row_id", "split"}.issubset(saved.columns):
-            raise ValueError(
-                "Existing split.csv must contain row_id and split columns"
-            )
-
-        if saved["row_id"].duplicated().any():
-            raise ValueError("split.csv contains duplicate row_id")
-
-        if set(saved["row_id"]) != set(row_ids) or len(saved) != len(row_ids):
-            raise ValueError(
-                "row_id set changed; remove split.csv and regenerate intentionally"
-            )
-
-        split_map = saved.set_index("row_id")["split"]
-        labels = pd.Series(row_ids).map(split_map).to_numpy()
-
-        if pd.isna(labels).any() or not set(labels).issubset({"train", "test"}):
-            raise ValueError("split.csv contains invalid split labels")
-
-        check = pd.DataFrame({
-            "group_id": group_values,
-            "split": labels,
-        })
-
-        if (check.groupby("group_id")["split"].nunique() > 1).any():
-            raise ValueError(
-                "A group appears in both train and test; "
-                "remove split.csv and regenerate intentionally"
-            )
-
-        path.parent.mkdir(parents=True, exist_ok=True)
-
-        pd.DataFrame({
-            "row_id": row_ids,
-            "group_id": group_values,
-            "split": labels,
-        }).to_csv(path, index=False)
-
-        return (
-            pd.Series(labels == "train", index=df.index, name="train_mask"),
-            pd.Series(labels == "test", index=df.index, name="test_mask"),
-            False,
-        )
-
-    splitter = GroupShuffleSplit(
-        n_splits=1,
-        test_size=TEST_SIZE,
-        random_state=RANDOM_STATE,
-    )
-
-    train_idx, test_idx = next(
-        splitter.split(df, groups=group_values)
-    )
-
-    train_mask = pd.Series(False, index=df.index, name="train_mask")
-    test_mask = pd.Series(False, index=df.index, name="test_mask")
-
-    train_mask.iloc[train_idx] = True
-    test_mask.iloc[test_idx] = True
-
+        if set(saved["row_id"]) != set(df["row_id"]):
+            raise RuntimeError(
+                f"{path.name} không khớp dữ liệu hiện tại (dữ liệu sạch đã thay đổi). "
+                f"Nếu CHƯA đánh giá trên test, xóa {path} để tạo split mới; nếu đã đánh giá, phải ghi chú lại.")
+        split = df["row_id"].map(saved.set_index("row_id")["split"])
+        return split.eq("train").values, split.eq("test").values, False
+    gss = GroupShuffleSplit(n_splits=1, test_size=TEST_SIZE, random_state=RANDOM_STATE)
+    train_idx, test_idx = next(gss.split(df, groups=groups))
+    split = np.array(["train"] * len(df), dtype=object)
+    split[test_idx] = "test"
     path.parent.mkdir(parents=True, exist_ok=True)
-
-    pd.DataFrame({
-        "row_id": row_ids,
-        "group_id": group_values,
-        "split": np.where(
-            train_mask.to_numpy(),
-            "train",
-            "test",
-        ),
-    }).to_csv(path, index=False)
-
-    return train_mask, test_mask, True
+    pd.DataFrame({"row_id": df["row_id"], "group_id": groups.values, "split": split}).to_csv(path, index=False)
+    return split == "train", split == "test", True
 
 
-
+# ----------------------------------------------------------------------------- kỹ năng
 class SkillsMultiHot(BaseEstimator, TransformerMixin):
+    """Multi-hot cho kỹ năng dạng chuỗi 'a|b|c'. Từ vựng = top_k kỹ năng có tần suất >= min_count
+    TRÊN DỮ LIỆU FIT (train). Kỹ năng ngoài từ vựng bị bỏ qua; tin không có kỹ năng -> vector 0."""
+
     def __init__(self, top_k: int = SKILL_TOP_K, min_count: int = SKILL_MIN_COUNT):
         self.top_k = top_k
         self.min_count = min_count
 
+    @staticmethod
+    def _to_lists(X):
+        col = X.iloc[:, 0] if isinstance(X, pd.DataFrame) else pd.Series(np.asarray(X).ravel())
+        return [[s for s in str(v).split("|") if s and s != "nan"] for v in col]
+
     def fit(self, X, y=None):
-        values = self._column(X)
-        counts: dict[str, int] = {}
-        for value in values:
-            for skill in set(_as_skill_list(value)):
-                counts[skill] = counts.get(skill, 0) + 1
-        eligible = [(skill, count) for skill, count in counts.items() if count >= self.min_count]
-        eligible.sort(key=lambda pair: (-pair[1], pair[0]))
-        self.vocabulary_ = [skill for skill, _ in eligible[:self.top_k]]
-        self.feature_names_out_ = np.asarray([f"skill__{s}" for s in self.vocabulary_], dtype=object)
+        counts = pd.Series([s for lst in self._to_lists(X) for s in lst], dtype=object).value_counts()
+        counts = counts[counts >= self.min_count]
+        self.vocabulary_ = list(counts.index[: self.top_k])
+        self._index = {s: i for i, s in enumerate(self.vocabulary_)}
         return self
 
     def transform(self, X):
-        if not hasattr(self, "vocabulary_"):
-            raise RuntimeError("SkillsMultiHot must be fitted before transform")
-        index = {skill: i for i, skill in enumerate(self.vocabulary_)}
-        result = np.zeros((len(self._column(X)), len(index)), dtype=np.float64)
-        for row_i, value in enumerate(self._column(X)):
-            for skill in set(_as_skill_list(value)):
-                if skill in index:
-                    result[row_i, index[skill]] = 1.0
-        return result
+        lists = self._to_lists(X)
+        out = np.zeros((len(lists), len(self.vocabulary_)), dtype=float)
+        for r, lst in enumerate(lists):
+            for s in lst:
+                j = self._index.get(s)
+                if j is not None:
+                    out[r, j] = 1.0
+        return out
 
     def get_feature_names_out(self, input_features=None):
-        return self.feature_names_out_.copy()
-
-    @staticmethod
-    def _column(X):
-        if isinstance(X, pd.DataFrame):
-            if X.shape[1] == 0:
-                raise ValueError("SkillsMultiHot received no columns")
-            return X.iloc[:, 0].fillna("").tolist()
-        array = np.asarray(X, dtype=object)
-        if array.ndim == 1:
-            return array.tolist()
-        return array[:, 0].tolist()
+        return np.array([f"skill_{s}" for s in self.vocabulary_], dtype=object)
 
 
-def build_preprocessor(
-    experience: str = "numeric",
-    skill_top_k: int = SKILL_TOP_K,
-    skill_min_count: int = SKILL_MIN_COUNT,
-    min_frequency: int = MIN_FREQUENCY,
-) -> ColumnTransformer:
+# ----------------------------------------------------------------------------- tiền xử lý
+def build_preprocessor(experience: str = "numeric", skill_top_k: int = SKILL_TOP_K,
+                       skill_min_count: int = SKILL_MIN_COUNT, min_frequency: int = MIN_FREQUENCY):
+    """experience='numeric': experience_years (số năm, tuyến tính);
+    experience='group'  : experience_group one-hot (cho phép quan hệ phi tuyến theo bậc)."""
+    def onehot():
+        return OneHotEncoder(handle_unknown="infrequent_if_exist", min_frequency=min_frequency,
+                             sparse_output=False)
 
-    if experience not in {"numeric", "group"}:
-        raise ValueError("experience must be 'numeric' or 'group'")
-
-    experience_columns = EXPERIENCE_NUM if experience == "numeric" else EXPERIENCE_CAT
-
-    transformers = [
-        ("categorical", OneHotEncoder(
-            min_frequency=min_frequency,
-            handle_unknown="infrequent_if_exist",
-        ), CATEGORICAL),
-    ]
-
+    cat_pipe = Pipeline([
+        # Dữ liệu sạch hiện không thiếu giá trị (GĐ2); imputer để an toàn khi dự đoán từ app.
+        ("impute", SimpleImputer(strategy="constant", fill_value="unknown")),
+        ("onehot", onehot()),
+    ])
+    transformers = [("cat", cat_pipe, CATEGORICAL)]
     if experience == "numeric":
-        transformers.append(
-            ("experience_numeric", StandardScaler(), EXPERIENCE_NUM)
-        )
+        # 0% thiếu ở GĐ2; median (học trên train) chỉ là phòng hờ cho đầu vào thiếu.
+        transformers.append(("exp", SimpleImputer(strategy="median"), EXPERIENCE_NUM))
+    elif experience == "group":
+        transformers.append(("exp", Pipeline([
+            ("impute", SimpleImputer(strategy="constant", fill_value="unknown")),
+            ("onehot", onehot()),
+        ]), EXPERIENCE_CAT))
     else:
-        transformers.append(
-            ("experience_group", OneHotEncoder(handle_unknown="ignore"), EXPERIENCE_CAT)
-        )
-
-    transformers.append(
-        ("skills", SkillsMultiHot(
-            top_k=skill_top_k,
-            min_count=skill_min_count
-        ), [SKILLS])
-    )
-
-    return ColumnTransformer(
-        transformers=transformers,
-        remainder="drop"
-    )
-
-
-def main() -> None:
-    df = load_clean()
-    groups = make_groups(df)
-    train_mask, test_mask, created_new = get_split(df, groups)
-    print(f"Train: {int(train_mask.sum())}; test: {int(test_mask.sum())}; created_new: {created_new}")
-
-
-if __name__ == "__main__":
-    main()
+        raise ValueError("experience phải là 'numeric' hoặc 'group'")
+    transformers.append(("skills", SkillsMultiHot(top_k=skill_top_k, min_count=skill_min_count), [SKILLS]))
+    return ColumnTransformer(transformers, remainder="drop", verbose_feature_names_out=False)

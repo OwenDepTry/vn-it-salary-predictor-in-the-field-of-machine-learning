@@ -1,7 +1,0 @@
-row_id,group_id,split
-10,group_00000,validation
-11,group_00000,train
-12,group_00001,test
-13,group_00002,train
-14,group_00003,train
-15,group_00004,train

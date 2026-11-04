@@ -11,3 +11,6 @@ data/raw/**/*.csv
 # Ignore generated data
 data/interim/
 data/processed/
+
+# Test temp
+pytest_temp/
