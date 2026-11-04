@@ -133,8 +133,11 @@ def test_clean_dataset_pipeline():
 
     interim, cleaned, checks = clean_dataset(df)
 
-    assert len(interim) == 3
+    assert interim["is_it"].sum() == 3
     assert len(cleaned) == 2
+
+    assert "model_reason" in interim.columns
+    assert interim.loc[interim["is_it"], "model_reason"].notna().all()
 
     assert set(cleaned["job_title"]) == {
         "Backend Developer",
@@ -189,9 +192,12 @@ def test_clean_dataset_removes_duplicate_jobs():
 
     interim, cleaned, checks = clean_dataset(df)
 
-    assert len(interim) == 2
+    assert interim["is_it"].sum() == 2
     assert len(cleaned) == 1
     assert checks["duplicate_rows"] == 0
+
+    assert "model_reason" in interim.columns
+    assert interim.loc[interim["is_it"], "model_reason"].notna().all()
 
 def test_clean_dataset_rejects_missing_required_column():
     df = pd.DataFrame({

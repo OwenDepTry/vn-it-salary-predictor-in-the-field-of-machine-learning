@@ -33,29 +33,6 @@ LOG_FILE = ROOT / "reports" / "gd2_cleaning_log.txt"
 
 IT_CATEGORY = "công_nghệ_thông_tin_kỹ_thuật_số"
 
-FALSE_POSITIVE_PATTERNS = [
-    r"\bsắp xếp\b",
-    r"\bkiêm thủ kho\b",
-    r"\bkiêm thu kho\b",
-]
-
-SALES_PATTERNS = [
-    r"\bkinh doanh\b", r"\bsales?\b", r"\btelesales\b",
-    r"\bbusiness development\b", r"\bphát triển kinh doanh\b",
-    r"\btư vấn\b", r"\bchăm sóc khách hàng\b",
-    r"\bmarketing\b", r"\btiếp thị\b",
-]
-
-GRAPHIC_PATTERNS = [
-    r"\bgraphic designer\b", r"\bgraphic design\b",
-    r"\bthiết kế đồ họa\b", r"\bthiết kế đồ hoạ\b",
-    r"\bchỉnh sửa hình ảnh\b", r"\bphoto editor\b",
-    r"\bthumbnail\b", r"\bprint on demand\b",
-    r"\bthiết kế bao bì\b", r"\bthiết kế ấn phẩm\b",
-    r"\b2d artist\b", r"\b3d artist\b", r"\bmotion graphic\b",
-    r"\bmultimedia designer\b",
-]
-
 IT_PATTERNS = [
     r"\bit\b", r"\bdeveloper\b", r"\bsoftware\b", r"\bengineer\b",
     r"\blập trình\b", r"\bphần mềm\b", r"\btester\b", r"\btesting\b",
@@ -276,8 +253,6 @@ def classify_job_category(title: object) -> str | None:
         r"\bdata labeling\b",
 
         # Hành chính, tư vấn không thuộc IT
-        r"\bnhan vien admin\b",
-        r"\badmin phong\b",
         r"\bdu lich\b",
 
         # Công việc QA/QC ngoài lĩnh vực phần mềm
@@ -287,7 +262,6 @@ def classify_job_category(title: object) -> str | None:
         r"\bqa/qc.*phong lab\b",
 
         # Kiến trúc và xây dựng
-        r"\bkien truc su\b",
         r"\bdesign\s*&\s*build\b",
 
         # Các vị trí ngoài IT đã phát hiện khi kiểm tra dữ liệu
@@ -372,6 +346,18 @@ def classify_job_category(title: object) -> str | None:
         r"\bky su blockchain\b",
         r"\bky su phat trien ung dung\b",
         r"\bky su nghien cuu thuat toan\b",
+        r"\bios dev\b",
+        r"\bback[- ]end\b",
+        r"\bfront[- ]end\b",
+        r"\bwordpress\b",
+        r"\b(nha )?phat trien python\b",
+        r"\b(nha )?phat trien wordpress\b",
+        r"\b(nha )?phat trien golang\b",
+        r"\b(nha )?phat trien .net\b",
+        r"\bviet ma phan mem\b",
+        r"\bviet code\b",
+        r"\bky su thiet ke phan mem\b",
+        r"\bthiet ke phan mem\b",
     ]):
         return "Phát triển phần mềm"
 
@@ -463,6 +449,12 @@ def classify_job_category(title: object) -> str | None:
         r"\bmlops\b",
         r"\btri tue nhan tao\b",
         r"\bky su khoa hoc du lieu\b",
+        r"\bky su ai\b",
+        r"\bthuc tap sinh ai\b",
+        r"\bfresher ai\b",
+        r"\bai.*nlp\b",
+        r"\bnlp.*ai\b",
+        r"\bky thuat du lieu\b",
     ]):
         return "Dữ liệu & AI"
 
@@ -503,6 +495,8 @@ def classify_job_category(title: object) -> str | None:
         r"\bky su trien khai\b",
         r"\bky su giai phap\b",
         r"\bimplementation engineer\b",
+        r"\bkien truc su giai phap\b",
+        r"\bsolution architect\b",
     ]):
         return "Triển khai & ERP"
 
@@ -530,6 +524,11 @@ def classify_job_category(title: object) -> str | None:
         r"\bcntt\b",
         r"\bcong nghe thong tin\b",
         r"\btechnical support\b",
+        r"\btruong nhom it\b",
+        r"\btruong bo phan it\b",
+        r"\bnhan vien tin hoc\b",
+        r"\badmin phong cong nghe thong tin\b",
+        r"\bnhan vien ky thuat.*\bit\b",
     ]):
         return "Hỗ trợ kỹ thuật & IT chung"
 
@@ -563,14 +562,49 @@ def map_city(location: object) -> str:
     raw = re.sub(r"[^a-z0-9]+", " ", _fold(location))
     if not raw:
         return "Khác"
+
     city_patterns = {
-        "Hà Nội": [r"\bha noi\b", r"\bha dong\b", r"\bbac tu liem\b"],
-        "TP.HCM": [r"\bho chi minh\b", r"\btp hcm\b", r"\bthu duc\b", r"\bsaigon\b"],
-        "Đà Nẵng": [r"\bda nang\b"],
+        "Hà Nội": [
+            r"\bha noi\b", r"\bha dong\b",
+            r"\bbac tu liem\b", r"\bba dinh\b",
+            r"\bhoan kiem\b", r"\bhai ba trung\b",
+            r"\bdong da\b", r"\bcau giay\b",
+            r"\bthanh xuan\b", r"\bhoang mai\b",
+            r"\blong bien\b", r"\btay ho\b",
+            r"\bnam tu liem\b", r"\bgia lam\b",
+            r"\bdong anh\b", r"\bsoc son\b",
+            r"\bthanh tri\b", r"\bhoai duc\b",
+            r"\bme linh\b",
+        ],
+
+        "TP.HCM": [
+            r"\bho chi minh\b", r"\btp hcm\b",
+            r"\bhcm\b", r"\bsai gon\b",
+            r"\bquan\s*(?:[1-9]|1[0-2])\b",
+            r"\bbinh thanh\b", r"\bphu nhuan\b",
+            r"\bgo vap\b", r"\btan binh\b",
+            r"\btan phu\b", r"\bbinh tan\b",
+            r"\bthu duc\b", r"\bcu chi\b",
+            r"\bhoc mon\b", r"\bbinh chanh\b",
+            r"\bnha be\b", r"\bcan gio\b",
+        ],
+
+        "Đà Nẵng": [
+            r"\bda nang\b", r"\bhai chau\b",
+            r"\bthanh khe\b", r"\bson tra\b",
+            r"\bngu hanh son\b", r"\blien chieu\b",
+            r"\bcam le\b", r"\bhoa vang\b",
+        ],
     }
-    found = [city for city, patterns in city_patterns.items() if _has_any(raw, patterns)]
+
+    found = [
+        city for city, patterns in city_patterns.items()
+        if _has_any(raw, patterns)
+    ]
+
     if len(found) > 1:
         return "Nhiều thành phố"
+
     return found[0] if found else "Khác"
 
 
@@ -649,6 +683,7 @@ def _classify_row(row: pd.Series) -> str | None:
         r"\bquan ly du an dien mat troi\b",
         r"\bquan tri du lieu crm\b",
         r"\bquan ly cong dong\b",
+        r"\bsap khai truong\b",
     ]
 
     if _has_any(title_fold, non_it_title_patterns):
@@ -665,6 +700,50 @@ def _classify_row(row: pd.Series) -> str | None:
             "technical_skills",
         )
     ))
+
+    # Loại QA/QC ngoài lĩnh vực phần mềm
+    if _has_any(title_fold, [r"\bqa/qc\b", r"\bqa qc\b"]):
+        software_evidence = [
+            r"\bsoftware\b",
+            r"\bphan mem\b",
+            r"\btester\b",
+            r"\bkiem thu phan mem\b",
+            r"\bautomation test\b",
+        ]
+
+        if not _has_any(title_fold + " " + evidence, software_evidence):
+            return None
+
+    # Loại presales và tư vấn bán hàng
+    if _has_any(title_fold, [
+        r"\bpresales?\b",
+        r"\bnetwork consultant\b",
+        r"\bcloud presales?\b",
+        r"\bcskh\b",
+        r"\bcham soc khach hang\b",
+    ]):
+        return None
+
+    # Quản lý dự án chỉ giữ nếu thuộc IT
+    if _has_any(title_fold, [
+        r"\bquan ly du an\b",
+        r"\bproject manager\b",
+    ]):
+        category_raw = _fold(row.get("category", ""))
+
+        is_it_category = "cong nghe thong tin" in category_raw
+
+        is_it_title = _has_any(title_fold, [
+            r"\bit\b",
+            r"\bcntt\b",
+            r"\bsoftware\b",
+            r"\bphan mem\b",
+            r"\biot\b",
+            r"\bai\b",
+        ])
+
+        if not (is_it_category or is_it_title):
+            return None
 
     # 0. Recognize additional IT job titles.
     # Require IT-specific titles to avoid including unrelated jobs.
@@ -960,7 +1039,7 @@ def _classify_row(row: pd.Series) -> str | None:
     return None
 
 def clean_dataset(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, dict[str, object]]:
-    """Apply the ordered TV2 filters and return candidate rows and model-ready data."""
+    """Apply ordered filters and preserve the first exclusion reason."""
     required = {
         "job_title", "location", "country", "salary", "contract_type",
         "experience_required", "description", "category",
@@ -969,83 +1048,166 @@ def clean_dataset(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, dict[st
     if missing:
         raise ValueError(f"Missing required source columns: {sorted(missing)}")
 
-    work = df.copy()
+    work = df.copy().reset_index(drop=True)
     work["row_id"] = work.index
     work["job_title"] = work["job_title"].fillna("").astype(str).str.strip()
+
     counts: dict[str, object] = {"input_rows": len(work)}
 
-    # 1. Country
-    work = work.loc[work["country"].fillna("").astype(str).str.strip().eq("Việt Nam")].copy()
-    counts["after_vietnam"] = len(work)
-
-    # 2. Classify by role; PM/BA/PO titles are gated by description evidence.
+    # 1. Classify IT titles across the entire source dataset.
     work["job_category"] = work.apply(_classify_row, axis=1)
-    candidates = work.loc[work["job_category"].notna()].copy()
+    work["is_it"] = work["job_category"].notna()
+
+    # Default reason for non-IT records.
+    work["model_reason"] = "không phải IT"
+
+    it = work.loc[work["is_it"]].copy()
+    counts["it_title_candidates"] = len(it)
+
+    # 2. Country filter.
+    is_vietnam = (
+        work["country"].fillna("").astype(str).str.strip().eq("Việt Nam")
+    )
+    counts["after_vietnam"] = int(is_vietnam.sum())
+
+    outside_vietnam = ~it["country"].fillna("").astype(str).str.strip().eq("Việt Nam")
+    work.loc[it.index[outside_vietnam], "model_reason"] = "ngoài Việt Nam"
+
+    candidates = it.loc[~outside_vietnam].copy()
     counts["after_it_title"] = len(candidates)
 
-    # 3. Negotiable / missing salary.
+    # 3. Parse salary.
     salary_pairs = candidates["salary"].apply(parse_salary)
     candidates[["salary_min", "salary_max"]] = pd.DataFrame(
         salary_pairs.tolist(), index=candidates.index
     )
-    candidates = candidates.loc[
-        candidates["salary_min"].notna() & candidates["salary_max"].notna()
-    ].copy()
+
+    def is_negotiable(value: object) -> bool:
+        raw = _fold(value)
+        if any(term in raw for term in ("thoa thuan", "deal", "negotiable")):
+            return True
+        return bool(re.search(r"\b0+(?:[.,]0+)?\s*trieu\b", raw))
+
+    invalid_salary = (
+        candidates["salary_min"].isna()
+        | candidates["salary_max"].isna()
+    )
+    negotiable = candidates["salary"].map(is_negotiable)
+
+    work.loc[
+        candidates.index[invalid_salary & negotiable],
+        "model_reason"
+    ] = "lương thỏa thuận"
+
+    work.loc[
+        candidates.index[invalid_salary & ~negotiable],
+        "model_reason"
+    ] = "lương không hợp lệ"
+
+    candidates = candidates.loc[~invalid_salary].copy()
     counts["after_negotiable_salary"] = len(candidates)
 
-    # 4. The leader requires a genuine range, not a single salary number.
-    candidates = candidates.loc[candidates["salary_min"].lt(candidates["salary_max"])].copy()
+    # 4. Remove single-point salaries.
+    single_salary = candidates["salary_min"].eq(candidates["salary_max"])
+    work.loc[
+        candidates.index[single_salary],
+        "model_reason"
+    ] = "lương điểm đơn (không rõ cố định hay khoảng mở)"
+
+    candidates = candidates.loc[~single_salary].copy()
     counts["after_single_salary"] = len(candidates)
 
-    # 5. Validate order and parseability; reversed endpoints are invalid, never swapped.
-    candidates = candidates.loc[
-        candidates["salary_min"].le(candidates["salary_max"])
-    ].copy()
+    # 5. Validate salary range.
+    invalid_range = candidates["salary_min"].gt(candidates["salary_max"])
+    work.loc[
+        candidates.index[invalid_range],
+        "model_reason"
+    ] = "lương không hợp lệ"
+
+    candidates = candidates.loc[~invalid_range].copy()
     counts["after_invalid_salary"] = len(candidates)
 
     # 6. Full-time only.
-    candidates = candidates.loc[
-        candidates["contract_type"].fillna("").astype(str).str.strip().eq("Toàn thời gian")
-    ].copy()
+    full_time = (
+        candidates["contract_type"].fillna("").astype(str).str.strip()
+        .eq("Toàn thời gian")
+    )
+    work.loc[
+        candidates.index[~full_time],
+        "model_reason"
+    ] = "không phải Toàn thời gian"
+
+    candidates = candidates.loc[full_time].copy()
     counts["after_full_time"] = len(candidates)
 
-    # 7. Monthly salary bounds.
-    candidates = candidates.loc[
+    # 7. Salary bounds: 3–200 million VND/month.
+    valid_bounds = (
         candidates["salary_min"].between(3, 200)
         & candidates["salary_max"].between(3, 200)
-    ].copy()
+    )
+    work.loc[
+        candidates.index[~valid_bounds],
+        "model_reason"
+    ] = "ngoài 3–200 triệu"
+
+    candidates = candidates.loc[valid_bounds].copy()
     counts["after_salary_bounds"] = len(candidates)
 
-    # 8. Discard implausibly broad ranges.
-    candidates = candidates.loc[
+    # 8. Remove implausibly broad salary ranges.
+    valid_ratio = (
         candidates["salary_max"].div(candidates["salary_min"]).le(5)
-    ].copy()
+    )
+    work.loc[
+        candidates.index[~valid_ratio],
+        "model_reason"
+    ] = "khoảng lương quá rộng (max/min > 5)"
+
+    candidates = candidates.loc[valid_ratio].copy()
     counts["after_salary_ratio"] = len(candidates)
 
-    candidates["experience_years"] = candidates["experience_required"].apply(parse_experience_years)
-    candidates["experience_group"] = candidates["experience_years"].apply(experience_group)
-
-    candidates["experience_raw"] = candidates["experience_required"].fillna("").astype(str)
-
-    candidates["seniority"] = candidates["job_title"].apply(seniority_from_title)
+    # 9. Feature preparation.
+    candidates["experience_years"] = (
+        candidates["experience_required"].apply(parse_experience_years)
+    )
+    candidates["experience_group"] = (
+        candidates["experience_years"].apply(experience_group)
+    )
+    candidates["experience_raw"] = (
+        candidates["experience_required"].fillna("").astype(str)
+    )
+    candidates["seniority"] = (
+        candidates["job_title"].apply(seniority_from_title)
+    )
     candidates["city"] = candidates["location"].apply(map_city)
 
     skill_source = next(
-        (column for column in ("technical_skills", "qualifications", "requirements_text") if column in candidates),
+        (
+            column for column in
+            ("technical_skills", "qualifications", "requirements_text")
+            if column in candidates.columns
+        ),
         None,
     )
     candidates["skills"] = (
-        candidates[skill_source].apply(lambda value: "|".join(parse_skills(value)))
+        candidates[skill_source].apply(
+            lambda value: "|".join(parse_skills(value))
+        )
         if skill_source else ""
     )
+
     candidates["salary_raw"] = candidates["salary"].astype(str)
-    candidates["salary_label"] = (candidates["salary_min"] + candidates["salary_max"]) / 2
+    candidates["salary_label"] = (
+        candidates["salary_min"] + candidates["salary_max"]
+    ) / 2
 
     desc_norm = candidates["description"].apply(_normalised_description)
     candidates["desc_group"] = desc_norm.apply(
-        lambda value: __import__("hashlib").sha1(value.encode("utf-8")).hexdigest()[:12]
+        lambda value: __import__("hashlib").sha1(
+            value.encode("utf-8")
+        ).hexdigest()[:12]
     )
 
+    # 10. Deduplicate using title + location + salary + description.
     def norm_col(series: pd.Series) -> pd.Series:
         return series.fillna("").astype(str).map(_normalised_description)
 
@@ -1055,59 +1217,38 @@ def clean_dataset(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, dict[st
         "salary": norm_col(candidates["salary"]),
         "description": desc_norm,
     }, index=candidates.index)
-        # Diagnostic: inspect duplicate groups before removing them.
-    duplicate_report = duplicate_key.copy()
-    duplicate_report["row_id"] = candidates["row_id"]
-    duplicate_report["job_title"] = candidates["job_title"]
-    duplicate_report["salary"] = candidates["salary"]
 
-    duplicate_groups = (
-        duplicate_key
-        .groupby(list(duplicate_key.columns), dropna=False)
-        .size()
-    )
-    duplicate_groups = duplicate_groups[duplicate_groups > 1].sort_values(
-        ascending=False
-    )
+    duplicate_mask = duplicate_key.duplicated(keep="first")
+    duplicate_indices = candidates.index[duplicate_mask]
+
+    work.loc[
+        duplicate_indices,
+        "model_reason"
+    ] = "trùng tin (tiêu đề+địa điểm+lương+mô tả)"
 
     print("\n--- DUPLICATE CHECK ---")
     print("Rows before dedup:", len(candidates))
-    print("Duplicate groups:", len(duplicate_groups))
-    print("Rows in duplicate groups:", int(duplicate_groups.sum()))
-    print("Rows removed by dedup:", int((duplicate_groups - 1).sum()))
+    print("Duplicate rows removed:", len(duplicate_indices))
 
-    if not duplicate_groups.empty:
-        print("\nTop 10 duplicate groups:")
-        for keys, size in duplicate_groups.head(10).items():
-            mask = pd.Series(True, index=duplicate_key.index)
-
-            for column, value in zip(duplicate_key.columns, keys):
-                mask &= duplicate_key[column].eq(value)
-
-            sample = candidates.loc[mask].iloc[0]
-
-            print(
-                f"- {size} rows | "
-                f"Title: {sample['job_title']} | "
-                f"Salary: {sample['salary']} | "
-                f"Row IDs: {candidates.loc[mask, 'row_id'].tolist()}"
-            )
-
-    candidates = candidates.loc[
-        ~duplicate_key.duplicated(keep="first")
-    ].copy()
+    candidates = candidates.loc[~duplicate_mask].copy()
     counts["after_deduplication"] = len(candidates)
 
+    # Mark records retained in the final dataset.
+    work.loc[candidates.index, "model_reason"] = "giữ"
+
     output_columns = [
-        "row_id", "job_title", "job_category", "city", "experience_years",
-        "experience_group", "seniority", "skills", "experience_raw",
-        "salary_raw", "salary_min", "salary_max", "salary_label", "desc_group",
+        "row_id", "job_title", "job_category", "city",
+        "experience_years", "experience_group", "seniority",
+        "skills", "experience_raw", "salary_raw",
+        "salary_min", "salary_max", "salary_label", "desc_group",
     ]
+
     cleaned = candidates[output_columns].reset_index(drop=True)
     checks = self_check(cleaned)
     checks.update(counts)
-    return work.loc[work["job_category"].notna()].copy(), cleaned, checks
 
+    interim = work.copy()
+    return interim, cleaned, checks
 
 def main() -> None:
     if not INPUT_FILE.exists():
@@ -1126,7 +1267,7 @@ def main() -> None:
     with LOG_FILE.open("w", encoding="utf-8") as file:
         file.write("TV2 - DATA CLEANING LOG\n")
         file.write(f"Input rows: {len(raw)}\n")
-        file.write(f"IT title candidates: {len(interim)}\n")
+        file.write(f"IT title candidates: {int(interim['is_it'].sum())}\n")
         file.write(f"Rows after salary validation and deduplication: {len(cleaned)}\n")
         for key, value in checks.items():
             file.write(f"{key}: {value}\n")
