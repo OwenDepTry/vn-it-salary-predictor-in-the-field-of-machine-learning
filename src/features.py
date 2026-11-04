@@ -294,22 +294,45 @@ class SkillsMultiHot(BaseEstimator, TransformerMixin):
         return array[:, 0].tolist()
 
 
-def build_preprocessor(experience: str = "numeric", skill_top_k: int = SKILL_TOP_K) -> ColumnTransformer:
+def build_preprocessor(
+    experience: str = "numeric",
+    skill_top_k: int = SKILL_TOP_K,
+    skill_min_count: int = SKILL_MIN_COUNT,
+    min_frequency: int = MIN_FREQUENCY,
+) -> ColumnTransformer:
+
     if experience not in {"numeric", "group"}:
         raise ValueError("experience must be 'numeric' or 'group'")
+
     experience_columns = EXPERIENCE_NUM if experience == "numeric" else EXPERIENCE_CAT
+
     transformers = [
         ("categorical", OneHotEncoder(
-            min_frequency=MIN_FREQUENCY,
+            min_frequency=min_frequency,
             handle_unknown="infrequent_if_exist",
         ), CATEGORICAL),
     ]
+
     if experience == "numeric":
-        transformers.append(("experience_numeric", StandardScaler(), EXPERIENCE_NUM))
+        transformers.append(
+            ("experience_numeric", StandardScaler(), EXPERIENCE_NUM)
+        )
     else:
-        transformers.append(("experience_group", OneHotEncoder(handle_unknown="ignore"), EXPERIENCE_CAT))
-    transformers.append(("skills", SkillsMultiHot(top_k=skill_top_k, min_count=SKILL_MIN_COUNT), [SKILLS]))
-    return ColumnTransformer(transformers=transformers, remainder="drop")
+        transformers.append(
+            ("experience_group", OneHotEncoder(handle_unknown="ignore"), EXPERIENCE_CAT)
+        )
+
+    transformers.append(
+        ("skills", SkillsMultiHot(
+            top_k=skill_top_k,
+            min_count=skill_min_count
+        ), [SKILLS])
+    )
+
+    return ColumnTransformer(
+        transformers=transformers,
+        remainder="drop"
+    )
 
 
 def main() -> None:

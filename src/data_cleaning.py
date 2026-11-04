@@ -243,13 +243,17 @@ def classify_job_category(title: object) -> str | None:
         # Sản xuất, may mặc
         r"\bnong hoc\b",
         r"\bagronomy\b",
-        r"\benvironmental\b",
         r"\bdet lap trinh\b",
         r"\blap trinh mau may mac\b",
 
         # Bảo vệ
         r"\bbao ve\b",
         r"\bsecurity guard\b",
+
+        # UI/UX Designer thuần thiết kế, không phải vị trí phát triển phần mềm
+        r"\bui/?ux designer\b",
+        r"\buser experience designer\b",
+        r"\buser interface designer\b",
 
         # Kinh doanh, bán hàng, marketing
         r"\bnhan vien kinh doanh\b",
@@ -265,6 +269,8 @@ def classify_job_category(title: object) -> str | None:
         r"\bcontent creator\b",
         r"\bgraphic design\b",
         r"\bvideo editor\b",
+        r"\bcrm administrator\b",
+        r"\bcrm admin\b",
 
         # Dữ liệu không phải công việc IT
         r"\bdata labeling\b",
@@ -283,6 +289,42 @@ def classify_job_category(title: object) -> str | None:
         # Kiến trúc và xây dựng
         r"\bkien truc su\b",
         r"\bdesign\s*&\s*build\b",
+
+        # Các vị trí ngoài IT đã phát hiện khi kiểm tra dữ liệu
+        r"\bquan tri du lieu crm\b",
+        r"\bquan ly cong dong\b",
+        r"\bnoi dung xa hoi\b",
+        r"\bnhan vien phuc vu\b",
+        r"\bnv phuc vu\b",
+        r"\bnhan vien nha hang\b",
+
+        # Xây dựng, sự kiện, điện mặt trời
+        r"\bquan ly du an xay dung\b",
+        r"\bquan ly du an su kien\b",
+        r"\bquan ly du an dien mat troi\b",
+        r"\bky su quan ly du an.*ket cau thep\b",
+        r"\bdu an nang luong mat troi\b",
+
+        # QA/QC ngoài lĩnh vực phần mềm
+        r"\bqa/qc.*xay dung\b",
+        r"\bqa qc.*xay dung\b",
+        r"\bqa/qc.*cong truong\b",
+        r"\bqa qc.*cong truong\b",
+        r"\bqa/qc.*thuc pham\b",
+        r"\bqa qc.*thuc pham\b",
+        r"\bqa/qc.*duoc\b",
+        r"\bqa qc.*duoc\b",
+        r"\bqa/qc.*phong lab\b",
+        r"\bqa qc.*phong lab\b",
+        r"\bqa/qc.*co khi\b",
+        r"\bqa qc.*co khi\b",
+        r"\bqa/qc.*dien\b",
+        r"\bqa qc.*dien\b",
+        r"\bqa/qc.*may mac\b",
+        r"\bqa qc.*may mac\b",
+        r"\bqa/qc.*nha may\b",
+        r"\bqa qc.*nha may\b",
+        r"\bkiem soat chat luong san xuat\b",
     ]
 
     if _has_any(raw, exclude_patterns):
@@ -294,7 +336,10 @@ def classify_job_category(title: object) -> str | None:
         r"\bprogrammer\b",
         r"\blap trinh\b",
         r"\bky su phan mem\b",
-        r"\bsoftware\b",
+        r"\bsoftware engineer\b",
+        r"\bsoftware developer\b",
+        r"\bsoftware architect\b",
+        r"\bsoftware programmer\b",
         r"\bbackend\b",
         r"\bback end\b",
         r"\bfrontend\b",
@@ -309,9 +354,12 @@ def classify_job_category(title: object) -> str | None:
         r"\bblockchain\b",
         r"\bsitecore\b",
         r"\bliferay\b",
-        r"\bjava\b",
-        r"\bpython\b",
-        r"\bphp\b",
+        r"\bjava developer\b",
+        r"\bjava engineer\b",
+        r"\bpython developer\b",
+        r"\bpython engineer\b",
+        r"\bphp developer\b",
+        r"\bphp engineer\b",
         r"\b\.net\b",
         r"\bnodejs\b",
         r"\bunity developer\b",
@@ -340,10 +388,9 @@ def classify_job_category(title: object) -> str | None:
         r"\bautomation test\b",
         r"\btest engineer\b",
         r"\btest lead\b",
-        r"\bquality assurance\b",
-        r"\bprocess quality assurance\b",
-        r"\bquy trinh dam bao chat luong\b",
-        r"\bkiem tra tu dong hoa\b",
+        r"\bsoftware testing\b",
+        r"\bsoftware tester\b",
+        r"\bquality assurance engineer\b",
     ]):
         return "Kiểm thử & QA"
 
@@ -353,9 +400,13 @@ def classify_job_category(title: object) -> str | None:
         r"\bdevsecops\b",
         r"\bsre\b",
         r"\bsite reliability\b",
-        r"\bcloud\b",
+        r"\bcloud engineer\b",
+        r"\bcloud architect\b",
+        r"\bcloud administrator\b",
+        r"\blinux administrator\b",
+        r"\blinux system administrator\b",
+        r"\blinux engineer\b",
         r"\bopenstack\b",
-        r"\blinux\b",
         r"\bsystem administrator\b",
         r"\bsystem admin\b",
         r"\bsystem engineer\b",
@@ -417,8 +468,13 @@ def classify_job_category(title: object) -> str | None:
 
     # 5. PM/BA/PO
     if _has_any(raw, [
-        r"\bproject manager\b",
-        r"\bquan ly du an\b",
+        r"\bit project manager\b",
+        r"\btechnical project manager\b",
+        r"\bsoftware project manager\b",
+        r"\bproject manager it\b",
+        r"\bquan ly du an it\b",
+        r"\bquan ly du an phan mem\b",
+        r"\bquan ly du an cong nghe thong tin\b",
         r"\bbusiness analyst\b",
         r"\bphan tich nghiep vu\b",
         r"\bnha phan tich kinh doanh\b",
@@ -428,6 +484,7 @@ def classify_job_category(title: object) -> str | None:
         r"\bscrum master\b",
         r"\bbrse\b",
         r"\bbridge system engineer\b",
+        r"\btechnical interpreter\b",
     ]):
         return "Quản lý & phân tích (PM/BA/PO)"
 
@@ -451,6 +508,8 @@ def classify_job_category(title: object) -> str | None:
 
     # 7. IT support and general IT
     if _has_any(raw, [
+        r"\bit comtor\b",
+        r"\bcomtor\b",
         r"\bit support\b",
         r"\bit helpdesk\b",
         r"\bit help desk\b",
@@ -470,9 +529,7 @@ def classify_job_category(title: object) -> str | None:
         r"\bmiddle it\b",
         r"\bcntt\b",
         r"\bcong nghe thong tin\b",
-        r"\bit comtor\b",
         r"\btechnical support\b",
-        r"\btechnical engineer\b",
     ]):
         return "Hỗ trợ kỹ thuật & IT chung"
 
@@ -573,6 +630,30 @@ def _normalised_description(value: object) -> str:
 def _classify_row(row: pd.Series) -> str | None:
     title = _text(row.get("job_title", ""))
     title_fold = _fold(title)
+
+    # Loại các vị trí ngoài IT có từ khóa dễ gây phân loại nhầm.
+    non_it_title_patterns = [
+        r"\bnv phuc vu\b",
+        r"\bnhan vien phuc vu\b",
+        r"\bnhan vien nha hang\b",
+        r"\bky su giai phap mat troi\b",
+        r"\bdien mat troi\b",
+        r"\bban ve thi cong noi that\b",
+        r"\bban ve thiet ke cay xanh\b",
+        r"\bqa qc xay dung\b",
+        r"\bqa qc cong truong\b",
+        r"\bqa qc thuc pham\b",
+        r"\bduoc qa qc\b",
+        r"\bquan ly du an xay dung\b",
+        r"\bquan ly du an su kien\b",
+        r"\bquan ly du an dien mat troi\b",
+        r"\bquan tri du lieu crm\b",
+        r"\bquan ly cong dong\b",
+    ]
+
+    if _has_any(title_fold, non_it_title_patterns):
+        return None
+
     category = classify_job_category(title)
 
     evidence = _fold(" ".join(
@@ -584,6 +665,87 @@ def _classify_row(row: pd.Series) -> str | None:
             "technical_skills",
         )
     ))
+
+    # 0. Recognize additional IT job titles.
+    # Require IT-specific titles to avoid including unrelated jobs.
+    title_categories = [
+        (
+            "Phát triển phần mềm",
+            [
+                r"\bsoftware developer\b",
+                r"\bsoftware engineer\b",
+                r"\bbackend developer\b",
+                r"\bfrontend developer\b",
+                r"\bfullstack developer\b",
+                r"\bweb developer\b",
+                r"\bmobile developer\b",
+                r"\bphat trien phan mem\b",
+                r"\bnha phat trien phan mem\b",
+                r"\bky su phat trien phan mem\b",
+                r"\blap trinh vien\b",
+                r"\bthuc tap phat trien phan mem\b",
+            ],
+        ),
+        (
+            "Hạ tầng, DevOps & bảo mật",
+            [
+                r"\bsystem administrator\b",
+                r"\bnetwork administrator\b",
+                r"\bdevops engineer\b",
+                r"\bsystem admin\b",
+                r"\bquan tri he thong\b",
+                r"\bchuyen vien it quan tri he thong\b",
+            ],
+        ),
+        (
+            "Quản lý & phân tích (PM/BA/PO)",
+            [
+                r"\bit project manager\b",
+                r"\bproject manager\b",
+                r"\bbusiness analyst\b",
+                r"\bproduct owner\b",
+                r"\bbridge system engineer\b",
+                r"\bbrse\b",
+            ],
+        ),
+    ]
+
+    if category is None:
+        for target_category, patterns in title_categories:
+            if _has_any(title_fold, patterns):
+                category = target_category
+                break
+
+    # Recognize software support and data administration
+    # only when the job description confirms IT responsibilities.
+    if category is None:
+        software_support_title = [
+            r"\bho tro phan mem\b",
+            r"\bvan hanh va ho tro phan mem\b",
+            r"\bky thuat phan mem\b",
+            r"\bquan tri du lieu\b",
+        ]
+
+        software_support_evidence = [
+            r"\bsoftware\b",
+            r"\bphan mem\b",
+            r"\bsql\b",
+            r"\bdatabase\b",
+            r"\bserver\b",
+            r"\bwindows server\b",
+            r"\blinux\b",
+            r"\bapi\b",
+            r"\bsource code\b",
+            r"\bgit\b",
+            r"\bkiem thu phan mem\b",
+            r"\bquan tri he thong\b",
+        ]
+
+        if (
+            _has_any(title_fold, software_support_title)
+            and _has_any(evidence, software_support_evidence)
+        ):
+            category = "Phát triển phần mềm"
 
     # 1. Bridge System Engineer (BrSE):
     # Main responsibilities are requirements and project coordination.
@@ -862,6 +1024,9 @@ def clean_dataset(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, dict[st
 
     candidates["experience_years"] = candidates["experience_required"].apply(parse_experience_years)
     candidates["experience_group"] = candidates["experience_years"].apply(experience_group)
+
+    candidates["experience_raw"] = candidates["experience_required"].fillna("").astype(str)
+
     candidates["seniority"] = candidates["job_title"].apply(seniority_from_title)
     candidates["city"] = candidates["location"].apply(map_city)
 
@@ -935,8 +1100,8 @@ def clean_dataset(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, dict[st
 
     output_columns = [
         "row_id", "job_title", "job_category", "city", "experience_years",
-        "experience_group", "seniority", "skills", "salary_raw", "salary_min",
-        "salary_max", "salary_label", "desc_group",
+        "experience_group", "seniority", "skills", "experience_raw",
+        "salary_raw", "salary_min", "salary_max", "salary_label", "desc_group",
     ]
     cleaned = candidates[output_columns].reset_index(drop=True)
     checks = self_check(cleaned)
