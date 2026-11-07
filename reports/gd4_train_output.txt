@@ -1,0 +1,17 @@
+GĐ4 – GRID SEARCH VÀ CHỌN MÔ HÌNH (GroupKFold, chỉ tập train)
+Ngày chạy: 2026-11-07 13:19
+Train: 363 tin, 339 nhóm, 5 fold
+
+decision_tree: 18 tổ hợp tham số
+random_forest: 18 tổ hợp tham số
+
+Tốt nhất của từng họ mô hình:
+linear_regression  MAE 5.739 ± 0.642 (SE 0.287)  RMSE 7.775  R² 0.377  {}
+decision_tree      MAE 5.596 ± 0.826 (SE 0.369)  RMSE 7.722  R² 0.383  {"max_depth": 4, "min_samples_leaf": 10}
+random_forest      MAE 5.208 ± 0.920 (SE 0.412)  RMSE 7.284  R² 0.453  {"n_estimators": 300, "max_depth": 8, "min_samples_leaf": 5, "max_features": 0.5}
+
+Quy tắc 1-SE: MAE nhỏ nhất 5.208 (random_forest) + SE 0.412 = ngưỡng 5.619
+Số cấu hình có MAE ≤ ngưỡng: 13
+CHỌN (đơn giản nhất trong ngưỡng): decision_tree      MAE 5.596 ± 0.826 (SE 0.369)  RMSE 7.722  R² 0.383  {"max_depth": 4, "min_samples_leaf": 10}
+
+Đã ghi reports\gd4_selected_model.json và model_results.csv

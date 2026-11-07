@@ -1,0 +1,42 @@
+GĐ5 – ĐÁNH GIÁ CUỐI TRÊN TẬP TEST (chạy một lần)
+Ngày chạy: 2026-11-07 14:11
+Mô hình đã chọn ở GĐ4: decision_tree {'max_depth': 4, 'min_samples_leaf': 10}
+Train: 363 tin / 339 nhóm; Test: 86 tin / 85 nhóm
+CV train (GroupKFold 5): MAE 5.596 ± 0.826, R² 0.383
+TEST: MAE 4.607 triệu (CI95% theo nhóm 3.826–5.482), RMSE 5.961, R² 0.506
+Baseline dummy_median trên test: MAE 5.935, R² -0.001
+Khoảng phần dư OOF 10%–90%: [-8.64, 9.88] triệu; trên test khoảng này chứa 90% tin
+
+MAE theo nhóm (nhóm có n nhỏ thì MAE kém tin cậy):
+          column                          value  n    mae  mean_error
+seniority_coarse                        unknown 71  4.600       2.317
+seniority_coarse                          entry  9  3.386       2.505
+seniority_coarse                         senior  4  2.886       2.551
+seniority_coarse                   lead_manager  2 13.795     -13.795
+            city                         Hà Nội 66  4.235       2.199
+            city                         TP.HCM 15  4.413       2.389
+            city                           Khác  3  4.748       2.526
+            city                        Đà Nẵng  2 18.105      -9.441
+    job_category            Phát triển phần mềm 30  3.890       2.722
+    job_category Quản lý & phân tích (PM/BA/PO) 20  5.784       1.320
+    job_category      Hạ tầng, DevOps & bảo mật 10  3.857       1.457
+    job_category               Triển khai & ERP  9  5.480       4.016
+    job_category     Hỗ trợ kỹ thuật & IT chung  7  2.678      -0.868
+    job_category                   Dữ liệu & AI  5  5.885      -2.019
+    job_category                  Kiểm thử & QA  5  5.548       5.414
+experience_group                          2 năm 33  4.802       4.468
+experience_group                          1 năm 20  3.968       0.726
+experience_group                          3 năm 16  5.033       1.324
+experience_group              0 (không yêu cầu)  7  2.741       2.606
+experience_group                         4+ năm  7  7.519      -4.175
+experience_group                         <1 năm  3  2.000      -0.825
+
+Permutation importance (MAE tăng bao nhiêu khi xáo trộn cột):
+         feature  mae_increase   std
+experience_years         3.444 0.354
+    job_category         0.268 0.171
+          skills         0.154 0.068
+seniority_coarse         0.079 0.033
+            city        -0.026 0.027
+
+Đã lưu models/salary_model.joblib và models/model_card.json
