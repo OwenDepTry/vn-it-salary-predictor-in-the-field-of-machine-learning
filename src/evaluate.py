@@ -89,8 +89,14 @@ def load_train_test():
 
 
 def make_pipeline(name, params=None):
-    return Pipeline([("prep", build_preprocessor()),
-                     ("model", MODEL_FACTORY[name](**(params or {})))])
+    """params có thể chứa "skill_top_k" (tham số của bước tiền xử lý);
+    các khóa còn lại là tham số của mô hình."""
+    params = dict(params or {})
+    prep_kwargs = {}
+    if "skill_top_k" in params:
+        prep_kwargs["skill_top_k"] = params.pop("skill_top_k")
+    return Pipeline([("prep", build_preprocessor(**prep_kwargs)),
+                     ("model", MODEL_FACTORY[name](**params))])
 
 
 # ---------------------------------------------------------------- metric

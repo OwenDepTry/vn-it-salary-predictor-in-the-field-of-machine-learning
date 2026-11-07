@@ -6,8 +6,8 @@ GĐ3 (bước 5 của README):   python src/train.py
     gd3_lr_coefficients.csv. Tạo data/processed/split.csv nếu chưa có (chỉ một lần).
 
 GĐ4 (bước 6 của README):   python src/train.py --stage gd4
-    Grid search Decision Tree và Random Forest bằng cùng GroupKFold, rồi chọn mô hình
-    theo quy tắc 1 độ lệch chuẩn (1-SE). Xuất gd4_grid_results.csv,
+    Grid search Linear Regression, Decision Tree và Random Forest bằng cùng GroupKFold, rồi chọn mô hình
+    theo quy tắc 1 độ lệch chuẩn (1-SD). Xuất gd4_grid_results.csv,
     gd4_selected_model.json, gd4_train_output.txt.
 
 Tập test KHÔNG được dùng ở file này.
@@ -28,14 +28,23 @@ from features import FEATURE_COLUMNS, RANDOM_STATE, TARGET
 
 FAMILY_ORDER = {"linear_regression": 0, "decision_tree": 1, "random_forest": 2}
 
+SKILL_TOP_K_GRID = [15, 30, 50]
+
+# Lưới nhỏ có chủ đích (train chỉ ~360 tin). Mọi họ mô hình đều được chỉnh số kỹ năng
+# (skill_top_k) để so sánh công bằng.
 GRIDS = {
+    "linear_regression": {
+        "skill_top_k": SKILL_TOP_K_GRID,
+    },
     "decision_tree": {
-        "max_depth": [2, 3, 4, 6, 8, None],
+        "skill_top_k": SKILL_TOP_K_GRID,
+        "max_depth": [3, 4, 5, 6, 8],
         "min_samples_leaf": [5, 10, 20],
     },
     "random_forest": {
+        "skill_top_k": SKILL_TOP_K_GRID,
         "n_estimators": [300],
-        "max_depth": [4, 8, None],
+        "max_depth": [None, 10],
         "min_samples_leaf": [2, 5, 10],
         "max_features": ["sqrt", 0.5],
     },
@@ -92,19 +101,22 @@ def main():
 
 # ---------------------------------------------------------------- GĐ4
 def _complexity_key(row):
-    """Khóa sắp xếp từ ĐƠN GIẢN đến PHỨC TẠP, dùng cho quy tắc 1-SE."""
+    """Khóa sắp xếp từ ĐƠN GIẢN đến PHỨC TẠP, dùng cho quy tắc 1-SD.
+    Cùng mức phức tạp thì ưu tiên ít kỹ năng hơn, rồi MAE thấp hơn."""
     p = row["params"]
     depth = p.get("max_depth")
     depth = math.inf if depth is None else depth
     return (FAMILY_ORDER[row["model"]], depth, -p.get("min_samples_leaf", 0),
-            p.get("n_estimators", 0), str(p.get("max_features", "")))
+            p.get("n_estimators", 0), str(p.get("max_features", "")),
+            p.get("skill_top_k", 0), row["mae_mean"])
 
 
-def select_one_se(rows):
-    """Quy tắc 1-SE: ngưỡng = MAE nhỏ nhất + SE của mô hình đó; trong các mô hình có
-    MAE ≤ ngưỡng, chọn mô hình đơn giản nhất."""
+def select_one_sd(rows):
+    """Quy tắc 1 độ lệch chuẩn (1-SD): ngưỡng = MAE nhỏ nhất + độ lệch chuẩn MAE
+    qua các fold của mô hình đó; trong các mô hình có MAE ≤ ngưỡng, chọn mô hình
+    đơn giản nhất (Linear Regression < Decision Tree < Random Forest)."""
     best = min(rows, key=lambda r: r["mae_mean"])
-    threshold = best["mae_mean"] + best["mae_se"]
+    threshold = best["mae_mean"] + best["mae_std"]
     eligible = [r for r in rows if r["mae_mean"] <= threshold]
     return min(eligible, key=_complexity_key), best, threshold, eligible
 
@@ -116,7 +128,7 @@ def gd4():
     log("Ngày chạy:", datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
     log(f"Train: {len(train)} tin, {groups.nunique()} nhóm, {N_SPLITS} fold\n")
 
-    rows = [_evaluate("linear_regression", {}, X, y, groups, "gd4")]
+    rows = []
     for name, grid in GRIDS.items():
         keys = list(grid)
         combos = list(itertools.product(*grid.values()))
@@ -135,9 +147,9 @@ def gd4():
         log(_fmt(r))
     save_results(best_by_family)
 
-    chosen, best, threshold, eligible = select_one_se(rows)
-    log(f"\nQuy tắc 1-SE: MAE nhỏ nhất {best['mae_mean']:.3f} ({best['model']}) "
-        f"+ SE {best['mae_se']:.3f} = ngưỡng {threshold:.3f}")
+    chosen, best, threshold, eligible = select_one_sd(rows)
+    log(f"\nQuy tắc 1-SD: MAE nhỏ nhất {best['mae_mean']:.3f} ({best['model']}) "
+        f"+ SD {best['mae_std']:.3f} = ngưỡng {threshold:.3f}")
     log(f"Số cấu hình có MAE ≤ ngưỡng: {len(eligible)}")
     log(f"CHỌN (đơn giản nhất trong ngưỡng): {_fmt(chosen)}")
 
@@ -145,7 +157,7 @@ def gd4():
         "model": chosen["model"], "params": chosen["params"],
         "cv_mae_mean": chosen["mae_mean"], "cv_mae_std": chosen["mae_std"],
         "cv_mae_se": chosen["mae_se"], "cv_r2_mean": chosen["r2_mean"],
-        "rule": "1-SE: mô hình đơn giản nhất có MAE CV ≤ MAE nhỏ nhất + 1 SE",
+        "rule": "1-SD: mô hình đơn giản nhất có MAE CV ≤ MAE nhỏ nhất + 1 độ lệch chuẩn",
         "best_model": best["model"], "best_params": best["params"],
         "best_mae_mean": best["mae_mean"], "threshold": threshold,
         "n_splits": N_SPLITS, "random_state": RANDOM_STATE,

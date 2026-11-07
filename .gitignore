@@ -14,3 +14,6 @@ data/processed/
 
 # Test temp
 pytest_temp/
+
+# Mô hình đã huấn luyện (tạo lại bằng src/evaluate.py)
+models/*.joblib
