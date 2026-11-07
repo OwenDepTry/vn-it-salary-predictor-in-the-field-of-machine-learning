@@ -1,0 +1,219 @@
+
+==========================================================================================
+0. TỰ KIỂM TRA QUY TẮC
+==========================================================================================
+OK: 38 ca chức danh + 5 ca cấp bậc + 1 ca kỹ năng đúng kỳ vọng.
+
+==========================================================================================
+1. ĐỌC DỮ LIỆU GỐC
+==========================================================================================
+48,092 bản ghi, 18 cột gốc
+
+==========================================================================================
+2. PHÂN LOẠI IT THEO CHỨC DANH
+==========================================================================================
+is_it: 1,267 | trong đó thuộc category CNTT: 934 | ngoài CNTT: 333
+Category CNTT nhưng bị loại: 972. Lý do:
+it_reason
+loại: thiết kế/đồ họa/sáng tạo nội dung             422
+loại: kinh doanh/bán hàng/marketing                 271
+không khớp vai trò IT                               180
+loại: tư vấn (không phải triển khai)                 37
+loại: lập trình máy công cụ/tự động hóa/thiết bị     29
+loại: an ninh/bảo vệ                                 12
+loại: gán nhãn/huấn luyện dữ liệu AI                  7
+loại: giảng dạy                                       7
+loại: kế toán/hành chính/văn phòng                    7
+
+Top 25 chức danh category CNTT bị loại vì 'không khớp vai trò IT' (rà soát xem có bỏ sót IT không):
+job_title
+Quản lý tài khoản                                                              4
+Quy trình đảm bảo chất lượng                                                   3
+Nhân Viên Kỹ Thuật                                                             3
+Chuyên Viên Chuyển Đổi Số                                                      3
+Bán thực tập - làm việc từ xa - thời gian linh hoạt                            2
+Chuyên Viên Phát Triển Sản Phẩm                                                2
+Trợ Lý Giám Đốc                                                                2
+Trưởng Phòng Kỹ Thuật                                                          2
+Đảm bảo chất lượng quy trình (PQA)                                             2
+Thực Tập Sinh                                                                  2
+Trưởng nhóm Chiến lược Thương mại Kỹ thuật số                                  2
+Đảm bảo chất lượng/ kiểm soát chất lượng thực tập                              1
+Chuyên Viên Phân Tích Tài Chính                                                1
+Chuyên gia phát triển sản phẩm - 4 năm kinh nghiệm (giờ làm việc linh hoạt)    1
+FX Artist                                                                      1
+Fresher C/nhúng                                                                1
+Họa Viên Revit                                                                 1
+BIM Manager (Chuyên Ngành MEP)                                                 1
+Mua lại người dùng - Tiếp thị kỹ thuật số (ứng dụng di động)                   1
+EXECUTIVE PRODUCER (Remote)                                                    1
+Trò chơi tiếp thị lãnh đạo                                                     1
+Trưởng Phòng Dự Án                                                             1
+Chuyên gia phân tích hoạt động                                                 1
+Đánh Giá An Toàn Thông Tin (Redteam)                                           1
+Chuyên Viên Phân Tích Vận Hành (Dự Án Xe Tải)                                  1
+
+Top 25 chức danh được giữ từ NGOÀI category CNTT (rà soát xem có bắt nhầm không):
+job_title
+Kỹ sư phần mềm                                       64
+Data Scientist                                       13
+Nhân Viên Triển Khai Phần Mềm                         8
+Kỹ sư phần mềm cao cấp                                5
+Chuyên Viên Triển Khai Phần Mềm                       5
+Lãnh đạo kỹ thuật                                     4
+Thực Tập Sinh Ngành Công Nghệ Thông Tin               3
+Nhân Viên Tư Vấn Triển Khai Phần Mềm                  3
+System Admin                                          3
+Thực Tập Sinh Lập Trình                               3
+Nhân Viên Hỗ Trợ Kỹ Thuật Helpdesk Layer 1            3
+Tester Tiếng Nhật (N2, Không Yêu Cầu Kinh Nghiệm)     2
+IT Comtor Tiếng Nhật                                  2
+IT Comtor (Tiếng Nhật)                                2
+Data Engineer                                         2
+Nó hỗ trợ bảo mật đám mây                             2
+Nhân Viên Hỗ Trợ Phần Mềm                             2
+Thực Tập Sinh Vận Hành Hệ Thống (Network)             2
+Nhân Viên Vận Hành SAP                                2
+Kiến trúc sư giải pháp - Microsoft Security           2
+Chuyên Viên Lập Trình Giao Diện (Front-End)           2
+Kỹ Thuật Viên IT (CP32)                               2
+Nhân Viên Kỹ Thuật Phần Mềm                           2
+Trình quản lý tài khoản CNTT                          2
+Thực Tập Sinh Tư Vấn Triển Khai Phần Mềm              2
+
+==========================================================================================
+3. CHUẨN HÓA CÁC TRƯỜNG
+==========================================================================================
+experience_years không parse được: 0
+salary_status: {'range': 32119, 'negotiable': 13727, 'single_value': 2234, 'zero_lower': 10, 'inverted': 2}
+
+==========================================================================================
+4. LỌC DÒNG CHO MÔ HÌNH (lý do loại đầu tiên)
+==========================================================================================
+   Tổng                                                          48,092
+   sau khi loại: ngoài Việt Nam                                  47,957
+   sau khi loại: không phải IT                                    1,176
+   sau khi loại: lương thỏa thuận                                   616
+   sau khi loại: lương điểm đơn (không rõ cố định hay khoảng mở)     518
+   sau khi loại: lương không hợp lệ (0–b, a>b, không parse)         518
+   sau khi loại: không phải Toàn thời gian                          504
+   sau khi loại: ngoài 3–200 triệu                                  501
+   sau khi loại: khoảng lương quá rộng (max/min > 5)                497
+   sau khi gộp trùng                                                449
+
+==========================================================================================
+5. NHÃN
+==========================================================================================
+count    449.00
+mean      21.12
+std        9.76
+min        3.50
+1%         5.00
+5%         8.00
+25%       14.00
+50%       20.00
+75%       25.00
+95%       37.50
+99%       50.00
+max       70.00
+
+==========================================================================================
+6. TẬP SẠCH
+==========================================================================================
+Số tin dùng cho mô hình: 449
+
+job_category:
+                                  n  median
+job_category                               
+Phát triển phần mềm             164    21.5
+Quản lý & phân tích (PM/BA/PO)   82    22.5
+Hỗ trợ kỹ thuật & IT chung       57    13.0
+Hạ tầng, DevOps & bảo mật        46    20.0
+Kiểm thử & QA                    40    20.5
+Triển khai & ERP                 35    16.5
+Dữ liệu & AI                     25    22.0
+
+job_role:
+                         n  median
+job_role                          
+pm_ba_po                77    22.5
+it_support              55    13.0
+dev_general             53    20.0
+backend                 49    23.5
+devops_infra_security   46    20.0
+tester                  39    21.0
+erp_implementation      32    16.8
+frontend                17    23.0
+fullstack               16    21.5
+data_ai                 15    22.5
+mobile                  15    18.5
+data_analyst            10    19.2
+game                     9    12.5
+implementation_generic   3     9.0
+embedded                 3    20.0
+brse_comtor              2    38.8
+it_pm_ba                 2    35.0
+web                      2    16.2
+tech_support_generic     2    26.5
+qa_qc_generic            1     5.0
+scrum_master             1    47.5
+
+city:
+                   n  median
+city                        
+Hà Nội           316    21.0
+TP.HCM            83    16.5
+Khác              35    12.5
+Đà Nẵng           10    18.0
+Nhiều thành phố    5    15.5
+
+experience_group:
+                     n  median
+experience_group              
+2 năm              151    20.5
+3 năm              110    25.0
+1 năm               95    15.0
+0 (không yêu cầu)   43     9.5
+4+ năm              32    34.0
+<1 năm              18    11.2
+
+seniority:
+             n  median
+seniority             
+unknown    372    20.0
+lead        18    32.5
+junior      14    13.6
+intern      14     6.0
+senior      14    27.5
+manager     10    30.0
+middle       5    25.0
+fresher      2     9.0
+
+Có kỹ năng: 97.1% | số kỹ năng/tin trung vị: 5
+Mô tả lặp lại: 9 nhóm, 18 tin -> GĐ3 chia train/test theo desc_group
+
+Địa điểm gốc được xếp 'Khác' (top 20, rà soát mapping):
+location_raw
+hải phòng                5
+bắc ninh                 5
+tp vinh                  3
+thái nguyên              2
+nghệ an                  2
+phú thọ                  2
+tp buôn ma thuột         2
+thanh hoá                1
+quảng ngãi               1
+long khánh               1
+thành phố vinh           1
+cần giuộc                1
+quảng ninh               1
+ninh bình                1
+lào cai                  1
+đồng nai                 1
+vĩnh long                1
+tp sông công             1
+tp rạch giá, an giang    1
+thanh hoá, quảng ninh    1
+
+Đã ghi: data/interim/vietjobs_it_candidates.csv (4,579 dòng)
+Đã ghi: data/processed/it_salary_clean.csv (449 dòng, 28 cột)
