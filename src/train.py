@@ -69,7 +69,7 @@ def main():
     log(f"Nhãn {TARGET}: trung vị {np.median(y):.2f}, "
         f"khoảng [{y.min():.1f}, {y.max():.1f}] triệu/tháng\n")
 
-    rows = [_evaluate("dummy", {}, X, y, groups, "gd3"),
+    rows = [_evaluate("dummy_median", {}, X, y, groups, "gd3"),
             _evaluate("linear_regression", {}, X, y, groups, "gd3")]
     for r in rows:
         log(_fmt(r))
