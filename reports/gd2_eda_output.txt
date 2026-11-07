@@ -1,0 +1,247 @@
+
+==========================================================================================
+1. KÍCH THƯỚC
+==========================================================================================
+Tập sạch (dùng cho mô hình): 449 dòng, 28 cột
+Ứng viên IT (interim, gồm cả dòng bị loại): 4,579 dòng
+Lý do loại trong các dòng is_it=True:
+model_reason
+lương thỏa thuận                                   560
+giữ                                                449
+lương điểm đơn (không rõ cố định hay khoảng mở)     98
+ngoài Việt Nam                                      91
+trùng tin (tiêu đề+địa điểm+lương+mô tả)            48
+không phải Toàn thời gian                           14
+khoảng lương quá rộng (max/min > 5)                  4
+ngoài 3–200 triệu                                    3
+
+==========================================================================================
+2. TỶ LỆ THIẾU
+==========================================================================================
+                    pct_missing  n_unique
+row_id                      0.0       449
+source                      0.0         1
+date                      100.0         0
+job_title                   0.0       359
+job_title_norm              0.0       356
+job_category                0.0         7
+job_role                    0.0        21
+category_src                0.0        12
+city                        0.0         5
+location_raw                0.0        44
+experience_raw              0.0        10
+experience_years            0.0        10
+experience_group            0.0         6
+seniority                   0.0         8
+skills                      2.9       424
+n_skills                    0.0        29
+languages_required         62.1        14
+contract_type               0.0         1
+salary_raw                  0.0       153
+salary_min                  0.0        32
+salary_max                  0.0        44
+salary_width_ratio          0.0        79
+salary_label                0.0        75
+label_note                  0.0         1
+salary_min_src              0.0        30
+salary_max_src              0.0        39
+salary_avg_src              0.0        43
+desc_group                  0.0       440
+
+skills rỗng: 2.9% | seniority 'unknown': 82.9% | experience_group 'unknown': 0.0%
+Ghi chú: cột `date` rỗng 100% vì VietJobs không có ngày đăng.
+
+==========================================================================================
+3. PHÂN BỐ NHÃN salary_label (triệu VND/tháng, trung điểm = giả định)
+==========================================================================================
+count    449.00
+mean      21.12
+std        9.76
+min        3.50
+1%         5.00
+5%         8.00
+25%       14.00
+50%       20.00
+75%       25.00
+95%       37.50
+99%       50.00
+max       70.00
+Độ lệch (skew): 1.12 | skew của log(y): -0.48
+Ngoại lệ theo IQR (> 41.5): 14 tin (3.1%) — CHỈ đánh dấu, không loại
+10 tin lương cao nhất:
+                                         job_title                    job_category experience_raw     city         salary_raw
+378                        Fullstack Web Developer             Phát triển phần mềm          5 năm   TP.HCM  50.0 - 90.0 triệu
+211    Kỹ Sư Phát Triển Ứng Dụng Điện Toán Đám Mây             Phát triển phần mềm          2 năm   TP.HCM  61.2 - 70.0 triệu
+325                                 Giám đốc dự án  Quản lý & phân tích (PM/BA/PO)          5 năm  Đà Nẵng  40.0 - 80.0 triệu
+372                          Trưởng nhóm công nghệ             Phát triển phần mềm          2 năm   Hà Nội  50.0 - 60.0 triệu
+184                         Kiến trúc sư giải pháp             Phát triển phần mềm          2 năm   Hà Nội  40.0 - 60.0 triệu
+439                         Kiến trúc sư giải pháp             Phát triển phần mềm          2 năm   Hà Nội  40.0 - 60.0 triệu
+113                  Bridge System Engineer (BrSE)  Quản lý & phân tích (PM/BA/PO)          1 năm   Hà Nội  35.0 - 60.0 triệu
+259                                   Scrum Master  Quản lý & phân tích (PM/BA/PO)          5 năm   Hà Nội  45.0 - 50.0 triệu
+266  Project Manager - Cổng Thanh Toán, Ví Điện Tử  Quản lý & phân tích (PM/BA/PO)          3 năm   Hà Nội  40.0 - 55.0 triệu
+255                         Senior DevOps Engineer       Hạ tầng, DevOps & bảo mật          3 năm   Hà Nội  30.0 - 60.0 triệu
+[hình] reports/figures/gd2_label_hist.png
+
+==========================================================================================
+4. NHÃN THEO NHÓM (n, trung vị, Q1, Q3)
+==========================================================================================
+
+--- experience_group
+                     n  median   q25   q75 n<30
+experience_group                               
+0 (không yêu cầu)   43     9.5   7.0  11.6     
+<1 năm              18    11.2   8.1  12.4    !
+1 năm               95    15.0  12.5  18.5     
+2 năm              151    20.5  17.2  25.0     
+3 năm              110    25.0  20.0  30.4     
+4+ năm              32    34.0  29.4  40.0     
+
+--- job_category
+                                  n  median   q25   q75 n<30
+job_category                                                
+Phát triển phần mềm             164    21.5  14.8  27.5     
+Quản lý & phân tích (PM/BA/PO)   82    22.5  18.1  30.8     
+Hỗ trợ kỹ thuật & IT chung       57    13.0  10.5  17.5     
+Hạ tầng, DevOps & bảo mật        46    20.0  16.1  26.2     
+Kiểm thử & QA                    40    20.5  12.9  24.3     
+Triển khai & ERP                 35    16.5  14.5  22.2     
+Dữ liệu & AI                     25    22.0  17.5  27.5    !
+
+--- job_role
+                         n  median   q25   q75 n<30
+job_role                                           
+pm_ba_po                77    22.5  18.0  30.0     
+it_support              55    13.0  10.2  17.0     
+dev_general             53    20.0  12.5  30.0     
+backend                 49    23.5  20.0  30.0     
+devops_infra_security   46    20.0  16.1  26.2     
+tester                  39    21.0  13.2  24.4     
+erp_implementation      32    16.8  15.0  24.0     
+frontend                17    23.0  16.5  27.5    !
+fullstack               16    21.5  13.5  28.9    !
+data_ai                 15    22.5  21.0  26.2    !
+mobile                  15    18.5  15.0  22.2    !
+data_analyst            10    19.2  14.1  31.2    !
+game                     9    12.5  12.5  15.0    !
+implementation_generic   3     9.0   8.8  14.5    !
+embedded                 3    20.0  17.5  30.5    !
+brse_comtor              2    38.8  34.4  43.1    !
+it_pm_ba                 2    35.0  35.0  35.0    !
+web                      2    16.2  14.4  18.1    !
+tech_support_generic     2    26.5  24.8  28.2    !
+qa_qc_generic            1     5.0   5.0   5.0    !
+scrum_master             1    47.5  47.5  47.5    !
+
+--- city
+                   n  median   q25   q75 n<30
+city                                         
+Hà Nội           316    21.0  16.0  26.5     
+TP.HCM            83    16.5  12.5  27.2     
+Khác              35    12.5  10.0  16.8     
+Đà Nẵng           10    18.0  14.6  22.2    !
+Nhiều thành phố    5    15.5   9.5  22.5    !
+
+--- seniority
+             n  median   q25   q75 n<30
+seniority                              
+unknown    372    20.0  14.5  25.0     
+lead        18    32.5  24.6  38.8    !
+junior      14    13.6  12.5  16.9    !
+intern      14     6.0   5.1   9.5    !
+senior      14    27.5  22.9  31.9    !
+manager     10    30.0  21.2  34.4    !
+middle       5    25.0  22.5  27.5    !
+fresher      2     9.0   8.0  10.0    !
+[hình] reports/figures/gd2_box_experience.png
+[hình] reports/figures/gd2_box_job_category.png
+[hình] reports/figures/gd2_box_city.png
+[hình] reports/figures/gd2_box_seniority.png
+
+==========================================================================================
+5. KINH NGHIỆM (số năm) và NHÃN — mô tả, không phải nhân quả
+==========================================================================================
+Spearman(experience_years, salary_label) = 0.687
+[hình] reports/figures/gd2_scatter_experience.png
+
+==========================================================================================
+6. ĐỘ RỘNG KHOẢNG LƯƠNG
+==========================================================================================
+count    449.00
+mean       1.61
+std        0.40
+min        1.08
+50%        1.50
+90%        2.00
+95%        2.43
+99%        3.00
+max        4.00
+max/min > 2: 44 tin | > 3: 3 tin
+
+==========================================================================================
+7. KỸ NĂNG (đã chuẩn hóa đồng nghĩa) — chỉ thống kê tần suất
+==========================================================================================
+Số kỹ năng khác nhau: 1,298
+   xuất hiện ≥ 10 tin: 43
+   xuất hiện ≥ 20 tin: 20
+   xuất hiện ≥ 30 tin: 13
+   xuất hiện ≥ 50 tin: 3
+   top-20 kỹ năng phủ 48.8% số tin (≥ 1 kỹ năng trong top)
+   top-30 kỹ năng phủ 55.0% số tin (≥ 1 kỹ năng trong top)
+   top-50 kỹ năng phủ 62.6% số tin (≥ 1 kỹ năng trong top)
+Top 40:
+git                    54
+python                 54
+javascript             50
+java                   47
+postgresql             41
+sql                    38
+rest api               38
+react                  36
+docker                 35
+html                   35
+css                    35
+mysql                  34
+sql server             33
+mongodb                29
+nodejs                 24
+oracle                 24
+c#                     23
+jira                   23
+kubernetes             21
+.net                   20
+php                    19
+linux                  18
+kafka                  17
+redis                  17
+aws                    17
+typescript             15
+ci/cd                  15
+nosql                  14
+phân tích nghiệp vụ    13
+tin học văn phòng      13
+api                    13
+angular                13
+figma                  12
+spring boot            11
+confluence             11
+rabbitmq               10
+excel                  10
+azure                  10
+vue                    10
+jenkins                10
+[hình] reports/figures/gd2_top_skills.png
+
+==========================================================================================
+8. TRÙNG MÔ TẢ (để chia train/test theo nhóm ở GĐ3)
+==========================================================================================
+9 mô tả lặp lại ở 18 tin; nhóm lớn nhất: 2 tin
+
+==========================================================================================
+TÓM TẮT GĐ2
+==========================================================================================
+Tập sạch: 449 tin | trung vị nhãn 20.0 triệu | IQR 14.0–25.0
+job_category: 7 nhóm, 1 nhóm có n < 30
+city: 5 nhóm, 2 nhóm có n < 30
+experience_group: 6 nhóm, 1 nhóm có n < 30
+seniority: 8 nhóm, 7 nhóm có n < 30
+Kỹ năng xuất hiện ≥ 20 tin: 20 | Spearman(kinh nghiệm, nhãn) = 0.687
