@@ -5,30 +5,35 @@
 |---|---|
 | `src/train.py` | GĐ3 (Dummy + Linear Regression) và GĐ4 (grid search DT/RF + quy tắc 1-SE) |
 | `src/evaluate.py` | Hàm dùng chung (metric, GroupKFold, bootstrap theo nhóm, MAE theo nhóm) và GĐ5 `final_evaluation()` |
-| `src/features.py` | **BẢN TẠM** để chạy thử. Khi TV2 có file thật thì dùng file của TV2, **đừng commit đè** |
-| `tests/make_fake_data.py` | Tạo dữ liệu giả đúng schema `it_salary_clean.csv` + `split.csv` |
-| `tests/test_train_evaluate.py` | 6 test cho phần TV3 |
+| `src/features.py` | Của TV2 (đã merge từ `tv2-datacleaning`). TV3 dùng `load_clean`, `make_groups`, `get_split`, `build_preprocessor`, `FEATURE_COLUMNS`, `SENIORITY_COARSE` |
+| `tests/make_fake_data.py` | Tạo dữ liệu GIẢ đúng schema `it_salary_clean.csv` của TV2 để chạy thử |
+| `tests/test_train_evaluate.py` | Test cho phần TV3 |
+
+## Chạy với dữ liệu thật
+```bash
+pip install -r requirements.txt     # cần thêm scikit-learn, joblib, pytest (xem dưới)
+python src/download_data.py         # tải data/raw/ (không commit)
+python src/data_cleaning.py         # GĐ2 -> data/processed/it_salary_clean.csv
+python src/train.py                 # bước 5 – GĐ3, lần đầu tạo data/processed/split.csv
+python src/train.py --stage gd4     # bước 6 – GĐ4 (~1 phút)
+python src/evaluate.py              # bước 7 – GĐ5, CHỈ chạy 1 lần (dùng tập test)
+python -m pytest -q
+```
+Trên Windows nếu lỗi `UnicodeEncodeError` khi in tiếng Việt: đặt `PYTHONIOENCODING=utf-8`.
 
 ## Chạy thử với dữ liệu giả
+Làm trong một bản sao repo (hoặc xóa kết quả sau đó), vì script ghi vào `data/processed/`, `reports/`, `models/`:
 ```bash
-git checkout main && git pull && git checkout -b tv3-model
-# chép thư mục src/ và tests/ ở đây vào repo
-pip install pandas numpy matplotlib scikit-learn joblib pytest
-
-python tests/make_fake_data.py      # tạo data/processed/*.csv (giả)
-python src/train.py                 # bước 5 – GĐ3
-python src/train.py --stage gd4     # bước 6 – GĐ4 (~1 phút)
-python src/evaluate.py              # bước 7 – GĐ5, chỉ chạy được 1 lần
-python -m pytest tests -q
+python tests/make_fake_data.py
+python src/train.py && python src/train.py --stage gd4 && python src/evaluate.py --force
 ```
-Muốn chạy lại bước 7 với dữ liệu giả: `python src/evaluate.py --force`.
-Khi chuyển sang dữ liệu thật, xóa `reports/gd3*`, `gd4*`, `gd5*`, `model_results.csv`, `models/` và `data/processed/` giả trước.
+Trước khi chạy dữ liệu thật: xóa `data/processed/`, `reports/gd3*`, `gd4*`, `gd5*`, `model_results.csv`, `models/`.
 
-## Khi TV2 bàn giao dữ liệu thật
-1. Thay `src/features.py` bằng file của TV2, lấy `it_salary_clean.csv` và `split.csv` thật.
-2. Code của mình chỉ cần từ TV2: `FEATURE_COLUMNS`, `TARGET`, `RANDOM_STATE`, `load_clean()`, `get_split(df)`, `build_preprocessor()`; tập sạch có cột `row_id`; split.csv có `row_id, group_id, split`. Nếu TV2 đặt tên khác, sửa trong hàm `load_train_test()` của `evaluate.py`.
-3. Chạy lại bước 5, 6, 7. Kết quả ghi theo file trong reports/; không chỉnh mô hình cho khớp số trong README.
-
-## Cần báo cho thành viên khác
-- **TV4**: `salary_model.joblib` là Pipeline sklearn có lớp `SkillsMultiHot` của `features.py`, nên khi `joblib.load` phải có `src/` trong `sys.path`. File `model_card.json` có đủ các khóa đã thống nhất, cộng thêm `feature_columns`, `unit`, `baseline_test_metrics`, `created_at`. `residual_interval_oof` là `{"q10": ..., "q90": ...}`. File `gd5_group_mae.csv` có các cột `group_by, value, n, mae, mean_error`.
-- **TV4** thêm vào `requirements.txt`: `scikit-learn`, `joblib`, `pytest`.
+## Hợp đồng với TV4 (`src/predict.py`, `app/streamlit_app.py`)
+- `models/salary_model.joblib`: Pipeline sklearn chứa `SkillsMultiHot` của `features.py`, nên khi `joblib.load` phải có `src/` trong `sys.path`.
+- `models/model_card.json`: `model` (tên), `params`, `n_train`, `created_utc`, `allowed` {`job_category`, `city`, `seniority` (giá trị thô)}, `train_counts` {`job_category`, `city`, `seniority_coarse`}, `experience_years_range`, `skills_vocabulary`, `label_range_train`, `residual_interval_oof` {`p10`, `p90`, `test_coverage`}, `cv_metrics`, `test_metrics` {`mae_mean`, `n_test`, …}, `data_sha256`, `disclaimer`.
+- `reports/model_results.csv`: các stage `gd3`, `gd4`, `cv_train`, `test`; baseline tên `dummy_median`; dòng `test` có `mae_ci_low`, `mae_ci_high`.
+- `reports/gd5_group_mae.csv`: `column, value, n, mae, mean_error`.
+- `reports/gd5_permutation_importance.csv`: `feature, mae_increase, std` (chỉ các cột mô hình dùng).
+- Đổi tên khóa/cột nào ở trên phải báo TV4 trước.
+- `requirements.txt` hiện ở nhánh TV2 chưa có `scikit-learn`, `joblib`, `pytest`; bản của TV4 đã có, sẽ có khi merge `tv4-app`.

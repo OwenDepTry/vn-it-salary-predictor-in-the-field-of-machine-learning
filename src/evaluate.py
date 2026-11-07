@@ -30,8 +30,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.tree import DecisionTreeRegressor
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from features import (FEATURE_COLUMNS, RANDOM_STATE, TARGET,  # noqa: E402
-                      build_preprocessor, get_split, load_clean)
+from features import (FEATURE_COLUMNS, RANDOM_STATE, SENIORITY_COARSE,  # noqa: E402
+                      TARGET, build_preprocessor, get_split, load_clean, make_groups)
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORTS = ROOT / "reports"
@@ -42,12 +42,12 @@ SELECTED_JSON = REPORTS / "gd4_selected_model.json"
 DOWNLOAD_LOG = ROOT / "data/raw/download_log.json"
 
 N_SPLITS = 5
-GROUP_COLUMNS = ["seniority", "city", "job_category", "experience_group"]
+GROUP_COLUMNS = ["seniority_coarse", "city", "job_category", "experience_group"]
 DISCLAIMER = ("Kết quả chỉ mang tính tham khảo, phản ánh mức lương ĐĂNG TUYỂN trong dữ "
               "liệu VietJobs, không phải mức lương thực nhận.")
 
 MODEL_FACTORY = {
-    "dummy": lambda **p: DummyRegressor(strategy="median", **p),
+    "dummy_median": lambda **p: DummyRegressor(strategy="median", **p),
     "linear_regression": lambda **p: LinearRegression(**p),
     "decision_tree": lambda **p: DecisionTreeRegressor(random_state=RANDOM_STATE, **p),
     "random_forest": lambda **p: RandomForestRegressor(random_state=RANDOM_STATE,
@@ -74,17 +74,14 @@ class Tee:
 
 # ---------------------------------------------------------------- dữ liệu
 def load_train_test():
-    """Ghép tập sạch với split.csv; trả về (train, test) có cột group_id."""
+    """Tập sạch + split theo nhóm tin đăng lại (features.get_split của TV2);
+    trả về (train, test) có cột group_id. Lần chạy đầu sẽ tạo data/processed/split.csv."""
     df = load_clean()
-    split = get_split(df)
-    if "row_id" not in df.columns:
-        df = df.reset_index().rename(columns={"index": "row_id"})
-    data = df.merge(split[["row_id", "group_id", "split"]], on="row_id", how="inner")
-    if len(data) != len(df):
-        raise ValueError("split.csv không khớp tập sạch (khác row_id). "
-                         "Không tạo lại split.csv; báo TV2 kiểm tra.")
-    train = data[data["split"] == "train"].reset_index(drop=True)
-    test = data[data["split"] == "test"].reset_index(drop=True)
+    groups = make_groups(df)
+    train_mask, test_mask, _ = get_split(df, groups)
+    data = df.assign(group_id=groups.values)
+    train = data[train_mask].reset_index(drop=True)
+    test = data[test_mask].reset_index(drop=True)
     leak = set(train.group_id) & set(test.group_id)
     if leak:
         raise ValueError(f"Có {len(leak)} nhóm nằm ở cả train và test: rò rỉ dữ liệu.")
@@ -150,8 +147,8 @@ def mae_by_group(frame, column):
            .agg(n=("abs_error", "size"), mae=("abs_error", "mean"),
                 mean_error=("error", "mean"))
            .reset_index().rename(columns={column: "value"}))
-    out.insert(0, "group_by", column)
-    return out.sort_values(["group_by", "n"], ascending=[True, False])
+    out.insert(0, "column", column)
+    return out.sort_values(["column", "n"], ascending=[True, False])
 
 
 def group_bootstrap(y_true, y_pred, groups, n_boot=2000, seed=RANDOM_STATE):
@@ -172,9 +169,17 @@ def group_bootstrap(y_true, y_pred, groups, n_boot=2000, seed=RANDOM_STATE):
 
 # ---------------------------------------------------------------- GĐ5
 def _skills_vocabulary(pipe):
-    names = pipe.named_steps["prep"].get_feature_names_out()
-    vocab = [n.split("__", 1)[-1] for n in names if n.startswith("skills__")]
-    return [v[len("skill_"):] if v.startswith("skill_") else v for v in vocab]
+    return list(pipe.named_steps["prep"].named_transformers_["skills"].vocabulary_)
+
+
+def _used_columns(pipe):
+    """Các cột đầu vào mà ColumnTransformer thực sự dùng (vd. experience='numeric' thì
+    experience_group không được dùng)."""
+    used = set()
+    for name, _, cols in pipe.named_steps["prep"].transformers_:
+        if name != "remainder":
+            used.update(cols)
+    return [c for c in FEATURE_COLUMNS if c in used]
 
 
 def _data_sha256():
@@ -248,15 +253,37 @@ def final_evaluation(force=False):
     pred = pipe.predict(X_te)
     metrics = regression_metrics(y_te, pred)
     ci = group_bootstrap(y_te, pred, g_te)
-    dummy = make_pipeline("dummy").fit(X_tr, y_tr)
-    dummy_metrics = regression_metrics(y_te, dummy.predict(X_te))
+    resid_te = y_te - pred
+    coverage = float(np.mean((resid_te >= q10) & (resid_te <= q90)))
+
+    dummy = make_pipeline("dummy_median")
+    dummy_folds, _ = cross_validate_grouped(dummy, X_tr, y_tr, g_tr)
+    dummy_cv = summarize_folds(dummy_folds)
+    dummy.fit(X_tr, y_tr)
+    dummy_pred = dummy.predict(X_te)
+    dummy_metrics = regression_metrics(y_te, dummy_pred)
+    dummy_ci = group_bootstrap(y_te, dummy_pred, g_te)
 
     log(f"CV train (GroupKFold {N_SPLITS}): MAE {cv['mae_mean']:.3f} ± {cv['mae_std']:.3f}, "
         f"R² {cv['r2_mean']:.3f}")
     log(f"TEST: MAE {metrics['mae']:.3f} triệu (CI95% theo nhóm {ci[0]:.3f}–{ci[1]:.3f}), "
         f"RMSE {metrics['rmse']:.3f}, R² {metrics['r2']:.3f}")
-    log(f"Baseline Dummy trên test: MAE {dummy_metrics['mae']:.3f}, R² {dummy_metrics['r2']:.3f}")
-    log(f"Khoảng phần dư OOF 10%–90%: [{q10:.2f}, {q90:.2f}] triệu")
+    log(f"Baseline dummy_median trên test: MAE {dummy_metrics['mae']:.3f}, "
+        f"R² {dummy_metrics['r2']:.3f}")
+    log(f"Khoảng phần dư OOF 10%–90%: [{q10:.2f}, {q90:.2f}] triệu; "
+        f"trên test khoảng này chứa {coverage:.0%} tin")
+
+    # model_results.csv: stage cv_train / test cho mô hình chọn và baseline (app GĐ6 đọc).
+    def _test_row(model, prm, m, c):
+        return {"model": model, "stage": "test", "mae_mean": m["mae"], "mae_ci_low": c[0],
+                "mae_ci_high": c[1], "rmse_mean": m["rmse"], "r2_mean": m["r2"],
+                "n_test": int(len(test)), "params": prm}
+    save_results([
+        {"model": name, "stage": "cv_train", **cv, "params": params},
+        {"model": "dummy_median", "stage": "cv_train", **dummy_cv, "params": {}},
+        _test_row(name, params, metrics, ci),
+        _test_row("dummy_median", {}, dummy_metrics, dummy_ci),
+    ])
 
     pred_df = test[["row_id", "group_id"] + FEATURE_COLUMNS].copy()
     pred_df["y_true"], pred_df["y_pred"] = y_te, pred
@@ -272,9 +299,10 @@ def final_evaluation(force=False):
     perm = permutation_importance(pipe, X_te, y_te, scoring="neg_mean_absolute_error",
                                   n_repeats=30, random_state=RANDOM_STATE)
     imp = pd.DataFrame({"feature": FEATURE_COLUMNS,
-                        "mae_increase_mean": perm.importances_mean,
-                        "mae_increase_std": perm.importances_std}
-                       ).sort_values("mae_increase_mean", ascending=False)
+                        "mae_increase": perm.importances_mean,
+                        "std": perm.importances_std})
+    imp = (imp[imp.feature.isin(_used_columns(pipe))]
+           .sort_values("mae_increase", ascending=False))
     imp.to_csv(REPORTS / "gd5_permutation_importance.csv", index=False)
     log("\nPermutation importance (MAE tăng bao nhiêu khi xáo trộn cột):")
     log(imp.round(3).to_string(index=False))
@@ -283,29 +311,40 @@ def final_evaluation(force=False):
 
     MODELS.mkdir(parents=True, exist_ok=True)
     joblib.dump(pipe, MODELS / "salary_model.joblib")
+    # Khóa của model_card.json là hợp đồng với TV4 (src/predict.py, app/streamlit_app.py):
+    # đổi tên khóa phải báo TV4 trước.
     card = {
-        "model": {"name": name, "params": params, "selected_by": selected.get("rule")},
+        "model": name,
+        "params": params,
+        "selected_by": selected.get("rule"),
         "feature_columns": FEATURE_COLUMNS,
+        "used_columns": _used_columns(pipe),
         "target": TARGET,
-        "unit": "triệu VNĐ/tháng",
-        "allowed": {c: sorted(train[c].dropna().astype(str).unique().tolist())
-                    for c in FEATURE_COLUMNS if c not in ("experience_years", "skills")},
+        "unit": "triệu VND/tháng",
+        "n_train": int(len(train)),
+        "n_test": int(len(test)),
+        "n_train_groups": int(g_tr.nunique()),
+        # seniority: giá trị thô người dùng chọn; mô hình chỉ thấy seniority_coarse.
+        "allowed": {"job_category": sorted(train["job_category"].astype(str).unique().tolist()),
+                    "city": sorted(train["city"].astype(str).unique().tolist()),
+                    "seniority": list(SENIORITY_COARSE)},
+        "train_counts": {c: {str(k): int(v) for k, v in
+                             train[c].astype(str).value_counts().items()}
+                         for c in ("job_category", "city", "seniority_coarse")},
         "experience_years_range": [float(train["experience_years"].min()),
                                    float(train["experience_years"].max())],
         "skills_vocabulary": _skills_vocabulary(pipe),
-        "train_counts": {"n_train": int(len(train)), "n_test": int(len(test)),
-                         "n_train_groups": int(g_tr.nunique()),
-                         **{c: train[c].astype(str).value_counts().to_dict()
-                            for c in ("job_category", "city", "seniority")
-                            if c in train.columns}},
         "label_range_train": [float(y_tr.min()), float(y_tr.max())],
-        "residual_interval_oof": {"q10": float(q10), "q90": float(q90)},
-        "test_metrics": {**metrics, "mae_ci95": list(ci)},
+        "residual_interval_oof": {"p10": float(q10), "p90": float(q90),
+                                  "test_coverage": coverage},
         "cv_metrics": cv,
+        "test_metrics": {"mae_mean": metrics["mae"], "rmse": metrics["rmse"],
+                         "r2": metrics["r2"], "mae_ci_low": ci[0], "mae_ci_high": ci[1],
+                         "n_test": int(len(test))},
         "baseline_test_metrics": dummy_metrics,
         "random_state": RANDOM_STATE,
         "data_sha256": _data_sha256(),
-        "created_at": datetime.datetime.now().isoformat(timespec="seconds"),
+        "created_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
         "disclaimer": DISCLAIMER,
     }
     (MODELS / "model_card.json").write_text(json.dumps(card, ensure_ascii=False, indent=2),

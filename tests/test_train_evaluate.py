@@ -9,6 +9,7 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from evaluate import (cross_validate_grouped, group_bootstrap, mae_by_group,  # noqa: E402
                       make_pipeline, regression_metrics, summarize_folds)
+from features import FEATURE_COLUMNS  # noqa: E402
 from train import select_one_se  # noqa: E402
 
 
@@ -28,13 +29,13 @@ def test_cross_validate_grouped_returns_oof_for_every_row():
     rng = np.random.default_rng(0)
     n = 120
     X = pd.DataFrame({
-        "job_category": rng.choice(["backend", "data"], n),
-        "city": rng.choice(["Hà Nội", "Hồ Chí Minh"], n),
-        "experience_group": rng.choice(["0-1", "1-3"], n),
-        "seniority": rng.choice(["junior", "middle"], n),
-        "experience_years": rng.integers(0, 7, n),
-        "skills": rng.choice(["python,sql", "java", "react,nodejs"], n),
-    })
+        "job_category": rng.choice(["Phát triển phần mềm", "Dữ liệu & AI"], n),
+        "city": rng.choice(["Hà Nội", "TP.HCM"], n),
+        "seniority_coarse": rng.choice(["unknown", "entry"], n),
+        "experience_years": rng.integers(0, 7, n).astype(float),
+        "experience_group": rng.choice(["1 năm", "2 năm"], n),
+        "skills": rng.choice(["python|sql", "java", "react|nodejs"], n),
+    })[FEATURE_COLUMNS]
     y = 10 + 3 * X.experience_years + rng.normal(0, 1, n)
     folds, oof = cross_validate_grouped(make_pipeline("linear_regression"), X, y,
                                         np.arange(n) // 2)
@@ -54,7 +55,7 @@ def test_mae_by_group_columns():
     df = pd.DataFrame({"y_true": [10, 20, 30], "y_pred": [12, 18, 30],
                        "city": ["A", "A", "B"]})
     out = mae_by_group(df, "city")
-    assert list(out.columns) == ["group_by", "value", "n", "mae", "mean_error"]
+    assert list(out.columns) == ["column", "value", "n", "mae", "mean_error"]
     assert out.set_index("value").loc["A", "mae"] == pytest.approx(2)
 
 
