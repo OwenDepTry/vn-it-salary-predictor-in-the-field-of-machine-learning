@@ -1,17 +1,18 @@
 GĐ4 – GRID SEARCH VÀ CHỌN MÔ HÌNH (GroupKFold, chỉ tập train)
-Ngày chạy: 2026-11-07 13:19
+Ngày chạy: 2026-11-07 18:01
 Train: 363 tin, 339 nhóm, 5 fold
 
-decision_tree: 18 tổ hợp tham số
-random_forest: 18 tổ hợp tham số
+linear_regression: 3 tổ hợp tham số
+decision_tree: 45 tổ hợp tham số
+random_forest: 36 tổ hợp tham số
 
 Tốt nhất của từng họ mô hình:
-linear_regression  MAE 5.739 ± 0.642 (SE 0.287)  RMSE 7.775  R² 0.377  {}
-decision_tree      MAE 5.596 ± 0.826 (SE 0.369)  RMSE 7.722  R² 0.383  {"max_depth": 4, "min_samples_leaf": 10}
-random_forest      MAE 5.208 ± 0.920 (SE 0.412)  RMSE 7.284  R² 0.453  {"n_estimators": 300, "max_depth": 8, "min_samples_leaf": 5, "max_features": 0.5}
+linear_regression  MAE 5.535 ± 0.998 (SE 0.446)  RMSE 7.588  R² 0.408  {"skill_top_k": 15}
+decision_tree      MAE 5.490 ± 0.948 (SE 0.424)  RMSE 7.570  R² 0.408  {"skill_top_k": 15, "max_depth": 3, "min_samples_leaf": 5}
+random_forest      MAE 5.211 ± 0.916 (SE 0.410)  RMSE 7.270  R² 0.455  {"skill_top_k": 30, "n_estimators": 300, "max_depth": 10, "min_samples_leaf": 5, "max_features": 0.5}
 
-Quy tắc 1-SE: MAE nhỏ nhất 5.208 (random_forest) + SE 0.412 = ngưỡng 5.619
-Số cấu hình có MAE ≤ ngưỡng: 13
-CHỌN (đơn giản nhất trong ngưỡng): decision_tree      MAE 5.596 ± 0.826 (SE 0.369)  RMSE 7.722  R² 0.383  {"max_depth": 4, "min_samples_leaf": 10}
+Quy tắc 1-SD: MAE nhỏ nhất 5.211 (random_forest) + SD 0.916 = ngưỡng 6.127
+Số cấu hình có MAE ≤ ngưỡng: 80
+CHỌN (đơn giản nhất trong ngưỡng): linear_regression  MAE 5.535 ± 0.998 (SE 0.446)  RMSE 7.588  R² 0.408  {"skill_top_k": 15}
 
-Đã ghi reports\gd4_selected_model.json và model_results.csv
+Đã ghi reports/gd4_selected_model.json và model_results.csv

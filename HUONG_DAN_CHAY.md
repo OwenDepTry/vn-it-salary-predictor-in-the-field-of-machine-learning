@@ -3,7 +3,7 @@
 ## Các file
 | File | Vai trò |
 |---|---|
-| `src/train.py` | GĐ3 (Dummy + Linear Regression) và GĐ4 (grid search DT/RF + quy tắc 1-SE) |
+| `src/train.py` | GĐ3 (Dummy + Linear Regression) và GĐ4 (grid search LR/DT/RF có chỉnh số kỹ năng + quy tắc 1 độ lệch chuẩn) |
 | `src/evaluate.py` | Hàm dùng chung (metric, GroupKFold, bootstrap theo nhóm, MAE theo nhóm) và GĐ5 `final_evaluation()` |
 | `src/features.py` | Của TV2 (đã merge từ `tv2-datacleaning`). TV3 dùng `load_clean`, `make_groups`, `get_split`, `build_preprocessor`, `FEATURE_COLUMNS`, `SENIORITY_COARSE` |
 | `tests/make_fake_data.py` | Tạo dữ liệu GIẢ đúng schema `it_salary_clean.csv` của TV2 để chạy thử |

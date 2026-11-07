@@ -10,7 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from evaluate import (cross_validate_grouped, group_bootstrap, mae_by_group,  # noqa: E402
                       make_pipeline, regression_metrics, summarize_folds)
 from features import FEATURE_COLUMNS  # noqa: E402
-from train import select_one_se  # noqa: E402
+from train import select_one_sd  # noqa: E402
 
 
 def test_regression_metrics_perfect():
@@ -59,14 +59,33 @@ def test_mae_by_group_columns():
     assert out.set_index("value").loc["A", "mae"] == pytest.approx(2)
 
 
-def test_one_se_rule_prefers_simpler_model():
+def test_one_sd_rule_prefers_simpler_model():
     rows = [
-        {"model": "linear_regression", "params": {}, "mae_mean": 4.70, "mae_se": 0.2},
-        {"model": "random_forest", "params": {"max_depth": 8, "min_samples_leaf": 2,
-                                              "n_estimators": 300}, "mae_mean": 4.55,
-         "mae_se": 0.2},
+        {"model": "linear_regression", "params": {"skill_top_k": 15}, "mae_mean": 5.54,
+         "mae_std": 1.00, "mae_se": 0.45},
+        {"model": "random_forest", "params": {"max_depth": 10, "min_samples_leaf": 5,
+                                              "n_estimators": 300}, "mae_mean": 5.21,
+         "mae_std": 0.92, "mae_se": 0.41},
     ]
-    chosen, best, threshold, _ = select_one_se(rows)
+    chosen, best, threshold, _ = select_one_sd(rows)
     assert best["model"] == "random_forest"
-    assert threshold == pytest.approx(4.75)
+    assert threshold == pytest.approx(5.21 + 0.92)      # ngưỡng dùng độ lệch chuẩn, không dùng SE
     assert chosen["model"] == "linear_regression"
+
+
+def test_one_sd_rule_keeps_best_when_others_too_far():
+    rows = [
+        {"model": "linear_regression", "params": {}, "mae_mean": 7.0, "mae_std": 0.5, "mae_se": 0.2},
+        {"model": "random_forest", "params": {"max_depth": 10, "min_samples_leaf": 5,
+                                              "n_estimators": 300}, "mae_mean": 5.0,
+         "mae_std": 0.5, "mae_se": 0.2},
+    ]
+    chosen, _, _, _ = select_one_sd(rows)
+    assert chosen["model"] == "random_forest"
+
+
+def test_make_pipeline_passes_skill_top_k_to_preprocessor():
+    from evaluate import make_pipeline
+    pipe = make_pipeline("linear_regression", {"skill_top_k": 15})
+    skills = {name: tr for name, tr, _ in pipe.named_steps["prep"].transformers}["skills"]
+    assert skills.top_k == 15
