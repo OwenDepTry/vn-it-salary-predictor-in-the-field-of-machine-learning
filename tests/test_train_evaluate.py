@@ -55,8 +55,21 @@ def test_mae_by_group_columns():
     df = pd.DataFrame({"y_true": [10, 20, 30], "y_pred": [12, 18, 30],
                        "city": ["A", "A", "B"]})
     out = mae_by_group(df, "city")
-    assert list(out.columns) == ["column", "value", "n", "mae", "mean_error"]
-    assert out.set_index("value").loc["A", "mae"] == pytest.approx(2)
+    assert list(out.columns) == ["column", "group", "n", "mae", "median_label", "median_pred"]
+    assert out.set_index("group").loc["A", "mae"] == pytest.approx(2)
+
+
+def test_group_mae_table_adds_baseline_and_conclusion():
+    from evaluate import group_mae_table
+    df = pd.DataFrame({"y_true": [10.0] * 12 + [30.0], "y_pred": [11.0] * 12 + [30.0],
+                       "city": ["A"] * 12 + ["B"]})
+    out = group_mae_table(df, dummy_pred=[15.0] * 13)
+    assert list(out.columns) == ["column", "group", "n", "mae", "mae_dummy",
+                                 "median_label", "median_pred", "kết luận?"]
+    row = out.set_index("group")
+    assert row.loc["A", "mae_dummy"] == pytest.approx(5)
+    assert row.loc["A", "kết luận?"] == "có"
+    assert row.loc["B", "kết luận?"] == "không (n nhỏ)"
 
 
 def test_one_sd_rule_prefers_simpler_model():
