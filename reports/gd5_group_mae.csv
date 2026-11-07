@@ -1,22 +1,22 @@
-column,value,n,mae,mean_error
-seniority_coarse,unknown,71,4.4357344061614485,1.925398844713889
-seniority_coarse,entry,9,4.114992789114857,2.2254694263999855
-seniority_coarse,senior,4,4.969229879112971,0.2411814727525261
-seniority_coarse,lead_manager,2,13.637557887774014,-13.637557887774014
-city,Hà Nội,66,4.35270259397664,1.509175076089349
-city,TP.HCM,15,5.11096371019938,2.946363954160953
-city,Khác,3,0.9749122420786916,0.601820776237906
-city,Đà Nẵng,2,16.128274824905734,-7.592161867638499
-job_category,Phát triển phần mềm,30,4.246003806904447,1.3387949726055977
-job_category,Quản lý & phân tích (PM/BA/PO),20,5.582059178909779,2.3129828758933395
-job_category,"Hạ tầng, DevOps & bảo mật",10,4.414577649950695,2.016363358440196
-job_category,Triển khai & ERP,9,3.6846762508098934,1.7512060521424972
-job_category,Hỗ trợ kỹ thuật & IT chung,7,4.0350854931363695,0.02560166784219829
-job_category,Dữ liệu & AI,5,5.6738181628052455,-1.3752571071380237
-job_category,Kiểm thử & QA,5,5.23605268467813,2.954246407764727
-experience_group,2 năm,33,4.052541519411067,2.3516891826192725
-experience_group,1 năm,20,4.059518829675706,0.26289127051754174
-experience_group,3 năm,16,5.500912254023849,2.5637006621794223
-experience_group,0 (không yêu cầu),7,4.177132314668159,3.6915353811460334
-experience_group,4+ năm,7,7.936922656937761,-4.266090342294029
-experience_group,<1 năm,3,3.795628543931361,3.520419541375478
+﻿column,group,n,mae,mae_dummy,median_label,median_pred,kết luận?
+experience_group,2 năm,33,4.05,3.11,20.0,22.12,có
+experience_group,1 năm,20,4.06,4.95,15.5,16.26,có
+experience_group,3 năm,16,5.5,4.59,20.75,25.97,có
+experience_group,0 (không yêu cầu),7,4.18,11.85,9.0,12.45,không (n nhỏ)
+experience_group,4+ năm,7,7.94,17.86,32.5,36.2,không (n nhỏ)
+experience_group,<1 năm,3,3.8,9.17,9.5,14.59,không (n nhỏ)
+job_category,Phát triển phần mềm,30,4.25,5.82,18.5,21.03,có
+job_category,Quản lý & phân tích (PM/BA/PO),20,5.58,7.05,20.0,24.36,có
+job_category,"Hạ tầng, DevOps & bảo mật",10,4.41,4.1,20.25,22.97,có
+job_category,Triển khai & ERP,9,3.68,4.44,17.0,19.01,không (n nhỏ)
+job_category,Hỗ trợ kỹ thuật & IT chung,7,4.04,6.86,12.5,18.45,không (n nhỏ)
+job_category,Dữ liệu & AI,5,5.67,8.8,22.5,22.65,không (n nhỏ)
+job_category,Kiểm thử & QA,5,5.24,4.4,20.0,19.8,không (n nhỏ)
+city,Hà Nội,66,4.35,5.49,20.0,21.45,có
+city,TP.HCM,15,5.11,5.56,17.0,21.25,có
+city,Khác,3,0.97,6.83,11.5,13.87,không (n nhỏ)
+city,Đà Nẵng,2,16.13,22.0,38.0,30.41,không (n nhỏ)
+seniority_coarse,unknown,71,4.44,5.05,20.0,21.48,có
+seniority_coarse,entry,9,4.11,8.11,12.5,14.88,không (n nhỏ)
+seniority_coarse,senior,4,4.97,6.62,25.0,24.35,không (n nhỏ)
+seniority_coarse,lead_manager,2,13.64,26.25,46.25,32.61,không (n nhỏ)

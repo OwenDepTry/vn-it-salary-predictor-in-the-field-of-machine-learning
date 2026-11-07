@@ -1,5 +1,5 @@
 GĐ5 – ĐÁNH GIÁ CUỐI TRÊN TẬP TEST (chạy một lần)
-Ngày chạy: 2026-11-07 18:03
+Ngày chạy: 2026-11-07 20:02
 Mô hình đã chọn ở GĐ4: linear_regression {'skill_top_k': 15}
 Train: 363 tin / 339 nhóm; Test: 86 tin / 85 nhóm
 CV train (GroupKFold 5): MAE 5.535 ± 0.998, R² 0.408
@@ -7,29 +7,29 @@ TEST: MAE 4.641 triệu (CI95% theo nhóm 3.913–5.419), RMSE 5.786, R² 0.534
 Baseline dummy_median trên test: MAE 5.935, R² -0.001
 Khoảng phần dư OOF 10%–90%: [-8.18, 8.74] triệu; trên test khoảng này chứa 88% tin
 
-MAE theo nhóm (nhóm có n nhỏ thì MAE kém tin cậy):
-          column                          value  n    mae  mean_error
-seniority_coarse                        unknown 71  4.436       1.925
-seniority_coarse                          entry  9  4.115       2.225
-seniority_coarse                         senior  4  4.969       0.241
-seniority_coarse                   lead_manager  2 13.638     -13.638
-            city                         Hà Nội 66  4.353       1.509
-            city                         TP.HCM 15  5.111       2.946
-            city                           Khác  3  0.975       0.602
-            city                        Đà Nẵng  2 16.128      -7.592
-    job_category            Phát triển phần mềm 30  4.246       1.339
-    job_category Quản lý & phân tích (PM/BA/PO) 20  5.582       2.313
-    job_category      Hạ tầng, DevOps & bảo mật 10  4.415       2.016
-    job_category               Triển khai & ERP  9  3.685       1.751
-    job_category     Hỗ trợ kỹ thuật & IT chung  7  4.035       0.026
-    job_category                   Dữ liệu & AI  5  5.674      -1.375
-    job_category                  Kiểm thử & QA  5  5.236       2.954
-experience_group                          2 năm 33  4.053       2.352
-experience_group                          1 năm 20  4.060       0.263
-experience_group                          3 năm 16  5.501       2.564
-experience_group              0 (không yêu cầu)  7  4.177       3.692
-experience_group                         4+ năm  7  7.937      -4.266
-experience_group                         <1 năm  3  3.796       3.520
+MAE theo nhóm trên test (nhóm n < 10: không kết luận):
+          column                          group  n   mae  mae_dummy  median_label  median_pred     kết luận?
+experience_group                          2 năm 33  4.05       3.11         20.00        22.12            có
+experience_group                          1 năm 20  4.06       4.95         15.50        16.26            có
+experience_group                          3 năm 16  5.50       4.59         20.75        25.97            có
+experience_group              0 (không yêu cầu)  7  4.18      11.85          9.00        12.45 không (n nhỏ)
+experience_group                         4+ năm  7  7.94      17.86         32.50        36.20 không (n nhỏ)
+experience_group                         <1 năm  3  3.80       9.17          9.50        14.59 không (n nhỏ)
+    job_category            Phát triển phần mềm 30  4.25       5.82         18.50        21.03            có
+    job_category Quản lý & phân tích (PM/BA/PO) 20  5.58       7.05         20.00        24.36            có
+    job_category      Hạ tầng, DevOps & bảo mật 10  4.41       4.10         20.25        22.97            có
+    job_category               Triển khai & ERP  9  3.68       4.44         17.00        19.01 không (n nhỏ)
+    job_category     Hỗ trợ kỹ thuật & IT chung  7  4.04       6.86         12.50        18.45 không (n nhỏ)
+    job_category                   Dữ liệu & AI  5  5.67       8.80         22.50        22.65 không (n nhỏ)
+    job_category                  Kiểm thử & QA  5  5.24       4.40         20.00        19.80 không (n nhỏ)
+            city                         Hà Nội 66  4.35       5.49         20.00        21.45            có
+            city                         TP.HCM 15  5.11       5.56         17.00        21.25            có
+            city                           Khác  3  0.97       6.83         11.50        13.87 không (n nhỏ)
+            city                        Đà Nẵng  2 16.13      22.00         38.00        30.41 không (n nhỏ)
+seniority_coarse                        unknown 71  4.44       5.05         20.00        21.48            có
+seniority_coarse                          entry  9  4.11       8.11         12.50        14.88 không (n nhỏ)
+seniority_coarse                         senior  4  4.97       6.62         25.00        24.35 không (n nhỏ)
+seniority_coarse                   lead_manager  2 13.64      26.25         46.25        32.61 không (n nhỏ)
 
 Permutation importance (MAE tăng bao nhiêu khi xáo trộn cột):
          feature  mae_increase   std

@@ -42,7 +42,8 @@ SELECTED_JSON = REPORTS / "gd4_selected_model.json"
 DOWNLOAD_LOG = ROOT / "data/raw/download_log.json"
 
 N_SPLITS = 5
-GROUP_COLUMNS = ["seniority_coarse", "city", "job_category", "experience_group"]
+GROUP_COLUMNS = ["experience_group", "job_category", "city", "seniority_coarse"]
+MIN_N_CONCLUDE = 10   # nhóm có < 10 tin trong test: chỉ báo số, không kết luận
 DISCLAIMER = ("Kết quả chỉ mang tính tham khảo, phản ánh mức lương ĐĂNG TUYỂN trong dữ "
               "liệu VietJobs, không phải mức lương thực nhận.")
 
@@ -146,15 +147,32 @@ def save_results(rows, path=RESULTS_CSV):
 
 
 def mae_by_group(frame, column):
-    """frame có cột y_true, y_pred và column; trả về n, MAE, sai lệch TB theo nhóm."""
-    err = frame["y_pred"] - frame["y_true"]
-    out = (frame.assign(abs_error=err.abs(), error=err)
-           .groupby(column)
+    """frame có cột y_true, y_pred và column. Trả về theo từng nhóm: số tin n, MAE,
+    trung vị nhãn và trung vị dự đoán (sắp theo n giảm dần, làm tròn 2 chữ số)."""
+    tmp = frame.assign(abs_error=(frame["y_true"] - frame["y_pred"]).abs())
+    out = (tmp.groupby(column)
            .agg(n=("abs_error", "size"), mae=("abs_error", "mean"),
-                mean_error=("error", "mean"))
-           .reset_index().rename(columns={column: "value"}))
+                median_label=("y_true", "median"), median_pred=("y_pred", "median"))
+           .sort_values("n", ascending=False).round(2)
+           .reset_index().rename(columns={column: "group"}))
     out.insert(0, "column", column)
-    return out.sort_values(["column", "n"], ascending=[True, False])
+    return out
+
+
+def group_mae_table(pred_df, dummy_pred):
+    """Bảng MAE theo nhóm trên test cho mô hình chọn, kèm MAE của baseline cùng nhóm
+    và cột "kết luận?" (chỉ kết luận khi nhóm có ≥ MIN_N_CONCLUDE tin)."""
+    dummy_df = pred_df.assign(y_pred=dummy_pred)
+    tables = []
+    for col in GROUP_COLUMNS:
+        if col not in pred_df.columns:
+            continue
+        t = mae_by_group(pred_df, col)
+        dummy_mae = mae_by_group(dummy_df, col).set_index("group")["mae"]
+        t.insert(4, "mae_dummy", t["group"].map(dummy_mae))
+        t["kết luận?"] = np.where(t["n"] >= MIN_N_CONCLUDE, "có", "không (n nhỏ)")
+        tables.append(t)
+    return pd.concat(tables, ignore_index=True)
 
 
 def group_bootstrap(y_true, y_pred, groups, n_boot=2000, seed=RANDOM_STATE):
@@ -296,11 +314,10 @@ def final_evaluation(force=False):
     pred_df["residual"] = pred_df["y_true"] - pred_df["y_pred"]
     pred_df.to_csv(REPORTS / "gd5_test_predictions.csv", index=False)
 
-    group_mae = pd.concat([mae_by_group(pred_df, c) for c in GROUP_COLUMNS
-                           if c in pred_df.columns], ignore_index=True)
-    group_mae.to_csv(REPORTS / "gd5_group_mae.csv", index=False)
-    log("\nMAE theo nhóm (nhóm có n nhỏ thì MAE kém tin cậy):")
-    log(group_mae.round(3).to_string(index=False))
+    group_mae = group_mae_table(pred_df, dummy_pred)
+    group_mae.to_csv(REPORTS / "gd5_group_mae.csv", index=False, encoding="utf-8-sig")
+    log(f"\nMAE theo nhóm trên test (nhóm n < {MIN_N_CONCLUDE}: không kết luận):")
+    log(group_mae.to_string(index=False))
 
     perm = permutation_importance(pipe, X_te, y_te, scoring="neg_mean_absolute_error",
                                   n_repeats=30, random_state=RANDOM_STATE)

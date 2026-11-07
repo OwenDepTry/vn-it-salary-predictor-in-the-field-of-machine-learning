@@ -33,7 +33,7 @@ Trước khi chạy dữ liệu thật: xóa `data/processed/`, `reports/gd3*`, 
 - `models/salary_model.joblib`: Pipeline sklearn chứa `SkillsMultiHot` của `features.py`, nên khi `joblib.load` phải có `src/` trong `sys.path`.
 - `models/model_card.json`: `model` (tên), `params`, `n_train`, `created_utc`, `allowed` {`job_category`, `city`, `seniority` (giá trị thô)}, `train_counts` {`job_category`, `city`, `seniority_coarse`}, `experience_years_range`, `skills_vocabulary`, `label_range_train`, `residual_interval_oof` {`p10`, `p90`, `test_coverage`}, `cv_metrics`, `test_metrics` {`mae_mean`, `n_test`, …}, `data_sha256`, `disclaimer`.
 - `reports/model_results.csv`: các stage `gd3`, `gd4`, `cv_train`, `test`; baseline tên `dummy_median`; dòng `test` có `mae_ci_low`, `mae_ci_high`.
-- `reports/gd5_group_mae.csv`: `column, value, n, mae, mean_error`.
+- `reports/gd5_group_mae.csv`: `column, group, n, mae, mae_dummy, median_label, median_pred, kết luận?`.
 - `reports/gd5_permutation_importance.csv`: `feature, mae_increase, std` (chỉ các cột mô hình dùng).
 - Đổi tên khóa/cột nào ở trên phải báo TV4 trước.
 - `requirements.txt` hiện ở nhánh TV2 chưa có `scikit-learn`, `joblib`, `pytest`; bản của TV4 đã có, sẽ có khi merge `tv4-app`.
