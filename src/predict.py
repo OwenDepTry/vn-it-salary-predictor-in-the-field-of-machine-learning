@@ -38,7 +38,8 @@ class SalaryPredictor:
     def __init__(self, model_path: Path = MODEL_PATH, card_path: Path = CARD_PATH):
         import joblib
         if not model_path.exists() or not card_path.exists():
-            raise FileNotFoundError("Chưa có mô hình. Chạy `python src/evaluate.py` (GĐ5) trước.")
+            raise FileNotFoundError("Chưa có mô hình. Chạy `python src/evaluate.py --rebuild-model` "
+                                    "(hoặc `python src/evaluate.py` nếu chưa đánh giá GĐ5).")
         self.model = joblib.load(model_path)
         self.card = json.loads(card_path.read_text(encoding="utf-8"))
         self.allowed = self.card["allowed"]
@@ -103,13 +104,20 @@ class SalaryPredictor:
         X = pd.DataFrame([row])[FEATURE_COLUMNS]
         pred = float(self.model.predict(X)[0])
         iv = self.card["residual_interval_oof"]
-        low, high = max(0.0, pred + iv["p10"]), pred + iv["p90"]
         lab_lo, lab_hi = self.card["label_range_train"]
-        if pred < lab_lo or pred > lab_hi:
-            warnings.append(f"Dự đoán nằm ngoài khoảng nhãn của dữ liệu train ({lab_lo:g}–{lab_hi:g} triệu).")
+        # Chỉ trả về con số khi dự đoán nằm trong khoảng lương có trong dữ liệu train.
+        # Ngoài khoảng đó (kể cả lương âm) là ngoại suy: báo "không đủ cơ sở" thay vì in số.
+        reliable = lab_lo <= pred <= lab_hi
+        if not reliable:
+            warnings.insert(0, f"Không đủ cơ sở dự đoán: mô hình cho {pred:.1f} triệu, nằm ngoài khoảng lương "
+                               f"có trong dữ liệu train ({lab_lo:g}–{lab_hi:g} triệu). Tổ hợp đầu vào này quá "
+                               f"khác dữ liệu huấn luyện nên không đưa ra mức lương.")
+        low = max(0.0, pred + iv["p10"])
+        high = max(low, pred + iv["p90"])          # luôn đảm bảo low ≤ high
         return {
-            "prediction": round(pred, 1),
-            "range_80": (round(low, 1), round(high, 1)),
+            "prediction": round(pred, 1) if reliable else None,
+            "range_80": (round(low, 1), round(high, 1)) if reliable else None,
+            "reliable": reliable,
             "unit": "triệu VND/tháng",
             "warnings": warnings,
             "used_skills": [s for s in row["skills"].split("|") if s and s in self.vocab],
@@ -139,12 +147,15 @@ def main(argv=None) -> int:
     except InvalidInput as e:
         print(f"ĐẦU VÀO KHÔNG HỢP LỆ: {e}")
         return 2
-    print(f"Dự đoán: {r['prediction']} {r['unit']} (khoảng ~80%: {r['range_80'][0]}–{r['range_80'][1]})")
+    if r["prediction"] is None:
+        print("KHÔNG ĐỦ CƠ SỞ DỰ ĐOÁN.")
+    else:
+        print(f"Dự đoán: {r['prediction']} {r['unit']} (khoảng ~80%: {r['range_80'][0]}–{r['range_80'][1]})")
     print(f"Kỹ năng được dùng: {r['used_skills']}")
     for w in r["warnings"]:
         print("CẢNH BÁO:", w)
     print(r["disclaimer"])
-    return 0
+    return 0 if r["prediction"] is not None else 3
 
 
 if __name__ == "__main__":

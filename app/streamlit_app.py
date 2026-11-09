@@ -2,7 +2,8 @@
 """GĐ6 — Ứng dụng Streamlit: dự đoán lương ĐĂNG TUYỂN cho vị trí IT tại Việt Nam.
 
 Chạy từ thư mục gốc:  streamlit run app/streamlit_app.py
-Cần có trước: models/salary_model.joblib, models/model_card.json (GĐ5: python src/evaluate.py).
+Cần có trước: models/salary_model.joblib, models/model_card.json
+(tạo bằng python src/evaluate.py --rebuild-model, hoặc GĐ5: python src/evaluate.py).
 Không có đăng nhập, database hay API backend: app chỉ đọc file trong dự án.
 """
 import json
@@ -139,6 +140,13 @@ def page_predict():
         if n_combo < MIN_COMBO_N:
             warnings.append(f"Ngoài phạm vi dữ liệu: chỉ có {n_combo} tin train thuộc nhóm '{job}' với kinh "
                             f"nghiệm '{experience_label(exp)}'. Dự đoán dựa nhiều vào ngoại suy.")
+
+    if r["prediction"] is None:                      # ngoại suy: không hiển thị con số
+        st.error(warnings[0])
+        for w in warnings[1:]:
+            st.warning(w)
+        st.info(DISCLAIMER)
+        return
 
     st.metric("Lương đăng tuyển ước lượng", f"{r['prediction']:.1f} {r['unit']}")
     lo, hi = r["range_80"]
