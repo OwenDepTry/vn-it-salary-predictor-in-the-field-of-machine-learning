@@ -1,0 +1,1556 @@
+﻿job_title,n,category_top,it_cat,it_title_kw,sales_title,it_final,graphic_design,known_false_positive
+Kỹ sư phần mềm,65,xây_dựng_kiến_trúc_bất_động_sản,True,True,False,True,False,False
+Nhân Viên Kinh Doanh Phần Mềm,63,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhân Viên Thiết Kế,43,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thiết kế đồ họa,30,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế Đồ Họa,27,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Kinh Doanh,25,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phân tích kinh doanh,23,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Thiết Kế Đồ Họa,15,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Data Scientist,15,xây_dựng_kiến_trúc_bất_động_sản,True,True,False,True,False,False
+Chuyên Viên Thiết Kế,14,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Tư Vấn Phần Mềm,13,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,True,True,True,False,False,False
+Nhân Viên Triển Khai Phần Mềm,12,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Project Manager,12,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Thực Tập Sinh Thiết Kế Đồ Họa,11,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Java Developer,11,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Phân Tích Nghiệp Vụ,10,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Kinh Doanh Phần Mềm,10,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Manual Tester,10,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Data Engineer,10,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh Kinh Doanh,9,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Game Designer,9,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên IT,9,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thiết Kế Đồ Họa,9,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chủ sở hữu sản phẩm,8,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+DevOps Engineer,7,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Flutter Developer,7,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Backend Developer,7,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Fullstack Developer,6,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Thiết Kế Đồ Hoạ,6,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Frontend Developer,6,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Tư Vấn Phần Mềm,6,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,True,True,True,False,False,False
+Nhân Viên Tester,6,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phân tích kinh doanh cao cấp,6,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Data Analyst,5,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Phát Triển Phần Mềm,5,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lãnh đạo kỹ thuật,5,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Triển Khai Phần Mềm,5,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Kỹ sư phần mềm cao cấp,5,xây_dựng_kiến_trúc_bất_động_sản,False,True,False,True,False,False
+Chuyên Viên Phân Tích Dữ Liệu,5,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Lập Trình & Vận Hành Máy Phay,5,sản_xuất_lao_động_phổ_thông_cơ_khí,True,True,False,True,False,False
+Nhân Viên Graphic Designer,5,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Kỹ Thuật Máy Tính,5,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Lập Trình Vận Hành Máy Tiện CNC,5,sản_xuất_lao_động_phổ_thông_cơ_khí,True,True,False,True,False,False
+Nhân Viên Telesales Phần Mềm,5,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+"Tester Tiếng Nhật (N2, Không Yêu Cầu Kinh Nghiệm)",5,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Phát triển kinh doanh,5,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+UI/UX Designer,5,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà thiết kế đồ họa cao cấp,4,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Kiểm Thử,4,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Lập Trình Máy Phay CNC,4,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Nhân Viên Lập Trình Phay, Tiện",4,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Kỹ Sư Tư Vấn Hỗ Trợ Phần Mềm Sản Xuất Đồ Gỗ,4,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Chuyên gia quản trị an ninh CNTT,4,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Business Development/Nhân Viên Kinh Doanh Phần Mềm,4,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhà phát triển thống nhất,4,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Thiết Kế 3D,4,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên IT Helpdesk,4,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Giám đốc điều hành bán hàng Fresher (phần mềm),4,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,True,True,True,False,False,False
+Kế Toán Kho Kiêm Thủ Kho,4,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,True
+Chuyên Viên Kiểm Thử Phần Mềm,4,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kiến trúc sư giải pháp,4,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ sư mạng & bảo mật,4,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh Design,4,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Network Engineer,4,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Phát triển kinh doanh cao cấp,4,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phát triển phụ trợ cao cấp,4,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý tài khoản,4,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Senior Java Developer,4,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+System Admin,4,nhân_sự_hành_chính_pháp_chế_tư_vấn,True,True,False,True,False,False
+Designer,4,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Kinh Doanh B2B,4,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Hỗ Trợ Kỹ Thuật Helpdesk Layer 1,4,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,True,True,False,True,False,False
+Thực Tập Sinh Kinh Doanh Phần Mềm Website,4,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Thực Tập Sinh Lập Trình,4,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh Ngành Công Nghệ Thông Tin,4,marketing_truyền_thông_quảng_cáo_nội_dung,True,True,False,True,False,False
+Thực Tập Sinh Thiết Kế,4,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Lập Trình CNC,4,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Phòng Kinh Doanh,4,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Tư Vấn Triển Khai Phần Mềm,4,marketing_truyền_thông_quảng_cáo_nội_dung,True,True,True,False,False,False
+Kỹ Sư Lập Trình Nhúng,3,kỹ_thuật_điện_điện_tử_viễn_thông,True,True,False,True,False,False
+Nhân Viên Lập Trình CNC,3,sản_xuất_lao_động_phổ_thông_cơ_khí,True,True,False,True,False,False
+Database Administrator,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Kinh Doanh Phần Mềm Quản Lý Bán Hàng,3,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,True,True,True,False,False,False
+Nhân Viên Lập Trình Và Setup Phay CNC,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Chuyển Đổi Số,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Marketing (Sales Phần Mềm),3,marketing_truyền_thông_quảng_cáo_nội_dung,True,True,True,False,False,False
+Nhân Viên Quản Trị Hệ Thống,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Sale Phần Mềm Marketing,3,marketing_truyền_thông_quảng_cáo_nội_dung,True,True,True,False,False,False
+Nhân Viên Sales Phần Mềm Full/Part-Time (Remote),3,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+IT Comtor Tiếng Nhật,3,ngôn_ngữ_dịch_thuật,True,True,False,True,False,False
+Kiến trúc sư giải pháp - Microsoft Security,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Bán Hàng Kiêm Thu Ngân,3,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+AI Engineer,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Thiết Kế Và Lập Trình Máy CNC,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,True,False
+Kỹ Thuật Viên Lập Trình Và Vận Hành Máy CNC,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Huấn luyện viên AI - Âm thanh (tiếng Anh C1),3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Android Developer,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+CNTT hỗ trợ HN - Bảo mật đám mây (Tiếng Anh Fluent - Nightshift cố định),3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Web Developer,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Tư Vấn Website,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Giám đốc phát triển kinh doanh,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Văn Phòng,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Vận Hành Ứng Dụng (Devops Engineer),3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà thiết kế đồ họa Junior,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+"Hỗ trợ khách hàng của ERP - không có nền tảng, thích tốt nghiệp mới từ DAV/NEU/AOF/ULIS/TMU",3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Devops Engineer,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Product Photographer (Biết Sử Dụng AI),3,thiết_kế_nghệ_thuật_giải_trí_truyền_hình_báo_chí,False,True,False,True,False,False
+Nhân Viên Hỗ Trợ Phần Mềm,3,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,True,True,False,True,False,False
+Quy trình đảm bảo chất lượng,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kinh Doanh - Tư Vấn Phần Mềm Doanh Nghiệp,3,marketing_truyền_thông_quảng_cáo_nội_dung,True,True,True,False,False,False
+Security Manager - Phụ Trách An Ninh,3,du_lịch_nhà_hàng_khách_sạn_dịch_vụ,False,True,False,True,False,False
+Nhân Viên Kinh Doanh Bán Phần Mềm / Sale B2B,3,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nhân Viên Kinh Doanh Dự Án,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Test Lead,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Lập Trình Giao Diện (Front-End),3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Thiết Kế Phần Mềm (Có Kinh Nghiệm C++, C#, Python)",3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,True,False
+Thiết Kế Đồ Hoạ,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Kinh Doanh Website,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Thiết kế đồ họa thực tập,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập Sinh AI,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân viên kinh doanh tư vấn du lịch,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kinh Doanh/ Sale Phần Mềm,3,marketing_truyền_thông_quảng_cáo_nội_dung,True,True,True,False,False,False
+Nhân Viên Kinh Doanh/Sales B2B/ Tư Vấn Phần Mềm,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhân Viên Kiểm Soát (Unity/Godot/Unreal),3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kỹ Thuật,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kỹ Thuật Lập Trình CNC,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Điều hành phát triển kinh doanh,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Thực Tập Sinh Tư Vấn Triển Khai Phần Mềm,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Trình chỉnh sửa tài liệu E-Learning (Sản phẩm phần mềm),3,giáo_dục_đào_tạo_nghiên_cứu,True,True,False,True,False,False
+Trình quản lý tài khoản CNTT,3,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,True,True,False,True,False,False
+Trưởng Nhóm Lập Trình CNC (Máy Phay - Tiện),3,sản_xuất_lao_động_phổ_thông_cơ_khí,True,True,False,True,False,False
+Nhân Viên Kỹ Thuật Phần Mềm,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Phòng Kinh Doanh Phần Mềm,3,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,True,True,True,False,False,False
+Trưởng nhóm công nghệ,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Tư Vấn Phần Mềm Qua Điện Thoại (Cung Cấp Data),3,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,True,True,True,False,False,False
+Nhân Viên Lập Trình,3,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+2D Game Artist,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Video Editor,3,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Người kiểm tra hiệu suất,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Người kiểm tra thủ công (QA/QC),2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Người kiểm tra tự động hóa,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Lập Trình CAM (Máy CNC),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Thuật Viên IT (CP32),2,du_lịch_nhà_hàng_khách_sạn_dịch_vụ,False,True,False,True,False,False
+Java Developer - Onsite,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chất lượng Chuyên gia (Trực quan hóa 3D),2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Lập Trình Hệ Thống Điều Khiển Chiếu Sáng,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Game Tester,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chủ sở hữu sản phẩm (xã hội),2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên IT (Chuyên Viên Quản Trị Hệ Thống),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chủ sở hữu sản phẩm (ứng dụng di động),2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên IT Helpdesk,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Lập Trình Nhúng - Robotics - Leaded,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Java Team Leader - Domain Tài Chính Số,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Giám Đốc Trung Tâm Blockchain,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Thuật Viên Lập Trình & Vận Hành Máy CNC,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Lập Trình PLC,2,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Kỹ Sư Lập Trình Đứng Máy Phay CNC,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Junior Tester,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Giám đốc dự án,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Lập Trình Ứng Dụng Phần Cứng,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Các nhà chương trình UX / UI phản ứng và Node JS và Nhà thiết kế cho phần mềm CRM,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Kinh Doanh Giải Pháp Camera AI (B2B),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Kỹ Thuật Viên Lập Trình CAD-CAM & Vận Hành Máy CNC,2,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Chuyên Viên Kinh Doanh Phần Mềm Kiotviet,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Chuyên Viên Kinh Doanh Phần Mềm/ Sales/ Tư Vấn Khách Hàng - Chỉ Tuyển Nữ,2,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,True,False,False,False
+"Chuyên Viên Kinh Doanh/Sales (IT, Software,...)",2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Kỹ Sư Mạng,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Cộng Tác Viên Kinh Doanh Phần Mềm Kế Toán,2,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,True,False,False,False
+Kỹ Thuật Viên Lập Trình CNC,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kiểm Thử Game/ Apps,2,marketing_truyền_thông_quảng_cáo_nội_dung,True,True,False,True,False,False
+Chuyên Viên Kỹ Thuật Vận Hành VoIP,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển blockchain,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển góc cạnh,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển hệ thống giao dịch gia đình (Frontend - JavaScript),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển phía trước (ThànH thạo Reactjs),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển phần mềm cao cấp (C) - Tài chính & Ngân hàng,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Nhà phân tích kinh doanh (Cấp độ: Trung, cao cấp)",2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phân tích kinh doanh (Quản trị phần mềm KIÊM),2,nhân_sự_hành_chính_pháp_chế_tư_vấn,True,True,True,False,False,False
+Nhà phân tích kinh doanh - Miền chứng khoán,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phân tích kinh doanh dẫn đầu,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà thiết kế đồ họa chuyển động,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Admin Phòng Công Nghệ Thông Tin,2,nhân_sự_hành_chính_pháp_chế_tư_vấn,True,True,False,True,False,False
+Nhân Viên Business Analyst,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Business Analyst (BA),2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+.NET Developer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Nhân Viên CSKH - Mảng Công Nghệ, IT Support",2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Dán Nhãn Dữ Liệu AI,2,nhóm_nghề_khác,False,True,False,True,False,False
+Nhân Viên EOD & Giám Sát 24/7 CNTT,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Giám Sát Camera,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Graphic Design,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kĩ Sư Giám Sát / Lập Trình Tự Động Hóa,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Gán Nhãn Dữ Liệu Tiếng Anh (Cấp Độ C1),2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Phát Triển Frontend,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Lập Trình Mobile,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Kỹ Thuật Viên Mảng CNTT, Điện",2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Giảng Viên Lập Trình Part-Time,2,giáo_dục_đào_tạo_nghiên_cứu,True,True,False,True,False,False
+Lập Trình Máy CNC,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kinh Doanh (Mảng Phần Mềm),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhân Viên Kinh Doanh (Phần Mềm Bán Hàng),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhân Viên Kinh Doanh - Telesale Phần Mềm,2,marketing_truyền_thông_quảng_cáo_nội_dung,True,True,True,False,False,False
+Lập Trình Viên Fullstack,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Phát Triển Khách Hàng Phần Mềm Social,2,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Đảm bảo chất lượng quy trình (PQA),2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Manual Tester - Tiếng Nhật N3,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kinh Doanh ERP,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhân Viên Kinh Doanh Phân Phối,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+3D Artist,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kinh Doanh Phần Mềm (B2B),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhân Viên Kinh Doanh Phần Mềm B2B,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhân Viên Kinh Doanh Tư Vấn Phần Mềm Kiotviet,2,du_lịch_nhà_hàng_khách_sạn_dịch_vụ,False,True,True,False,False,False
+Nhân Viên Kinh Doanh Tư Vấn Website,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Lập Trình Tiện CNC,2,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Nhân Viên Kinh Doanh Website/Phần Mềm (Account Executive),2,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Chuyên Viên Phát Triển Sản Phẩm,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kinh Doanh/Bán Hàng Phần Mềm (Có Sẵn KH),2,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Lập Trình Viên,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kinh Doanh/Tư Vấn Phần Mềm (Chỉ Tuyển Nam),2,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,True,False,False,False
+Chuyên Viên Phát Triển Thị Trường,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kiểm Thử,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kết Nối Doanh Nghiệp,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kết Nối Khách Hàng Sản Phẩm Phần Mềm,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Phần Mềm,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+3D Rigging Artist,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ sư Linux nhúng,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kỹ Thuật Mạng Máy Tính - IT Support,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Mobile Developer (Android Or IOS),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư Presales (Hệ thống/Mạng/Đám mây/Bảo mật),2,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Chuyên Viên Presales Giải Pháp Phần Mềm,2,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,True,False,False,False
+Nhân Viên Lập Trình CAM,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Quản Trị & Vận Hành Hệ Thống OpenStack,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Lập Trình Hệ Thống Báo Cháy (Tiếng Hàn),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Lập Trình Khuôn (Công Nghệ),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Lập Trình Kỹ Thuật CNC,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Lập Trình Máy Laser Và CNC,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Quản Trị Dịch Vụ Công Nghệ Thông Tin,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Lập Trình Phay CNC,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Huấn luyện viên phần mềm hậu cần,2,logistics_vận_tải_chuỗi_cung_ứng,True,True,False,True,False,False
+Nam Nhân Viên Thiết Kế - Graphic Designer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+"Lập Trình Viên Java (Einvoice, Econtract, CA)",2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Dev Fullstack Web App Tài Chính Tích Hợp AI,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Marketing/ Kinh Doanh Phần Mềm,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhân Viên Media/ Editor AI,2,du_lịch_nhà_hàng_khách_sạn_dịch_vụ,False,True,False,True,False,False
+Nhân Viên Network Security,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Nhập Liệu,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Nhân Viên PC CONTROL, C#",2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Pha Chế Kiêm Thu Ngân (Part-Time),2,du_lịch_nhà_hàng_khách_sạn_dịch_vụ,False,True,False,True,False,False
+Nhân Viên Phát Triển Phần Mềm,2,logistics_vận_tải_chuỗi_cung_ứng,True,True,False,True,False,False
+Nhân Viên Phân Tích Dữ Liệu AI,2,marketing_truyền_thông_quảng_cáo_nội_dung,True,True,False,True,False,False
+Nhân Viên Phục Vụ Kiêm Thu Ngân - Khu Food Court - Làm Full-Time,2,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Nhân Viên Quản Lý Dự Án,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+DevOps (Development+QA+Operation),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Quản Trị Hệ Thống An Ninh Mạng (Nam),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên SEO Web Bằng AI,2,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Nhân Viên Sale,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ sư bảo mật mạng,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ thuật dẫn đầu,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Sắp Xếp Phòng Trị Liệu (Có Đào Tạo) - Đi Làm Ngay,2,du_lịch_nhà_hàng_khách_sạn_dịch_vụ,False,True,False,True,False,True
+"DevOps Engineer - Vận Hành ERP Odoo, FastApi",2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+DevOps Engineer Middle Level,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Hỗ trợ CNTT - Quản trị viên Hệ thống,2,nhân_sự_hành_chính_pháp_chế_tư_vấn,True,True,False,True,False,False
+Nhân Viên Thiết Kế - In Ấn Bao Bì Tem Nhãn,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế 2D,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Thiết Kế 3D,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế Hình Ảnh,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Kỹ Sư Thiết Kế Phần Mềm,2,thiết_kế_nghệ_thuật_giải_trí_truyền_hình_báo_chí,False,True,False,True,True,False
+Nhân Viên Thiết Kế Website,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Mobile Developer (Flutter),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư dữ liệu cao cấp,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Triển Khai - Hỗ Trợ Sử Dụng Phần Mềm,2,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Kỹ sư giao diện thiết bị (EIF),2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Triển Khai Phần Mềm ERP,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Tư Vấn,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Thiết Kế Đa Phương Tiện,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Tư Vấn Triển Khai Giải Pháp CNTT,2,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Chuyên Viên Thiết Kế Đồ Hoạ,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Lập Trình Viên Java / Java Developer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Triển Khai & Vận Hành Cloud (Network/System Admin),2,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,False,True,False,False
+Chuyên Viên Triển Khai & Vận Hành Phần Mềm Odoo,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Vận Hành SAP,2,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Kỹ Sư Công Nghệ IT,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân viên bán hàng CNTT (Phần mềm CNTT),2,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Biên Tập Viên Sáng Tạo Video Sử Dụng AI,2,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Nó hỗ trợ bảo mật đám mây,2,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Nó quản lý dự án,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nội dung xã hội & Quản lý cộng đồng (Blockchain),2,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Odoo Developer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+PHP Developer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+IT Application Ngành Sản Xuất- Quản Lý Ứng Dụng Công Nghệ Thông Tin,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Trí Tuệ Nhân Tạo,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Phần mềm fullstack tươi hơn,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư hoạt động/ DevOps cao cấp,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Embedded Android Developer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Tư Vấn Cloud (Cloud Presales),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Quản Lý/Đội Trưởng Bảo Vệ An Ninh/Security Manager,2,du_lịch_nhà_hàng_khách_sạn_dịch_vụ,False,True,False,True,False,False
+Quản Trị Hệ Thống,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Quản lý dự án - AI, Nghiên cứu & Nghiên cứu thị trường",2,marketing_truyền_thông_quảng_cáo_nội_dung,True,True,False,True,False,False
+Chuyên Viên Tư Vấn Giải Pháp,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+SAP FICO Consultant,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Sale Executive - Mảng Phần Mềm,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Sale IT Tiếng Nhật (Hybrid),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Sales Development Rep | B2B - Phần Mềm,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Sales Executive - Nhân Viên Kinh Doanh Phần Mềm,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Sales IT (B2B),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Sales IT Outsourcing (Kinh Doanh Mảng IT),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Sales Leader,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Sales Manager – B2B SaaS Product,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Scrum Master,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+IT Comtor (Tiếng Nhật),2,ngôn_ngữ_dịch_thuật,False,True,False,True,False,False
+Senior Devops Engineer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Senior Frontend Developer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Tư Vấn Phần Mềm Mảng Bán Lẻ,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Senior Mobile Developer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Server Developer (C Language),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Solution Architect (Kỹ Sư Giải Pháp Ứng Dụng),2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Embedded Systems Developer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+System Engineer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+IT Engineer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Tester (Có Kinh Nghiệm Bank),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Tư Vấn Tuyển Sinh,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+IT Executive,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thiết Kế Website,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Bán thực tập - làm việc từ xa - thời gian linh hoạt,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Kinh Doanh,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Thiết Kế Đồ Họa - Graphic Designer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+C/C++ Developer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thiết kế đồ họa cao cấp,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Vận Hành ERP,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Lập Trình Unity Game,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Lập Trình Viên Back-End Developer Node.Js, Nest",2,marketing_truyền_thông_quảng_cáo_nội_dung,True,True,False,True,False,False
+Nhà phát triển Stack đầy đủ,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Thực Tập Sinh Graphic Designer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Vận Hành Và Hỗ Trợ Phần Mềm,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Cầu Nối/ Phiên Dịch IT – Remote Fulltime,2,ngôn_ngữ_dịch_thuật,True,True,False,True,False,False
+CVCC Quản Trị Hệ Thống (Nhân Sự),2,nhân_sự_hành_chính_pháp_chế_tư_vấn,True,True,False,True,False,False
+Thực Tập Sinh Marketing/ Digital MKT Fullstack,2,marketing_truyền_thông_quảng_cáo_nội_dung,True,True,True,False,False,False
+IT Sales,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+"Thực Tập Sinh PHP (Sinh Viên Năm Cuối, Backend)",2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh Phát Hành Nội Dung AI,2,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Thực Tập Sinh Tester,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Chuyên Viên Vận Hành, Khai Thác Ứng Dụng Hệ Thống CNTT/ Công Nghệ Thông Tin",2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh Thiết Kế Đồ Hoạ,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhà phát triển .NET cao cấp,2,nhân_sự_hành_chính_pháp_chế_tư_vấn,True,True,False,True,False,False
+Chuyên Viên Đánh Giá An Toàn Bảo Mật,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực tập phát triển kinh doanh,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Gia Quản Trị Rủi Ro Công Nghệ Thông Tin,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Vận Hành (Devops Engineer),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Nhóm An Ninh Mạng/ Cyber Security Lead,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Nhóm Kinh Doanh,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Trưởng Nhóm Lập Trình,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Frontend Developer (ReactJS),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Nhóm Thiết Kế,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Người thử nghiệm Fresher (lên đến 14m),2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Lập Trình Viên C#,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Phòng Kỹ Thuật,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng nhóm Chiến lược Thương mại Kỹ thuật số,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Giải Pháp Công Nghệ Thông Tin / PreSales - 3 Năm Kinh Nghiệm,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Trưởng/Phó Nhóm Tư Vấn Marketing - Phần Mềm Web,2,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,True,False,False,False
+Trợ Lý Giám Đốc,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trợ Lý Sáng Tạo Ứng Dụng AI,2,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,False,True,False,False
+Kỹ Sư Giải Pháp Hạ Tầng CNTT,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Tư vấn bán hàng phần mềm,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Kỹ Sư Hệ Thống,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+.NET Nhà phát triển (Senior/Lead),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+.Net Developer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+2D Anim / VFX Artist,2,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Middle Java Developer,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Người kiểm tra bảo mật (Pentest),2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Tư Vấn/ Kinh Doanh Dịch Vụ Phần Mềm,2,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Chuyên gia phát triển kinh doanh cao cấp (Sức khỏe thông minh),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên gia phát triển sản phẩm - 4 năm kinh nghiệm (giờ làm việc linh hoạt),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên gia phân tích hoạt động,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên gia phân tích/phân tích kinh doanh hệ thống - TA171,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên gia quản lý SOC,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên gia sản phẩm tăng trưởng & tiếp thị (Blockchain),1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Chuyên gia tư vấn của SAP SuccityFactors,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Chuyên gia vận hành sản phẩm (Web/Ứng dụng Thể THAO),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên gia/chuyên gia bảo mật đám mây,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Chăm Sóc Khách Hàng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chăm Sóc Khách Hàng/Hỗ Trợ Triển Khai Phần Mềm,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+ChỉNH SửA Webtoon/ Webtoon Editor - Toàn thời gian,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chủ sở hữu sản phẩm (Dự án AI),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chủ sở hữu sản phẩm (FinTech),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chủ sở hữu sản phẩm (Junior/ Middle/ Senior),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chủ sở hữu sản phẩm (sản phẩm SaaS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chủ sở hữu sản phẩm Junior,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chủ sở hữu sản phẩm cao cấp (FinTech),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chủ sở hữu sản phẩm liên kết (Fresher/ Junior),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chủ sở hữu sản phẩm/Quản lý dự án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Cloud Engineer (Azure),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Cloud Security Expert/Specialist,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Cloud System Engineer (Genesys),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Coaching Data Analyst,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Content Community Executive (Sản Phẩm Tiếng Anh),1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Content Community Executive - Tiếng Trung,1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Cán Bộ Thiết Kế,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Cán bộ hệ thống thông tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Cán bộ quản lý dự án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Công nghệ dẫn đầu Java,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Cộng Tác Viên Biên Kịch Hoạt Hình (Short Clip),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Cộng Tác Viên Kiểm Thử Chất Lượng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Cộng Tác Viên Thiết Kế Đồ Họa,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Cộng sự QA/QC,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Cộng tác viên sản phẩm (BA),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+DE cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+DESIGN - Thương Hiệu Qiaodan - Đi Làm Ngay,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Data & Business Intelligence Leader,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Data Analyst / BI Analyst,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Data Engineer (Có Xe Đưa Đón),1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Data Science,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Data Scientist Expert,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Database Engineer (DBA),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Delivery Manager (PM Kiêm Presale),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Design,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Design & Media Marketing,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Design Leader,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Design Media,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Designer + Editor,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Designer - Thiết Kế POD 2D/3D,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Designer 3D,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Designer POD,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+"Designer POD- Cty Không Quịt Lương, 0 Nhàm Chán",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Designer – Chuyên Viên Thiết Kế Hình Ảnh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Dev Fullstack,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+DevOps (Middle),1,nhóm_nghề_khác,False,True,False,True,False,False
+DevOps (Terraform/ Ansible) > 3YOE - Global Market,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+DevSecOps Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Developer (BPM/Camunda),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Devops,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Devops Senior Engineer (Linux/Cloud),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Devsecops,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Digital Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Diễn Hoạt,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+EPR Consultant,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+ERP Coordinator,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+ERP Infrastructure Specialist,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+EXECUTIVE PRODUCER (Remote),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Embedded Android Engineer,1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Embedded Linux Engineer - Kỹ Sư Lập Trình Nhúng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+FX Artist,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Footwear Product Development - Developer,1,nhóm_nghề_khác,False,True,False,True,False,False
+Fresher AI (NLP),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Fresher C/nhúng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Fresher Devops,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Fresher It Hỗ trợ (Nhật Bản),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Fresher hơn cơ sở hạ tầng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Front End Flutter Developer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Front-end Teamleader (Angular8+),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Frontend Developer (.Net, Html, Css, JavaScript)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Frontend Developer (Reactjs Và Nextjs),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Frontend Developer (next.js, React, TypeScript)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Frontend TechLead (tiếng Anh trôi chảy),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Full - Nhà phát triển Java Stack,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Fullstack,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Fullstack Developer (Java, Angular)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Fullstack Developer (Senior),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Fullstack Developer - DevOps Middle Level,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Fullstack Engineer,1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Fullstack Team Leader (JS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Fullstack Upper-Junior (.Net, React)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Fullstack Web Developer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Game 3D Artist,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Game Animator,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Game Designer (Intern),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Game Designer (Junior),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Game Designer Intern,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Game Operator (Nhân Viên Vận Hành Game),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Game Unity (Trung & cấp cao),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Giám Sát Và Thi Công Triển Khai Hệ Thống,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Giám Đốc Công Nghệ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Giám Đốc Sản Phẩm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Giám đốc PMO cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Giám đốc bán hàng (Fluent English),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Giám đốc bán hàng (nhóm sản phẩm),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Giám đốc công nghệ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Giám đốc phát triển kinh doanh (Nền tảng khách hàng thân thiết),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Giám đốc tiếp thị (Ứng dụng di động),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Giám đốc tăng trưởng sản phẩm (FinTech),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Giám đốc điều hành hỗ trợ Odoo ERP,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Giám đốc điều hành phát triển kinh doanh (B2B) Có dữ liệu Hỗ Trợ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Giám đốc điều hành tiếp thị,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Giảng Viên (Blockchain & AI),1,giáo_dục_đào_tạo_nghiên_cứu,False,True,False,True,False,False
+Giảng Viên An Ninh Mạng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Giảng Viên Công Nghệ Thông Tin,1,giáo_dục_đào_tạo_nghiên_cứu,False,True,False,True,False,False
+Giảng Viên Công Nghệ Thông Tin/ Khoa Học Máy Tính,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Giảng Viên Cơ Hữu,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Giảng Viên Dạy Lập Trình Cho Trẻ Part Time,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Giảng Viên IT,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Giảng Viên Thiết Kế Đồ Họa,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Golang Backend,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Graphic Design/Thiết Kế Nội Dung Truyền Thông,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Graphic Designer (Mảng Mỹ Phẩm),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Graphic Designer Chuyên Mỹ Phẩm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Graphic Designer – Sáng Tạo & Thẩm Mỹ Tốt,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Graphic Designer/Thiết Kế Đồ Họa,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+HR Specialist (IT Recruiter),1,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,False,True,False,False
+Hardware Design Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Hoạt hình 3D thực tập,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Hoạt động nền tảng dữ liệu (CSDL, Oracle, Ngân hàng)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Hệ thống quản trị viên Junior/Middle,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Họa Viên 3D Kiến Trúc,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Họa Viên Revit,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Học tập củng cố,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Hỗ trợ khách hàng của đám mây - L1 bán thời gian/điều khiển từ xa,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Hỗ trợ kỹ thuật (Trung Quốc, Hàn Quốc, Nhật Bản - mở cửa cho Freser, không phải IT)",1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Hỗ trợ kỹ thuật tươi hơn (tiếng Nhật),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Hỗ trợ ứng dụng SAP (FICO) - Nói tiếng Pháp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+IOS Dev,1,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,False,True,False,False
+IT Admin,1,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,False,True,False,False
+IT Business Partner Expert,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+IT Communicator - Tiếng Nhật Tương Đương N2,1,ngôn_ngữ_dịch_thuật,False,True,False,True,False,False
+IT Infrastructure,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+IT Kỹ Sư Hệ Thống,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+IT Network Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+IT Project Manager,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+IT Project Manager (Quản Lý Dự Án),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+IT Sales Assistant Part-Time,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+IT Staff/ IT Helpdesk / IT Support,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+IT Support (Không Yêu Cầu Tiếng Anh),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+IT Tester,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Infrastructure Architecture Expert,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Intern - Thực Tập Sinh Odoo,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Intern IT Engineer (Yêu Cầu Có Kinh Nghiệm Web Development) - Thử Việc 100% Lương,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Intern PHP,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Intern Thiết Kế/ Design,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Intern Web Developer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Intern/Junior QC (Tiếng Nhật),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+International Sale,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Java Developer (Giao Tiếp Tiếng Anh),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Java Developer (Junior/Middle),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Java Developer (Middle),1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+"Java Developer (Trên 2 Năm Kinh Nghiệm, Onsite Project)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Java Developer Junior/Middle,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Java Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Java Fullstack - Spring Framework & Spring Boot,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Java Fullstack Developer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Java Team Leader,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Junior Dev,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Junior Product Owner (Chỉ Cần Có Kinh Nghiệm BA),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Junior Sales Executive,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Kiến trúc sư dữ liệu cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kiến trúc sư giải pháp (ADAS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kiến trúc sư giải pháp (Nhật Bản N3+),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kiến trúc sư web,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kiểm soát chất lượng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kiểm tra tự động hóa giữa (tiếng Anh),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kê Toán Tổng Hợp Kiêm Thuế,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Kế Hoạch Phân Tích Và Điều Hành (PMO),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Kế Toán Hỗ Trợ Khách Hàng, Triển Khai PM ERP",1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Kế Toán Hỗ Trợ Sử Dụng Phần Mềm ERP,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Kế Toán Kho Kiêm Thu Mua,1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Kế Toán Kiêm Thủ Kho Công Trình Xây Dựng,1,xây_dựng_kiến_trúc_bất_động_sản,False,True,False,True,False,True
+Kế Toán Nội Bộ Kiêm Thuế,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Kế Toán Thanh Toán Kiêm Thủ Quỹ,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Kế Toán Triển Khai Phần Mềm,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Kế Toán Trưởng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kế Toán Tổng Hợp Kiêm Thuế,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Kế Toán Tổng Hợp Kiêm Thủ Quỹ,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+KỸ SƯ CẦU NỐI BrSE (N2),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư - Kỹ Thuật Sản Phẩm (Thiết Kế Lập Trình CNC),1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,True,False
+"Kỹ Sư AI, Xử Lý NLP Và Dữ Liệu Tiếng Việt",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư An Ninh Mạng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Kỹ Sư An Ninh, An Toàn",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư An Toàn Thông Tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư BIM,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư BIM - Ưu Tiên Sinh Viên Mới Ra Trường,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư BIM 3D Tekla Modeling (8h-16h30),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư BIM Chuyên Ngành Kiến Trúc,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Cơ Khí,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Cầu Nối,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Cầu Nối (BrSE - Tiếng Nhật),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Cầu Nối - BrSE (Tiếng Nhật N2),1,ngôn_ngữ_dịch_thuật,False,True,False,True,False,False
+Kỹ Sư Cầu Nối Brse (JLPT N2),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Cầu Nối Tiếng Nhật Từ N2,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Dữ Liệu,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Dữ Liệu Cấp Cao,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Dữ Liệu Lớn (Big Data Engineer),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Frontend ReactJS Phát Triển Ứng Dụng BPM/CRM,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Giải Pháp Công Nghệ Thông Tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Giải Pháp Công Nghệ Thông Tin - Bảo Mật,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư IT(Tiếng Trung),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư IT- Nhúng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Java Backend Triển Khai Dự Án Lớn BPM/CRM,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Khoa Học Dữ Liệu Không Gian,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Kết Cấu 3D Revit Modeling (8h-16h30),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Lập Trình CNC,1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+"Kỹ Sư Lập Trình Embedded/IoT (C/C++/C#, Python)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Lập Trình Máy Tiện CNC,1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Kỹ Sư Lập Trình Nhúng Vi Điều Khiển,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Manual Test - Nghiệp Vụ Ngân Hàng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Mạng & Bảo Mật Hệ Thống,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Mạng Trung Tâm Dữ Liệu (DC Network Engineer),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Nghiên Cứu Thuật Toán,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Kỹ Sư Phát Triển Firmware, Lập Trình Nhúng, Điều Khiển Điện Cho Robot Phục Vụ",1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Kỹ Sư Phát Triển Giải Pháp Oracle- Oracle Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Phát Triển Phần Mềm - Backend Developer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Phát Triển Phần Mềm Hiệu Năng Cao,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Phát Triển Phần Mềm Nhúng Matlab Simulink Cho Động Cơ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Phát Triển Ứng Dụng Điện Toán Đám Mây,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Phân Tích Nghiệp Vụ - Business Analyst,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Phần Mềm Ứng Dụng Desktop,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Presale System/ Network/AV Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Quản Lý Dự Án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Quản Trị Hệ Thống,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Quản Trị Hệ Thống (Cloud Storage),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Quản Trị Hệ Thống (System Administrator),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Quản Trị Hệ Thống (System),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Triển Khai (Network),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Triển Khai Bản Vẽ BIM (Kiến Trúc/ MEP/ HVAC),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Triển Khai Dự Án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Triển Khai Mạng Bảo Mật (Network/Sercurity) - 2 Năm Kinh Nghiệm,1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Kỹ Sư Trí Tuệ Nhân Tạo - AI/ Deep Learing/ Computer Vision,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Sư Tư Vấn Giải Pháp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Kỹ Sư Tự Động Hóa,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Tự Động Hóa - Lập Trình Machine Vision,1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Kỹ Sư Vision Machine,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Sư Vận Hành Và Phát Triển (Devops Engineer),1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+"Kỹ Sư Điện Tự Động, Lập Trình PLC Cho Máy Tự Động",1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Kỹ Thuật IT - Yêu Cầu 2 Năm Kinh Nghiệm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Thuật IT Support / Helpdesk,1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Kỹ Thuật Sửa Máy Tính - Lắp Camera,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Thuật Thiết Kế Dệt Lập Trình,1,thiết_kế_nghệ_thuật_giải_trí_truyền_hình_báo_chí,False,True,False,True,True,False
+Kỹ Thuật Triển Khai Dự Án CNTT/ĐTVT,1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Kỹ Thuật Viên Gia Công Máy CNC (Máy Phay/Máy Tiện),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Thuật Viên IT,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ Thuật Viên IT/ Kỹ Thuật Công Nghệ Thông Tin,1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Kỹ Thuật Viên Khôi Phục Dữ Liệu Số,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Thuật Viên Lập Trình Máy,1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Kỹ Thuật Viên Máy Tính Máy In Camera,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ Thuật Viên Spa Kiêm Thu Ngân,1,du_lịch_nhà_hàng_khách_sạn_dịch_vụ,False,True,False,True,False,False
+Kỹ sư AI (thông thạo tiếng Anh),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Kỹ sư DevOps (trên cơ sở, CI/CD, K8S)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Kỹ sư DevOps (trên cơ sở, K8S, CI/CD)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư Frontend cao cấp (React/NextJS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư MLOPS,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ sư blockchain,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư bảo mật,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Kỹ sư bảo mật đám mây,1,thiết_kế_nghệ_thuật_giải_trí_truyền_hình_báo_chí,False,True,False,True,False,False
+Kỹ sư di động,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ sư giải pháp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ sư hệ thống cao cấp (Alibaba Cloud),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Kỹ sư hệ thống nhúng (MCU, RTOS, Linux OS)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ sư hỗ trợ CNTT,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư hỗ trợ kỹ thuật (cố định NightShift - Cung cấp gói tổng hợp 30 triệu),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ sư iOS cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư mạng L2 (nói tiếng Nhật),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư mạng cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư mạng tiền bán hàng,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Kỹ sư nghiên cứu HPC,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Kỹ sư nhúng (Autosar, CAN Tools, BSW)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ sư nhúng DSP âm thanh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ sư nhắc nhở thực tập (Nocode/Lowcode),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ sư phần mềm (Chuyên gia AI),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư phần mềm (Lãnh đạo),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư phần mềm cơ sở,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Kỹ sư phần mềm thực tập (Java hoặc Node.js),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư phần mềm-phát triển IDE của họ cho RISC-V,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư phụ trợ (Python/Golang),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư phụ trợ cấp trung/ cao cấp (Python),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ sư triển khai OIG/OIM,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ sư tự động hóa,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Kỹ sư độ tin cậy trang web của Junior (SRE),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Kỹ thuật dữ liệu CDP,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+LLM Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+LLMs And GenAI Agent Expert,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Leader QC ERP,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Linux System Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+LiveOps gd,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Liên kết quản lý dự án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Lãnh đạo kỹ thuật (BPM),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Lãnh đạo kỹ thuật ReactJS,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lãnh đạo nhà phát triển Python,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lãnh đạo phát triển kinh doanh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Lãnh đạo sáng tạo nội dung (MạNH AI),1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Lãnh đạo/Senior - 3D (Sự kiện & Kích hoạt | BTL),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Lập Trình Frontend,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Nhúng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Odoo (Python),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên (Tiếng Trung),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên .Net,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên .Net Junior,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Lập Trình Viên .Net, .Net Core",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên Android/IOS,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên Back-End,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên BackEnd Developer (NodeJS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên Backend,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên Backend Java,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên C# Hoặc C/C++ Dự Án Chứng Khoán (Junior),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Lập Trình Viên C# Hoặc C/C++ Dự Án Chứng Khoán (Junior) - Nghỉ Thứ 7, Chủ Nhật - Tại Quận 1 HCM",1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Lập Trình Viên Flutter/ Flutter Developer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Lập Trình Viên Fresher/Middle C#, .Net Kiêm BA",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên Front End (WEB),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên Full Stack (Web),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Lập Trình Viên Fullstack Upper-Junior (.NET, React/Vue)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Lập Trình Viên IOS (Swift, Obj-C)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Lập Trình Viên IOS (Swift, Objective-C)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên Java (Nghiệp Vụ Banking),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên Java Springboot,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên Java/ Python,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên Mobile App (Flutter),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên PHP Laravel Backend,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên Từ N3 (Visa Nhanh),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên. Net,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Lập Trình Viên.Net,1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Manual (AI/Data),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Manual Test,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Manual Tester [Dự Án Banking],1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Marketing Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,True,False
+Middle BA,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Middle Fullstack Java,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Middle IOS Developer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Middle IT System (M365),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Middle Java Backend,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Middle Pre-Sales Executive,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Middle Viết Mã Phần Mềm,1,nhóm_nghề_khác,False,True,False,True,False,False
+Mobile Android Developer (Kotlin),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Mobile Developer,1,nhóm_nghề_khác,False,True,False,True,False,False
+Mobile Developer (Android/IOS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Mobile Developer (Java Based),1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Mobile Developer - IOS Developer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Mua lại người dùng - Tiếp thị kỹ thuật số (ứng dụng di động),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Multimedia Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Mạng đa kênh-Trình quản lý dự án MCN,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+NHÂN VIÊN IT (Không Yêu Cầu Kinh Nghiệm),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+NV Phục Vụ MIKASA Nhà Hàng Yoshoku Sắp Khai Trương Tại VivoCity Q7,1,du_lịch_nhà_hàng_khách_sạn_dịch_vụ,False,True,False,True,False,True
+NV Tư Vấn & Triển Khai Phần Mềm Kế Toán,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nghệ sĩ 2D cao cấp (sáng tạo điều khiển AI) Anime/Manga,1,thiết_kế_nghệ_thuật_giải_trí_truyền_hình_báo_chí,False,True,False,True,False,False
+Nghệ sĩ đồ họa 2D (Tiếp thị),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Người giám sát phân tích dữ liệu - định hướng kỹ thuật,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Người kiểm tra tự động hóa (yêu cầu tiếng Anh),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Người kiểm tra tự động hóa cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Người kiểm tra tự động hóa tươi hơn (tiếng Anh Fluent),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Người mô hình nhân vật 3D (cách điệu/ thực tế),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Người quản lý tài khoản/Bán hàng B2B (Business Business),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà lãnh đạo xã hội đầy đủ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển .NET cao cấp (AI),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển / nhà phát triển ứng dụng di động,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển Android cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Android cao cấp (MINI CTO),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Android cao cấp (Ứng dụng di động),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Frontend (React.js / Next.js),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Frontend (ReactJS + React Native),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Frontend (ReactJS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Nhà phát triển Frontend (ReactJS, NextJS)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Frontend (ReactJS/NextJS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Frontend-Web (Angular/JavaScript),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển FullStack,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Nhà phát triển FullStack (Java, Reactjs)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển FullStack (JavaScript),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển FullStack (NodeJS/Python + Reactjs),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển FullStack (NodeJS/ReactJS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển FullStack (PHP/ReactJS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển FullStack (Python + PHP),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển FullStack (Python và ReactJS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển IOS Junior,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Nhà phát triển Java (SQL, Spring, ReactJS)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Nhà phát triển Java phụ trợ (Springboot, SQL, Eclipse RCP)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Junior ERP,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Junior Frontend,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Mern-Stack của Intern/Fresher,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển PHP cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển PHP thực tập (WordPress),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Python,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Python (cấp độ cao cấp/nhóm),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Python (phụ trợ - AI),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Python trở lại,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển ReactJS,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển SQL (Oracle - Trung/cao cấp),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển Salesforce cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phát triển Salesior Salesforce,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phát triển Sencha,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển Sitecore,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Nhà phát triển Stack Full (Java, Springboot, React/Vue)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Thương mại Liferay cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển Unity (Casual/Puzze) - Fresher hơn,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Unity (Casual/Puzze) - Junior/Middle,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Unity (Cấp giữa),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Unity (Fresher),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Unreal Engine,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển Web FullStack (Python/Reactjs),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển Winform,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển WordPress,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển back -end (Golang) - Trung tâm/cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển back-end (NodeJS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Ứng dụng di động kiếm tiền ADS (Fresher),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển bản địa phản ứng cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển cao cấp cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Nhà phát triển cuối cùng (Vuejs, JavaScript, HTML)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+(Mid/sen) Nhà phân tích dữ liệu - trò chơi/ứng dụng di động,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Điều hành kế hoạch và phân tích tài chính (FP & A),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển iOS cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển kết thúc trở lại,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển phía trước (Nền tảng mã thấp),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Điều hành phát triển kinh doanh/ Bán nó (tiếng Anh),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+"Nhà phát triển phần mềm (NodeJS, Oracle, Microservice)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển phần mềm Junior,1,thiết_kế_nghệ_thuật_giải_trí_truyền_hình_báo_chí,False,True,False,True,False,False
+Điều hành sản phẩm thực tập,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Nhà phát triển phụ trợ (BPM, Camuda)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển phụ trợ (Python/Django),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển phụ trợ Java (lãnh đạo cao cấp/công nghệ),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Điều phối viên dự án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển phụ trợ cao cấp (AWS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển phụ trợ cao cấp (NestJS / Fastapi),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển ròng (giữa/cao cấp),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển sản phẩm (Người bán hàng),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Điều phối viên dự án dữ liệu AI,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển trò chơi (Người tạo CoCOS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển trò chơi Unity,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển trò chơi Unity Junior,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển trò chơi Unity Middle,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển đám mây tiếp thị Saleforce,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển đầy đủ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Nhà phát triển đầy đủ (.NET, React)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển đầy đủ (Node.js/Next.j) Cấp giữa,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà phát triển động cơ không thực,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phát triển ứng dụng di động,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phân tích dữ liệu & hiểu biết,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phân tích dữ liệu (cao cấp),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phân tích dữ liệu cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phân tích dữ liệu kinh doanh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phân tích dữ liệu trò chơi (Junior/ Middle),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phân tích hệ thống dữ liệu cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Đào Tạo Triển Khai Phần Mềm & Chuyển Đổi Số,1,giáo_dục_đào_tạo_nghiên_cứu,False,True,False,True,False,False
+Đào tạo sản phẩm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phân tích kinh doanh (Domain ERP) - Cung cấp tối đa 35.000.000,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,True,False,False,False
+Nhà phân tích kinh doanh (ERP),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+"Nhà phân tích kinh doanh (Gov, Senior)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+"Nhà phân tích kinh doanh (LOS, Core)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phân tích kinh doanh (Mạng xã hội/Miền thương mại điện tử),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Đám mây tươi hơn - DevOps,1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Nhà phân tích kinh doanh (Y Tế),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+"Nhà phân tích kinh doanh (cao cấp, giữa)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phân tích kinh doanh (giữa),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+"Nhà phân tích kinh doanh (lãnh đạo, tiếng Anh)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phân tích kinh doanh (nói tiếng Hàn),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Đánh Giá An Toàn Thông Tin (Redteam),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phân tích kinh doanh ERP (Tư vấn chức năng),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhà phân tích kinh doanh Junior,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phân tích kinh doanh Junior (BA),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phân tích kinh doanh SAP,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhà phân tích kinh doanh Trưởng nhóm (Ngân hàng/FinTech),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Đảm bảo chất lượng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Đảm bảo chất lượng (thông thạo tiếng Anh yêu cầu),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà phân tích kinh doanh sản phẩm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phân tích kinh doanh trung bình,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phân tích kinh doanh/po,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhà phân tích sản phẩm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà thiết kế Hình thu nhỏ YouTube,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhà thiết kế sáng tạo thực tập,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhà thiết kế web UI/UX (figma/ui/ux - ưu tin shopify),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhà thiết kế đồ họa (Chuyên Thumbnail YouTube),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhà thiết kế đồ họa (Fulltime/Intern),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhà thiết kế đồ họa (bán thời gian/toàn thời gian),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhà thiết kế đồ họa (cấp trung),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhà thiết kế đồ họa - 2D (Cơ quan sự kiện MảNG),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+"Nhà thiết kế đồ họa 3D, 2D",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Đảm bảo chất lượng/ kiểm soát chất lượng thực tập,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Đồ họa hoạt hình nhóm chính/ Đồ họa chuyển động,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhà thiết kế đồ họa cao cấp (nữ),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhà thiết kế đồ họa cao cấp/ Lãnh đạo thiết kế đồ họa,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+.NET Backend Engineer (Senior),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhà thiết kế đồ họa thời trang,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhà thiết kế đồ họa thực tập Thương mại điện tử,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhà thiết kế/Thiết Kế Slide PowerPoint E-Learning,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên 2D UI/UX Game Artist,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+3D Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Animation 2D,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Artist Game,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+3D Environment UE,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+3D Game Artist,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Bán Hàng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+3D Modeler/3D Artist,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Bảo Mật Thông Tin,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Nhân Viên Bảo Trì Điện (PLC - MÁY CNC),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên CNC,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên CRM,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+3D Quality Executive / Kiểm Soát Chất Lượng Ảnh 3D Visualization,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Nhân Viên CSKH - Mảng Công Nghệ, IT Support - Thu Nhập 16 Triệu, Đi Làm Ngay",1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Nhân Viên Chăm Sóc Khách Hàng (Phần Mềm HĐĐT),1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nhân Viên Chăm Sóc Khách Hàng Kiêm Thu Ngân,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nhân Viên Chăm Sóc Khách Hàng Phần Mềm,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nhân Viên Chỉnh Sửa Hình Ảnh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Chỉnh Sửa Hình Ảnh Nội Thất,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Chỉnh Sửa Hình Ảnh/Photo Editor,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Cross Sales,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Công Nghệ Thông Tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Cải Tiến Quy Trình,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Data Scientits,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Design,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Design Marketing,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Design POD (Print On Demand),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Design/Thiết Kế Đồ Họa Dự Án Khỉ AI,1,thiết_kế_nghệ_thuật_giải_trí_truyền_hình_báo_chí,False,True,False,True,True,False
+Nhân Viên Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Designer (Thiết Kế Hình Ảnh),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Designer Thiết Kế Ngành Mỹ Phẩm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Designer/Thiết Kế Ấn Phẩm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Developer Full-Stack Full-Time,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Devops,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Devops Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Diễn Hoạt 2D (Motion Designer),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+ADMIN Xây Dựng Và Vận Hành Web Cung Ứng Nhân Lực,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"AI Application Engineer-TN Tự Động Hóa, Cơ Điện Tử",1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Nhân Viên Editor,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Event Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Game Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+AI Consultant (Automotive Domain),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Giám Sát Hệ Thống Công Nghệ Thông Tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Giải Pháp Viễn Thông - CNTT,1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+AI Content Creator / Sáng Tạo Nội Dung,1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+AI Content Creator Leader (Mảng Giáo Dục),1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Nhân Viên Graphic Designer 2D Hàng Nội Địa Nhật,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Gán Dữ Liệu Tiếng Anh (AI Trainer Audio),1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Nhân Viên Gán Nhãn Dữ Liệu,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Gán Nhãn Dữ Liệu Song Ngữ Tiếng Hàn (TOPIK 4) Và Tiếng Anh (B2),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+AI Developer,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Nhân Viên Gán Nhãn Dữ Liệu Tiếng Nhật (Từ N3)-Tiếng Anh (B2),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Học Việc Kỹ Thuật Máy Tính,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+AI ENGINEER - Kỹ Sư Phát Triển AI,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+AI Leader,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Hỗ Trợ Ứng Dụng Phần Mềm,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+AI Leader ( Domain Edtech),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên IT - Kỹ Thuật,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên IT / IT Helpdesk/ IT Support,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+AI Middle DevOps Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên IT Phần Cứng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên IT Phần Cứng (Tiếng Anh Tốt),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên IT Phần Mềm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên IT Phần Mềm (Lập Trình),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên IT SUPPORT,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Nhân Viên IT Support/Helpdesk (SAP, Odoo, Aras)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên IT( Thiết Kế Và Hoàn Thiện Store Shopify),1,thiết_kế_nghệ_thuật_giải_trí_truyền_hình_báo_chí,False,True,False,True,True,False
+Nhân Viên Idea Creator,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Nhân Viên Kho ( Sắp Xếp, Vận Chuyển Hàng Hóa)",1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,True
+AI Video Creator,1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Nhân Viên Kinh Doanh (Junior Sales Executive),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+AI/NLP Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kinh Doanh (Nữ/Đi Làm Ngay),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+APAC Presales Lead/Manager,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kinh Doanh - Lĩnh Vực Phần Mềm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Agile Coach,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+An ninh đám mây cơ sở,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kinh Doanh -GLOBAL SALES,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Android (Java/Kotlin) Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Android Developer (Kotlin),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kinh Doanh CNTT - Khối BFSI,1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,True,False,False,False
+Nhân Viên Kinh Doanh Chữ Kí Số - Không Áp KPI,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kinh Doanh Chữ Ký Số,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kinh Doanh Công Nghệ Thông Tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhân Viên Kinh Doanh Dịch Vụ Website,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Angular (TCB),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kinh Doanh Dự Án CNTT (B2B),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhân Viên Kinh Doanh Dự Án CNTT/ Viễn Thông (B2B),1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Animation,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kinh Doanh Marketing,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kinh Doanh Media,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kinh Doanh Máy In,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kinh Doanh Mảng Công Nghệ B2B,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kinh Doanh Mảng Digital Marketing,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kinh Doanh Mảng Dropship,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kinh Doanh Ngành Game - Ưu Tiên Biết Tiếng Anh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kinh Doanh Online,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Autosar - Kỹ sư phần mềm nhúng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kinh Doanh Phân Phối Máy Tính,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+B2B Sales Executive,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kinh Doanh Phần Mềm & Giải Pháp Iot,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+BACKEND DEVELOPER (JAVA - SPRING BOOT),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kinh Doanh Phần Mềm (Đi Làm Ngay - Không Thử Việc),1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nhân Viên Kinh Doanh Phần Mềm - B2B,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nhân Viên Kinh Doanh Phần Mềm - Website (Sales),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+BIM Manager,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kinh Doanh Phần Mềm ERP,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nhân Viên Kinh Doanh Phần Mềm Vận Tải,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhân Viên Kinh Doanh Thiết Bị Smart Home,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kinh Doanh Tư Vấn Phần Mềm (Sales B2B),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+BIM Manager (Chuyên Ngành MEP),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+BUSINESS ANALYST,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Backend (Python, NodeJS)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Backend Developer (GOLANG),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kinh Doanh/ Consultant Executive,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Backend Developer (Java/.NET/Golang),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kinh Doanh/ Sales (IT/CNTT/Viễn Thông),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhân Viên Kinh Doanh/ Sales B2B (Enterprise/SME),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+"Nhân Viên Kinh Doanh/ Sales/ Tư Vấn Bán Hàng (Phân Phối Sản Phầm PC, Laptop, Máy In, Smart Home)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kinh Doanh/ Tư Vấn Bán Hàng Phần Mềm,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nhân Viên Kinh Doanh/ Tư Vấn Phần Mềm Kế Toán,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nhân Viên Kinh Doanh/ Tư Vấn/ Sale Giải Pháp Phần Mềm (Nghỉ T7-CN) - Thu Nhập Hấp Dẫn,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Backend Developer (Java/Golang),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kinh Doanh/Nhân Viên Tư Vấn Phần Mềm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Backend Developer (NodeJS) (Middle/ Senior),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kinh Doanh/Sales Phần Mềm Y Tế,1,y_tế_dược_chăm_sóc_sức_khỏe_công_nghệ_sinh_học,False,True,True,False,False,False
+Backend Developer (NodeJs),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Backend Developer (Nodejs),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Backend Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kiểm Thử Phần Mềm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kĩ Thuật Hạ Tầng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kế Hoạch Kinh Doanh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Kế Toán (Đã Biết Về Hệ Thống ERP),1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Nhân Viên Kế Toán Kho Kiêm Thủ Kho,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,True
+Nhân Viên Kế Toán Kiêm Thu Mua,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Nhân Viên Kế Toán Tổng Hợp Kiêm Thuế,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Backend Fresher,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Bim Engineering Manager,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Biên Tập Viên Nhập Liệu,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kỹ Thuật (Có Hiểu Biết Về IT),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kỹ Thuật (IT Support),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kỹ Thuật Bình Ghép File Và In Ấn,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kỹ Thuật Cyber,1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+BrSE - Kỹ Sư Cầu Nối Tiếng Nhật,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+BrSE Tiếng Nhật,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Bridge System Engineer (BrSE),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Brse (N2 UP),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Kỹ Thuật Sửa Chữa (Phần Cứng),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kỹ Thuật Thiết Bị An Ninh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kỹ Thuật Triển Khai,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kỹ Thuật Triển Khai Dự Án Phần Cứng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Kỹ Thuật Viên,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Business Analyst (Domain Fintech),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Business Analyst (Giao Tiếp Tiếng Anh),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Nhân Viên Lập Trình & Vận Hành Máy Phay [Từ Sơn - Bắc Ninh] - Lương Cơ Bản Upto 15Tr+++, Tối Thiểu 3 Năm Kinh Nghiệm",1,xây_dựng_kiến_trúc_bất_động_sản,False,True,False,True,False,False
+Nhân Viên Lập Trình C#,1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Business Analyst (Intern),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Lập Trình CAM CNC,1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Business Data Analyst,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Business Development (Global Market),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Lập Trình Java,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Business Intelligence Expert,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Bàn dịch vụ CNTT,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Lập Trình Mobile,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Bán hàng B2B/ Quản lý tài khoản,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Bán hàng CNTT - Phát triển kinh doanh (JLPT N1),1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nhân Viên Lập Trình Mẫu May Mặc,1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Nhân Viên Lập Trình PLC,1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Bán hàng cao cấp (Giải pháp CNTT),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhân Viên Lập Trình Phay CNC (Creo),1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Bán hàng Đại diện B2B (Fresher - Junior),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Bán hàng/ Phát triển kinh doanh CNTT điều hành B2B,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+C/C++ Engineer,1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Nhân Viên Lập Trình Web,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Lập Trình Web (Figma+PHP) - Đi Làm Ngay,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+CNTT Business Development Intern,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Marketing Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,True,False
+CNTT HELPDESK/ CNTT Hỗ trợ/ Công nghệ thông tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Media,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Media (Thiết Kế&Quay Dựng Video),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+CTV Chăm Sóc Khách Hàng - CNTT,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nhân Viên Mobile Fullstack Developer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+CTV Kỹ Thuật Viễn Thông,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+CTV Quản Lý Dự Án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+CVCC Quản Trị Cơ Sở Dữ Liệu (DBA),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chief Technology Officer ( Ứng Dụng SAAS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Pha Màu Bằng AI,1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Nhân Viên Photoshop,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Phát Hành Chứng Từ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Phát Triển Cộng Đồng (Social Community),1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Nhân Viên Phát Triển Cộng Đồng (Social Community)- Yêu Thích Thể Thao- Upto 15tr Từ 2 Năm Kinh Nghiệm Trở Lên (Q7),1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Nhân Viên Phát Triển Game (Unity/Godot/Unreal),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Phát Triển Kinh Doanh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Phát Triển Kinh Doanh Về Dịch Vụ Vận Chuyển Đồ Ăn Bằng Công Nghệ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chiến lược gia sáng tạo (Ứng dụng di động),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Phân Tích Dữ Liệu,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Phân Tích Dữ Liệu (Tiếng Trung),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Gia Kiểm Thử Xâm Nhập ANTT (Pentest),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Phân Tích Nghiệp Vụ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Phần Mềm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Phụ Bếp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Gia Phân Tích Kinh Doanh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Quản Lý Chất Lượng Phần Mềm - Process Quality Assurance,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Gia Quản Trị Công Nghệ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Gia Vận Hành Nền Tảng Dữ Liệu (Data Platform Operation),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Admin Quản Lý Dữ Liệu Master Data,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Quản Trị Mạng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Quản Trị Server,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên An Ninh Mạng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Back-End,1,nhóm_nghề_khác,False,True,False,True,False,False
+Chuyên Viên Bảo Mật Sản Phẩm,1,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,False,True,False,False
+Nhân Viên Sales (Business Development),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Sales Marketing/CSKH,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Cao Cấp Phân Tích Nghiệp Vụ (Thẻ & Hóa Đơn Điện Tử),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Sales Web-Không Yêu Cầu Kinh Nghiệm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Cao Cấp Quản Lý Rủi Ro Hoạt Động,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Telesale - Tư Vấn Crm/Phần Mềm,1,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,True,False,False,False
+Nhân Viên Telesale Tư Vấn Dvụ Website/Marketing,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Cao Cấp Quản Lý Sự Cố Và Vấn Đề,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Chuyển Đổi Số Nội Bộ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Tester (QC/ Tester),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Chính Quản Trị Cơ Sở Dữ Liệu Rủi Ro - QLRR - MSB - 3B448,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Nhân Viên Thiết Kế & Media (Brand Media Designer),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế (Graphic Designer),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế (Print On Demand),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế (Senior),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế - Designer Thumbnail Youtube,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế - Graphic Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế - Graphic Desinger,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Chính Sách Sản Phẩm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Thiết Kế - Part Time Và Full Time,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Content Phần Mềm,1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Nhân Viên Thiết Kế 2D - 3D,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế 2D Kiêm Chụp Ảnh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế 2D/3D,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Công Nghệ Thông Tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Thiết Kế Bao Bì Mỹ Phẩm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế Chế Bản In,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế Giày (3D Designer),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế Giải Pháp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế Graphic Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Công Nghệ Thông Tin (AI & Automation),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Thiết Kế Part-Time,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế Print-On-Demand,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế Quảng Cáo,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế Thumbnail,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế UI App/Web,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Digital Marketing (Ứng Dụng AI),1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,True,False,False,False
+Chuyên Viên Digital Marketing Phần Mềm AI,1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,True,False,False,False
+Nhân Viên Thiết Kế Được Đào Tạo,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên E-Learning,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên ERP,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Thiết Kế Đồ Họa 2D,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế/ Graphic Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Thiết Kế/Graphic Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Tin Học,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Tiếp Nhận & Điều Phối Máy Sửa Chữa,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên ESG,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Front-End,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Triển Khai Phần Mềm (Tuyển Nam),1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Chuyên Viên Giám Sát Và Vận Hành Mạng (Network),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Triển Khai Và Lập Trình Máy CNC,1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Nhân Viên Triển Khai Và Lập Trình Máy Cnc,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Trợ Giảng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Trực Vận Hành 24/7,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Tái Ký Hợp Đồng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Graphic Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Nhân Viên Tư Vấn - Không Yêu Cầu Kinh Nghiệm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Tư Vấn - Network Consultant,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Tư Vấn - Network Consultant - Đào Tạo Mới,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Tư Vấn Bán Hàng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Tư Vấn Bán Hàng B2B,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Tư Vấn Kinh Doanh -App Sheet,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Tư Vấn Kinh Doanh Phần Mềm,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nhân Viên Tư Vấn Kinh Doanh Phần Mềm Bán Hàng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Nhân Viên Tư Vấn Marketing Web,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Tư Vấn Part-Time,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Hạ Tầng Công Nghệ Thông Tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Tư Vấn Qua Điện Thoại,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Tư Vấn Thiết Kế Website,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+"Chuyên Viên Hệ Thống ERP, Dingtalk",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Chuyên Viên Hệ Thống Phần Mền, IT",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Tư Vấn Triển Khai Phần Mềm Kế Toán,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nhân Viên Tư Vấn Trực Tiếp - Làm Việc Từ Xa,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Nhân Viên Tư Vấn Và Thiết Kế Giải Pháp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,True,False
+Chuyên Viên Hỗ Trợ Kinh Doanh (Sales Admin) - Mảng IT,1,xây_dựng_kiến_trúc_bất_động_sản,False,True,True,False,False,False
+Nhân Viên Tư Vấn Website - Không Yêu Cầu Kinh Nghiệm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Hỗ Trợ Mạng (Network Monitor),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Tư Vấn/Kinh Doanh Phần Mềm Quản Lý Bán,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Nhân Viên UI/UX Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Unity Developer- Mobile Game,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Upload Sản Phẩm (Customily) - Kèm Portfolio,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Viết Code (Mảng Phần Mềm),1,nhóm_nghề_khác,False,True,False,True,False,False
+Chuyên Viên IT,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Vận Hành,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Vận Hành Hạ Tầng CNTT,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Nhân Viên Vận Hành Hệ Thống,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Vận Hành Hệ Thống Bot Farming,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Vận Hành Máy CNC,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên IT & System Coordinator,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên IT (ITHelpdesk-IT Support),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nhân Viên Xác Thực Dữ Liệu (Contact Center),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Xây Dựng Website (Wordpress-Elementor),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Xử Lí Dữ Liệu ( CV Tiếng Nhật),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nhân Viên Xử Lý Dữ Liệu Hình Ảnh AI - Không Yêu Cầu Kinh Nghiệm,1,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,False,True,False,False
+Chuyên Viên IT Helpdesk (IT Support Phần Cứng),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên IT Hệ Thống Kiêm Quản Trị Phần Mềm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+NodeJS Developer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nó giám sát hoạt động và bộ điều khiển dịch vụ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên IT Quản Trị Hệ Thống & Hỗ Trợ Phần Mềm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nó hỗ trợ khách hàng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Nó lãnh đạo hoạt động,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên IT Support,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Nội dung cộng đồng thực tập (MạNH AI),1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Chuyên Viên IT – Hỗ Trợ Vận Hành,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Kinh Doanh (B2G),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Kinh Doanh CNTT Khối Hành Chính Công - GOV,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+PHP cao cấp (tiếng Anh),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Phát Triển Phần Mềm - BackEnd,1,nhóm_nghề_khác,False,True,False,True,False,False
+Chuyên Viên Kinh Doanh Chữ Ký Số,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Phát triển kinh doanh - B2B,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Phát triển kinh doanh AI,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Phát triển kinh doanh Junior,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Phát triển kinh doanh SAP,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+"Chuyên Viên Kinh Doanh Dịch Vụ IT (Nhật, Trung)",1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Phát triển kinh doanh thực tập,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Phát triển kinh doanh tươi hơn,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Phát triển kinh doanh tươi hơn (bán hàng nó),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Phát triển kinh doanh tươi hơn tiếng hàn,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Phát triển sản phẩm giày dép - Nhà phát triển,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Phân Tích Nghiệp Vụ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Phân tích dữ liệu cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Phân tích dữ liệu lãnh đạo dự án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Phó Phòng Kinh Doanh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Phó Phòng Phần Mềm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Phó Trưởng Phòng Sản Phầm Dịch Vụ Phần Mềm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Phản ứng nhà phát triển bản địa,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Kinh Doanh Dự Án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Phần mềm quản lý dự án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Phối hợp và quản trị hệ thống mạng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Presale Network Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Presales Tư Vấn Giải Pháp (VMware/Cloud),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Product Designer (UI/UX Designer - Dự Án Banking),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Kinh Doanh GPPM Công Nghệ Số,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Kinh Doanh Giải Pháp Phần Mềm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Project Manager (PM),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"Project Manager - Cổng Thanh Toán, Ví Điện Tử",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Project Sales,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Python Developer (Odoo Developer),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+QA Intern,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+QA Tester,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+QA-QC (Người kiểm tra thủ công),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+QC Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+QC Engineer (Intern),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+QC Engineer / Tester,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+QC/QA Engineer,1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Chuyên Viên Kinh Doanh Khách Hàng Enterprise,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Quản Lý Dự Án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản Lý Dự Án ( Tài Chính ),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản Lý Dự Án Công Nghệ Thông Tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Quản Lý Dự Án Phần Mềm Trí Tuệ Nhân Tạo,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Quản Lý Dự Án Điện Tử,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản Lý Hình Ảnh Thương Hiệu (Graphic Designer),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Quản Lý Kinh Doanh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Quản Lý Kĩ Thuật,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản Lý Sản Phẩm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Kinh Doanh Mạng Lưới Đối Tác,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Quản Trị Dự Án / Project Manager,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Kinh Doanh/Tư Vấn,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Quản Trị Hệ Thống (System Administrator L2),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Quản Trị Hệ Thống An Toàn Thông Tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Quản lý chất lượng chương trình hậu cần ERP,1,logistics_vận_tải_chuỗi_cung_ứng,False,True,False,True,False,False
+Quản lý dự án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý dự án & TechLeader,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý dự án (Dự án chăm sóc sức khỏe),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý dự án (PM),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý dự án (Phần mềm cơ sở),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Quản lý dự án (Tiếng Anh Fluent),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Kiến Trúc Ứng Dụng - Khối Công Nghệ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý dự án - Cơ sở hạ tầng & hệ thống CNTT,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Quản lý dự án - Hệ thống ứng dụng (ERP/PLM),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Quản lý dự án / Chủ sở hữu sản phẩm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý dự án Junior,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý dự án cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý dự án/ SCRUM Master,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý dự án/Scrum Master (tên miền Fintech),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý kỹ thuật (Java/NodeJS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Quản lý sản phẩm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý sản phẩm Junior,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý sản phẩm cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Kiểm Soát Nội Bộ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý tài khoản/Phát triển kinh doanh/Bán hàng B2B,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Quản lý tăng trưởng sản phẩm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản lý đảm bảo chất lượng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản trị viên cơ sở dữ liệu Oracle,1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Quản trị viên hệ thống (chuyên gia),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Quản trị viên hệ thống cao cấp/ phần cứng CNTT,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+R&D AI Analyst – Ứng Dụng AI,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+R&D AI Specialist,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+R&D Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+REVIT MODERLER (Nhân Viên Revit Kiến Trúc) - Không Yêu Cầu Kinh Nghiệm (Lương UPTO 20 Triệu/ Tháng),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+React JS Developer (Tiếng Anh Fluency),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+ReactJS Frontend Developer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+SAP Consultant,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+SAP Developer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Kiểm Thử - Manual Tester(Core Banking),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+SOC Tier 2,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+"SRE - Kỹ sư độ tin cậy trang web (Devop, AWS)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Kiểm Thử Phần Mềm /Tester,1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Chuyên Viên Kỹ Thuật Quản Trị Hệ Thống,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Sale Manager (BFSI),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Sales B2B Mảng Phần Mềm/ Giải Pháp Chuyển Đổi Số Cho Doanh Nghiệp,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Sales Consultant,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Lập Trình .NET,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Sales Executive,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Sales Executive (JLPT N2),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Lập Trình Angular (Frontend Developer),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Lập Trình CNC,1,sản_xuất_lao_động_phổ_thông_cơ_khí,False,True,False,True,False,False
+Chuyên Viên Lập Trình Fullstack (NodeJS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Sales IT Tiếng Anh/Nhật,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Sales Intern (Thực Tập Kinh Doanh),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Lập Trình Java,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Sales Leader - Quản Lý Kinh Doanh Phần Mềm Bán Hàng,1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,True,False,False,False
+Sales Manager,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Sales Manager (Trên 3 Năm Kinh Nghiệm),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Lập Trình Python-Odoo,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Salesforce Expert,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Marketing Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,True,False
+Security (Nhân Viên An Ninh Siêu Thị),1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Chuyên Viên Media Kiêm Thiết Kế,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Senior .NET Developer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Senior Content Creator (Thành Thạo AI),1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Senior Data Scientist,1,thiết_kế_nghệ_thuật_giải_trí_truyền_hình_báo_chí,False,True,False,True,False,False
+Senior Designer 3D (Event),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Senior Designer Executive,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Senior DevOps Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Phát Triển Dự Án POS,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Phát Triển Học Liệu AI,1,thiết_kế_nghệ_thuật_giải_trí_truyền_hình_báo_chí,False,True,False,True,False,False
+Senior Frontent Developer (Reactjs),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Senior Game Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Senior Golang Backend Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Senior Java Backend,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Phát Triển Khách Hàng Chuỗi,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Phát Triển Kinh Doanh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Senior Multi-Media Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Senior Pentest,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Senior UI/UX Design,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Senior/Middle Tester,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Phát Triển Kinh Doanh (B2B),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+"Software Test (Tester, QA, ERP)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Software Test Engineer (QA Tester),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Phát Triển Kinh Doanh Phần Mềm ERP,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Structure - BIM Modeler,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Phát Triển Phần Mềm & Giải Pháp Số,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+System Admin (Nghỉ Thứ 7 Và Chủ Nhật),1,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,False,True,False,False
+System Administrator,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+System Administrator (Storage),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Phát Triển Thiết Bị Thanh Toán/ Nhân Viên Kinh Doanh/ Sales,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+System Engineer (Data Center),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+System Engineer (Linux / Network / Kubernetes),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+System Engineer (VMware),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+System Integration Engineer (Storage),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Sư phụ nền 3D,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+TTS Thiết Kế,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Tech Lead Flutter,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Tech Lead/ Trưởng Nhóm Kỹ Thuật,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+TechLead (NodeJS),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Techlead (Fullstack),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Technical Intern - Thực Tập Sinh Kỹ Thuật,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Phân Tích & Tối Ưu Vận Hành OOA,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Tester,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Tester (BPM),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Phân Tích Nghiệp Vụ-Kế Toán Giao Dịch,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Tester (OS Bank),1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Tester Intern,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Tester Manual,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Phân Tích Tài Chính,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Tester-Yêu Cầu Từ N3 Tiếng Nhật Trở Lên,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thiết Kế,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thiết Kế 3D,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thiết Kế 3D - 3D Visualizer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thiết Kế Landing Page,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Phân Tích Vận Hành (Dự Án Xe Tải),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Thiết Kế Tạo Dáng Sản Phẩm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thiết Kế UX/UI,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Thiết Kế Và Sản Xuất Animator,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thiết Kế Web,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Thiết Kế Web - PHP (Wordpress),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Phân Tích-Triển Khai Phần Mềm(Kế Toán),1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Chuyên Viên Quản Lý Dự Án Công Nghệ Thông Tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Quản Lý Hiệu Suất & Quy Trình,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Thiết Kế Đồ Họa - Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Quản Trị Dữ Liệu CRM,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Thiết kế sản xuất thực tập (bao bì B2B),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Quản Trị Mạng Và Bảo Mật,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thiết kế đồ họa & chuyển động,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thiết kế đồ họa (in pod theo yêu cầu),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thiết kế đồ họa (trò chơi),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thiết kế đồ họa Fulltime/Intern,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thiết kế đồ họa bán thời gian,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Quản Trị Và Vận Hành ERP,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Thiết kế đồ họa sáng tạo thực tập,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Quản Trị Web,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Thiết kế đồ họa xã hội,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thư Ký Kinh Doanh & Hỗ Trợ Phòng Dev,1,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,True,False,False,False
+Thị trường toàn cầu - Kỹ sư kiểm tra tự động hóa,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Thị trường toàn cầu - Nhà phát triển Junior C ++,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Thực Tập Game Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập IT,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Thực Tập Lập Trình Backend (Webhook, Automation)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Sale,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Tester Từ 2 Năm Kinh Nghiệm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Thiết Kế & Sáng Tạo Nội Dung,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập Sinh Chăm Sóc Khách Hàng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Thực Tập Sinh Community Builder,1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Thực Tập Sinh DEV,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Thiết Kế - Graphic Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập Sinh Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập Sinh Front-End,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh Frontend Dev,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh Game Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Thiết Kế - Quay Dựng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập Sinh Học Ngành Công Nghệ Thông Tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh IT (Chuyên Mạng),1,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,False,True,False,False
+Thực Tập Sinh IT (Có Phụ Cấp),1,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,False,True,False,False
+Thực Tập Sinh IT Help Desk,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh Js/Python/AI (Full Time),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Chuyên Viên Thiết Kế 2D (Mảng Hình In, Thêu...)",1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập Sinh Kinh Doanh (Có Phụ Cấp),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Thực Tập Sinh Kinh Doanh (Mảng Phần Mềm),1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,True,False,False,False
+Thực Tập Sinh Kinh Doanh B2B,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Thực Tập Sinh Kinh Doanh B2B (Phần Mềm),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Thực Tập Sinh Kinh Doanh Dự Án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Thiết Kế 2D/Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập Sinh Kiểm Thử,1,nhóm_nghề_khác,False,True,False,True,False,False
+Thực Tập Sinh Kỹ Thuật Máy Tính Phần Cứng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Thiết Kế 3D (3D Artist),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập Sinh Lập Trình C++,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh Lập Trình Viên,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh Lập Trình Web,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh Lập Trình Website,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh Marketing Mobile App,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Thiết Kế Graphic Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập Sinh Motion Graphic Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Thiết Kế Mảng Bất Động Sản Cao Cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Thiết Kế Slide/ Designer(Sẵn Nội Dung),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Chuyên Viên Thiết Kế Thương Hiệu (BRAND DESIGN),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập Sinh Phát Triển Giải Pháp AI Marketing,1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,True,False,False,False
+Thực Tập Sinh Phân Tích Và Triển Khai Nghiệp Vụ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Thực Tập Sinh Quản Trị Vận Hành Hệ Thống,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Thực Tập Sinh R&D AI Tool,1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Chuyên Viên Thiết Kế Web (Figma+PHP) - Đi Làm Ngay,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+"Chuyên Viên Thẩm Định Dự Án Công Nghệ, IT",1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Thực Tập Sinh Thiết Kế (Biết Edit Video),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập Sinh Thiết Kế (Intern Designer),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập Sinh Thiết Kế Nội Thất Trên Phần Mềm Jega,1,xây_dựng_kiến_trúc_bất_động_sản,False,True,False,True,True,False
+Chuyên Viên Triển Khai Dự Án - Công Nghệ Thông Tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Triển Khai Giải Pháp Phần Mềm,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Thực Tập Sinh Triển Khai Phần Mềm,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Thực Tập Sinh Tư Vấn Phát Triển Website,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Triển Khai Phần Mềm Nhân Sự - Software Implementation Consultant,1,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,False,True,False,False
+Thực Tập Sinh Tư Vấn Website,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Thực Tập Sinh Unity Developer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực Tập Sinh Video Editor,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Thực Tập Sinh Viết Mã Phần Mềm,1,nhóm_nghề_khác,False,True,False,True,False,False
+Thực Tập Sinh Vị Trí Kỹ Sư Cầu Nối,1,ngôn_ngữ_dịch_thuật,False,True,False,True,False,False
+Thực Tập Thiết Kế Đồ Hoạ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập Thiết Kế Đồ Họa 2D Mảng Print On Demand,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Thực Tập Tư Vấn Triển Khai ERP,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Thực tập bảo mật đám mây,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Thực tập bảo mật ứng dụng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Triển Khai Và Đào Tạo Phần Mềm F&B,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Thực tập phát triển phần mềm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Tiếp thị mua lại người dùng (ứng dụng di động),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Tiếp thị nội dung AI,1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Tiếp thị thực tập (nghiên cứu AI),1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Triển Khai Giải Pháp Phần Mềm,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Triển Khai Phần Mềm,1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Chuyên Viên Tư Vấn,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Trình quản lý dịch vụ CNTT,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trình quản lý dự án CNTT (Shopify),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Tư Vấn Online Mảng Tmđt/Fnb,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Trò chơi 2D của Artist 2 (Từ Cấp cơ sở),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trò chơi tiếp thị lãnh đạo,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng Ban Kinh Doanh Google Cloud Platform (GCP),1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Trưởng Bộ Phận IT,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Bộ Phận Lập Trình,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Bộ Phận Sản Xuất Video Và Hình Ảnh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng Nhóm AI Digital Marketing,1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,True,False,False,False
+Chuyên Viên Tư Vấn Phần Mềm ERP,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Trưởng Nhóm Business Analyst (BA),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng Nhóm Bảo Trì Điện PLC,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng Nhóm Bảo Trì Điện PLC (Nhà Máy),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng Nhóm Content Creator (Thành Thạo AI),1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Trưởng Nhóm Content Social (Thành Thạo AI),1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+Trưởng Nhóm Giải Pháp CNTT,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Nhóm IT,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Tư Vấn Phần Mềm Website Bán Hàng,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Trưởng Nhóm Kinh Doanh B2B Phần Mềm AI Meta,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Trưởng Nhóm Kinh Doanh Phần Mềm,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Trưởng Nhóm Kiểm Thử,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Tư Vấn Phần Mềm/Website - Mảng TMĐT/Dịch Vụ,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Chuyên Viên Tư Vấn Tuyển Sinh - Khóa Học Lập Trình,1,giáo_dục_đào_tạo_nghiên_cứu,False,True,True,False,False,False
+Trưởng Nhóm Scan Lưu Trữ Hồ Sơ Điện Tử,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng Nhóm Tester,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Tối Ưu Vận Hành,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng Nhóm Thiết Kế 2D,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Trưởng Nhóm Thiết Kế Đồ Họa,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Trưởng Nhóm Triển Khai Phần Mềm - (Tiếng Trung),1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Trưởng Phòng Công Nghệ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng Phòng Công Nghệ Thông Tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Phòng Dự Án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng Phòng Gia Công CNC,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng Phòng Giải Pháp CNTT,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Phòng Giải Pháp Công Nghệ Thông Tin,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Phòng IT (ERP),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Phòng IT (Phần Mềm Odoo),1,kỹ_thuật_điện_điện_tử_viễn_thông,False,True,False,True,False,False
+Trưởng Phòng IT Odoo,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Viết Tài Liệu Kỹ Thuật Phần Mềm PT,1,ngôn_ngữ_dịch_thuật,False,True,False,True,False,False
+Trưởng Phòng Kinh Doanh Lĩnh Vực AI,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Trưởng Phòng Kinh Doanh Phân Phối,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Vận Hành Hệ Thống Microsoft Exchange Hybrid,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Vận Hành Nền Tảng Dữ Liệu (DBA),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Phòng Kỹ Thuật Camera Điện Nhẹ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng Phòng Phát Triển Mobile App(Banking Domain),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng Phòng Phần Mềm (Technical Manager),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Phòng Sale Phần Mềm,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng Phòng Thiết Kế,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Trưởng dự án CNTT/BRSE - N2 Nhật Bản,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trưởng nhóm (.NET),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên Viên Vận Hành Phần Mềm,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+Chuyên Viên Vận Hành Website,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng phòng giải pháp Achitect,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trưởng phòng kiểm tra,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Vận Hành Ứng Dụng,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trợ Giảng/ Gia Sư/ Giáo Viên Part-Time CNTT/Lập Trình/Điện Tử/Truyền Thông Đa Phương Tiện,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trợ Lý AI Tổng Giám Đốc,1,nhân_sự_hành_chính_pháp_chế_tư_vấn,False,True,False,True,False,False
+Trợ Lý Chủ Tịch,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trợ Lý Chủ Tịch Hội Đồng Quản Trị Mảng Quy Hoạch,1,thiết_kế_nghệ_thuật_giải_trí_truyền_hình_báo_chí,False,True,False,True,False,False
+Trợ Lý Công Nghệ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trợ Lý Dự Án,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trợ Lý Dự Án Xử Lý Hình Ảnh (Kỹ Năng Photoshop),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Vẽ Minh Họa (Character/Pattern),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên Viên Đào Tạo,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Trợ Lý Số & AI Cho CEO,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Trợ Lý Thiết Kế Đồ Họa,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+Trợ lý dự án thực tập,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Tư Vấn Giải Pháp F&B,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Chuyên Viên Đảm Bảo Quy Trình (ISO 27001),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Tư Vấn Phần Mềm Website Bán Hàng - Fresher,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Tư Vấn Thiết Kế Hệ Thống Điện Nhẹ ELV,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,True,False
+Tư Vấn Viên Phần Mềm - Hóa Đơn Điện Tử - Fresher,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,True,False,False,False
+Tư vấn bán hàng (phần mềm),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+Chuyên Viên/ Nhân Viên Quản Trị Mạng Cloud (Cloud Network Engineer),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Tư vấn kinh doanh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+UA Marketing (Marketing Android App),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,True,False,False,False
+UI Artist,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+UI/UX Design Intern,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên gia bảo mật & chất lượng,1,kinh_doanh_bán_hàng_chăm_sóc_khách_hàng,False,True,False,True,False,False
+(Senior) DevOps Engineer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+.NET Developer (Product Bảo Hiểm),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Chuyên gia bảo mật & chất lượng (trung tâm cuộc gọi),1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+.NET Nhà phát triển (sản phẩm bảo hiểm),1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Chuyên gia danh mục thẻ cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+.Net Developer (Bank Project),1,tài_chính_kế_toán_ngân_hàng_bảo_hiểm,False,True,False,True,False,False
+Chuyên gia giám sát hệ thống,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+2D Artis Game Mobile,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+2D Artist,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+2D Background Artist,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+2D Concept Artist | Thiết Kế Ý Tưởng (Junior),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+2D Design,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+2D Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,True,False
+2D Designer (UX/UI),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên gia giải pháp hệ thống cao cấp,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+2D UI/UX Artist (Game),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+UI/UX Designer (Mobile/Web App),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+UI/UX Designer - Mobile App,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+UI/UX Manager,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+UX Writer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Ui/Ux Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+VFX Artist,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên gia mua lại người dùng (ứng dụng/trò chơi di động),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Video Editor 2D Animation (Hoạt Hình Trẻ Em),1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Video/Camera Editor,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Vận Hành Dự Án Game,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Web Designer,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Chuyên gia phát triển kinh doanh,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,True,False,False,False
+Web Developer (PHP),1,công_nghệ_thông_tin_kỹ_thuật_số,True,True,False,True,False,False
+Xuất bản nội dung AI,1,marketing_truyền_thông_quảng_cáo_nội_dung,False,True,False,True,False,False
+[Model App] - CVC Phân Tích Nghiệp Vụ,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
+Điều hành hợp tác,1,công_nghệ_thông_tin_kỹ_thuật_số,True,False,False,True,False,False
