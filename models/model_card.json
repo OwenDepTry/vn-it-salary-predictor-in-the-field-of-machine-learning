@@ -1,0 +1,137 @@
+{
+  "model": "linear_regression",
+  "params": {
+    "skill_top_k": 15
+  },
+  "selected_by": "1-SD: mô hình đơn giản nhất có MAE CV ≤ MAE nhỏ nhất + 1 độ lệch chuẩn",
+  "feature_columns": [
+    "job_category",
+    "city",
+    "seniority_coarse",
+    "experience_years",
+    "experience_group",
+    "skills"
+  ],
+  "used_columns": [
+    "job_category",
+    "city",
+    "seniority_coarse",
+    "experience_years",
+    "skills"
+  ],
+  "target": "salary_label",
+  "unit": "triệu VND/tháng",
+  "n_train": 363,
+  "n_test": 86,
+  "n_train_groups": 339,
+  "allowed": {
+    "job_category": [
+      "Dữ liệu & AI",
+      "Hạ tầng, DevOps & bảo mật",
+      "Hỗ trợ kỹ thuật & IT chung",
+      "Kiểm thử & QA",
+      "Phát triển phần mềm",
+      "Quản lý & phân tích (PM/BA/PO)",
+      "Triển khai & ERP"
+    ],
+    "city": [
+      "Hà Nội",
+      "Khác",
+      "Nhiều thành phố",
+      "TP.HCM",
+      "Đà Nẵng"
+    ],
+    "seniority": [
+      "intern",
+      "fresher",
+      "junior",
+      "middle",
+      "senior",
+      "lead",
+      "manager",
+      "unknown"
+    ]
+  },
+  "train_counts": {
+    "job_category": {
+      "Phát triển phần mềm": 134,
+      "Quản lý & phân tích (PM/BA/PO)": 62,
+      "Hỗ trợ kỹ thuật & IT chung": 50,
+      "Hạ tầng, DevOps & bảo mật": 36,
+      "Kiểm thử & QA": 35,
+      "Triển khai & ERP": 26,
+      "Dữ liệu & AI": 20
+    },
+    "city": {
+      "Hà Nội": 250,
+      "TP.HCM": 68,
+      "Khác": 32,
+      "Đà Nẵng": 8,
+      "Nhiều thành phố": 5
+    },
+    "seniority_coarse": {
+      "unknown": 301,
+      "lead_manager": 26,
+      "entry": 21,
+      "senior": 15
+    }
+  },
+  "experience_years_range": [
+    0.0,
+    6.0
+  ],
+  "skills_vocabulary": [
+    "git",
+    "javascript",
+    "python",
+    "java",
+    "docker",
+    "react",
+    "sql",
+    "postgresql",
+    "html",
+    "css",
+    "rest api",
+    "sql server",
+    "mysql",
+    "jira",
+    "kubernetes"
+  ],
+  "label_range_train": [
+    3.5,
+    70.0
+  ],
+  "residual_interval_oof": {
+    "p10": -8.175918259408764,
+    "p90": 8.74276246633841,
+    "test_coverage": 0.8837209302325582
+  },
+  "cv_metrics": {
+    "mae_mean": 5.535045165031557,
+    "mae_std": 0.9977758185092919,
+    "mae_se": 0.44621891129845387,
+    "rmse_mean": 7.587608510178891,
+    "r2_mean": 0.40790677305834544,
+    "n_folds": 5
+  },
+  "test_metrics": {
+    "mae_mean": 4.640978060831355,
+    "rmse": 5.78558694937099,
+    "r2": 0.5344506720712539,
+    "mae_ci_low": 3.912718258705763,
+    "mae_ci_high": 5.419051724953876,
+    "n_test": 86
+  },
+  "baseline_test_metrics": {
+    "mae": 5.93546511627907,
+    "rmse": 8.482404839458273,
+    "r2": -0.000711398857270451
+  },
+  "random_state": 42,
+  "data_sha256": {
+    "vietjobs": "85862b06fda4e814fe0c1d8622f173d189c92758345f77df16d1232d0c49d477",
+    "it_job_posting": "68c70420d9a12381a5731f0dbee1cc2b4d2123a94882eb95bd0104a1201e8b69"
+  },
+  "created_utc": "2026-11-07T13:02:55+00:00",
+  "disclaimer": "Kết quả chỉ mang tính tham khảo, phản ánh mức lương ĐĂNG TUYỂN trong dữ liệu VietJobs, không phải mức lương thực nhận."
+}

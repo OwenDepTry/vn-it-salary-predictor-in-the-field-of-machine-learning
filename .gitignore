@@ -1,0 +1,30 @@
+# Python environment and cache
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Raw datasets
+data/raw/**/*.csv
+
+# Ignore generated data
+data/interim/
+data/processed/
+
+# Test temp
+pytest_temp/
+
+# Mô hình đã huấn luyện (tạo lại bằng src/evaluate.py)
+models/*.joblib
+
+# Trình soạn code / hệ điều hành
+.vscode/
+.idea/
+desktop.ini
+Thumbs.db
+~$*
+
+# Tài liệu Word/PDF
+*.docx
+*.pdf

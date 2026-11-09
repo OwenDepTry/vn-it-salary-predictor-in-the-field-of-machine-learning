@@ -1,0 +1,22 @@
+GĐ3 – BASELINE VÀ LINEAR REGRESSION (GroupKFold, chỉ tập train)
+Ngày chạy: 2026-11-07 18:01
+Train: 363 tin, 339 nhóm, 5 fold, random_state=42
+Nhãn salary_label: trung vị 20.00, khoảng [3.5, 70.0] triệu/tháng
+
+dummy_median       MAE 7.713 ± 0.722 (SE 0.323)  RMSE 10.051  R² -0.043  {}
+linear_regression  MAE 5.739 ± 0.642 (SE 0.287)  RMSE 7.775  R² 0.377  {}
+
+LR giảm MAE 1.974 triệu so với baseline (25.6%).
+
+10 hệ số LR có trị tuyệt đối lớn nhất (triệu/tháng, fit trên toàn bộ train):
+                                    feature  coefficient
+                                  skill_aws       11.001
+                           skill_typescript       -7.671
+                           skill_javascript        7.280
+                                skill_kafka        7.253
+                     seniority_coarse_entry       -5.354
+              seniority_coarse_lead_manager        4.153
+                               skill_oracle        4.126
+                              skill_mongodb       -4.110
+job_category_Quản lý & phân tích (PM/BA/PO)        4.088
+                           experience_years        3.797

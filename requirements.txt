@@ -1,0 +1,22 @@
+# requirements.txt
+# Thư viện dùng trực tiếp, khóa đúng phiên bản đã chạy toàn bộ dự án (pip freeze ngày 14/10/2026,
+# Python 3.13.12, Windows).
+# Các thư viện phụ thuộc gián tiếp sẽ được pip tự cài.
+
+# Dữ liệu & mô hình
+pandas==3.0.6
+numpy==2.5.4
+scikit-learn==1.9.1
+joblib==1.6.0
+matplotlib==3.11.2
+
+# Ứng dụng
+streamlit==1.65.0
+
+# Notebook (GĐ2 EDA)
+jupyterlab==4.6.4
+ipykernel==7.4.0
+nbconvert==7.17.2
+
+# Kiểm thử (GĐ7)
+pytest==9.1.1
