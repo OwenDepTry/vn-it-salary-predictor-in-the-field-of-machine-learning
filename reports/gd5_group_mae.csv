@@ -1,22 +1,22 @@
 ﻿column,group,n,mae,mae_dummy,median_label,median_pred,kết luận?
-experience_group,2 năm,33,4.05,3.11,20.0,22.12,có
-experience_group,1 năm,20,4.06,4.95,15.5,16.26,có
-experience_group,3 năm,16,5.5,4.59,20.75,25.97,có
-experience_group,0 (không yêu cầu),7,4.18,11.85,9.0,12.45,không (n nhỏ)
-experience_group,4+ năm,7,7.94,17.86,32.5,36.2,không (n nhỏ)
-experience_group,<1 năm,3,3.8,9.17,9.5,14.59,không (n nhỏ)
-job_category,Phát triển phần mềm,30,4.25,5.82,18.5,21.03,có
-job_category,Quản lý & phân tích (PM/BA/PO),20,5.58,7.05,20.0,24.36,có
-job_category,"Hạ tầng, DevOps & bảo mật",10,4.41,4.1,20.25,22.97,có
-job_category,Triển khai & ERP,9,3.68,4.44,17.0,19.01,không (n nhỏ)
-job_category,Hỗ trợ kỹ thuật & IT chung,7,4.04,6.86,12.5,18.45,không (n nhỏ)
-job_category,Dữ liệu & AI,5,5.67,8.8,22.5,22.65,không (n nhỏ)
-job_category,Kiểm thử & QA,5,5.24,4.4,20.0,19.8,không (n nhỏ)
-city,Hà Nội,66,4.35,5.49,20.0,21.45,có
-city,TP.HCM,15,5.11,5.56,17.0,21.25,có
-city,Khác,3,0.97,6.83,11.5,13.87,không (n nhỏ)
-city,Đà Nẵng,2,16.13,22.0,38.0,30.41,không (n nhỏ)
-seniority_coarse,unknown,71,4.44,5.05,20.0,21.48,có
-seniority_coarse,entry,9,4.11,8.11,12.5,14.88,không (n nhỏ)
-seniority_coarse,senior,4,4.97,6.62,25.0,24.35,không (n nhỏ)
-seniority_coarse,lead_manager,2,13.64,26.25,46.25,32.61,không (n nhỏ)
+experience_group,2 năm,33,4.04,3.11,20.0,21.24,có
+experience_group,1 năm,20,4.01,4.95,15.5,15.82,có
+experience_group,3 năm,16,6.03,4.59,20.75,26.53,có
+experience_group,0 (không yêu cầu),7,4.29,11.85,9.0,11.88,không (n nhỏ)
+experience_group,4+ năm,7,7.63,17.86,32.5,35.96,không (n nhỏ)
+experience_group,<1 năm,3,3.96,9.17,9.5,15.82,không (n nhỏ)
+job_category,Phát triển phần mềm,30,4.23,5.82,18.5,20.49,có
+job_category,Quản lý & phân tích (PM/BA/PO),20,5.54,7.05,20.0,24.24,có
+job_category,"Hạ tầng, DevOps & bảo mật",10,5.12,4.1,20.25,22.14,có
+job_category,Triển khai & ERP,9,3.76,4.44,17.0,18.96,không (n nhỏ)
+job_category,Hỗ trợ kỹ thuật & IT chung,7,4.03,6.86,12.5,17.99,không (n nhỏ)
+job_category,Dữ liệu & AI,5,5.59,8.8,22.5,22.68,không (n nhỏ)
+job_category,Kiểm thử & QA,5,5.25,4.4,20.0,20.4,không (n nhỏ)
+city,Hà Nội,66,4.36,5.49,20.0,20.79,có
+city,TP.HCM,15,5.41,5.56,17.0,21.15,có
+city,Khác,3,1.71,6.83,11.5,14.98,không (n nhỏ)
+city,Đà Nẵng,2,15.55,22.0,38.0,30.97,không (n nhỏ)
+seniority_coarse,unknown,71,4.51,5.05,20.0,21.11,có
+seniority_coarse,entry,9,4.2,8.11,12.5,14.81,không (n nhỏ)
+seniority_coarse,senior,4,5.53,6.62,25.0,24.05,không (n nhỏ)
+seniority_coarse,lead_manager,2,12.65,26.25,46.25,33.6,không (n nhỏ)

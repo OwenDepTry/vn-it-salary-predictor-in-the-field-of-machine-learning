@@ -10,7 +10,8 @@ IT được xác định **theo chức danh**, không theo category của datase
 Thứ tự áp dụng:
 1. **Loại trừ** nếu chức danh thuộc một trong các nhóm: kinh doanh / bán hàng / marketing / SEO / CSKH;
    tư vấn (trừ "tư vấn triển khai"); thiết kế / đồ họa / UI-UX / 3D / nội thất / video / nội dung;
-   lập trình máy công cụ (CNC, PLC, phay, tiện); an ninh / bảo vệ; kế toán / thủ kho / thu ngân /
+   lập trình máy công cụ (CNC, PLC, phay, tiện); an ninh / bảo vệ (trừ an ninh mạng,
+   an ninh thông tin, an toàn thông tin, cyber); kế toán / thủ kho / thu ngân /
    hành chính / văn phòng (trừ khi có chữ "IT"); giảng dạy; bất động sản; presales / phát triển khách hàng
    / thị trường; gán nhãn dữ liệu / huấn luyện viên AI; smarthome / KNX; giám sát camera.
 2. **Vai trò IT** (khớp đầu tiên):
@@ -19,8 +20,9 @@ Thứ tự áp dụng:
    | Quản lý & phân tích (PM/BA/PO) | BrSE, Scrum Master, IT PM/BA | Có, trừ BrSE/Scrum/có chữ "IT" |
    | Triển khai & ERP | ERP, SAP, Odoo, triển khai phần mềm | "triển khai" chung chung: có |
    | Kiểm thử & QA | Tester, kiểm thử, QA/QC engineer | "QA"/"QC" đơn lẻ: có |
+   | Phát triển phần mềm (nhúng) | "nhúng" (so có dấu), embedded, firmware; xét trước các dòng dưới để "Kỹ sư Linux nhúng", "Kỹ Sư IT- Nhúng" vào đúng nhóm | Không |
    | Dữ liệu & AI | Data engineer/scientist, ML, AI engineer | Data analyst / BI: có |
-   | Hạ tầng, DevOps & bảo mật | DevOps, cloud, sysadmin, network, security | Không |
+   | Hạ tầng, DevOps & bảo mật | DevOps, cloud, sysadmin, network, security, an ninh mạng, an toàn thông tin, redteam | Không |
    | Hỗ trợ kỹ thuật & IT chung | Helpdesk, IT support, "Nhân viên IT" | "hỗ trợ kỹ thuật" chung chung: có |
    | Phát triển phần mềm | Developer, lập trình, kỹ sư phần mềm, nhà phát triển | "engineer"/"kỹ sư" chung chung: có |
 3. Từ dễ va chạm khi bỏ dấu được so khớp có dấu hoặc phân biệt hoa thường:
