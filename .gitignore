@@ -10,7 +10,9 @@ data/raw/**/*.csv
 
 # Ignore generated data
 data/interim/
-data/processed/
+data/processed/*
+# split train/test được cố định và lưu lại để mọi người chạy ra cùng kết quả
+!data/processed/split.csv
 
 # Test temp
 pytest_temp/

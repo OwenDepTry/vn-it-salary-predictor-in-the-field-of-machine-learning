@@ -1,48 +1,48 @@
 feature,coefficient
-skill_aws,11.001229122429125
-skill_typescript,-7.670537421807113
-skill_javascript,7.279550789011456
-skill_kafka,7.253175919256492
-seniority_coarse_entry,-5.3540254544176475
-seniority_coarse_lead_manager,4.152818082981085
-skill_oracle,4.1256671736012684
-skill_mongodb,-4.1102396697850825
-job_category_Quản lý & phân tích (PM/BA/PO),4.087661193263751
-experience_years,3.7969957370160436
-skill_tin học văn phòng,-3.793889493299174
-skill_kubernetes,-3.4915396512972636
-skill_nodejs,-3.4845806434308715
-skill_mysql,-3.388523775538278
-job_category_Hỗ trợ kỹ thuật & IT chung,-3.217824854287385
-skill_c#,-2.8677747440271935
-skill_java,2.8293051321700626
-skill_css,-2.683765723226015
-skill_html,-2.683765723226004
-city_TP.HCM,2.581154496453955
-skill_postgresql,2.2146110281622278
-city_Khác,-2.1542083104605902
-skill_sql server,1.986517616998807
-skill_react,1.935121354264533
-skill_docker,1.7977293150692653
-skill_phân tích nghiệp vụ,-1.6622555099735943
-skill_php,1.6579657945315665
-job_category_Dữ liệu & AI,1.6367630067537164
-job_category_Kiểm thử & QA,-1.6282283562842237
-skill_linux,-1.4691699224861305
-city_infrequent_sklearn,-1.336026788407004
-skill_sql,1.0574090943780692
-city_Hà Nội,0.9090806024136373
-skill_jira,-0.8012602249121303
-seniority_coarse_senior,0.76511887064392
-job_category_Triển khai & ERP,-0.6379507074354409
-skill_.net,-0.5317519797288844
-skill_angular,0.45439165168864704
-seniority_coarse_unknown,0.43608850079264766
-skill_python,-0.26109576423035513
-skill_rest api,-0.25056916426984266
-skill_ci/cd,-0.23424642367430956
-"job_category_Hạ tầng, DevOps & bảo mật",-0.2283178648128349
-skill_spring boot,0.20238012469872893
-skill_git,-0.1256635311969031
-job_category_Phát triển phần mềm,-0.012102417197587824
-intercept,11.62469018099019
+skill_aws,11.168203733079471
+skill_typescript,-7.83011065275988
+skill_javascript,7.7866867610740655
+skill_kafka,6.838505180809131
+seniority_coarse_entry,-5.487536955124639
+seniority_coarse_lead_manager,5.010929253376188
+skill_oracle,4.142760432372591
+job_category_Quản lý & phân tích (PM/BA/PO),4.052791074616007
+skill_mongodb,-3.8345275235687684
+experience_years,3.819776969564015
+skill_java,3.7127766660127373
+skill_mysql,-3.7028525684470117
+job_category_Hỗ trợ kỹ thuật & IT chung,-3.5084493288895953
+skill_kubernetes,-3.3544341604455576
+skill_c#,-3.2618289945048033
+skill_nodejs,-3.0648749000642947
+city_TP.HCM,2.9008005624729987
+skill_html,-2.71911902095469
+skill_css,-2.71911902095469
+skill_postgresql,2.6454646697656514
+city_Khác,-2.1781066321668114
+skill_sql server,1.9028665324247398
+skill_nosql,-1.806376111779568
+skill_docker,1.7586762769546946
+skill_react,1.7128007555252993
+skill_sql,1.6957876869071307
+job_category_Kiểm thử & QA,-1.6929148252392765
+job_category_Dữ liệu & AI,1.5794069839609737
+city_infrequent_sklearn,-1.541916498357969
+skill_phân tích nghiệp vụ,-1.512779273679775
+skill_php,1.4084541664998729
+skill_linux,-1.3461890890137098
+job_category_Triển khai & ERP,-1.3219664770640118
+"job_category_Hạ tầng, DevOps & bảo mật",0.8234873554081132
+city_Hà Nội,0.8192225680517857
+skill_jira,-0.6614608604899042
+skill_git,-0.435030803728289
+skill_rest api,-0.3775423730729409
+seniority_coarse_senior,0.2764571679605257
+skill_spring boot,-0.27272460631635587
+skill_python,-0.2536756492032306
+skill_.net,-0.23229917038922243
+seniority_coarse_unknown,0.2001505337879249
+skill_ci/cd,-0.15602099329318986
+skill_angular,0.0841566492770248
+job_category_Phát triển phần mềm,0.06764521720779086
+intercept,11.66860573125747

@@ -135,8 +135,9 @@ EXCLUDE_RULES = [
     ("lập trình máy công cụ/tự động hóa/thiết bị",
      lambda a, t, raw: bool(re.search(r"\bcnc\b|\bplc\b|phay|máy tiện|tiện,|tiện\b|may tien|robot han|khuon"
                                       r"|smart ?home|\bknx\b", t + " " + a))),
-    ("an ninh/bảo vệ",
-     lambda a, t, raw: bool(re.search(r"an ninh|bao ve|giam sat camera", a))),
+    ("an ninh/bảo vệ",   # bảo vệ, an ninh tòa nhà; KHÔNG loại an ninh mạng / an toàn thông tin
+     lambda a, t, raw: bool(re.search(r"an ninh|bao ve|giam sat camera", a))
+     and not bool(re.search(r"an ninh mang|an ninh thong tin|an toan thong tin|cyber", a))),
     ("kế toán/hành chính/văn phòng",
      lambda a, t, raw: bool(re.search(r"ke toan|thu kho|thu ngan|hanh chinh|nhap lieu|le tan", a))
      or ("van phong" in a and not re.search(r"\bIT\b", raw))),
@@ -173,6 +174,10 @@ ROLE_RULES = [
      lambda a, t, raw: bool(re.search(r"người thử nghiệm|người kiểm tra", t))),
     ("Kiểm thử & QA", "qa_qc_generic", True,
      lambda a, t, raw: bool(re.search(r"\bqa\b|\bqc\b", a))),
+    # Lập trình nhúng: xét TRƯỚC "linux"/"IT" chung để vai trò chuyên môn được ưu tiên
+    # (vd. "Kỹ sư Linux nhúng", "Kỹ Sư IT- Nhúng"). So "nhúng" có dấu để không nhầm "nhưng", "Nhung".
+    ("Phát triển phần mềm", "dev", False,
+     lambda a, t, raw: bool(re.search(r"nhúng", t)) or bool(re.search(r"embedded|firmware", a))),
     ("Dữ liệu & AI", "data_ai", False,
      lambda a, t, raw: bool(re.search(
          r"data engineer|data scientist|machine learning|\bml\b|deep learning|computer vision|\bnlp\b|\bllm\b"
@@ -185,6 +190,7 @@ ROLE_RULES = [
      lambda a, t, raw: bool(re.search(
          r"devops|\bsre\b|\bcloud\b|sysadmin|system admin|system engineer|quan tri he thong|quan tri mang"
          r"|network|ky su mang|ky thuat mang|cyber|bao mat|security|pentest|\bdba\b|database admin"
+         r"|an ninh mang|an ninh thong tin|an toan thong tin|red ?team|blue ?team"
          r"|quan tri co so du lieu|\blinux\b|kubernetes|ha tang (it|mang|cntt|cong nghe)", a))
      or bool(re.search(r"\bSOC\b", raw))),
     ("Hỗ trợ kỹ thuật & IT chung", "it_support", False,
