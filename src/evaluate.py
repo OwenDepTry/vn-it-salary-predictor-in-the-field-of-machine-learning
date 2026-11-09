@@ -11,6 +11,7 @@ Chạy (bước 7 của README):
     python src/evaluate.py
 """
 import argparse
+import hashlib
 import datetime
 import json
 import sys
@@ -245,6 +246,32 @@ def _plots(pred_df, title):
     plt.close(fig)
 
 
+def data_fingerprint(train, test):
+    """Dấu vân tay (sha256) của dữ liệu train và cách chia train/test.
+
+    - train_data_sha256: row_id, các cột đặc trưng và nhãn của tập train.
+    - split_sha256: danh sách row_id của train và test (chỉ id, không đọc nhãn test).
+    Không phụ thuộc thứ tự dòng hay ký tự xuống dòng của hệ điều hành.
+    """
+    cols = ["row_id"] + list(FEATURE_COLUMNS) + [TARGET]
+    tr = train[cols].sort_values("row_id").to_csv(index=False, float_format="%.6f", lineterminator="\n")
+    split = ("train:" + ",".join(map(str, sorted(train["row_id"]))) +
+             "|test:" + ",".join(map(str, sorted(test["row_id"]))))
+    return {"train_data_sha256": hashlib.sha256(tr.encode("utf-8")).hexdigest(),
+            "split_sha256": hashlib.sha256(split.encode("utf-8")).hexdigest()}
+
+
+def verify_fingerprint(card, fingerprint):
+    """Dừng nếu dữ liệu train/split hiện tại khác lúc đánh giá GĐ5 (theo model_card.json)."""
+    saved = card.get("data_fingerprint")
+    if not saved:
+        sys.exit("model_card.json chưa có data_fingerprint: chạy lại GĐ5 bằng `python src/evaluate.py --force`.")
+    changed = [k for k in ("train_data_sha256", "split_sha256") if saved.get(k) != fingerprint[k]]
+    if changed:
+        sys.exit(f"Dữ liệu hiện tại khác lúc đánh giá GĐ5 ({', '.join(changed)} không khớp): "
+                 "metric trong model_card.json không còn đúng. Chạy lại toàn bộ GĐ2–GĐ5.")
+
+
 def final_evaluation(force=False):
     out_txt = REPORTS / "gd5_final_output.txt"
     if out_txt.exists() and not force:
@@ -346,6 +373,7 @@ def final_evaluation(force=False):
         "target": TARGET,
         "unit": "triệu VND/tháng",
         "n_train": int(len(train)),
+        "data_fingerprint": data_fingerprint(train, test),
         "n_test": int(len(test)),
         "n_train_groups": int(g_tr.nunique()),
         # seniority: giá trị thô người dùng chọn; mô hình chỉ thấy seniority_coarse.
@@ -381,9 +409,10 @@ def final_evaluation(force=False):
 def rebuild_model():
     """Tạo lại models/salary_model.joblib từ cấu hình đã chốt ở GĐ4, CHỈ fit trên tập train.
 
-    Không đọc nhãn tập test và không ghi lại kết quả GĐ5, nên dùng được trên bản clone mới
-    (repo không lưu file .joblib). Kiểm tra từ vựng kỹ năng khớp models/model_card.json để
-    chắc chắn mô hình tạo lại giống mô hình đã được đánh giá.
+    Không dùng nhãn tập test và không ghi lại kết quả GĐ5, nên dùng được trên bản clone mới
+    (repo không lưu file .joblib). Trước khi fit, đối chiếu dấu vân tay dữ liệu train và split
+    với models/model_card.json; sau khi fit, đối chiếu từ vựng kỹ năng. Nếu dữ liệu đã đổi thì
+    dừng, vì metric trong model card không còn đúng với mô hình mới.
     """
     if not SELECTED_JSON.exists():
         sys.exit("Chưa có reports/gd4_selected_model.json: chạy `python src/train.py --stage gd4` trước.")
@@ -395,7 +424,8 @@ def rebuild_model():
     if card.get("model") != selected["model"] or card.get("params") != selected["params"]:
         sys.exit("model_card.json không khớp gd4_selected_model.json: chạy lại GĐ5 bằng "
                  "`python src/evaluate.py --force`.")
-    train, _ = load_train_test()
+    train, test = load_train_test()
+    verify_fingerprint(card, data_fingerprint(train, test))
     pipe = make_pipeline(selected["model"], selected["params"])
     pipe.fit(train[FEATURE_COLUMNS], train[TARGET].to_numpy(float))
     if _skills_vocabulary(pipe) != card["skills_vocabulary"]:
