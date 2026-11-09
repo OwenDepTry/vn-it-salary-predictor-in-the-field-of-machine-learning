@@ -249,6 +249,7 @@ def final_evaluation(force=False):
     out_txt = REPORTS / "gd5_final_output.txt"
     if out_txt.exists() and not force:
         sys.exit("Tập test đã được dùng (reports/gd5_final_output.txt đã có). "
+                 "Để tạo lại file mô hình mà không chấm lại test: `python src/evaluate.py --rebuild-model`. "
                  "Chỉ chạy lại với --force khi chắc chắn KHÔNG đổi mô hình theo kết quả test.")
     if not SELECTED_JSON.exists():
         sys.exit("Chưa có reports/gd4_selected_model.json: chạy `python src/train.py --stage gd4` trước.")
@@ -377,8 +378,45 @@ def final_evaluation(force=False):
     return card
 
 
+def rebuild_model():
+    """Tạo lại models/salary_model.joblib từ cấu hình đã chốt ở GĐ4, CHỈ fit trên tập train.
+
+    Không đọc nhãn tập test và không ghi lại kết quả GĐ5, nên dùng được trên bản clone mới
+    (repo không lưu file .joblib). Kiểm tra từ vựng kỹ năng khớp models/model_card.json để
+    chắc chắn mô hình tạo lại giống mô hình đã được đánh giá.
+    """
+    if not SELECTED_JSON.exists():
+        sys.exit("Chưa có reports/gd4_selected_model.json: chạy `python src/train.py --stage gd4` trước.")
+    card_path = MODELS / "model_card.json"
+    if not card_path.exists():
+        sys.exit("Chưa có models/model_card.json: chạy `python src/evaluate.py` (GĐ5) trước.")
+    selected = json.loads(SELECTED_JSON.read_text(encoding="utf-8"))
+    card = json.loads(card_path.read_text(encoding="utf-8"))
+    if card.get("model") != selected["model"] or card.get("params") != selected["params"]:
+        sys.exit("model_card.json không khớp gd4_selected_model.json: chạy lại GĐ5 bằng "
+                 "`python src/evaluate.py --force`.")
+    train, _ = load_train_test()
+    pipe = make_pipeline(selected["model"], selected["params"])
+    pipe.fit(train[FEATURE_COLUMNS], train[TARGET].to_numpy(float))
+    if _skills_vocabulary(pipe) != card["skills_vocabulary"]:
+        sys.exit("Từ vựng kỹ năng của mô hình tạo lại khác model_card.json: dữ liệu train đã đổi. "
+                 "Chạy lại toàn bộ GĐ2–GĐ5.")
+    MODELS.mkdir(parents=True, exist_ok=True)
+    joblib.dump(pipe, MODELS / "salary_model.joblib")
+    print(f"Đã tạo lại models/salary_model.joblib: {selected['model']} {selected['params']}, "
+          f"fit trên {len(train)} tin train (không dùng tập test).")
+    return pipe
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description="GĐ5: đánh giá cuối trên tập test")
     ap.add_argument("--force", action="store_true",
                     help="cho phép chạy lại khi đã có gd5_final_output.txt")
-    final_evaluation(force=ap.parse_args().force)
+    ap.add_argument("--rebuild-model", action="store_true",
+                    help="chỉ tạo lại models/salary_model.joblib từ cấu hình GĐ4 (fit trên train, "
+                         "không dùng tập test); dùng khi clone repo về")
+    args = ap.parse_args()
+    if args.rebuild_model:
+        rebuild_model()
+    else:
+        final_evaluation(force=args.force)
