@@ -4,8 +4,8 @@
 
 - **Bộ dữ liệu chính:** [VietJobs](https://huggingface.co/datasets/dinhieufam/VietJobs) (48.092 bản ghi, 18 cột)
 - **Bộ dữ liệu phụ (chỉ để khảo sát):** IT-Job-Posting (3.101 bản ghi, không có cột lương)
-- **Tập sạch sau lọc IT và tạo nhãn:** 449 tin; tập test: 86 tin
-- **Kết quả trên tập test:** Linear Regression, MAE ≈ 4,64 triệu, R² ≈ 0,53
+- **Tập sạch sau lọc IT và tạo nhãn:** 456 tin; train 370 tin, test 86 tin
+- **Kết quả trên tập test:** Linear Regression, MAE ≈ 4,71 triệu, R² ≈ 0,52
 
 > ⚠️ Kết quả dự đoán chỉ mang tính tham khảo, phản ánh mức lương *đăng tuyển* trong dữ liệu, không phải mức lương thực nhận.
 
@@ -48,7 +48,7 @@
 │   ├── train.py                  # Baseline, LR (GĐ3); DT, RF + grid search (GĐ4)
 │   ├── evaluate.py               # Metric, CV theo nhóm, bootstrap, đánh giá cuối
 │   └── predict.py                # SalaryPredictor + CLI
-├── tests/                        # 77 test (pytest)
+├── tests/                        # 89 test (pytest)
 ├── requirements.txt
 └── README.md
 ```
@@ -101,7 +101,7 @@ python notebooks/01b_data_audit.py
 python src/data_cleaning.py
 ```
 
-Lọc vị trí IT, parse lương ("0.0 triệu" được coi là thỏa thuận), kinh nghiệm, thành phố, cấp bậc, kỹ năng. Đầu ra: `data/interim/vietjobs_it_candidates.csv`, `data/processed/it_salary_clean.csv` (449 tin), `reports/gd2_cleaning_log.txt`. Các luật làm sạch được ghi trong `reports/cleaning_rules.md`.
+Lọc vị trí IT, parse lương ("0.0 triệu" được coi là thỏa thuận), kinh nghiệm, thành phố, cấp bậc, kỹ năng. Đầu ra: `data/interim/vietjobs_it_candidates.csv`, `data/processed/it_salary_clean.csv` (456 tin), `reports/gd2_cleaning_log.txt`. Các luật làm sạch được ghi trong `reports/cleaning_rules.md`.
 
 ### Bước 4 – Khám phá dữ liệu (EDA, GĐ2)
 
@@ -117,7 +117,7 @@ Chạy toàn bộ các ô. Đầu ra: `reports/gd2_eda_output.txt` và 7 hình `
 python src/train.py
 ```
 
-Tạo `data/processed/split.csv` (chỉ tạo lần đầu, chia theo nhóm tin đăng lại để chống rò rỉ), huấn luyện DummyRegressor và Linear Regression bằng GroupKFold 5 fold. Đầu ra: `reports/model_results.csv`, `reports/gd3_train_output.txt`, `reports/gd3_lr_coefficients.csv`.
+Dùng `data/processed/split.csv` đã lưu trong repo (chia theo nhóm tin đăng lại để chống rò rỉ; chỉ tạo mới khi chưa có file), huấn luyện DummyRegressor và Linear Regression bằng GroupKFold 5 fold. Đầu ra: `reports/model_results.csv`, `reports/gd3_train_output.txt`, `reports/gd3_lr_coefficients.csv`.
 
 ### Bước 6 – Tinh chỉnh và chọn mô hình (GĐ4)
 
@@ -182,9 +182,9 @@ Giá trị đầu vào phải nằm trong danh sách của `--list`; kinh nghi�
 python -m pytest tests -q
 ```
 
-Kết quả mong đợi: **77 passed**. Bộ test bao gồm:
+Kết quả mong đợi: **89 passed**. Bộ test bao gồm:
 
-- `test_data_cleaning.py` (27) – parse lương, kinh nghiệm, thành phố, chuẩn hóa kỹ năng, 38 chức danh mẫu của bộ lọc IT
+- `test_data_cleaning.py` (39) – parse lương, kinh nghiệm, thành phố, chuẩn hóa kỹ năng, 38 chức danh mẫu của bộ lọc IT, an ninh mạng và lập trình nhúng
 - `test_features.py` (5) – gộp nhóm tin đăng lại, không nhóm nào nằm ở cả train và test, từ vựng kỹ năng chỉ học từ dữ liệu fit
 - `test_train_evaluate.py` (12) – metric, GroupKFold, bootstrap theo nhóm, MAE theo nhóm, quy tắc 1 độ lệch chuẩn, dấu vân tay dữ liệu khi tạo lại mô hình
 - `test_predict_invalid_input.py` (33) – 15 kiểu đầu vào sai bị từ chối; đầu vào hợp lệ trả về đơn vị và câu miễn trừ; dự đoán ngoài khoảng lương của train không hiển thị con số
@@ -196,7 +196,8 @@ Kết quả mong đợi: **77 passed**. Bộ test bao gồm:
 ## Nguyên tắc tái lập và chống rò rỉ
 
 - `random_state=42` ở mọi bước.
-- `split.csv` chỉ tạo một lần, **không tạo lại**; các tin đăng lại (kể cả bắc cầu) được gộp cùng nhóm và luôn nằm cùng phía train hoặc test.
+- `split.csv` chỉ tạo một lần, **không tạo lại**, và được lưu trong repo để mọi người chạy ra cùng kết quả; các tin đăng lại (kể cả bắc cầu) được gộp cùng nhóm và luôn nằm cùng phía train hoặc test.
+- Khi sửa bộ lọc IT (giữ thêm 7 tin an ninh mạng / lập trình nhúng) sau khi đã đánh giá trên test, tập test **giữ nguyên 86 tin cũ**; 7 tin mới không trùng nhóm với tin test nào nên được đưa vào train.
 - Tập test chỉ được dùng **một lần**, sau khi đã chọn xong mô hình.
 - Từ vựng kỹ năng và tiền xử lý chỉ học từ dữ liệu train.
 - Mọi con số trong báo cáo đều lấy từ file trong `reports/`.

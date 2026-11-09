@@ -64,3 +64,27 @@ def test_it_title_rules_self_check():
                                    "Nhân Viên Kinh Doanh Phần Mềm", "Nhân Viên Lập Trình Máy Tiện CNC"])
 def test_non_it_titles_excluded(title):
     assert dc.classify_title(title, dc.IT_CATEGORY)[0] is False
+
+
+@pytest.mark.parametrize("title", ["Trưởng Nhóm An Ninh Mạng/ Cyber Security Lead", "Chuyên Viên An Ninh Mạng",
+                                   "Kỹ Sư An Ninh Mạng", "Đánh Giá An Toàn Thông Tin (Redteam)"])
+def test_cyber_security_titles_kept_as_security(title):
+    is_it, job_category, _, _ = dc.classify_title(title, dc.IT_CATEGORY)
+    assert is_it is True
+    assert job_category == "Hạ tầng, DevOps & bảo mật"
+
+
+@pytest.mark.parametrize("title", ["Nhân Viên An Ninh", "Bảo Vệ Tòa Nhà", "Security Manager - Phụ Trách An Ninh",
+                                   "Chuyên Viên Kinh Doanh Dịch Vụ An Toàn Thông Tin"])
+def test_physical_security_and_sales_still_excluded(title):
+    assert dc.classify_title(title, dc.IT_CATEGORY)[0] is False
+
+
+@pytest.mark.parametrize("title", ["Fresher C/nhúng", "Kỹ sư Linux nhúng", "Kỹ Sư IT- Nhúng"])
+def test_embedded_titles_are_software_development(title):
+    is_it, job_category, role, _ = dc.classify_title(title, dc.IT_CATEGORY)
+    assert (is_it, job_category, role) == (True, "Phát triển phần mềm", "embedded")
+
+
+def test_name_nhung_without_accent_is_not_embedded():
+    assert dc.classify_title("Nhân viên Nhung", dc.IT_CATEGORY)[0] is False
