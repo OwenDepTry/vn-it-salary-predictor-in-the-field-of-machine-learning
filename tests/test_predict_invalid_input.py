@@ -91,3 +91,45 @@ def test_no_warning_for_typical_input(predictor):
 def test_missing_model_files_give_clear_error(tmp_path):
     with pytest.raises(FileNotFoundError):
         SalaryPredictor(tmp_path / "none.joblib", tmp_path / "none.json")
+
+
+# ----------------------------------------------------------------------------- kết quả ngoài khoảng train
+class _FixedModel:
+    """Mô hình giả trả về một giá trị cố định, để thử các dự đoán bất thường."""
+
+    def __init__(self, value):
+        self.value = value
+
+    def predict(self, X):
+        return [self.value] * len(X)
+
+
+@pytest.mark.parametrize("value", [-8.8, 0.0, 1000.0])
+def test_out_of_range_prediction_is_not_shown(predictor, value):
+    predictor.model = _FixedModel(value)          # vd. -8,8 triệu: lương âm
+    r = call(predictor)
+    assert r["prediction"] is None
+    assert r["range_80"] is None
+    assert r["reliable"] is False
+    assert r["warnings"][0].startswith("Không đủ cơ sở dự đoán")
+
+
+def test_prediction_range_is_ordered_and_non_negative(predictor):
+    lo_lab, hi_lab = predictor.card["label_range_train"]
+    for value in (lo_lab, (lo_lab + hi_lab) / 2, hi_lab):
+        predictor.model = _FixedModel(value)
+        r = call(predictor)
+        assert r["reliable"] is True
+        low, high = r["range_80"]
+        assert 0 <= low <= r["prediction"] <= high
+
+
+def test_cli_reports_no_basis_instead_of_negative_number(predictor, monkeypatch, capsys):
+    import predict as predict_module
+    predictor.model = _FixedModel(-8.8)
+    monkeypatch.setattr(predict_module, "SalaryPredictor", lambda: predictor)
+    code = predict_module.main(["--job", VALID["job_category"], "--city", VALID["city"], "--exp", "0"])
+    out = capsys.readouterr().out
+    assert code == 3
+    assert "KHÔNG ĐỦ CƠ SỞ DỰ ĐOÁN" in out
+    assert "-8.8 triệu VND/tháng" not in out

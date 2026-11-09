@@ -125,7 +125,7 @@ Tạo `data/processed/split.csv` (chỉ tạo lần đầu, chia theo nhóm tin 
 python src/train.py --stage gd4
 ```
 
-Grid search cho Decision Tree và Random Forest, chọn mô hình theo quy tắc 1 độ lệch chuẩn. Đầu ra: `reports/gd4_grid_results.csv`, `reports/gd4_selected_model.json`, `reports/gd4_train_output.txt`.
+Grid search cho Linear Regression, Decision Tree và Random Forest (mọi mô hình đều thử số kỹ năng `skill_top_k` = 15, 30, 50), chọn mô hình theo quy tắc 1 độ lệch chuẩn. Đầu ra: `reports/gd4_grid_results.csv`, `reports/gd4_selected_model.json`, `reports/gd4_train_output.txt`.
 
 ### Bước 7 – Đánh giá cuối trên tập test (GĐ5)
 
@@ -137,6 +137,14 @@ python src/evaluate.py
 
 - `reports/gd5_final_output.txt`, `gd5_group_mae.csv`, `gd5_permutation_importance.csv`, `gd5_test_predictions.csv`, 2 hình `gd5_*.png`
 - `models/salary_model.joblib`, `models/model_card.json`
+
+> **Clone repo về chạy lại?** Repo đã có sẵn kết quả GĐ5 (`reports/gd5_final_output.txt`) nhưng không lưu file mô hình `.joblib`, nên lệnh trên sẽ dừng để bảo vệ tập test. Sau bước 6, chạy:
+>
+> ```bash
+> python src/evaluate.py --rebuild-model
+> ```
+>
+> Lệnh này tạo lại `models/salary_model.joblib` từ cấu hình đã chọn ở GĐ4, **chỉ fit trên tập train**, không chấm lại tập test và không ghi đè kết quả GĐ5. Chỉ dùng `python src/evaluate.py --force` khi thật sự muốn đánh giá lại trên tập test.
 
 ---
 
