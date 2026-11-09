@@ -110,7 +110,7 @@ def test_out_of_range_prediction_is_not_shown(predictor, value):
     r = call(predictor)
     assert r["prediction"] is None
     assert r["range_80"] is None
-    assert r["reliable"] is False
+    assert r["prediction_in_train_range"] is False
     assert r["warnings"][0].startswith("Không đủ cơ sở dự đoán")
 
 
@@ -119,7 +119,7 @@ def test_prediction_range_is_ordered_and_non_negative(predictor):
     for value in (lo_lab, (lo_lab + hi_lab) / 2, hi_lab):
         predictor.model = _FixedModel(value)
         r = call(predictor)
-        assert r["reliable"] is True
+        assert r["prediction_in_train_range"] is True
         low, high = r["range_80"]
         assert 0 <= low <= r["prediction"] <= high
 
