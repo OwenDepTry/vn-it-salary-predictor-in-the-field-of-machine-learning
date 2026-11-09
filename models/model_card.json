@@ -21,13 +21,13 @@
   ],
   "target": "salary_label",
   "unit": "triệu VND/tháng",
-  "n_train": 363,
+  "n_train": 370,
   "data_fingerprint": {
-    "train_data_sha256": "783200c18056c77789acd5e58176278bedbd5b16b8fcd076d10e162c3b403bdf",
-    "split_sha256": "fe4f5cd9ad339d6018a2ecaebff961d7b49628c009753608038ca3180adeb5c2"
+    "train_data_sha256": "bfc7ad5fdb86d7225603171333300643a53d8ea8ef28aee66d0726f2deacd2e1",
+    "split_sha256": "e02ab651e836f71eda65f9165e3a6667e7b59ff40bf57be3cae21db214e3d105"
   },
   "n_test": 86,
-  "n_train_groups": 339,
+  "n_train_groups": 345,
   "allowed": {
     "job_category": [
       "Dữ liệu & AI",
@@ -58,25 +58,25 @@
   },
   "train_counts": {
     "job_category": {
-      "Phát triển phần mềm": 134,
+      "Phát triển phần mềm": 138,
       "Quản lý & phân tích (PM/BA/PO)": 62,
-      "Hỗ trợ kỹ thuật & IT chung": 50,
-      "Hạ tầng, DevOps & bảo mật": 36,
+      "Hỗ trợ kỹ thuật & IT chung": 49,
+      "Hạ tầng, DevOps & bảo mật": 40,
       "Kiểm thử & QA": 35,
       "Triển khai & ERP": 26,
       "Dữ liệu & AI": 20
     },
     "city": {
-      "Hà Nội": 250,
-      "TP.HCM": 68,
+      "Hà Nội": 255,
+      "TP.HCM": 70,
       "Khác": 32,
       "Đà Nẵng": 8,
       "Nhiều thành phố": 5
     },
     "seniority_coarse": {
-      "unknown": 301,
-      "lead_manager": 26,
-      "entry": 21,
+      "unknown": 305,
+      "lead_manager": 28,
+      "entry": 22,
       "senior": 15
     }
   },
@@ -90,40 +90,40 @@
     "python",
     "java",
     "docker",
-    "react",
     "sql",
     "postgresql",
+    "react",
     "html",
     "css",
     "rest api",
     "sql server",
     "mysql",
-    "jira",
-    "kubernetes"
+    "kubernetes",
+    "mongodb"
   ],
   "label_range_train": [
     3.5,
     70.0
   ],
   "residual_interval_oof": {
-    "p10": -8.175918259408764,
-    "p90": 8.74276246633841,
-    "test_coverage": 0.8837209302325582
+    "p10": -8.255843883943076,
+    "p90": 9.418458739861263,
+    "test_coverage": 0.872093023255814
   },
   "cv_metrics": {
-    "mae_mean": 5.535045165031557,
-    "mae_std": 0.9977758185092919,
-    "mae_se": 0.44621891129845387,
-    "rmse_mean": 7.587608510178891,
-    "r2_mean": 0.40790677305834544,
+    "mae_mean": 5.521596014880309,
+    "mae_std": 0.8210400900932114,
+    "mae_se": 0.3671802907401945,
+    "rmse_mean": 7.615151011337327,
+    "r2_mean": 0.4274383555695486,
     "n_folds": 5
   },
   "test_metrics": {
-    "mae_mean": 4.640978060831355,
-    "rmse": 5.78558694937099,
-    "r2": 0.5344506720712539,
-    "mae_ci_low": 3.912718258705763,
-    "mae_ci_high": 5.419051724953876,
+    "mae_mean": 4.712624966072892,
+    "rmse": 5.8609334438690714,
+    "r2": 0.522245888078937,
+    "mae_ci_low": 3.9701749727452498,
+    "mae_ci_high": 5.48752598831573,
     "n_test": 86
   },
   "baseline_test_metrics": {
@@ -136,6 +136,6 @@
     "vietjobs": "85862b06fda4e814fe0c1d8622f173d189c92758345f77df16d1232d0c49d477",
     "it_job_posting": "68c70420d9a12381a5731f0dbee1cc2b4d2123a94882eb95bd0104a1201e8b69"
   },
-  "created_utc": "2026-11-07T13:02:55+00:00",
+  "created_utc": "2026-11-09T21:14:49+00:00",
   "disclaimer": "Kết quả chỉ mang tính tham khảo, phản ánh mức lương ĐĂNG TUYỂN trong dữ liệu VietJobs, không phải mức lương thực nhận."
 }

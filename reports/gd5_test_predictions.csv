@@ -1,87 +1,87 @@
 row_id,group_id,job_category,city,seniority_coarse,experience_years,experience_group,skills,y_true,y_pred,residual
-1778,0,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,nodejs|nestjs|postgresql|mongodb|git|rabbitmq|kafka|redis,22.0,21.904292346241427,0.09570765375857349
-9010,9,"Hạ tầng, DevOps & bảo mật",Khác,unknown,1.0,1 năm,tin học văn phòng,11.5,13.865099527474896,-2.3650995274748965
-17360,15,Phát triển phần mềm,Hà Nội,unknown,1.0,1 năm,nodejs|express|nestjs|mysql|cassandradb,16.0,12.31459762113154,3.68540237886846
-17365,17,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,3.0,3 năm,ui/ux|các công cụ phân tích|các công cụ thiết kế,22.5,28.306256095766315,-5.806256095766315
-17373,19,Quản lý & phân tích (PM/BA/PO),TP.HCM,entry,2.0,2 năm,quản lý dự án|phân tích yêu cầu|lập kế hoạch dự án|giao tiếp với khách hàng,20.5,20.58349458735519,-0.08349458735519022
-17395,22,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,nodejs|expressjs|nestjs|n8n opensouce|sql server|postgresql|javascript|typescript|css|html|bootstrap|api|soap|rest api|git|bitbucket,20.0,24.606528489108584,-4.606528489108584
-17401,24,Quản lý & phân tích (PM/BA/PO),TP.HCM,unknown,2.0,2 năm,redmine|project management tools,26.0,26.039768205278737,-0.0397682052787367
-17406,25,Triển khai & ERP,TP.HCM,unknown,2.0,2 năm,selenium|agile|scrum|okr|test plans|test cases|test reports,16.5,21.250625126035175,-4.750625126035175
-17420,30,Hỗ trợ kỹ thuật & IT chung,Hà Nội,unknown,0.0,0 (không yêu cầu),khắc phục sự cố phần cứng|khắc phục sự cố phần mềm|kiến thức về mạng máy tính|cài đặt hệ điều hành|cài đặt và cấu hình phần mềm,11.0,9.312239337001639,1.687760662998361
-17435,33,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,html|css|vue|javascript,16.5,21.141559475539555,-4.641559475539555
-17487,39,Phát triển phần mềm,Hà Nội,unknown,0.5,<1 năm,php|html|css|mysql|javascript|wordpress,9.5,11.045866436646687,-1.545866436646687
-17494,42,"Hạ tầng, DevOps & bảo mật",Hà Nội,senior,3.0,3 năm,react|nodejs|freeswitch|freepbx|fusionpbx|kafka|rabbitmq|aws|gcp|git|mongodb,31.5,26.642349129917722,4.857650870082278
-17509,46,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,"flutter|dart|api integration|state management (provider, bloc)|microservice architecture",23.5,20.4378828525729,3.0621171474270987
-17538,55,Kiểm thử & QA,Hà Nội,unknown,3.0,3 năm,sql|api|kiểm thử phần mềm,21.0,23.240299922619506,-2.2402999226195064
-17539,56,Hỗ trợ kỹ thuật & IT chung,TP.HCM,unknown,2.0,2 năm,hệ thống ris-pacs|phần cứng máy chủ|nas|lưu trữ san|cấu hình raid|xử lý sự cố phần cứng,12.5,18.880198291223106,-6.380198291223106
-17543,57,Phát triển phần mềm,Hà Nội,unknown,1.0,1 năm,c#|unity|ui canvas|physic|particle system|optimization|oop|design patterns,12.5,16.493067237669884,-3.9930672376698837
-17568,66,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,2.0,2 năm,visio|figma|draw.io|jira|confluence|bpmn tools,21.0,24.088947564371132,-3.088947564371132
-17585,70,Phát triển phần mềm,TP.HCM,senior,2.0,2 năm,go|nodejs|orm|sql|nosql,25.0,23.277266607170525,1.7227333928294755
-17587,72,Phát triển phần mềm,Hà Nội,entry,1.0,1 năm,.net|c#|api|entity framework|vue|type script|sql|redis|elasticsearch|kafka|rabbitmq,11.0,11.138467427060831,-0.13846742706083148
-17590,73,Phát triển phần mềm,Hà Nội,entry,1.0,1 năm,javascript|vue|react|rest api,12.5,14.88224722465271,-2.38224722465271
-17594,75,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,java|spring framework|oracle|mysql|sql server|postgresql|mongodb|redis|memcached|kafka|elasticsearch|git,18.5,24.477167287792472,-5.977167287792472
-17595,76,Quản lý & phân tích (PM/BA/PO),Hà Nội,entry,1.0,1 năm,"kỹ năng phân tích|kỹ năng viết tài liệu nghiệp vụ (brd/srs/erd/api spec/design spec)|kỹ năng làm việc với các hệ thống cdp, crm, bi platform, product analytics platform",16.0,14.960351248036737,1.039648751963263
-17598,77,Phát triển phần mềm,TP.HCM,entry,0.0,0 (không yêu cầu),java|nodejs|sql|nosql|git,5.550000000000001,12.639064895678514,-7.089064895678513
-17599,78,Phát triển phần mềm,Hà Nội,unknown,1.0,1 năm,java|java spring boot|html/css|redis|mysql|mongodb|oracle|sql,13.0,16.027846842558283,-3.027846842558283
-17606,79,Hỗ trợ kỹ thuật & IT chung,Hà Nội,unknown,0.0,0 (không yêu cầu),cài đặt hệ điều hành windows server|cài đặt các phần mềm ứng dụng|sql server,11.0,12.452008480978776,-1.452008480978776
-17610,82,Phát triển phần mềm,Hà Nội,senior,2.0,2 năm,java|spring|oracle|mysql|postgresql|mongodb|restful web services|git|jira,25.0,22.124287450190863,2.875712549809137
-17634,90,Phát triển phần mềm,Hà Nội,unknown,4.0,4+ năm,javascript es5/es6+|html|css|react|svg|canvas,27.5,26.000990333629183,1.4990096663708172
-17645,93,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,1.0,1 năm,powerbi|tableau|ea/powerdesigner|visio|uml|mockup/wireframe,12.5,20.416624865960284,-7.916624865960284
-17647,94,Kiểm thử & QA,Hà Nội,unknown,2.0,2 năm,sql|kỹ thuật test|test case|cmmi|agile/scrum,25.0,19.295484307716492,5.704515692283508
-17715,104,Kiểm thử & QA,Hà Nội,unknown,3.0,3 năm,kiểm thử phần mềm|kiểm thử api|kiểm thử hiệu năng|sql|automation,20.0,23.240299922619506,-3.2402999226195064
-17773,113,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,2.0,2 năm,jira|confluence|figma|miro|excel|powerpoint|draw.io,25.0,24.088947564371132,0.9110524356288678
-17794,116,Hỗ trợ kỹ thuật & IT chung,Khác,unknown,3.0,3 năm,"hệ điều hành windows|tin học văn phòng|kiến thức cơ bản về mạng máy tính (tcp/ip, lan, wan)",19.0,18.452191405567902,0.5478085944320981
-17853,124,Quản lý & phân tích (PM/BA/PO),Đà Nẵng,unknown,3.0,3 năm,kiến thức về odoo|kỹ năng phân tích|kỹ năng viết tài liệu,16.0,24.536112957267235,-8.536112957267235
-17892,132,Triển khai & ERP,TP.HCM,unknown,1.0,1 năm,sap fico|erp systems|accounting/finance best practices,25.0,17.305809511132157,7.694190488867843
-17917,137,Phát triển phần mềm,TP.HCM,unknown,3.0,3 năm,python|django|fast api|mysql|postgresql|mongodb|rest api|docker|nginx|apache|kibana|elasticsearch|kafka|ci/cd,30.0,24.944503683376006,5.055496316623994
-17976,145,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,3.0,3 năm,in-depth knowledge of youtube platforms|content distribution algorithms|community policies|analytical tools,30.0,28.306256095766315,1.6937439042336848
-18023,148,Quản lý & phân tích (PM/BA/PO),Hà Nội,senior,2.0,2 năm,excel|powerpoint|word,15.0,25.420822703730995,-10.420822703730995
-18195,168,Phát triển phần mềm,Hà Nội,unknown,0.0,0 (không yêu cầu),lập trình và cấu hình hệ thống bms/elv,7.5,12.54825162276687,-5.04825162276687
-18227,172,Kiểm thử & QA,Hà Nội,unknown,1.0,1 năm,sql|postman|jmeter|trello|sql server|postgresql,11.0,19.801337385466127,-8.801337385466127
-18231,173,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,xử lý hình ảnh số|thị giác máy|deep learning|machine learning|opencv|c#|c++|python,20.0,20.909496441015378,-0.9094964410153779
-18253,175,Hỗ trợ kỹ thuật & IT chung,Hà Nội,lead_manager,4.0,4+ năm,giải pháp ứng dụng cntt|giải pháp chuyển đổi số doanh nghiệp|hệ thống quản lý văn bản điều hành|hệ thống thông tin nội bộ,32.5,28.945320916996206,3.554679083003794
-18415,184,Hỗ trợ kỹ thuật & IT chung,TP.HCM,unknown,2.0,2 năm,c|c++|assembly|altium designer|eagle,12.5,18.880198291223106,-6.380198291223106
-18464,192,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,kotlin|java|android sdk|android jetpack|ffmpeg|opencv|opengl|rxjava|coroutines,21.0,24.049458266685154,-3.0494582666851535
-18468,194,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,react|nextjs|jest|react-testing-library|redux|rxjs|ui/ux design|material design,17.0,21.416114281206205,-4.416114281206205
-18482,196,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,angular 10|javascript|html|css|rest api|apis,16.0,20.000349851462918,-4.000349851462918
-18514,208,Phát triển phần mềm,TP.HCM,unknown,2.0,2 năm,react|nextjs|flutter|rest api|javascript|typescript|html|css|css framework,16.5,22.656909004511657,-6.1569090045116575
-18550,218,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,5.0,4+ năm,nodejs|php laravel|react|vue|tailwind css|shopify polaris,42.5,37.17411875420565,5.325881245794349
-18585,228,Dữ liệu & AI,Hà Nội,unknown,3.0,3 năm,sql|python|r|power bi|tableau|qlik,37.5,27.842643165666324,9.657356834333676
-18599,231,Quản lý & phân tích (PM/BA/PO),TP.HCM,unknown,1.0,1 năm,figma|adobe xd|wireframe|ga4,15.5,22.09495259037572,-6.594952590375719
-18646,239,Kiểm thử & QA,Hà Nội,unknown,2.0,2 năm,kiến thức nền tảng về công nghệ thông tin và phát triển phần mềm|kinh nghiệm trong các dự án về ai|sử dụng các công cụ/ framework hỗ trợ kiểm thử,13.0,19.193810500402,-6.193810500402002
-18669,247,"Hạ tầng, DevOps & bảo mật",Hà Nội,unknown,3.0,3 năm,"quản trị hệ thống cntt|server|ảo hoá vmware vsphere/hyper-v|san storage|load balancer|linux (ubuntu, centos)|windows|web server (nginx, apache, tomcat)|java|php|mail server|vpn server|storage san|nas",20.5,28.060800947535967,-7.5608009475359665
-18729,261,Phát triển phần mềm,Hà Nội,unknown,3.0,3 năm,"go|python|nodejs|java|c#|oop|microservices|design pattern|database (sql, nosql)|redis|message queue (kafka, rabbitmq)|docker|docker compose|kubernetes",22.5,30.92366840381259,-8.423668403812592
-18787,271,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,2.0,2 năm,phân tích yêu cầu|mô hình hóa dữ liệu|viết tài liệu,17.5,24.3614404808633,-6.861440480863301
-18791,272,Triển khai & ERP,Khác,unknown,0.0,0 (không yêu cầu),autocad|revit,9.0,8.98817139567092,0.011828604329080505
-18807,274,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,2.0,2 năm,"kỹ năng thu thập, phân tích nghiệp vụ",19.0,24.3614404808633,-5.361440480863301
-18823,278,"Hạ tầng, DevOps & bảo mật",Hà Nội,unknown,3.0,3 năm,"quản trị thiết bị mạng (cisco, juniper, fortinet)|tường lửa (palo alto, check point, fortigate)|vpn|nac|giao thức mạng (tcp/ip, dns, dhcp, vlan, bgp)|phân tích bảo mật (phân tích log, scan lỗ hổng bằng nessus/openvas)",20.0,24.449225533423714,-4.449225533423714
-18835,280,Quản lý & phân tích (PM/BA/PO),Hà Nội,entry,1.0,1 năm,product delivery|product analytics,12.5,14.960351248036737,-2.460351248036737
-18839,281,Phát triển phần mềm,Hà Nội,entry,1.0,1 năm,lập trình ios|ui kit|resource|storage|network handling|mvp|mvvm,18.5,11.036793619746339,7.463206380253661
-18849,283,"Hạ tầng, DevOps & bảo mật",Hà Nội,unknown,1.0,1 năm,"networking (tcp ip, dns, routing)|operating systems (windows, linux)|cloud security fundamentals (aws, azure, gcp)|security best practices (iam, access control)",21.0,16.559594303617683,4.440405696382317
-18856,285,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,1.0,1 năm,phân tích dữ liệu|thiết kế mô hình dữ liệu|lập trình,15.0,20.416624865960284,-5.416624865960284
-18886,296,Triển khai & ERP,Hà Nội,unknown,1.0,1 năm,kiến thức nền tảng về kế toán|hiểu biết về sql server,15.5,15.62748178671672,-0.12748178671671972
-18894,297,Dữ liệu & AI,Hà Nội,entry,0.0,0 (không yêu cầu),python|tensorflow|pytorch|scikit-learn,3.5,10.450248895719238,-6.950248895719238
-18896,298,Dữ liệu & AI,Hà Nội,unknown,2.0,2 năm,openai api|langchain|llamaindex|python|nodejs|text-to-sql|rest api|vector dbs,27.5,22.65494411937218,4.845055880627822
-18964,312,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,3.0,3 năm,tin học văn phòng|figma|lucidchart|whimsical,20.0,28.306256095766315,-8.306256095766315
-18973,316,Quản lý & phân tích (PM/BA/PO),Đà Nẵng,lead_manager,5.0,4+ năm,quản lý dự án|quản lý ngân sách|quản lý rủi ro|lập kế hoạch dự án|theo dõi tiến độ dự án,60.0,36.27956330745577,23.720436692544233
-19028,331,"Hạ tầng, DevOps & bảo mật",TP.HCM,unknown,3.0,3 năm,"quản trị hệ thống linux và windows server|máy chủ ảo hóa vmware, kvm|quản lý các dịch vụ mạng bao gồm lan, wan, vpn, web servers, database servers|kiến thức về các công cụ giám sát hệ thống và quản lý sự cố|hiểu biết về bảo mật hệ thống và các công cụ bảo mật (tường lửa, ids/ips, ssl/tls)",17.5,26.127553257839153,-8.627553257839153
-19082,336,Phát triển phần mềm,Hà Nội,unknown,4.0,4+ năm,python|django|postgresql|docker|rest api|websockets|redis,40.0,31.389461190401928,8.610538809598072
-19107,340,Triển khai & ERP,TP.HCM,unknown,3.0,3 năm,linux|windows server|postgresql|sql server|mysql|switch|router|firewall|api|rest api|json|xml|oauth,17.0,24.32643019297586,-7.3264301929758595
-19161,350,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,c/c++|python|robot operating system (ros)|microcontroller unit (mcu)|microprocessor|lidar|imu,15.0,20.909496441015378,-5.909496441015378
-19182,356,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,2.0,2 năm,basic knowledge of information technology|management information systems|software development processes,20.0,24.3614404808633,-4.361440480863301
-19204,360,Hỗ trợ kỹ thuật & IT chung,Hà Nội,unknown,1.0,1 năm,"strong knowledge of operating systems and hardware, especially macbook and imac|proficient and experienced with apple products and the macos operating system|understanding of video conferencing systems, especially google meet and logitech equipment|good knowledge of document management systems and workflow support services|experience with mobile device management (mdm) tools such as jamf",21.5,13.257054951904653,8.242945048095347
-19211,364,Dữ liệu & AI,Hà Nội,unknown,1.0,1 năm,ai tools|midjourney|chatgpt|leonardo|copy.ai|sheetgpt|airtable ai,22.5,19.379724540103325,3.120275459896675
-19231,370,Phát triển phần mềm,Hà Nội,entry,0.5,<1 năm,python|java|nodejs|javascript|api|power automate|power apps|oracle apex|oracle|sql server|mysql|postgresql|mongodb,8.0,17.428205691313572,-9.428205691313572
-19232,371,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,5.0,4+ năm,quản lý dự án|quản lý ngân sách|giải quyết vấn đề|giao tiếp hiệu quả|quản lý rủi ro|lập kế hoạch dự án|theo dõi tiến độ dự án,32.5,36.19588732557234,-3.6958873255723432
-19237,373,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,python (fastapi)|nodejs|rest api|docker|linux terminal|bash|mongodb|postgresql,20.0,23.028216372153427,-3.0282163721534268
-19238,374,Dữ liệu & AI,Hà Nội,unknown,2.0,2 năm,python|pytorch|tensorflow|huggingface|langchain,20.0,23.796153743448816,-3.7961537434488157
-19242,376,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,angular (từ version 9 trở lên)|html|css|sass/scss|javascript/typescript|ui/ux|responsive web design|rest api|git|ci/cd,24.0,16.147427996106224,7.852572003893776
-22166,283,"Hạ tầng, DevOps & bảo mật",TP.HCM,unknown,1.0,1 năm,"cloud security fundamentals|it support|troubleshooting|network security|operating systems (windows, linux)|security information and event management (siem)",20.0,18.23792202803312,1.7620779719668818
-23115,383,"Hạ tầng, DevOps & bảo mật",Hà Nội,unknown,5.0,4+ năm,docker|kubernetes|elastic container service (ecs)|elastic kubernetes service (eks)|jenkins|code pipeline|code build|cloudformation|terraform|chef|postgresql|sql server|mysql|oracle|mongodb|windows|linux|nodejs|.net|java|python|elk|protheus|zabbix|apm|aws|google cloud|azure|nginx|apache|iis|tomcat,30.0,39.15202577568072,-9.15202577568072
-43784,402,Triển khai & ERP,Hà Nội,unknown,2.0,2 năm,linux|windows|oracle|mysql|redis|kafka|java|vmware|ovm|hyper-v|openstack,20.0,19.00540319919364,0.9945968008063595
-44562,410,Triển khai & ERP,Hà Nội,unknown,2.0,2 năm,"linux (redhat, centos, suse, oracle linux)|windows servers|database (oracle, mysql, redis, kafka)|java|vmware|ovm|hyper-v|openstack",20.0,23.183872815731988,-3.1838728157319878
-44917,412,Triển khai & ERP,Hà Nội,unknown,2.0,2 năm,"phân tích nghiệp vụ|mô hình hóa nghiệp vụ|sử dụng phần mềm quản lý yêu cầu (jira, google form, trello...)",17.5,19.572297401619736,-2.0722974016197355
-46795,415,Phát triển phần mềm,Hà Nội,unknown,3.0,3 năm,java|spring framework|rest api|mysql|nosql|sql server,27.5,25.814363784950324,1.6856362150496764
-46993,416,"Hạ tầng, DevOps & bảo mật",Hà Nội,unknown,1.0,1 năm,sql nâng cao|oracle|sql server|postgresql|python|nosql|mongodb|elasticsearch,22.0,21.481876584712808,0.5181234152871923
-47850,419,Triển khai & ERP,TP.HCM,unknown,0.0,0 (không yêu cầu),sql server|c#|.net,9.5,16.50076304020628,-7.00076304020628
-47936,420,"Hạ tầng, DevOps & bảo mật",Hà Nội,unknown,0.5,<1 năm,excellent speaking and writing in english,15.0,14.587186496166176,0.4128135038338243
+1778,0,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,nodejs|nestjs|postgresql|mongodb|git|rabbitmq|kafka|redis,22.0,19.449345790152115,2.5506542098478846
+9010,9,"Hạ tầng, DevOps & bảo mật",Khác,unknown,1.0,1 năm,tin học văn phòng,11.5,14.982918789765083,-3.4829187897650833
+17360,15,Phát triển phần mềm,Hà Nội,unknown,1.0,1 năm,nodejs|express|nestjs|mysql|cassandradb,16.0,13.145961664668398,2.8540383353316017
+17365,17,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,3.0,3 năm,ui/ux|các công cụ phân tích|các công cụ thiết kế,22.5,28.143435286533037,-5.6434352865330375
+17373,19,Quản lý & phân tích (PM/BA/PO),TP.HCM,entry,2.0,2 năm,quản lý dự án|phân tích yêu cầu|lập kế hoạch dự án|giao tiếp với khách hàng,20.5,20.903508175531556,-0.40350817553155593
+17395,22,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,nodejs|expressjs|nestjs|n8n opensouce|sql server|postgresql|javascript|typescript|css|html|bootstrap|api|soap|rest api|git|bitbucket,20.0,25.120976355446828,-5.120976355446828
+17401,24,Quản lý & phân tích (PM/BA/PO),TP.HCM,unknown,2.0,2 năm,redmine|project management tools,26.0,26.420976732720177,-0.42097673272017744
+17406,25,Triển khai & ERP,TP.HCM,unknown,2.0,2 năm,selenium|agile|scrum|okr|test plans|test cases|test reports,16.5,21.148104500334025,-4.648104500334025
+17420,31,Hỗ trợ kỹ thuật & IT chung,Hà Nội,unknown,0.0,0 (không yêu cầu),khắc phục sự cố phần cứng|khắc phục sự cố phần mềm|kiến thức về mạng máy tính|cài đặt hệ điều hành|cài đặt và cấu hình phần mềm,11.0,9.063525666963217,1.9364743330367826
+17435,34,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,html|css|vue|javascript,16.5,21.111158301140225,-4.611158301140225
+17487,41,Phát triển phần mềm,Hà Nội,unknown,0.5,<1 năm,php|html|css|mysql|javascript|wordpress,9.5,11.945886943086357,-2.4458869430863572
+17494,44,"Hạ tầng, DevOps & bảo mật",Hà Nội,senior,3.0,3 năm,react|nodejs|freeswitch|freepbx|fusionpbx|kafka|rabbitmq|aws|gcp|git|mongodb,31.5,24.285545930257427,7.2144540697425725
+17509,48,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,"flutter|dart|api integration|state management (provider, bloc)|microservice architecture",23.5,20.358141578528734,3.141858421471266
+17538,57,Kiểm thử & QA,Hà Nội,unknown,3.0,3 năm,sql|api|kiểm thử phần mềm,21.0,23.021128170762918,-2.0211281707629176
+17539,58,Hỗ trợ kỹ thuật & IT chung,TP.HCM,unknown,2.0,2 năm,hệ thống ris-pacs|phần cứng máy chủ|nas|lưu trữ san|cấu hình raid|xử lý sự cố phần cứng,12.5,19.059615778311535,-6.559615778311535
+17543,59,Phát triển phần mềm,Hà Nội,unknown,1.0,1 năm,c#|unity|ui canvas|physic|particle system|optimization|oop|design patterns,12.5,16.451958690141677,-3.9519586901416766
+17568,68,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,2.0,2 năm,visio|figma|draw.io|jira|confluence|bpmn tools,21.0,24.237252398145976,-3.2372523981459764
+17585,72,Phát triển phần mềm,TP.HCM,senior,2.0,2 năm,go|nodejs|orm|sql|nosql,25.0,23.819110391746342,1.1808896082536577
+17587,74,Phát triển phần mềm,Hà Nội,entry,1.0,1 năm,.net|c#|api|entity framework|vue|type script|sql|redis|elasticsearch|kafka|rabbitmq,11.0,11.113523455052887,-0.11352345505288675
+17590,75,Phát triển phần mềm,Hà Nội,entry,1.0,1 năm,javascript|vue|react|rest api,12.5,15.185830830940533,-2.6858308309405334
+17594,77,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,java|spring framework|oracle|mysql|sql server|postgresql|mongodb|redis|memcached|kafka|elasticsearch|git,18.5,23.323526210522818,-4.823526210522818
+17595,78,Quản lý & phân tích (PM/BA/PO),Hà Nội,entry,1.0,1 năm,"kỹ năng phân tích|kỹ năng viết tài liệu nghiệp vụ (brd/srs/erd/api spec/design spec)|kỹ năng làm việc với các hệ thống cdp, crm, bi platform, product analytics platform",16.0,14.813600952570296,1.1863990474297044
+17598,79,Phát triển phần mềm,TP.HCM,entry,0.0,0 (không yêu cầu),java|nodejs|sql|nosql|git,5.550000000000001,13.575194449551816,-8.025194449551815
+17599,80,Phát triển phần mềm,Hà Nội,unknown,1.0,1 năm,java|java spring boot|html/css|redis|mysql|mongodb|oracle|sql,13.0,14.579217990208251,-1.5792179902082513
+17606,81,Hỗ trợ kỹ thuật & IT chung,Hà Nội,unknown,0.0,0 (không yêu cầu),cài đặt hệ điều hành windows server|cài đặt các phần mềm ứng dụng|sql server,11.0,11.88436940657767,-0.8843694065776706
+17610,84,Phát triển phần mềm,Hà Nội,senior,2.0,2 năm,java|spring|oracle|mysql|postgresql|mongodb|restful web services|git|jira,25.0,21.60089362745194,3.3991063725480615
+17634,92,Phát triển phần mềm,Hà Nội,unknown,4.0,4+ năm,javascript es5/es6+|html|css|react|svg|canvas,27.5,25.43436164759589,2.065638352404111
+17645,96,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,1.0,1 năm,powerbi|tableau|ea/powerdesigner|visio|uml|mockup/wireframe,12.5,20.33106950975892,-7.831069509758919
+17647,97,Kiểm thử & QA,Hà Nội,unknown,2.0,2 năm,sql|kỹ thuật test|test case|cmmi|agile/scrum,25.0,19.11494528237586,5.88505471762414
+17715,107,Kiểm thử & QA,Hà Nội,unknown,3.0,3 năm,kiểm thử phần mềm|kiểm thử api|kiểm thử hiệu năng|sql|automation,20.0,23.021128170762918,-3.0211281707629176
+17773,116,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,2.0,2 năm,jira|confluence|figma|miro|excel|powerpoint|draw.io,25.0,24.237252398145976,0.7627476018540236
+17794,119,Hỗ trợ kỹ thuật & IT chung,Khác,unknown,3.0,3 năm,"hệ điều hành windows|tin học văn phòng|kiến thức cơ bản về mạng máy tính (tcp/ip, lan, wan)",19.0,17.99446869793738,1.0055313020626215
+17853,127,Quản lý & phân tích (PM/BA/PO),Đà Nẵng,unknown,3.0,3 năm,kiến thức về odoo|kỹ năng phân tích|kỹ năng viết tài liệu,16.0,24.51220170925935,-8.512201709259351
+17892,135,Triển khai & ERP,TP.HCM,unknown,1.0,1 năm,sap fico|erp systems|accounting/finance best practices,25.0,17.241921611946964,7.758078388053036
+17917,140,Phát triển phần mềm,TP.HCM,unknown,3.0,3 năm,python|django|fast api|mysql|postgresql|mongodb|rest api|docker|nginx|apache|kibana|elasticsearch|kafka|ci/cd,30.0,23.998578072933583,6.001421927066417
+17976,148,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,3.0,3 năm,in-depth knowledge of youtube platforms|content distribution algorithms|community policies|analytical tools,30.0,28.143435286533037,1.8565647134669625
+18023,151,Quản lý & phân tích (PM/BA/PO),Hà Nội,senior,2.0,2 năm,excel|powerpoint|word,15.0,25.335463554689554,-10.335463554689554
+18195,171,Phát triển phần mềm,Hà Nội,unknown,0.0,0 (không yêu cầu),lập trình và cấu hình hệ thống bms/elv,7.5,12.545775801754617,-5.045775801754617
+18227,175,Kiểm thử & QA,Hà Nội,unknown,1.0,1 năm,sql|postman|jmeter|trello|sql server|postgresql,11.0,20.401125205933873,-9.401125205933873
+18231,176,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,xử lý hình ảnh số|thị giác máy|deep learning|machine learning|opencv|c#|c++|python,20.0,20.49104014742718,-0.4910401474271815
+18253,178,Hỗ trợ kỹ thuật & IT chung,Hà Nội,lead_manager,4.0,4+ năm,giải pháp ứng dụng cntt|giải pháp chuyển đổi số doanh nghiệp|hệ thống quản lý văn bản điều hành|hệ thống thông tin nội bộ,32.5,29.783533695954496,2.716466304045504
+18415,187,Hỗ trợ kỹ thuật & IT chung,TP.HCM,unknown,2.0,2 năm,c|c++|assembly|altium designer|eagle,12.5,19.059615778311535,-6.559615778311535
+18464,195,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,kotlin|java|android sdk|android jetpack|ffmpeg|opencv|opengl|rxjava|coroutines,21.0,24.717475284758258,-3.717475284758258
+18468,197,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,react|nextjs|jest|react-testing-library|redux|rxjs|ui/ux design|material design,17.0,21.242901012223612,-4.242901012223612
+18482,199,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,angular 10|javascript|html|css|rest api|apis,16.0,20.10381770141949,-4.103817701419491
+18514,211,Phát triển phần mềm,TP.HCM,unknown,2.0,2 năm,react|nextjs|flutter|rest api|javascript|typescript|html|css|css framework,16.5,23.172301469688573,-6.672301469688573
+18550,221,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,5.0,4+ năm,nodejs|php laravel|react|vue|tailwind css|shopify polaris,42.5,36.84056049700204,5.659439502997962
+18585,231,Dữ liệu & AI,Hà Nội,unknown,3.0,3 năm,sql|python|r|power bi|tableau|qlik,37.5,27.77524950646847,9.72475049353153
+18599,234,Quản lý & phân tích (PM/BA/PO),TP.HCM,unknown,1.0,1 năm,figma|adobe xd|wireframe|ga4,15.5,22.51479384433312,-7.01479384433312
+18646,242,Kiểm thử & QA,Hà Nội,unknown,2.0,2 năm,kiến thức nền tảng về công nghệ thông tin và phát triển phần mềm|kinh nghiệm trong các dự án về ai|sử dụng các công cụ/ framework hỗ trợ kiểm thử,13.0,18.935911960276023,-5.935911960276023
+18669,250,"Hạ tầng, DevOps & bảo mật",Hà Nội,unknown,3.0,3 năm,"quản trị hệ thống cntt|server|ảo hoá vmware vsphere/hyper-v|san storage|load balancer|linux (ubuntu, centos)|windows|web server (nginx, apache, tomcat)|java|php|mail server|vpn server|storage san|nas",20.5,29.94222390695574,-9.44222390695574
+18729,264,Phát triển phần mềm,Hà Nội,unknown,3.0,3 năm,"go|python|nodejs|java|c#|oop|microservices|design pattern|database (sql, nosql)|redis|message queue (kafka, rabbitmq)|docker|docker compose|kubernetes",22.5,31.166074909750893,-8.666074909750893
+18787,274,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,2.0,2 năm,phân tích yêu cầu|mô hình hóa dữ liệu|viết tài liệu,17.5,24.237252398145976,-6.737252398145976
+18791,275,Triển khai & ERP,Khác,unknown,0.0,0 (không yêu cầu),autocad|revit,9.0,8.364408754798694,0.6355912452013062
+18807,277,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,2.0,2 năm,"kỹ năng thu thập, phân tích nghiệp vụ",19.0,24.237252398145976,-5.237252398145976
+18823,281,"Hạ tầng, DevOps & bảo mật",Hà Nội,unknown,3.0,3 năm,"quản trị thiết bị mạng (cisco, juniper, fortinet)|tường lửa (palo alto, check point, fortigate)|vpn|nac|giao thức mạng (tcp/ip, dns, dhcp, vlan, bgp)|phân tích bảo mật (phân tích log, scan lỗ hổng bằng nessus/openvas)",20.0,25.58289020072621,-5.582890200726212
+18835,283,Quản lý & phân tích (PM/BA/PO),Hà Nội,entry,1.0,1 năm,product delivery|product analytics,12.5,14.813600952570296,-2.3136009525702956
+18839,284,Phát triển phần mềm,Hà Nội,entry,1.0,1 năm,lập trình ios|ui kit|resource|storage|network handling|mvp|mvvm,18.5,10.934490132953051,7.5655098670469485
+18849,286,"Hạ tầng, DevOps & bảo mật",Hà Nội,unknown,1.0,1 năm,"networking (tcp ip, dns, routing)|operating systems (windows, linux)|cloud security fundamentals (aws, azure, gcp)|security best practices (iam, access control)",21.0,17.770524423952097,3.2294755760479035
+18856,288,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,1.0,1 năm,phân tích dữ liệu|thiết kế mô hình dữ liệu|lập trình,15.0,20.33106950975892,-5.331069509758919
+18886,299,Triển khai & ERP,Hà Nội,unknown,1.0,1 năm,kiến thức nền tảng về kế toán|hiểu biết về sql server,15.5,15.058197277372766,0.44180272262723363
+18894,300,Dữ liệu & AI,Hà Nội,entry,0.0,0 (không yêu cầu),python|tensorflow|pytorch|scikit-learn,3.5,10.360198962018835,-6.860198962018835
+18896,301,Dữ liệu & AI,Hà Nội,unknown,2.0,2 năm,openai api|langchain|llamaindex|python|nodejs|text-to-sql|rest api|vector dbs,27.5,22.682692696260844,4.817307303739156
+18964,315,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,3.0,3 năm,tin học văn phòng|figma|lucidchart|whimsical,20.0,28.143435286533037,-8.143435286533037
+18973,319,Quản lý & phân tích (PM/BA/PO),Đà Nẵng,lead_manager,5.0,4+ năm,quản lý dự án|quản lý ngân sách|quản lý rủi ro|lập kế hoạch dự án|theo dõi tiến độ dự án,60.0,37.41984396147651,22.58015603852349
+19028,334,"Hạ tầng, DevOps & bảo mật",TP.HCM,unknown,3.0,3 năm,"quản trị hệ thống linux và windows server|máy chủ ảo hóa vmware, kvm|quản lý các dịch vụ mạng bao gồm lan, wan, vpn, web servers, database servers|kiến thức về các công cụ giám sát hệ thống và quản lý sự cố|hiểu biết về bảo mật hệ thống và các công cụ bảo mật (tường lửa, ids/ips, ssl/tls)",17.5,27.766614535300413,-10.266614535300413
+19082,341,Phát triển phần mềm,Hà Nội,unknown,4.0,4+ năm,python|django|postgresql|docker|rest api|websockets|redis,40.0,32.132144355009224,7.867855644990776
+19107,345,Triển khai & ERP,TP.HCM,unknown,3.0,3 năm,linux|windows server|postgresql|sql server|mysql|switch|router|firewall|api|rest api|json|xml|oauth,17.0,25.933312575472147,-8.933312575472147
+19161,356,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,c/c++|python|robot operating system (ros)|microcontroller unit (mcu)|microprocessor|lidar|imu,15.0,20.49104014742718,-5.4910401474271815
+19182,362,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,2.0,2 năm,basic knowledge of information technology|management information systems|software development processes,20.0,24.237252398145976,-4.237252398145976
+19204,366,Hỗ trợ kỹ thuật & IT chung,Hà Nội,unknown,1.0,1 năm,"strong knowledge of operating systems and hardware, especially macbook and imac|proficient and experienced with apple products and the macos operating system|understanding of video conferencing systems, especially google meet and logitech equipment|good knowledge of document management systems and workflow support services|experience with mobile device management (mdm) tools such as jamf",21.5,12.969708555350277,8.530291444649723
+19211,370,Dữ liệu & AI,Hà Nội,unknown,1.0,1 năm,ai tools|midjourney|chatgpt|leonardo|copy.ai|sheetgpt|airtable ai,22.5,19.65095183869607,2.84904816130393
+19231,376,Phát triển phần mềm,Hà Nội,entry,0.5,<1 năm,python|java|nodejs|javascript|api|power automate|power apps|oracle apex|oracle|sql server|mysql|postgresql|mongodb,8.0,16.62880791158312,-8.62880791158312
+19232,377,Quản lý & phân tích (PM/BA/PO),Hà Nội,unknown,5.0,4+ năm,quản lý dự án|quản lý ngân sách|giải quyết vấn đề|giao tiếp hiệu quả|quản lý rủi ro|lập kế hoạch dự án|theo dõi tiến độ dự án,32.5,35.955801063307156,-3.455801063307156
+19237,379,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,python (fastapi)|nodejs|rest api|docker|linux terminal|bash|mongodb|postgresql,20.0,21.081769306547155,-1.0817693065471552
+19238,380,Dữ liệu & AI,Hà Nội,unknown,2.0,2 năm,python|pytorch|tensorflow|huggingface|langchain,20.0,23.69003329598158,-3.6900332959815785
+19242,382,Phát triển phần mềm,Hà Nội,unknown,2.0,2 năm,angular (từ version 9 trở lên)|html|css|sass/scss|javascript/typescript|ui/ux|responsive web design|rest api|git|ci/cd,24.0,15.554691679488421,8.445308320511579
+22166,286,"Hạ tầng, DevOps & bảo mật",TP.HCM,unknown,1.0,1 năm,"cloud security fundamentals|it support|troubleshooting|network security|operating systems (windows, linux)|security information and event management (siem)",20.0,19.954248758526298,0.045751241473702464
+23115,389,"Hạ tầng, DevOps & bảo mật",Hà Nội,unknown,5.0,4+ năm,docker|kubernetes|elastic container service (ecs)|elastic kubernetes service (eks)|jenkins|code pipeline|code build|cloudformation|terraform|chef|postgresql|sql server|mysql|oracle|mongodb|windows|linux|nodejs|.net|java|python|elk|protheus|zabbix|apm|aws|google cloud|azure|nginx|apache|iis|tomcat,30.0,39.07826150401773,-9.078261504017732
+43784,408,Triển khai & ERP,Hà Nội,unknown,2.0,2 năm,linux|windows|oracle|mysql|redis|kafka|java|vmware|ovm|hyper-v|openstack,20.0,20.017716846516073,-0.017716846516073304
+44562,416,Triển khai & ERP,Hà Nội,unknown,2.0,2 năm,"linux (redhat, centos, suse, oracle linux)|windows servers|database (oracle, mysql, redis, kafka)|java|vmware|ovm|hyper-v|openstack",20.0,23.323713871989348,-3.323713871989348
+44917,418,Triển khai & ERP,Hà Nội,unknown,2.0,2 năm,"phân tích nghiệp vụ|mô hình hóa nghiệp vụ|sử dụng phần mềm quản lý yêu cầu (jira, google form, trello...)",17.5,18.964380165759827,-1.4643801657598274
+46795,421,Phát triển phần mềm,Hà Nội,unknown,3.0,3 năm,java|spring framework|rest api|mysql|nosql|sql server,27.5,27.13116428756576,0.3688357124342403
+46993,422,"Hạ tầng, DevOps & bảo mật",Hà Nội,unknown,1.0,1 năm,sql nâng cao|oracle|sql server|postgresql|python|nosql|mongodb|elasticsearch,22.0,19.990675102006115,2.009324897993885
+47850,425,Triển khai & ERP,TP.HCM,unknown,0.0,0 (không yêu cầu),sql server|c#|.net,9.5,16.15658246317436,-6.6565824631743595
+47936,426,"Hạ tầng, DevOps & bảo mật",Hà Nội,unknown,0.5,<1 năm,excellent speaking and writing in english,15.0,15.817432979758568,-0.8174329797585678
