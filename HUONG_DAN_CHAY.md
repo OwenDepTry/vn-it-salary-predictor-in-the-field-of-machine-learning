@@ -17,6 +17,7 @@ python src/data_cleaning.py         # GĐ2 -> data/processed/it_salary_clean.csv
 python src/train.py                 # bước 5 – GĐ3, lần đầu tạo data/processed/split.csv
 python src/train.py --stage gd4     # bước 6 – GĐ4 (~1 phút)
 python src/evaluate.py              # bước 7 – GĐ5, CHỈ chạy 1 lần (dùng tập test)
+python src/evaluate.py --rebuild-model   # clone về: tạo lại file mô hình, chỉ fit trên train, không dùng test
 python -m pytest -q
 ```
 Trên Windows nếu lỗi `UnicodeEncodeError` khi in tiếng Việt: đặt `PYTHONIOENCODING=utf-8`.
