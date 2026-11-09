@@ -102,3 +102,45 @@ def test_make_pipeline_passes_skill_top_k_to_preprocessor():
     pipe = make_pipeline("linear_regression", {"skill_top_k": 15})
     skills = {name: tr for name, tr, _ in pipe.named_steps["prep"].transformers}["skills"]
     assert skills.top_k == 15
+
+
+# ----------------------------------------------------------------------------- dấu vân tay dữ liệu (rebuild)
+def _fp_frames():
+    from features import FEATURE_COLUMNS, TARGET
+    rng = np.random.default_rng(0)
+    n = 8
+    base = {c: ["a"] * n for c in FEATURE_COLUMNS}
+    base["experience_years"] = rng.integers(0, 5, n).astype(float)
+    df = pd.DataFrame(base)
+    df["row_id"] = np.arange(n)
+    df[TARGET] = rng.uniform(5, 40, n)
+    return df.iloc[:6].copy(), df.iloc[6:].copy()
+
+
+def test_data_fingerprint_ignores_row_order():
+    from evaluate import data_fingerprint
+    train, test = _fp_frames()
+    assert data_fingerprint(train, test) == data_fingerprint(train.iloc[::-1], test.iloc[::-1])
+
+
+def test_data_fingerprint_detects_label_and_split_changes():
+    from evaluate import data_fingerprint
+    from features import TARGET
+    train, test = _fp_frames()
+    fp = data_fingerprint(train, test)
+    shifted = train.assign(**{TARGET: train[TARGET] + 10})          # nhãn train +10 triệu
+    assert data_fingerprint(shifted, test)["train_data_sha256"] != fp["train_data_sha256"]
+    moved_train = pd.concat([train, test.iloc[:1]])                   # chuyển 1 tin từ test sang train
+    assert data_fingerprint(moved_train, test.iloc[1:])["split_sha256"] != fp["split_sha256"]
+
+
+def test_verify_fingerprint_stops_when_data_changed():
+    from evaluate import data_fingerprint, verify_fingerprint
+    from features import TARGET
+    train, test = _fp_frames()
+    card = {"data_fingerprint": data_fingerprint(train, test)}
+    verify_fingerprint(card, data_fingerprint(train, test))           # khớp: không dừng
+    with pytest.raises(SystemExit):
+        verify_fingerprint(card, data_fingerprint(train.assign(**{TARGET: train[TARGET] + 10}), test))
+    with pytest.raises(SystemExit):
+        verify_fingerprint({}, data_fingerprint(train, test))         # card cũ chưa có dấu vân tay

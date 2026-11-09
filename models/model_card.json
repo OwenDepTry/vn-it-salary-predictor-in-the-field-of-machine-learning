@@ -22,6 +22,10 @@
   "target": "salary_label",
   "unit": "triệu VND/tháng",
   "n_train": 363,
+  "data_fingerprint": {
+    "train_data_sha256": "783200c18056c77789acd5e58176278bedbd5b16b8fcd076d10e162c3b403bdf",
+    "split_sha256": "fe4f5cd9ad339d6018a2ecaebff961d7b49628c009753608038ca3180adeb5c2"
+  },
   "n_test": 86,
   "n_train_groups": 339,
   "allowed": {

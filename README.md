@@ -48,7 +48,7 @@
 │   ├── train.py                  # Baseline, LR (GĐ3); DT, RF + grid search (GĐ4)
 │   ├── evaluate.py               # Metric, CV theo nhóm, bootstrap, đánh giá cuối
 │   └── predict.py                # SalaryPredictor + CLI
-├── tests/                        # 60 test (pytest)
+├── tests/                        # 77 test (pytest)
 ├── requirements.txt
 └── README.md
 ```
@@ -144,7 +144,7 @@ python src/evaluate.py
 > python src/evaluate.py --rebuild-model
 > ```
 >
-> Lệnh này tạo lại `models/salary_model.joblib` từ cấu hình đã chọn ở GĐ4, **chỉ fit trên tập train**, không chấm lại tập test và không ghi đè kết quả GĐ5. Chỉ dùng `python src/evaluate.py --force` khi thật sự muốn đánh giá lại trên tập test.
+> Lệnh này tạo lại `models/salary_model.joblib` từ cấu hình đã chọn ở GĐ4, **chỉ fit trên tập train**, không chấm lại tập test và không ghi đè kết quả GĐ5. Trước khi fit, lệnh đối chiếu dấu vân tay dữ liệu train và cách chia train/test với `models/model_card.json`; nếu dữ liệu đã đổi thì dừng, vì metric trong model card không còn đúng. Chỉ dùng `python src/evaluate.py --force` khi thật sự muốn đánh giá lại trên tập test.
 
 ---
 
@@ -182,11 +182,12 @@ Giá trị đầu vào phải nằm trong danh sách của `--list`; kinh nghi�
 python -m pytest tests -q
 ```
 
-Kết quả mong đợi: **60 passed**. Bộ test bao gồm:
+Kết quả mong đợi: **77 passed**. Bộ test bao gồm:
 
-- `test_data_cleaning.py` – parse lương, kinh nghiệm, thành phố, chuẩn hóa kỹ năng, 38 chức danh mẫu của bộ lọc IT
-- `test_features.py` – gộp nhóm tin đăng lại, không nhóm nào nằm ở cả train và test, từ vựng kỹ năng chỉ học từ dữ liệu fit
-- `test_predict_invalid_input.py` – 15 kiểu đầu vào sai bị từ chối; đầu vào hợp lệ trả về đơn vị và câu miễn trừ
+- `test_data_cleaning.py` (27) – parse lương, kinh nghiệm, thành phố, chuẩn hóa kỹ năng, 38 chức danh mẫu của bộ lọc IT
+- `test_features.py` (5) – gộp nhóm tin đăng lại, không nhóm nào nằm ở cả train và test, từ vựng kỹ năng chỉ học từ dữ liệu fit
+- `test_train_evaluate.py` (12) – metric, GroupKFold, bootstrap theo nhóm, MAE theo nhóm, quy tắc 1 độ lệch chuẩn, dấu vân tay dữ liệu khi tạo lại mô hình
+- `test_predict_invalid_input.py` (33) – 15 kiểu đầu vào sai bị từ chối; đầu vào hợp lệ trả về đơn vị và câu miễn trừ; dự đoán ngoài khoảng lương của train không hiển thị con số
 
 `tests/conftest.py` tạo một mô hình nhỏ trên dữ liệu giả, nên có thể chạy test cho phần dự đoán và ứng dụng khi chưa huấn luyện mô hình thật.
 

@@ -107,17 +107,19 @@ class SalaryPredictor:
         lab_lo, lab_hi = self.card["label_range_train"]
         # Chỉ trả về con số khi dự đoán nằm trong khoảng lương có trong dữ liệu train.
         # Ngoài khoảng đó (kể cả lương âm) là ngoại suy: báo "không đủ cơ sở" thay vì in số.
-        reliable = lab_lo <= pred <= lab_hi
-        if not reliable:
+        in_train_range = lab_lo <= pred <= lab_hi
+        if not in_train_range:
             warnings.insert(0, f"Không đủ cơ sở dự đoán: mô hình cho {pred:.1f} triệu, nằm ngoài khoảng lương "
                                f"có trong dữ liệu train ({lab_lo:g}–{lab_hi:g} triệu). Tổ hợp đầu vào này quá "
                                f"khác dữ liệu huấn luyện nên không đưa ra mức lương.")
         low = max(0.0, pred + iv["p10"])
         high = max(low, pred + iv["p90"])          # luôn đảm bảo low ≤ high
         return {
-            "prediction": round(pred, 1) if reliable else None,
-            "range_80": (round(low, 1), round(high, 1)) if reliable else None,
-            "reliable": reliable,
+            "prediction": round(pred, 1) if in_train_range else None,
+            "range_80": (round(low, 1), round(high, 1)) if in_train_range else None,
+            # Chỉ cho biết dự đoán nằm trong khoảng lương của train, KHÔNG phải độ tin cậy tổng thể:
+            # đầu vào ngoài phạm vi (vd. kinh nghiệm > max train) vẫn có thể True kèm cảnh báo.
+            "prediction_in_train_range": in_train_range,
             "unit": "triệu VND/tháng",
             "warnings": warnings,
             "used_skills": [s for s in row["skills"].split("|") if s and s in self.vocab],
