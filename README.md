@@ -133,7 +133,7 @@ Grid search cho Linear Regression, Decision Tree và Random Forest (mọi mô h�
 python src/evaluate.py
 ```
 
-Đánh giá **một lần duy nhất** trên tập test, tính khoảng tin cậy 95% bằng bootstrap theo nhóm, MAE theo nhóm, permutation importance. Đầu ra:
+Đánh giá trên tập test sau khi đã chọn xong mô hình (không dùng test để chọn mô hình), tính khoảng tin cậy 95% bằng bootstrap theo nhóm, MAE theo nhóm, permutation importance. Lệnh dừng nếu đã có kết quả GĐ5; xem mục *Nguyên tắc tái lập* về lần đánh giá lại sau khi sửa bộ lọc IT. Đầu ra:
 
 - `reports/gd5_final_output.txt`, `gd5_group_mae.csv`, `gd5_permutation_importance.csv`, `gd5_test_predictions.csv`, 2 hình `gd5_*.png`
 - `models/salary_model.joblib`, `models/model_card.json`
@@ -172,7 +172,12 @@ python src/predict.py --list
 python src/predict.py --job "<nhóm nghề>" --city "<thành phố>" --exp 2 --skills "python,sql"
 ```
 
-Giá trị đầu vào phải nằm trong danh sách của `--list`; kinh nghiệm hợp lệ từ 0 đến 6 năm. Đầu vào sai sẽ bị từ chối với lỗi `InvalidInput`. Kết quả CLI khớp với ứng dụng web.
+Giá trị đầu vào phải nằm trong danh sách của `--list`. Về kinh nghiệm:
+
+- **Ứng dụng web** chỉ cho chọn 0–6 năm (đúng phạm vi kinh nghiệm có trong dữ liệu train).
+- **CLI và hàm Python** (`SalaryPredictor.predict`) chấp nhận 0–40 năm; từ trên 6 năm vẫn trả kết quả nhưng kèm cảnh báo mô hình đang ngoại suy. Ngoài 0–40, giá trị không phải số hoặc NaN bị từ chối.
+
+Đầu vào sai sẽ bị từ chối với lỗi `InvalidInput`. Với cùng đầu vào trong phạm vi 0–6 năm, kết quả CLI khớp với ứng dụng web.
 
 ---
 
@@ -197,8 +202,12 @@ Kết quả mong đợi: **89 passed**. Bộ test bao gồm:
 
 - `random_state=42` ở mọi bước.
 - `split.csv` chỉ tạo một lần, **không tạo lại**, và được lưu trong repo để mọi người chạy ra cùng kết quả; các tin đăng lại (kể cả bắc cầu) được gộp cùng nhóm và luôn nằm cùng phía train hoặc test.
-- Khi sửa bộ lọc IT (giữ thêm 7 tin an ninh mạng / lập trình nhúng) sau khi đã đánh giá trên test, tập test **giữ nguyên 86 tin cũ**; 7 tin mới không trùng nhóm với tin test nào nên được đưa vào train.
-- Tập test chỉ được dùng **một lần**, sau khi đã chọn xong mô hình.
+- Tập test **không dùng để chọn mô hình**: mô hình được chọn chỉ dựa trên cross-validation trong tập train (GĐ4), sau đó mới chấm trên test.
+- Tập test đã được chấm **hai lần**:
+  1. Lần đầu với tập sạch 449 tin (MAE 4,641, R² 0,534).
+  2. Sau khi sửa bộ lọc IT (giữ thêm 7 tin an ninh mạng / lập trình nhúng), chấm lại trên **cùng 86 tin test cũ** (MAE 4,713, R² 0,522). 7 tin mới không trùng nhóm với tin test nào nên được đưa vào train.
+
+  Giữ nguyên tập test giúp đối chiếu hai lần chạy, nhưng vì đã được xem một lần, tập test này **không còn là tập kiểm định hoàn toàn chưa từng thấy**; kết quả lần hai nên được hiểu là kết quả đối chiếu sau khi sửa dữ liệu.
 - Từ vựng kỹ năng và tiền xử lý chỉ học từ dữ liệu train.
 - Mọi con số trong báo cáo đều lấy từ file trong `reports/`.
 
