@@ -104,6 +104,58 @@ def test_make_pipeline_passes_skill_top_k_to_preprocessor():
     assert skills.top_k == 15
 
 
+def _toy_frame(n=120, seed=0):
+    rng = np.random.default_rng(seed)
+    X = pd.DataFrame({
+        "job_category": rng.choice(["Phát triển phần mềm", "Dữ liệu & AI"], n),
+        "city": rng.choice(["Hà Nội", "TP.HCM"], n),
+        "seniority_coarse": rng.choice(["unknown", "entry"], n),
+        "experience_years": rng.integers(0, 7, n).astype(float),
+        "experience_group": rng.choice(["1 năm", "2 năm"], n),
+        "skills": rng.choice(["python|sql", "java", "react|nodejs"], n),
+    })[FEATURE_COLUMNS]
+    y = 10 + 3 * X.experience_years + rng.normal(0, 1, n)
+    return X, y.to_numpy(), np.repeat(np.arange(n // 2), 2)
+
+
+def test_ridge_pipeline_fits_and_passes_alpha():
+    X, y, groups = _toy_frame()
+    pipe = make_pipeline("ridge", {"skill_top_k": 15, "alpha": 10})
+    assert pipe.named_steps["model"].named_steps["ridge"].alpha == 10
+    folds, oof = cross_validate_grouped(pipe, X, y, groups)
+    assert not np.isnan(oof).any() and len(folds) == 5
+
+
+def test_ridge_shrinks_coefficients_compared_with_lr():
+    X, y, _ = _toy_frame()
+    weak = make_pipeline("ridge", {"alpha": 0.01}).fit(X, y)
+    strong = make_pipeline("ridge", {"alpha": 1000}).fit(X, y)
+    norm = lambda m: np.abs(m.named_steps["model"].named_steps["ridge"].coef_).sum()
+    assert norm(strong) < norm(weak)
+
+
+def test_one_sd_rule_order_lr_ridge_tree_forest():
+    base = {"mae_std": 1.0, "mae_se": 0.4}
+    rows = [
+        {"model": "random_forest", "params": {"max_depth": 10, "min_samples_leaf": 5,
+                                              "n_estimators": 300}, "mae_mean": 5.0, **base},
+        {"model": "decision_tree", "params": {"max_depth": 4, "min_samples_leaf": 10},
+         "mae_mean": 5.3, **base},
+        {"model": "ridge", "params": {"alpha": 10}, "mae_mean": 5.4, **base},
+        {"model": "linear_regression", "params": {}, "mae_mean": 5.5, **base},
+    ]
+    assert select_one_sd(rows)[0]["model"] == "linear_regression"
+    assert select_one_sd(rows[:3])[0]["model"] == "ridge"
+    assert select_one_sd(rows[:2])[0]["model"] == "decision_tree"
+
+
+def test_one_sd_rule_prefers_larger_ridge_alpha():
+    base = {"model": "ridge", "mae_std": 1.0, "mae_se": 0.4}
+    rows = [{**base, "params": {"alpha": 1}, "mae_mean": 5.0},
+            {**base, "params": {"alpha": 100}, "mae_mean": 5.5}]
+    assert select_one_sd(rows)[0]["params"]["alpha"] == 100
+
+
 # ----------------------------------------------------------------------------- dấu vân tay dữ liệu (rebuild)
 def _fp_frames():
     from features import FEATURE_COLUMNS, TARGET

@@ -45,10 +45,10 @@
 │   ├── download_data.py          # Tải dữ liệu, kiểm sha256
 │   ├── data_cleaning.py          # Parse lương, kinh nghiệm, lọc IT, chuẩn hóa kỹ năng
 │   ├── features.py               # Gộp nhóm chống rò rỉ, chia train/test, tiền xử lý
-│   ├── train.py                  # Baseline, LR (GĐ3); DT, RF + grid search (GĐ4)
+│   ├── train.py                  # Baseline, LR (GĐ3); Ridge, DT, RF + grid search (GĐ4)
 │   ├── evaluate.py               # Metric, CV theo nhóm, bootstrap, đánh giá cuối
 │   └── predict.py                # SalaryPredictor + CLI
-├── tests/                        # 89 test (pytest)
+├── tests/                        # 93 test (pytest)
 ├── requirements.txt
 └── README.md
 ```
@@ -125,7 +125,7 @@ Dùng `data/processed/split.csv` đã lưu trong repo (chia theo nhóm tin đăn
 python src/train.py --stage gd4
 ```
 
-Grid search cho Linear Regression, Decision Tree và Random Forest (mọi mô hình đều thử số kỹ năng `skill_top_k` = 15, 30, 50), chọn mô hình theo quy tắc 1 độ lệch chuẩn. Đầu ra: `reports/gd4_grid_results.csv`, `reports/gd4_selected_model.json`, `reports/gd4_train_output.txt`.
+Grid search cho 4 mô hình: Linear Regression, Ridge (alpha = 0,1–300, có chuẩn hóa), Decision Tree và Random Forest (mọi mô hình đều thử số kỹ năng `skill_top_k` = 15, 30, 50), so sánh với baseline DummyRegressor, rồi chọn mô hình theo quy tắc 1 độ lệch chuẩn: trong các cấu hình có MAE CV ≤ MAE nhỏ nhất + 1 SD, chọn cấu hình đơn giản nhất (Linear Regression < Ridge < Decision Tree < Random Forest). Đầu ra: `reports/gd4_grid_results.csv`, `reports/gd4_selected_model.json`, `reports/gd4_train_output.txt`.
 
 ### Bước 7 – Đánh giá cuối trên tập test (GĐ5)
 
@@ -187,11 +187,11 @@ Giá trị đầu vào phải nằm trong danh sách của `--list`. Về kinh n
 python -m pytest tests -q
 ```
 
-Kết quả mong đợi: **89 passed**. Bộ test bao gồm:
+Kết quả mong đợi: **93 passed**. Bộ test bao gồm:
 
 - `test_data_cleaning.py` (39) – parse lương, kinh nghiệm, thành phố, chuẩn hóa kỹ năng, 38 chức danh mẫu của bộ lọc IT, an ninh mạng và lập trình nhúng
 - `test_features.py` (5) – gộp nhóm tin đăng lại, không nhóm nào nằm ở cả train và test, từ vựng kỹ năng chỉ học từ dữ liệu fit
-- `test_train_evaluate.py` (12) – metric, GroupKFold, bootstrap theo nhóm, MAE theo nhóm, quy tắc 1 độ lệch chuẩn, dấu vân tay dữ liệu khi tạo lại mô hình
+- `test_train_evaluate.py` (16) – metric, GroupKFold, bootstrap theo nhóm, MAE theo nhóm, quy tắc 1 độ lệch chuẩn (kể cả thứ tự LR < Ridge < DT < RF), Ridge co hệ số, dấu vân tay dữ liệu khi tạo lại mô hình
 - `test_predict_invalid_input.py` (33) – 15 kiểu đầu vào sai bị từ chối; đầu vào hợp lệ trả về đơn vị và câu miễn trừ; dự đoán ngoài khoảng lương của train không hiển thị con số
 
 `tests/conftest.py` tạo một mô hình nhỏ trên dữ liệu giả, nên có thể chạy test cho phần dự đoán và ứng dụng khi chưa huấn luyện mô hình thật.

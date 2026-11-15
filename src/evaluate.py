@@ -24,10 +24,11 @@ from sklearn.base import clone
 from sklearn.dummy import DummyRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.inspection import permutation_importance
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import GroupKFold
 from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeRegressor
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -51,6 +52,9 @@ DISCLAIMER = ("Kết quả chỉ mang tính tham khảo, phản ánh mức lươ
 MODEL_FACTORY = {
     "dummy_median": lambda **p: DummyRegressor(strategy="median", **p),
     "linear_regression": lambda **p: LinearRegression(**p),
+    # Ridge = Linear Regression + phạt L2 (alpha). Chuẩn hóa trước để mức phạt công bằng giữa
+    # experience_years (0–6 năm) và các cột 0/1; scaler nằm trong Pipeline nên chỉ học trên train/fold train.
+    "ridge": lambda **p: Pipeline([("scale", StandardScaler()), ("ridge", Ridge(**p))]),
     "decision_tree": lambda **p: DecisionTreeRegressor(random_state=RANDOM_STATE, **p),
     "random_forest": lambda **p: RandomForestRegressor(random_state=RANDOM_STATE,
                                                        n_jobs=-1, **p),

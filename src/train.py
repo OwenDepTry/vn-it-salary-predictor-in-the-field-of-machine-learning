@@ -6,7 +6,7 @@ GĐ3 (bước 5 của README):   python src/train.py
     gd3_lr_coefficients.csv. Tạo data/processed/split.csv nếu chưa có (chỉ một lần).
 
 GĐ4 (bước 6 của README):   python src/train.py --stage gd4
-    Grid search Linear Regression, Decision Tree và Random Forest bằng cùng GroupKFold, rồi chọn mô hình
+    Grid search Linear Regression, Ridge, Decision Tree và Random Forest bằng cùng GroupKFold, rồi chọn mô hình
     theo quy tắc 1 độ lệch chuẩn (1-SD). Xuất gd4_grid_results.csv,
     gd4_selected_model.json, gd4_train_output.txt.
 
@@ -26,7 +26,9 @@ from evaluate import (N_SPLITS, REPORTS, RESULTS_CSV, SELECTED_JSON, Tee,
                       save_results, summarize_folds)
 from features import FEATURE_COLUMNS, RANDOM_STATE, TARGET
 
-FAMILY_ORDER = {"linear_regression": 0, "decision_tree": 1, "random_forest": 2}
+# Thứ tự từ đơn giản đến phức tạp cho quy tắc 1-SD. Ridge xếp sau Linear Regression vì có thêm
+# siêu tham số alpha cần chỉnh; nếu LR đã nằm trong ngưỡng thì giữ LR.
+FAMILY_ORDER = {"linear_regression": 0, "ridge": 1, "decision_tree": 2, "random_forest": 3}
 
 SKILL_TOP_K_GRID = [15, 30, 50]
 
@@ -35,6 +37,10 @@ SKILL_TOP_K_GRID = [15, 30, 50]
 GRIDS = {
     "linear_regression": {
         "skill_top_k": SKILL_TOP_K_GRID,
+    },
+    "ridge": {
+        "skill_top_k": SKILL_TOP_K_GRID,
+        "alpha": [0.1, 1, 3, 10, 30, 100, 300],
     },
     "decision_tree": {
         "skill_top_k": SKILL_TOP_K_GRID,
@@ -102,11 +108,12 @@ def main():
 # ---------------------------------------------------------------- GĐ4
 def _complexity_key(row):
     """Khóa sắp xếp từ ĐƠN GIẢN đến PHỨC TẠP, dùng cho quy tắc 1-SD.
+    Ridge: alpha lớn hơn = phạt mạnh hơn = đơn giản hơn.
     Cùng mức phức tạp thì ưu tiên ít kỹ năng hơn, rồi MAE thấp hơn."""
     p = row["params"]
     depth = p.get("max_depth")
     depth = math.inf if depth is None else depth
-    return (FAMILY_ORDER[row["model"]], depth, -p.get("min_samples_leaf", 0),
+    return (FAMILY_ORDER[row["model"]], -p.get("alpha", 0), depth, -p.get("min_samples_leaf", 0),
             p.get("n_estimators", 0), str(p.get("max_features", "")),
             p.get("skill_top_k", 0), row["mae_mean"])
 
@@ -114,7 +121,7 @@ def _complexity_key(row):
 def select_one_sd(rows):
     """Quy tắc 1 độ lệch chuẩn (1-SD): ngưỡng = MAE nhỏ nhất + độ lệch chuẩn MAE
     qua các fold của mô hình đó; trong các mô hình có MAE ≤ ngưỡng, chọn mô hình
-    đơn giản nhất (Linear Regression < Decision Tree < Random Forest)."""
+    đơn giản nhất (Linear Regression < Ridge < Decision Tree < Random Forest)."""
     best = min(rows, key=lambda r: r["mae_mean"])
     threshold = best["mae_mean"] + best["mae_std"]
     eligible = [r for r in rows if r["mae_mean"] <= threshold]
