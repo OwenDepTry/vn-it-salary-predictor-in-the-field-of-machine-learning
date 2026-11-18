@@ -1,0 +1,5 @@
+lan,ngay,mo_hinh,params,n_test,mae_test,r2_test,ghi_chu
+1,2026-11-07 14:11,decision_tree,"{""max_depth"": 4, ""min_samples_leaf"": 10}",86,4.607,0.506,"Commit 2e02c16. Grid DT/RF, chọn theo quy tắc 1-SE; tập sạch 449 tin"
+2,2026-11-07 18:03,linear_regression,"{""skill_top_k"": 15}",86,4.641,0.534,"Commit 272edbf. Sau lần 1: đổi quy tắc 1-SE -> 1-SD, thêm LR và skill_top_k vào grid"
+3,2026-11-07 20:02,linear_regression,"{""skill_top_k"": 15}",86,4.641,0.534,"Commit ba050b0. Chạy lại cùng mô hình để thêm bảng MAE theo nhóm có baseline; kết quả không đổi"
+4,2026-11-10 04:14,linear_regression,"{""skill_top_k"": 15}",86,4.713,0.522,"Commit 399bb14. Sửa bộ lọc IT (456 tin, thêm 7 tin vào train); cùng 86 tin test"

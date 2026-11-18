@@ -10,7 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from evaluate import (cross_validate_grouped, group_bootstrap, mae_by_group,  # noqa: E402
                       make_pipeline, regression_metrics, summarize_folds)
 from features import FEATURE_COLUMNS  # noqa: E402
-from train import select_one_sd  # noqa: E402
+from train import select_one_sd, select_one_se  # noqa: E402
 
 
 def test_regression_metrics_perfect():
@@ -72,7 +72,7 @@ def test_group_mae_table_adds_baseline_and_conclusion():
     assert row.loc["B", "kết luận?"] == "không (n nhỏ)"
 
 
-def test_one_sd_rule_prefers_simpler_model():
+def test_one_se_rule_prefers_simpler_model():
     rows = [
         {"model": "linear_regression", "params": {"skill_top_k": 15}, "mae_mean": 5.54,
          "mae_std": 1.00, "mae_se": 0.45},
@@ -80,20 +80,31 @@ def test_one_sd_rule_prefers_simpler_model():
                                               "n_estimators": 300}, "mae_mean": 5.21,
          "mae_std": 0.92, "mae_se": 0.41},
     ]
-    chosen, best, threshold, _ = select_one_sd(rows)
+    chosen, best, threshold, _ = select_one_se(rows)
     assert best["model"] == "random_forest"
-    assert threshold == pytest.approx(5.21 + 0.92)      # ngưỡng dùng độ lệch chuẩn, không dùng SE
+    assert threshold == pytest.approx(5.21 + 0.41)      # ngưỡng dùng SAI SỐ CHUẨN (1-SE), không dùng SD
     assert chosen["model"] == "linear_regression"
 
 
-def test_one_sd_rule_keeps_best_when_others_too_far():
+def test_one_se_threshold_is_narrower_than_old_one_sd():
+    rows = [
+        {"model": "linear_regression", "params": {}, "mae_mean": 5.9, "mae_std": 1.0, "mae_se": 0.45},
+        {"model": "random_forest", "params": {"max_depth": 10, "min_samples_leaf": 5,
+                                              "n_estimators": 300}, "mae_mean": 5.2,
+         "mae_std": 0.9, "mae_se": 0.40},
+    ]
+    assert select_one_se(rows)[0]["model"] == "random_forest"      # 5.9 > 5.2 + 0.40
+    assert select_one_sd(rows)[0]["model"] == "linear_regression"  # 5.9 ≤ 5.2 + 0.90 (quy tắc cũ, chỉ đối chiếu)
+
+
+def test_one_se_rule_keeps_best_when_others_too_far():
     rows = [
         {"model": "linear_regression", "params": {}, "mae_mean": 7.0, "mae_std": 0.5, "mae_se": 0.2},
         {"model": "random_forest", "params": {"max_depth": 10, "min_samples_leaf": 5,
                                               "n_estimators": 300}, "mae_mean": 5.0,
          "mae_std": 0.5, "mae_se": 0.2},
     ]
-    chosen, _, _, _ = select_one_sd(rows)
+    chosen, _, _, _ = select_one_se(rows)
     assert chosen["model"] == "random_forest"
 
 
@@ -134,8 +145,8 @@ def test_ridge_shrinks_coefficients_compared_with_lr():
     assert norm(strong) < norm(weak)
 
 
-def test_one_sd_rule_order_lr_ridge_tree_forest():
-    base = {"mae_std": 1.0, "mae_se": 0.4}
+def test_one_se_rule_order_lr_ridge_tree_forest():
+    base = {"mae_std": 2.2, "mae_se": 1.0}
     rows = [
         {"model": "random_forest", "params": {"max_depth": 10, "min_samples_leaf": 5,
                                               "n_estimators": 300}, "mae_mean": 5.0, **base},
@@ -144,16 +155,26 @@ def test_one_sd_rule_order_lr_ridge_tree_forest():
         {"model": "ridge", "params": {"alpha": 10}, "mae_mean": 5.4, **base},
         {"model": "linear_regression", "params": {}, "mae_mean": 5.5, **base},
     ]
-    assert select_one_sd(rows)[0]["model"] == "linear_regression"
-    assert select_one_sd(rows[:3])[0]["model"] == "ridge"
-    assert select_one_sd(rows[:2])[0]["model"] == "decision_tree"
+    assert select_one_se(rows)[0]["model"] == "linear_regression"
+    assert select_one_se(rows[:3])[0]["model"] == "ridge"
+    assert select_one_se(rows[:2])[0]["model"] == "decision_tree"
 
 
-def test_one_sd_rule_prefers_larger_ridge_alpha():
+def test_one_se_rule_prefers_larger_ridge_alpha():
     base = {"model": "ridge", "mae_std": 1.0, "mae_se": 0.4}
     rows = [{**base, "params": {"alpha": 1}, "mae_mean": 5.0},
-            {**base, "params": {"alpha": 100}, "mae_mean": 5.5}]
-    assert select_one_sd(rows)[0]["params"]["alpha"] == 100
+            {**base, "params": {"alpha": 100}, "mae_mean": 5.3}]
+    assert select_one_se(rows)[0]["params"]["alpha"] == 100
+
+
+def test_one_se_rule_prefers_fewer_skills_numeric_experience_and_raw_target():
+    base = {"model": "linear_regression", "mae_std": 1.0, "mae_se": 0.4}
+    simple = {"skill_top_k": 0, "experience": "numeric", "log_target": False}
+    rows = [{**base, "params": {"skill_top_k": 30, "experience": "numeric", "log_target": False}, "mae_mean": 5.0},
+            {**base, "params": {"skill_top_k": 0, "experience": "group", "log_target": False}, "mae_mean": 5.1},
+            {**base, "params": {"skill_top_k": 0, "experience": "numeric", "log_target": True}, "mae_mean": 5.1},
+            {**base, "params": simple, "mae_mean": 5.3}]
+    assert select_one_se(rows)[0]["params"] == simple
 
 
 # ----------------------------------------------------------------------------- dấu vân tay dữ liệu (rebuild)
@@ -196,3 +217,91 @@ def test_verify_fingerprint_stops_when_data_changed():
         verify_fingerprint(card, data_fingerprint(train.assign(**{TARGET: train[TARGET] + 10}), test))
     with pytest.raises(SystemExit):
         verify_fingerprint({}, data_fingerprint(train, test))         # card cũ chưa có dấu vân tay
+
+
+# ----------------------------------------------------------------------------- lưới mở rộng (GĐ4 mới)
+def test_skill_top_k_zero_drops_skill_features():
+    from evaluate import _used_columns
+    X, y, _ = _toy_frame()
+    pipe = make_pipeline("linear_regression", {"skill_top_k": 0}).fit(X, y)
+    names = list(pipe.named_steps["prep"].get_feature_names_out())
+    assert not any(n.startswith("skill_") for n in names)
+    assert "skills" not in _used_columns(pipe)
+
+
+def test_experience_group_uses_one_hot_instead_of_years():
+    X, y, _ = _toy_frame()
+    pipe = make_pipeline("linear_regression", {"experience": "group"}).fit(X, y)
+    names = list(pipe.named_steps["prep"].get_feature_names_out())
+    assert "experience_years" not in names
+    assert any(n.startswith("experience_group_") for n in names)
+
+
+def test_log_target_predicts_on_original_scale():
+    from sklearn.compose import TransformedTargetRegressor
+    X, y, groups = _toy_frame()
+    pipe = make_pipeline("ridge", {"alpha": 1, "log_target": True})
+    assert isinstance(pipe.named_steps["model"], TransformedTargetRegressor)
+    folds, oof = cross_validate_grouped(pipe, X, y, groups)
+    assert abs(np.median(oof) - np.median(y)) < 3          # triệu/tháng, không phải log
+    assert summarize_folds(folds)["r2_mean"] > 0.8
+
+
+def test_evaluate_row_keeps_fold_maes_but_results_csv_drops_them(tmp_path):
+    from evaluate import save_results
+    from train import _evaluate
+    X, y, groups = _toy_frame()
+    row = _evaluate("linear_regression", {"skill_top_k": 0}, X, y, groups, "gd4")
+    assert len(row["fold_mae"]) == 5
+    out = save_results([row], path=tmp_path / "res.csv")
+    assert "fold_mae" not in out.columns
+
+
+def test_paired_diff_and_ablation_table():
+    from train import ablation_table, paired_diff
+    a = {"fold_mae": [5.0, 6.0, 5.5, 6.5, 5.0]}
+    b = {"fold_mae": [4.0, 5.0, 4.5, 5.5, 4.0]}
+    assert paired_diff(a, b) == pytest.approx((-1.0, 0.0))
+    rows = [
+        {"model": "linear_regression", "params": {"skill_top_k": k, "experience": "numeric", "log_target": False},
+         "mae_mean": float(np.mean(f)), "mae_se": 0.1, "fold_mae": f}
+        for k, f in ((0, [5.0, 6.0, 5.5, 6.5, 5.0]), (15, [5.1, 6.2, 5.4, 6.6, 5.1]))
+    ]
+    t = ablation_table(rows)
+    r = t[(t.lua_chon == "skill_top_k") & (t.gia_tri == 15)].iloc[0]
+    assert r.ket_luan == "không khác rõ" and r.chenh_so_voi_tham_chieu > 0
+
+
+def test_nested_cv_runs_on_small_grid():
+    from train import nested_cv
+    X, y, groups = _toy_frame(n=150)
+    grids = {"linear_regression": {"skill_top_k": [0, 15]}, "ridge": {"alpha": [1, 100]}}
+    res = nested_cv(X, y, groups, grids=grids, n_outer=3, progress=None)
+    assert len(res) == 3 and res["n_val"].sum() == 150
+    assert (res["mae_chon_1se"] < res["mae_dummy"]).all()
+
+
+def test_record_test_use_appends_and_counts(tmp_path):
+    from evaluate import count_test_uses, record_test_use
+    log = tmp_path / "test_set_log.csv"
+    assert count_test_uses(log) == 0
+    assert record_test_use({"mo_hinh": "a", "mae_test": 4.6}, log) == 1
+    assert record_test_use({"mo_hinh": "b", "mae_test": 4.7}, log) == 2
+    assert list(pd.read_csv(log)["lan"]) == [1, 2]
+
+
+def test_one_se_rule_counts_columns_skills_vs_experience_groups():
+    base = {"model": "linear_regression", "mae_std": 1.0, "mae_se": 0.4}
+    rows = [{**base, "params": {"skill_top_k": 30, "experience": "numeric", "log_target": False}, "mae_mean": 5.0},
+            {**base, "params": {"skill_top_k": 0, "experience": "group", "log_target": False}, "mae_mean": 5.2}]
+    # 0 kỹ năng + ~6 cột kinh nghiệm đơn giản hơn 30 cột kỹ năng + 1 cột kinh nghiệm
+    assert select_one_se(rows)[0]["params"]["skill_top_k"] == 0
+
+
+def test_same_config_treats_missing_keys_as_defaults():
+    from evaluate import same_config
+    old = {"skill_top_k": 15}
+    new = {"skill_top_k": 15, "experience": "numeric", "log_target": False}
+    assert same_config("linear_regression", old, "linear_regression", new)
+    assert not same_config("linear_regression", old, "linear_regression", {**new, "log_target": True})
+    assert not same_config("linear_regression", old, "ridge", new)

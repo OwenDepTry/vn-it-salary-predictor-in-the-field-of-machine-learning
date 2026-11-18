@@ -137,5 +137,6 @@
     "it_job_posting": "68c70420d9a12381a5731f0dbee1cc2b4d2123a94882eb95bd0104a1201e8b69"
   },
   "created_utc": "2026-11-09T21:14:49+00:00",
-  "disclaimer": "Kết quả chỉ mang tính tham khảo, phản ánh mức lương ĐĂNG TUYỂN trong dữ liệu VietJobs, không phải mức lương thực nhận."
+  "disclaimer": "Kết quả chỉ mang tính tham khảo, phản ánh mức lương ĐĂNG TUYỂN trong dữ liệu VietJobs, không phải mức lương thực nhận.",
+  "test_set_uses": 4
 }

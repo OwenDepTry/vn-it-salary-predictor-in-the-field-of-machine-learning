@@ -4,8 +4,9 @@ Gồm hai phần:
   1. Các hàm dùng chung cho train.py: regression_metrics(), make_pipeline(),
      cross_validate_grouped(), summarize_folds(), save_results(), mae_by_group(),
      group_bootstrap(), load_train_test().
-  2. final_evaluation(): đánh giá MỘT LẦN DUY NHẤT trên tập test với mô hình đã
-     chọn ở GĐ4, lưu models/salary_model.joblib và models/model_card.json.
+  2. final_evaluation(): đánh giá trên tập test với mô hình đã chọn ở GĐ4, lưu
+     models/salary_model.joblib và models/model_card.json. Mỗi lần chấm test được ghi thêm
+     một dòng vào reports/test_set_log.csv để báo cáo đúng số lần tập test đã bị xem.
 
 Chạy (bước 7 của README):
     python src/evaluate.py
@@ -21,6 +22,7 @@ import joblib
 import numpy as np
 import pandas as pd
 from sklearn.base import clone
+from sklearn.compose import TransformedTargetRegressor
 from sklearn.dummy import DummyRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.inspection import permutation_importance
@@ -32,8 +34,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeRegressor
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from features import (FEATURE_COLUMNS, RANDOM_STATE, SENIORITY_COARSE,  # noqa: E402
+from features import (FEATURE_COLUMNS, RANDOM_STATE, SENIORITY_COARSE, SKILL_TOP_K,  # noqa: E402
                       TARGET, build_preprocessor, get_split, load_clean, make_groups)
+from intervals import fit_interval, interval_coverage  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORTS = ROOT / "reports"
@@ -42,6 +45,7 @@ MODELS = ROOT / "models"
 RESULTS_CSV = REPORTS / "model_results.csv"
 SELECTED_JSON = REPORTS / "gd4_selected_model.json"
 DOWNLOAD_LOG = ROOT / "data/raw/download_log.json"
+TEST_LOG = REPORTS / "test_set_log.csv"
 
 N_SPLITS = 5
 GROUP_COLUMNS = ["experience_group", "job_category", "city", "seniority_coarse"]
@@ -94,15 +98,32 @@ def load_train_test():
     return train, test
 
 
+PREP_PARAMS = ("skill_top_k", "experience")
+PARAM_DEFAULTS = {"skill_top_k": SKILL_TOP_K, "experience": "numeric", "log_target": False}
+
+
+def same_config(model_a, params_a, model_b, params_b):
+    """Hai cấu hình có giống nhau không, coi khóa vắng mặt là giá trị mặc định
+    (gd4_selected_model.json cũ không có "experience"/"log_target")."""
+    norm = lambda p: {**PARAM_DEFAULTS, **(p or {})}
+    return model_a == model_b and norm(params_a) == norm(params_b)
+
+
 def make_pipeline(name, params=None):
-    """params có thể chứa "skill_top_k" (tham số của bước tiền xử lý);
-    các khóa còn lại là tham số của mô hình."""
+    """params có thể chứa:
+      - "skill_top_k": số kỹ năng phổ biến được dùng (0 = bỏ hẳn đặc trưng kỹ năng);
+      - "experience": "numeric" (số năm, tuyến tính) hoặc "group" (one-hot theo bậc kinh nghiệm);
+      - "log_target": True -> mô hình học log1p(lương) rồi đổi ngược bằng expm1
+        (TransformedTargetRegressor). Lương lệch phải nên sai số tương đối ổn định hơn trên thang log.
+    Các khóa còn lại là tham số của mô hình. Bước "model" vẫn là bước cuối của Pipeline,
+    nên pipe.named_steps["prep"] dùng được như cũ."""
     params = dict(params or {})
-    prep_kwargs = {}
-    if "skill_top_k" in params:
-        prep_kwargs["skill_top_k"] = params.pop("skill_top_k")
-    return Pipeline([("prep", build_preprocessor(**prep_kwargs)),
-                     ("model", MODEL_FACTORY[name](**params))])
+    prep_kwargs = {k: params.pop(k) for k in PREP_PARAMS if k in params}
+    log_target = bool(params.pop("log_target", False))
+    model = MODEL_FACTORY[name](**params)
+    if log_target:
+        model = TransformedTargetRegressor(regressor=model, func=np.log1p, inverse_func=np.expm1)
+    return Pipeline([("prep", build_preprocessor(**prep_kwargs)), ("model", model)])
 
 
 # ---------------------------------------------------------------- metric
@@ -137,9 +158,25 @@ def summarize_folds(folds):
             "r2_mean": float(folds["r2"].mean()), "n_folds": n}
 
 
+def record_test_use(row, path=None):
+    """Ghi thêm một dòng vào reports/test_set_log.csv; trả về số thứ tự lần chấm test."""
+    path = Path(path or TEST_LOG)
+    old = pd.read_csv(path) if path.exists() else pd.DataFrame()
+    n = len(old) + 1
+    new = pd.concat([old, pd.DataFrame([{"lan": n, **row}])], ignore_index=True)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    new.to_csv(path, index=False)
+    return n
+
+
+def count_test_uses(path=None):
+    path = Path(path or TEST_LOG)
+    return len(pd.read_csv(path)) if path.exists() else 0
+
+
 def save_results(rows, path=RESULTS_CSV):
     """Ghi/ghi đè các dòng (model, stage) vào reports/model_results.csv."""
-    new = pd.DataFrame(rows)
+    new = pd.DataFrame(rows).drop(columns=["fold_mae"], errors="ignore")
     new["params"] = new["params"].apply(lambda p: json.dumps(p, sort_keys=True))
     if Path(path).exists():
         old = pd.read_csv(path)
@@ -201,11 +238,17 @@ def _skills_vocabulary(pipe):
     return list(pipe.named_steps["prep"].named_transformers_["skills"].vocabulary_)
 
 
+def _uses_skills(pipe):
+    return len(_skills_vocabulary(pipe)) > 0
+
+
 def _used_columns(pipe):
     """Các cột đầu vào mà ColumnTransformer thực sự dùng (vd. experience='numeric' thì
     experience_group không được dùng)."""
     used = set()
     for name, _, cols in pipe.named_steps["prep"].transformers_:
+        if name == "skills" and not _uses_skills(pipe):   # skill_top_k = 0: không dùng kỹ năng
+            continue
         if name != "remainder":
             used.update(cols)
     return [c for c in FEATURE_COLUMNS if c in used]
@@ -279,7 +322,7 @@ def verify_fingerprint(card, fingerprint):
 def final_evaluation(force=False):
     out_txt = REPORTS / "gd5_final_output.txt"
     if out_txt.exists() and not force:
-        sys.exit("Tập test đã được dùng (reports/gd5_final_output.txt đã có). "
+        sys.exit(f"Tập test đã được dùng {count_test_uses()} lần (reports/test_set_log.csv). "
                  "Để tạo lại file mô hình mà không chấm lại test: `python src/evaluate.py --rebuild-model`. "
                  "Chỉ chạy lại với --force khi chắc chắn KHÔNG đổi mô hình theo kết quả test.")
     if not SELECTED_JSON.exists():
@@ -292,8 +335,10 @@ def final_evaluation(force=False):
     X_tr, y_tr, g_tr = train[FEATURE_COLUMNS], train[TARGET].to_numpy(float), train["group_id"]
     X_te, y_te, g_te = test[FEATURE_COLUMNS], test[TARGET].to_numpy(float), test["group_id"]
 
-    log("GĐ5 – ĐÁNH GIÁ CUỐI TRÊN TẬP TEST (chạy một lần)")
-    log("Ngày chạy:", datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
+    run_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    test_use = count_test_uses() + 1
+    log(f"GĐ5 – ĐÁNH GIÁ TRÊN TẬP TEST (lần chấm test thứ {test_use}, xem reports/test_set_log.csv)")
+    log("Ngày chạy:", run_at)
     log(f"Mô hình đã chọn ở GĐ4: {name} {params}")
     log(f"Train: {len(train)} tin / {g_tr.nunique()} nhóm; "
         f"Test: {len(test)} tin / {g_te.nunique()} nhóm")
@@ -302,15 +347,13 @@ def final_evaluation(force=False):
     pipe = make_pipeline(name, params)
     folds, oof = cross_validate_grouped(pipe, X_tr, y_tr, g_tr)
     cv = summarize_folds(folds)
-    resid_oof = y_tr - oof
-    q10, q90 = np.percentile(resid_oof, [10, 90])
+    interval = fit_interval(y_tr, oof)
 
     pipe.fit(X_tr, y_tr)
     pred = pipe.predict(X_te)
     metrics = regression_metrics(y_te, pred)
     ci = group_bootstrap(y_te, pred, g_te)
-    resid_te = y_te - pred
-    coverage = float(np.mean((resid_te >= q10) & (resid_te <= q90)))
+    coverage = interval_coverage(y_te, pred, interval)
 
     dummy = make_pipeline("dummy_median")
     dummy_folds, _ = cross_validate_grouped(dummy, X_tr, y_tr, g_tr)
@@ -326,8 +369,15 @@ def final_evaluation(force=False):
         f"RMSE {metrics['rmse']:.3f}, R² {metrics['r2']:.3f}")
     log(f"Baseline dummy_median trên test: MAE {dummy_metrics['mae']:.3f}, "
         f"R² {dummy_metrics['r2']:.3f}")
-    log(f"Khoảng phần dư OOF 10%–90%: [{q10:.2f}, {q90:.2f}] triệu; "
-        f"trên test khoảng này chứa {coverage:.0%} tin")
+    d = interval["diagnostics"]
+    log(f"Khoảng dự đoán ~80% từ phần dư OOF (chọn trên train theo độ phủ ở 3 mức lương dự đoán):")
+    for s in ("additive", "log"):
+        log(f"  {s:<8} độ phủ OOF {d[s]['oof_coverage']:.0%}, theo mức thấp/vừa/cao "
+            f"{d[s]['oof_tercile_coverage']}, độ rộng TB {d[s]['mean_width']:.2f} triệu"
+            + ("  <- chọn" if s == interval["scale"] else ""))
+    log(f"  additive: [ŷ{interval['p10']:+.2f}, ŷ{interval['p90']:+.2f}] triệu; "
+        f"log: ŷ×[{np.exp(interval['log_p10']):.2f}, {np.exp(interval['log_p90']):.2f}] (xấp xỉ)")
+    log(f"  Trên test, khoảng đã chọn chứa {coverage:.0%} tin")
 
     # model_results.csv: stage cv_train / test cho mô hình chọn và baseline (app GĐ6 đọc).
     def _test_row(model, prm, m, c):
@@ -350,6 +400,11 @@ def final_evaluation(force=False):
     group_mae.to_csv(REPORTS / "gd5_group_mae.csv", index=False, encoding="utf-8-sig")
     log(f"\nMAE theo nhóm trên test (nhóm n < {MIN_N_CONCLUDE}: không kết luận):")
     log(group_mae.to_string(index=False))
+
+    record_test_use({"ngay": run_at, "mo_hinh": name, "params": json.dumps(params, sort_keys=True),
+                     "n_test": int(len(test)), "mae_test": round(metrics["mae"], 3),
+                     "r2_test": round(metrics["r2"], 3),
+                     "ghi_chu": "src/evaluate.py" + (" --force" if force else "")})
 
     perm = permutation_importance(pipe, X_te, y_te, scoring="neg_mean_absolute_error",
                                   n_repeats=30, random_state=RANDOM_STATE)
@@ -391,8 +446,9 @@ def final_evaluation(force=False):
                                    float(train["experience_years"].max())],
         "skills_vocabulary": _skills_vocabulary(pipe),
         "label_range_train": [float(y_tr.min()), float(y_tr.max())],
-        "residual_interval_oof": {"p10": float(q10), "p90": float(q90),
-                                  "test_coverage": coverage},
+        # Khóa p10/p90/test_coverage giữ như cũ; thêm "scale" (additive|log) và log_p10/log_p90.
+        "residual_interval_oof": {**interval, "test_coverage": coverage},
+        "test_set_uses": test_use,
         "cv_metrics": cv,
         "test_metrics": {"mae_mean": metrics["mae"], "rmse": metrics["rmse"],
                          "r2": metrics["r2"], "mae_ci_low": ci[0], "mae_ci_high": ci[1],
@@ -425,7 +481,7 @@ def rebuild_model():
         sys.exit("Chưa có models/model_card.json: chạy `python src/evaluate.py` (GĐ5) trước.")
     selected = json.loads(SELECTED_JSON.read_text(encoding="utf-8"))
     card = json.loads(card_path.read_text(encoding="utf-8"))
-    if card.get("model") != selected["model"] or card.get("params") != selected["params"]:
+    if not same_config(card.get("model"), card.get("params"), selected["model"], selected["params"]):
         sys.exit("model_card.json không khớp gd4_selected_model.json: chạy lại GĐ5 bằng "
                  "`python src/evaluate.py --force`.")
     train, test = load_train_test()

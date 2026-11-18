@@ -15,6 +15,7 @@ OK: 38 ca chức danh + 5 ca cấp bậc + 1 ca kỹ năng đúng kỳ vọng.
 is_it: 1,280 | trong đó thuộc category CNTT: 940 | ngoài CNTT: 340
 Category CNTT nhưng bị loại: 966. Lý do:
 it_reason
+
 loại: thiết kế/đồ họa/sáng tạo nội dung             422
 loại: kinh doanh/bán hàng/marketing                 271
 không khớp vai trò IT                               178
@@ -215,5 +216,5 @@ tp sông công             1
 tp rạch giá, an giang    1
 thanh hoá, quảng ninh    1
 
-Đã ghi: data/interim/vietjobs_it_candidates.csv (4,583 dòng)
-Đã ghi: data/processed/it_salary_clean.csv (456 dòng, 28 cột)
+Đã ghi: data\interim\vietjobs_it_candidates.csv (4,583 dòng)
+Đã ghi: data\processed\it_salary_clean.csv (456 dòng, 28 cột)

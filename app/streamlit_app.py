@@ -112,8 +112,13 @@ def page_predict():
         seniority = st.selectbox("Cấp bậc ghi trong chức danh", allowed["seniority"],
                                  format_func=lambda s: SENIORITY_LABELS.get(s, s),
                                  help="Phần lớn tin không ghi cấp bậc; chọn 'Không ghi rõ' nếu không chắc.")
-        skills = st.multiselect("Kỹ năng (tùy chọn)", card["skills_vocabulary"],
-                                help="Chỉ gồm kỹ năng mô hình dùng (phổ biến nhất trong dữ liệu train).")
+        if card["skills_vocabulary"]:
+            skills = st.multiselect("Kỹ năng (tùy chọn)", card["skills_vocabulary"],
+                                    help="Chỉ gồm kỹ năng mô hình dùng (phổ biến nhất trong dữ liệu train).")
+        else:
+            skills = []
+            st.caption("Mô hình đã chọn không dùng kỹ năng: ở GĐ4, mô hình không có kỹ năng đã đủ tốt theo "
+                       "quy tắc 1-SE (xem reports/gd4_ablation.csv).")
         submitted = st.form_submit_button("Dự đoán")
 
     perm = load_csv(str(PERM_PATH))
@@ -271,8 +276,11 @@ def page_analysis():
     st.title("Phân tích mô hình")
     st.write(f"Mô hình dùng trong app: **{card['model']}** "
              f"(tham số: `{json.dumps(card['params'], ensure_ascii=False)}`). "
-             "Được chọn ở GĐ4 bằng cross-validation theo nhóm trên train và quy tắc 1 độ lệch chuẩn "
-             "(chọn mô hình đơn giản nhất trong khoảng 1 SD của mô hình tốt nhất). Tập test chỉ dùng một lần.")
+             "Được chọn ở GĐ4 bằng cross-validation theo nhóm chỉ trên train"
+             + (f" ({card['selected_by']})" if card.get("selected_by") else "")
+             + ". Tập test không dùng để chọn mô hình"
+             + (f"; đến nay tập test đã được chấm {card['test_set_uses']} lần (xem reports/test_set_log.csv), "
+                "nên sai số kỳ vọng nên lấy theo cross-validation." if card.get("test_set_uses") else "."))
 
     res = load_csv(str(RESULTS_PATH))
     if res is not None:

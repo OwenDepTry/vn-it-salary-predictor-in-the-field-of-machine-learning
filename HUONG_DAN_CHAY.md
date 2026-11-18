@@ -3,7 +3,8 @@
 ## Các file
 | File | Vai trò |
 |---|---|
-| `src/train.py` | GĐ3 (Dummy + Linear Regression) và GĐ4 (grid search LR/DT/RF có chỉnh số kỹ năng + quy tắc 1 độ lệch chuẩn) |
+| `src/train.py` | GĐ3 (Dummy + Linear Regression), GĐ4 (grid search LR/Ridge/DT/RF + ablation + quy tắc 1-SE) và nested CV |
+| `src/intervals.py` | Khoảng dự đoán ~80% từ phần dư OOF (kiểu cộng hoặc theo tỉ lệ lương) |
 | `src/evaluate.py` | Hàm dùng chung (metric, GroupKFold, bootstrap theo nhóm, MAE theo nhóm) và GĐ5 `final_evaluation()` |
 | `src/features.py` | Của TV2 (đã merge từ `tv2-datacleaning`). TV3 dùng `load_clean`, `make_groups`, `get_split`, `build_preprocessor`, `FEATURE_COLUMNS`, `SENIORITY_COARSE` |
 | `tests/make_fake_data.py` | Tạo dữ liệu GIẢ đúng schema `it_salary_clean.csv` của TV2 để chạy thử |
@@ -15,8 +16,9 @@ pip install -r requirements.txt     # cần thêm scikit-learn, joblib, pytest (
 python src/download_data.py         # tải data/raw/ (không commit)
 python src/data_cleaning.py         # GĐ2 -> data/processed/it_salary_clean.csv
 python src/train.py                 # bước 5 – GĐ3, lần đầu tạo data/processed/split.csv
-python src/train.py --stage gd4     # bước 6 – GĐ4 (~1 phút)
-python src/evaluate.py              # bước 7 – GĐ5, CHỈ chạy 1 lần (dùng tập test)
+python src/train.py --stage gd4     # bước 6 – GĐ4 (~2 phút)
+python src/train.py --stage nested  # bước 6b – tùy chọn, nested CV (~10 phút, không dùng test)
+python src/evaluate.py              # bước 7 – GĐ5 (dùng tập test; mỗi lần chạy được ghi vào reports/test_set_log.csv)
 python src/evaluate.py --rebuild-model   # clone về: tạo lại file mô hình, chỉ fit trên train, không dùng test
 python -m pytest -q
 ```
@@ -32,7 +34,7 @@ Trước khi chạy dữ liệu thật: xóa `data/processed/`, `reports/gd3*`, 
 
 ## Hợp đồng với TV4 (`src/predict.py`, `app/streamlit_app.py`)
 - `models/salary_model.joblib`: Pipeline sklearn chứa `SkillsMultiHot` của `features.py`, nên khi `joblib.load` phải có `src/` trong `sys.path`.
-- `models/model_card.json`: `model` (tên), `params`, `n_train`, `created_utc`, `allowed` {`job_category`, `city`, `seniority` (giá trị thô)}, `train_counts` {`job_category`, `city`, `seniority_coarse`}, `experience_years_range`, `skills_vocabulary`, `label_range_train`, `residual_interval_oof` {`p10`, `p90`, `test_coverage`}, `cv_metrics`, `test_metrics` {`mae_mean`, `n_test`, …}, `data_sha256`, `disclaimer`.
+- `models/model_card.json`: `model` (tên), `params`, `n_train`, `created_utc`, `allowed` {`job_category`, `city`, `seniority` (giá trị thô)}, `train_counts` {`job_category`, `city`, `seniority_coarse`}, `experience_years_range`, `skills_vocabulary`, `label_range_train`, `residual_interval_oof` {`scale` ("additive" hoặc "log"), `p10`, `p90`, `log_p10`, `log_p90`, `diagnostics`, `test_coverage`}, `test_set_uses`, `cv_metrics`, `test_metrics` {`mae_mean`, `n_test`, …}, `data_sha256`, `disclaimer`.
 - `reports/model_results.csv`: các stage `gd3`, `gd4`, `cv_train`, `test`; baseline tên `dummy_median`; dòng `test` có `mae_ci_low`, `mae_ci_high`.
 - `reports/gd5_group_mae.csv`: `column, group, n, mae, mae_dummy, median_label, median_pred, kết luận?`.
 - `reports/gd5_permutation_importance.csv`: `feature, mae_increase, std` (chỉ các cột mô hình dùng).

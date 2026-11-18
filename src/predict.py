@@ -22,6 +22,7 @@ SRC = Path(__file__).resolve().parent
 sys.path.insert(0, str(SRC))  # cần để joblib tìm được lớp SkillsMultiHot trong features.py
 from data_cleaning import experience_group, normalize_skill  # noqa: E402
 from features import FEATURE_COLUMNS, SENIORITY_COARSE  # noqa: E402
+from intervals import apply_interval  # noqa: E402
 
 ROOT = SRC.parent
 MODEL_PATH = ROOT / "models" / "salary_model.joblib"
@@ -89,7 +90,10 @@ class SalaryPredictor:
             if k and k not in norm:
                 norm.append(k)
         ignored = [s for s in norm if s not in self.vocab]
-        if ignored:
+        if ignored and not self.vocab:
+            warnings.append("Mô hình đã chọn không dùng kỹ năng (ở GĐ4, mô hình không có kỹ năng đã đủ tốt theo "
+                            f"quy tắc 1-SE), nên các kỹ năng nhập vào không ảnh hưởng kết quả: {', '.join(ignored)}")
+        elif ignored:
             warnings.append(f"Mô hình không dùng các kỹ năng sau (không nằm trong {len(self.vocab)} kỹ năng "
                             f"phổ biến của dữ liệu train): {', '.join(ignored)}")
         row = {
@@ -112,8 +116,9 @@ class SalaryPredictor:
             warnings.insert(0, f"Không đủ cơ sở dự đoán: mô hình cho {pred:.1f} triệu, nằm ngoài khoảng lương "
                                f"có trong dữ liệu train ({lab_lo:g}–{lab_hi:g} triệu). Tổ hợp đầu vào này quá "
                                f"khác dữ liệu huấn luyện nên không đưa ra mức lương.")
-        low = max(0.0, pred + iv["p10"])
-        high = max(low, pred + iv["p90"])          # luôn đảm bảo low ≤ high
+        # Khoảng ~80% từ phần dư OOF; "scale" = additive (cộng, cùng độ rộng) hoặc log (tỉ lệ với mức lương).
+        # Card cũ không có "scale" -> additive. apply_interval luôn trả 0 ≤ low ≤ high.
+        low, high = apply_interval(pred, iv)
         return {
             "prediction": round(pred, 1) if in_train_range else None,
             "range_80": (round(low, 1), round(high, 1)) if in_train_range else None,
@@ -139,7 +144,7 @@ def main(argv=None) -> int:
     p = SalaryPredictor()
     if a.list:
         print(json.dumps(p.allowed, ensure_ascii=False, indent=2))
-        print("Kỹ năng mô hình dùng:", ", ".join(p.card["skills_vocabulary"]))
+        print("Kỹ năng mô hình dùng:", ", ".join(p.card["skills_vocabulary"]) or "(không dùng kỹ năng)")
         print(f"Kinh nghiệm trong train: {p.card['experience_years_range']} năm")
         return 0
     if not (a.job and a.city and a.exp is not None):

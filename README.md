@@ -5,7 +5,7 @@
 - **Bộ dữ liệu chính:** [VietJobs](https://huggingface.co/datasets/dinhieufam/VietJobs) (48.092 bản ghi, 18 cột)
 - **Bộ dữ liệu phụ (chỉ để khảo sát):** IT-Job-Posting (3.101 bản ghi, không có cột lương)
 - **Tập sạch sau lọc IT và tạo nhãn:** 456 tin; train 370 tin, test 86 tin
-- **Kết quả trên tập test:** Linear Regression, MAE ≈ 4,71 triệu, R² ≈ 0,52
+- **Kết quả trên tập test:** Linear Regression, MAE ≈ 4,71 triệu, R² ≈ 0,52 (tập test đã được chấm 4 lần; sai số kỳ vọng nên lấy theo cross-validation, xem mục *Nguyên tắc tái lập*)
 
 > ⚠️ Kết quả dự đoán chỉ mang tính tham khảo, phản ánh mức lương *đăng tuyển* trong dữ liệu, không phải mức lương thực nhận.
 
@@ -46,9 +46,11 @@
 │   ├── data_cleaning.py          # Parse lương, kinh nghiệm, lọc IT, chuẩn hóa kỹ năng
 │   ├── features.py               # Gộp nhóm chống rò rỉ, chia train/test, tiền xử lý
 │   ├── train.py                  # Baseline, LR (GĐ3); Ridge, DT, RF + grid search (GĐ4)
-│   ├── evaluate.py               # Metric, CV theo nhóm, bootstrap, đánh giá cuối
+│   ├── evaluate.py               # Metric, CV theo nhóm, bootstrap, đánh giá cuối, nhật ký chấm test
+│   ├── intervals.py              # Khoảng dự đoán ~80% (cộng hoặc theo tỉ lệ lương) từ phần dư OOF
 │   └── predict.py                # SalaryPredictor + CLI
-├── tests/                        # 93 test (pytest)
+├── tests/                        # 112 test (pytest)
+├── .github/workflows/tests.yml   # CI: pytest + chạy thử pipeline trên dữ liệu giả (Ubuntu, Windows)
 ├── requirements.txt
 └── README.md
 ```
@@ -60,8 +62,8 @@
 Yêu cầu Python 3 (phiên bản thư viện đã được khóa trong `requirements.txt`).
 
 ```bash
-git clone <đường-dẫn-repo>
-cd <tên-repo>
+git clone https://github.com/OwenDepTry/vn-it-salary-predictor-in-the-field-of-machine-learning.git
+cd vn-it-salary-predictor-in-the-field-of-machine-learning
 
 python -m venv .venv
 # Windows
@@ -125,7 +127,25 @@ Dùng `data/processed/split.csv` đã lưu trong repo (chia theo nhóm tin đăn
 python src/train.py --stage gd4
 ```
 
-Grid search cho 4 mô hình: Linear Regression, Ridge (alpha = 0,1–300, có chuẩn hóa), Decision Tree và Random Forest (mọi mô hình đều thử số kỹ năng `skill_top_k` = 15, 30, 50), so sánh với baseline DummyRegressor, rồi chọn mô hình theo quy tắc 1 độ lệch chuẩn: trong các cấu hình có MAE CV ≤ MAE nhỏ nhất + 1 SD, chọn cấu hình đơn giản nhất (Linear Regression < Ridge < Decision Tree < Random Forest). Đầu ra: `reports/gd4_grid_results.csv`, `reports/gd4_selected_model.json`, `reports/gd4_train_output.txt`.
+Grid search cho 4 mô hình (236 cấu hình, khoảng 2 phút):
+
+- Mọi mô hình thử số kỹ năng `skill_top_k` = 0, 15, 30, 50 (0 = bỏ hẳn đặc trưng kỹ năng, để kiểm tra kỹ năng có thật sự giúp không).
+- Linear Regression và Ridge (alpha = 0,1–300, có chuẩn hóa) thử thêm kinh nghiệm dạng số năm hoặc dạng nhóm (`experience`), và học trên lương gốc hoặc trên log(lương) (`log_target`).
+- Decision Tree và Random Forest chỉnh độ sâu, số mẫu tối thiểu ở lá…
+
+Mô hình được chọn theo **quy tắc 1 sai số chuẩn (1-SE)**: trong các cấu hình có MAE CV ≤ MAE nhỏ nhất + 1 SE (SE = độ lệch chuẩn qua 5 fold / √5), chọn cấu hình đơn giản nhất: Linear Regression < Ridge < Decision Tree < Random Forest, rồi ít cột đặc trưng hơn, rồi nhãn gốc trước log. Output vẫn in kết quả của quy tắc 1-SD cũ để đối chiếu.
+
+Bảng `gd4_ablation.csv` so từng lựa chọn (có/không kỹ năng, kinh nghiệm số/nhóm, log/không log) theo **cặp fold**: cùng 5 fold nên lấy chênh lệch MAE từng fold, báo "rõ" khi chênh quá 2 SE.
+
+Đầu ra: `reports/gd4_grid_results.csv`, `reports/gd4_ablation.csv`, `reports/gd4_selected_model.json`, `reports/gd4_train_output.txt`.
+
+### Bước 6b (tùy chọn) – Nested cross-validation
+
+```bash
+python src/train.py --stage nested
+```
+
+Ước lượng sai số của **cả quy trình** chọn mô hình (grid + 1-SE) bằng cross-validation lồng nhau chỉ trên tập train: vòng ngoài GroupKFold 5, vòng trong chạy lại toàn bộ bước 6 trên phần train của vòng ngoài. Không dùng tập test, nên đây là con số sai số "chưa thấy" sạch nhất của dự án (tập test đã bị xem nhiều lần). Mất khoảng 10 phút. Đầu ra: `reports/gd4_nested_cv.csv`, `reports/gd4_nested_output.txt`.
 
 ### Bước 7 – Đánh giá cuối trên tập test (GĐ5)
 
@@ -133,7 +153,9 @@ Grid search cho 4 mô hình: Linear Regression, Ridge (alpha = 0,1–300, có ch
 python src/evaluate.py
 ```
 
-Đánh giá trên tập test sau khi đã chọn xong mô hình (không dùng test để chọn mô hình), tính khoảng tin cậy 95% bằng bootstrap theo nhóm, MAE theo nhóm, permutation importance. Lệnh dừng nếu đã có kết quả GĐ5; xem mục *Nguyên tắc tái lập* về lần đánh giá lại sau khi sửa bộ lọc IT. Đầu ra:
+Đánh giá trên tập test sau khi đã chọn xong mô hình (không dùng test để chọn mô hình), tính khoảng tin cậy 95% bằng bootstrap theo nhóm, MAE theo nhóm, permutation importance. Mỗi lần chấm test được ghi thêm một dòng vào `reports/test_set_log.csv`. Lệnh dừng nếu đã có kết quả GĐ5; xem mục *Nguyên tắc tái lập*.
+
+Khoảng dự đoán ~80% học từ phần dư out-of-fold trên train, có hai kiểu: **cộng** (mọi đầu vào cùng độ rộng) hoặc **theo tỉ lệ** (tính trên log lương, nên lương cao thì khoảng rộng hơn). Kiểu nào cho độ phủ đều hơn ở ba mức lương dự đoán thấp/vừa/cao (vẫn trên OOF của train) thì được chọn. Đầu ra:
 
 - `reports/gd5_final_output.txt`, `gd5_group_mae.csv`, `gd5_permutation_importance.csv`, `gd5_test_predictions.csv`, 2 hình `gd5_*.png`
 - `models/salary_model.joblib`, `models/model_card.json`
@@ -187,11 +209,13 @@ Giá trị đầu vào phải nằm trong danh sách của `--list`. Về kinh n
 python -m pytest tests -q
 ```
 
-Kết quả mong đợi: **93 passed**. Bộ test bao gồm:
+Kết quả mong đợi: **112 passed**. GitHub Actions tự chạy bộ test và chạy thử pipeline GĐ3–GĐ5 trên dữ liệu giả mỗi lần push hoặc mở pull request (Ubuntu và Windows). Bộ test bao gồm:
 
 - `test_data_cleaning.py` (39) – parse lương, kinh nghiệm, thành phố, chuẩn hóa kỹ năng, 38 chức danh mẫu của bộ lọc IT, an ninh mạng và lập trình nhúng
 - `test_features.py` (5) – gộp nhóm tin đăng lại, không nhóm nào nằm ở cả train và test, từ vựng kỹ năng chỉ học từ dữ liệu fit
-- `test_train_evaluate.py` (16) – metric, GroupKFold, bootstrap theo nhóm, MAE theo nhóm, quy tắc 1 độ lệch chuẩn (kể cả thứ tự LR < Ridge < DT < RF), Ridge co hệ số, dấu vân tay dữ liệu khi tạo lại mô hình
+- `test_train_evaluate.py` (27) – metric, GroupKFold, bootstrap theo nhóm, MAE theo nhóm, quy tắc 1-SE (thứ tự LR < Ridge < DT < RF, đếm số cột đặc trưng, so với 1-SD cũ), Ridge co hệ số, `skill_top_k = 0`, kinh nghiệm dạng nhóm, log(lương), bảng ablation theo cặp fold, nested CV, nhật ký chấm test, dấu vân tay dữ liệu khi tạo lại mô hình
+- `test_intervals.py` (5) – chọn khoảng theo tỉ lệ khi sai số tăng theo mức lương, khoảng cộng khi sai số không đổi, độ phủ ~80%, tương thích model card cũ
+- `test_predict_interval.py` (3) – dự đoán với khoảng theo tỉ lệ, model card cũ, mô hình không dùng kỹ năng
 - `test_predict_invalid_input.py` (33) – 15 kiểu đầu vào sai bị từ chối; đầu vào hợp lệ trả về đơn vị và câu miễn trừ; dự đoán ngoài khoảng lương của train không hiển thị con số
 
 `tests/conftest.py` tạo một mô hình nhỏ trên dữ liệu giả, nên có thể chạy test cho phần dự đoán và ứng dụng khi chưa huấn luyện mô hình thật.
@@ -203,11 +227,17 @@ Kết quả mong đợi: **93 passed**. Bộ test bao gồm:
 - `random_state=42` ở mọi bước.
 - `split.csv` chỉ tạo một lần, **không tạo lại**, và được lưu trong repo để mọi người chạy ra cùng kết quả; các tin đăng lại (kể cả bắc cầu) được gộp cùng nhóm và luôn nằm cùng phía train hoặc test.
 - Tập test **không dùng để chọn mô hình**: mô hình được chọn chỉ dựa trên cross-validation trong tập train (GĐ4), sau đó mới chấm trên test.
-- Tập test đã được chấm **hai lần**:
-  1. Lần đầu với tập sạch 449 tin (MAE 4,641, R² 0,534).
-  2. Sau khi sửa bộ lọc IT (giữ thêm 7 tin an ninh mạng / lập trình nhúng), chấm lại trên **cùng 86 tin test cũ** (MAE 4,713, R² 0,522). 7 tin mới không trùng nhóm với tin test nào nên được đưa vào train.
+- Theo lịch sử git, tập test (luôn là cùng 86 tin) đã được chấm **4 lần**, ghi trong `reports/test_set_log.csv`:
 
-  Giữ nguyên tập test giúp đối chiếu hai lần chạy, nhưng vì đã được xem một lần, tập test này **không còn là tập kiểm định hoàn toàn chưa từng thấy**; kết quả lần hai nên được hiểu là kết quả đối chiếu sau khi sửa dữ liệu.
+  | Lần | Ngày | Mô hình | MAE test | Bối cảnh |
+  |---|---|---|---|---|
+  | 1 | 07/11 | Decision Tree | 4,607 | Chọn theo quy tắc 1-SE, grid chỉ có DT/RF, tập sạch 449 tin |
+  | 2 | 07/11 | Linear Regression | 4,641 | Đổi sang quy tắc 1-SD, thêm LR và `skill_top_k` vào grid |
+  | 3 | 07/11 | Linear Regression | 4,641 | Chạy lại cùng mô hình để thêm bảng MAE theo nhóm |
+  | 4 | 10/11 | Linear Regression | 4,713 | Sửa bộ lọc IT (thêm 7 tin an ninh mạng / lập trình nhúng vào train) |
+
+  Quy tắc chọn mô hình đã bị đổi **sau** lần chấm 1. Lần đổi này không làm kết quả test đẹp hơn: Decision Tree chọn ban đầu có MAE test thấp hơn. Dù vậy, tập test **không còn là tập chưa từng thấy**. Vì thế dự án quay lại quy tắc 1-SE chuẩn và thêm nested CV (bước 6b) làm ước lượng sai số không phụ thuộc tập test. Ngày 16/11, GĐ4 được chạy lại để thêm Ridge (sau lần chấm 4); mô hình được chọn không đổi nên GĐ5 không chạy lại.
+- Tập test không dùng để chọn mô hình hay tham số. Mỗi lần chấm lại test (`python src/evaluate.py --force`) được tự động ghi vào `reports/test_set_log.csv` và phải được nêu trong báo cáo.
 - Từ vựng kỹ năng và tiền xử lý chỉ học từ dữ liệu train.
 - Mọi con số trong báo cáo đều lấy từ file trong `reports/`.
 

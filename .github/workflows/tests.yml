@@ -1,0 +1,50 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      PYTHONIOENCODING: utf-8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Cài thư viện (đúng phiên bản trong requirements.txt)
+        run: pip install -r requirements.txt
+
+      - name: Chạy test
+        run: python -m pytest tests -q
+
+      - name: Chạy thử pipeline GĐ3–GĐ5 trên dữ liệu giả
+        shell: bash
+        run: |
+          # Làm trong bản sao để không đụng split.csv và reports/ thật của repo
+          rm -rf /tmp/smoke && mkdir -p /tmp/smoke && cp -r src tests /tmp/smoke/
+          cd /tmp/smoke
+          python tests/make_fake_data.py --n 200
+          python src/train.py
+          python - <<'EOF'
+          # Grid nhỏ cho nhanh: chỉ kiểm tra các bước nối với nhau được
+          import sys; sys.path.insert(0, "src")
+          import train
+          train.GRIDS = {"linear_regression": {"skill_top_k": [0, 15], "experience": ["numeric", "group"],
+                                               "log_target": [False, True]},
+                         "ridge": {"skill_top_k": [15], "alpha": [1, 30]}}
+          train.gd4()
+          EOF
+          python src/evaluate.py --force
+          python src/evaluate.py --rebuild-model
+          python src/predict.py --job "Phát triển phần mềm" --city "Hà Nội" --exp 2 --skills "python,sql"
