@@ -227,7 +227,7 @@ def page_data():
         "IT được xác định **theo chức danh** bằng quy tắc từ khóa (thiết kế đồ họa bị loại); quy tắc có thể "
         "bỏ sót hoặc bắt nhầm một số tin.",
         "Không có **ngày đăng** và **tên công ty**: không phân tích được xu hướng theo thời gian hay theo công ty.",
-        "Mô hình chỉ biết các nhóm nghề, thành phố và kỹ năng có trong form; kinh nghiệm giới hạn "
+        "Mô hình chỉ biết các nhóm nghề, thành phố và cấp bậc có trong form; kinh nghiệm giới hạn "
         f"0–{card['experience_years_range'][1]:g} năm.",
         "Hệ số hay mức quan trọng của đặc trưng **không phải quan hệ nhân quả**.",
     ]
