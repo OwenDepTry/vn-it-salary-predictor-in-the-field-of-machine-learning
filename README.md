@@ -2,6 +2,7 @@
 
 Đồ án môn Máy học: xây dựng mô hình hồi quy dự đoán mức lương (triệu VNĐ/tháng) của tin tuyển dụng IT dựa trên nhóm nghề, thành phố, kinh nghiệm, cấp bậc và kỹ năng, kèm ứng dụng web Streamlit và giao diện dòng lệnh.
 
+- **Demo trực tuyến:** [vn-it-salary-predictor-in-the-field-of-machine-learning-petlsl.streamlit.app](https://vn-it-salary-predictor-in-the-field-of-machine-learning-petlsl.streamlit.app/)
 - **Bộ dữ liệu chính:** [VietJobs](https://huggingface.co/datasets/dinhieufam/VietJobs) (48.092 bản ghi, 18 cột)
 - **Bộ dữ liệu phụ (chỉ để khảo sát):** IT-Job-Posting (3.101 bản ghi, không có cột lương)
 - **Tập sạch sau lọc IT và tạo nhãn:** 456 tin; train 370 tin, test 86 tin
@@ -235,7 +236,7 @@ streamlit run app/streamlit_app.py
 
 ### Deploy lên Streamlit Community Cloud
 
-Repo đã sẵn sàng để deploy: có file mô hình `models/salary_model.joblib`, tập sạch `data/processed/it_salary_clean.csv` (để cảnh báo tổ hợp đầu vào hiếm) và `app/requirements.txt` chỉ gồm thư viện cho app.
+App đang chạy tại <https://vn-it-salary-predictor-in-the-field-of-machine-learning-petlsl.streamlit.app/>. Repo đã sẵn sàng để deploy: có file mô hình `models/salary_model.joblib`, tập sạch `data/processed/it_salary_clean.csv` (để cảnh báo tổ hợp đầu vào hiếm) và `app/requirements.txt` chỉ gồm thư viện cho app.
 
 1. Đăng nhập [share.streamlit.io](https://share.streamlit.io) bằng tài khoản GitHub có quyền với repo.
 2. Bấm **Create app** → **Deploy a public app from GitHub**.
