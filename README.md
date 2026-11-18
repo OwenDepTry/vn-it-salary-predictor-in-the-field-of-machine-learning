@@ -40,7 +40,8 @@
 ├── notebooks/
 │   ├── 01a_schema_discovery.py   # Khảo sát schema, tỷ lệ thiếu
 │   ├── 01b_data_audit.py         # Phân loại chuỗi lương, phễu dữ liệu, GO/NO-GO
-│   └── 02_eda.ipynb              # Khám phá dữ liệu sạch
+│   ├── 02_eda.ipynb              # Khám phá dữ liệu sạch
+│   └── 03_ket_qua_mo_hinh.ipynb  # Trình bày kết quả mô hình (đọc reports/, không huấn luyện)
 ├── reports/                      # Toàn bộ output, bảng, hình dùng trong báo cáo
 │   └── figures/
 ├── src/
@@ -162,7 +163,15 @@ Khoảng dự đoán ~80% học từ phần dư out-of-fold trên train, có hai
 - `reports/gd5_final_output.txt`, `gd5_group_mae.csv`, `gd5_permutation_importance.csv`, `gd5_test_predictions.csv`, 2 hình `gd5_*.png`
 - `models/salary_model.joblib`, `models/model_card.json`
 
-> **Clone repo về chạy lại?** Repo đã có sẵn kết quả GĐ5 (`reports/gd5_final_output.txt`) nhưng không lưu file mô hình `.joblib`, nên lệnh trên sẽ dừng để bảo vệ tập test. Sau bước 6, chạy:
+### Bước 8 – Notebook trình bày kết quả
+
+```bash
+jupyter notebook notebooks/03_ket_qua_mo_hinh.ipynb
+```
+
+Đọc các file trong `reports/` và `models/model_card.json` để vẽ biểu đồ: so sánh mô hình và quy tắc 1-SE, ablation kỹ năng, nested CV, kết quả test, khoảng dự đoán, MAE theo nhóm. Notebook không huấn luyện, không chấm lại test và không cần dữ liệu gốc. Output đã lưu sẵn nên xem được ngay trên GitHub.
+
+> **Clone repo về chạy lại?** Repo đã có sẵn kết quả GĐ5 (`reports/gd5_final_output.txt`) và file mô hình `models/salary_model.joblib` (để chạy app ngay). Lệnh `python src/evaluate.py` sẽ dừng để bảo vệ tập test. Muốn tự tạo lại file mô hình từ dữ liệu, sau bước 6 chạy:
 >
 > ```bash
 > python src/evaluate.py --rebuild-model
@@ -223,6 +232,18 @@ streamlit run app/streamlit_app.py
 1. **Dự đoán** – nhập nhóm nghề, thành phố, số năm kinh nghiệm, cấp bậc để nhận mức lương dự đoán kèm khoảng ~80%. Ô kỹ năng tự ẩn khi mô hình được chọn không dùng kỹ năng (như hiện tại).
 2. **Dữ liệu & Giới hạn** – mô tả dữ liệu, luật làm sạch và phạm vi áp dụng của mô hình.
 3. **Phân tích mô hình** – so sánh kết quả CV và test, MAE theo nhóm, mức độ quan trọng của đặc trưng.
+
+### Deploy lên Streamlit Community Cloud
+
+Repo đã sẵn sàng để deploy: có file mô hình `models/salary_model.joblib`, tập sạch `data/processed/it_salary_clean.csv` (để cảnh báo tổ hợp đầu vào hiếm) và `app/requirements.txt` chỉ gồm thư viện cho app.
+
+1. Đăng nhập [share.streamlit.io](https://share.streamlit.io) bằng tài khoản GitHub có quyền với repo.
+2. Bấm **Create app** → **Deploy a public app from GitHub**.
+3. Chọn repo này, nhánh `main`, **Main file path** `app/streamlit_app.py`.
+4. Bấm **Advanced settings**, chọn **Python 3.13** (đúng phiên bản dùng khi lưu mô hình), bấm **Save**.
+5. Bấm **Deploy**. Lần đầu mất vài phút để cài thư viện.
+
+Mỗi lần push lên `main`, app tự cập nhật. Muốn đổi phiên bản Python phải xóa app và deploy lại.
 
 ### Dòng lệnh
 

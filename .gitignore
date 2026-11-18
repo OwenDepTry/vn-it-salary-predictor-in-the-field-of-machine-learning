@@ -13,12 +13,16 @@ data/interim/
 data/processed/*
 # split train/test được cố định và lưu lại để mọi người chạy ra cùng kết quả
 !data/processed/split.csv
+# tập sạch (456 tin, dẫn xuất từ VietJobs, giấy phép MIT) để app trên Streamlit Cloud có cảnh báo tổ hợp hiếm
+!data/processed/it_salary_clean.csv
 
 # Test temp
 pytest_temp/
 
 # Mô hình đã huấn luyện (tạo lại bằng src/evaluate.py)
 models/*.joblib
+# mô hình cuối được lưu trong repo để deploy app (Streamlit Cloud không có dữ liệu gốc để huấn luyện lại)
+!models/salary_model.joblib
 
 # Trình soạn code / hệ điều hành
 .vscode/
