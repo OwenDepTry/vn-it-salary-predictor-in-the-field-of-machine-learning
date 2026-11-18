@@ -1,20 +1,49 @@
 GĐ4 – GRID SEARCH VÀ CHỌN MÔ HÌNH (GroupKFold, chỉ tập train)
-Ngày chạy: 2026-11-16 04:09
+Ngày chạy: 2026-11-18 20:37
 Train: 370 tin, 345 nhóm, 5 fold
 
-linear_regression: 3 tổ hợp tham số
-ridge: 21 tổ hợp tham số
-decision_tree: 45 tổ hợp tham số
-random_forest: 36 tổ hợp tham số
+linear_regression: 16 tổ hợp tham số
+ridge: 112 tổ hợp tham số
+decision_tree: 60 tổ hợp tham số
+random_forest: 48 tổ hợp tham số
+Tổng: 236 cấu hình
 
 Tốt nhất của từng họ mô hình:
-linear_regression  MAE 5.522 ± 0.821 (SE 0.367)  RMSE 7.615  R² 0.427  {"skill_top_k": 15}
-ridge              MAE 5.499 ± 0.736 (SE 0.329)  RMSE 7.572  R² 0.434  {"skill_top_k": 15, "alpha": 30}
-decision_tree      MAE 5.648 ± 0.554 (SE 0.248)  RMSE 7.810  R² 0.398  {"skill_top_k": 15, "max_depth": 4, "min_samples_leaf": 10}
+linear_regression  MAE 5.281 ± 1.080 (SE 0.483)  RMSE 7.517  R² 0.436  {"skill_top_k": 0, "experience": "group", "log_target": true}
+ridge              MAE 5.281 ± 1.080 (SE 0.483)  RMSE 7.517  R² 0.436  {"skill_top_k": 0, "experience": "group", "log_target": true, "alpha": 0.1}
+decision_tree      MAE 5.619 ± 0.941 (SE 0.421)  RMSE 7.846  R² 0.390  {"skill_top_k": 0, "max_depth": 6, "min_samples_leaf": 5}
 random_forest      MAE 5.324 ± 0.751 (SE 0.336)  RMSE 7.416  R² 0.454  {"skill_top_k": 50, "n_estimators": 300, "max_depth": 10, "min_samples_leaf": 5, "max_features": 0.5}
 
-Quy tắc 1-SD: MAE nhỏ nhất 5.324 (random_forest) + SD 0.751 = ngưỡng 6.074
-Số cấu hình có MAE ≤ ngưỡng: 95
-CHỌN (đơn giản nhất trong ngưỡng): linear_regression  MAE 5.522 ± 0.821 (SE 0.367)  RMSE 7.615  R² 0.427  {"skill_top_k": 15}
+Ablation (cấu hình tốt nhất ứng với từng lựa chọn, so theo cặp fold với giá trị tham chiếu; 'rõ' = chênh quá 2 SE):
+   lua_chon        ho_mo_hinh gia_tri  mae_cv  mae_se  chenh_so_voi_tham_chieu  se_chenh      ket_luan
+skill_top_k linear_regression       0   5.281   0.483                    0.000     0.000    tham chiếu
+skill_top_k linear_regression      15   5.494   0.466                    0.212     0.042    kém hơn rõ
+skill_top_k linear_regression      30   5.678   0.328                    0.397     0.222 không khác rõ
+skill_top_k linear_regression      50   5.980   0.395                    0.699     0.386 không khác rõ
+skill_top_k             ridge       0   5.281   0.483                    0.000     0.000    tham chiếu
+skill_top_k             ridge      15   5.462   0.437                    0.180     0.053    kém hơn rõ
+skill_top_k             ridge      30   5.482   0.327                    0.200     0.175 không khác rõ
+skill_top_k             ridge      50   5.486   0.344                    0.205     0.207 không khác rõ
+skill_top_k     decision_tree       0   5.619   0.421                    0.000     0.000    tham chiếu
+skill_top_k     decision_tree      15   5.648   0.248                    0.029     0.224 không khác rõ
+skill_top_k     decision_tree      30   5.648   0.248                    0.029     0.224 không khác rõ
+skill_top_k     decision_tree      50   5.648   0.248                    0.029     0.224 không khác rõ
+skill_top_k     random_forest       0   5.335   0.405                    0.000     0.000    tham chiếu
+skill_top_k     random_forest      15   5.370   0.361                    0.035     0.065 không khác rõ
+skill_top_k     random_forest      30   5.342   0.342                    0.007     0.083 không khác rõ
+skill_top_k     random_forest      50   5.324   0.336                   -0.012     0.079 không khác rõ
+ experience linear_regression   group   5.281   0.483                   -0.170     0.176 không khác rõ
+ experience linear_regression numeric   5.451   0.338                    0.000     0.000    tham chiếu
+ experience             ridge   group   5.281   0.483                   -0.167     0.186 không khác rõ
+ experience             ridge numeric   5.448   0.331                    0.000     0.000    tham chiếu
+ log_target linear_regression   False   5.451   0.338                    0.000     0.000    tham chiếu
+ log_target linear_regression    True   5.281   0.483                   -0.170     0.176 không khác rõ
+ log_target             ridge   False   5.447   0.377                    0.000     0.000    tham chiếu
+ log_target             ridge    True   5.281   0.483                   -0.166     0.191 không khác rõ
 
-Đã ghi reports\gd4_selected_model.json và model_results.csv
+Quy tắc 1-SE: MAE nhỏ nhất 5.281 (linear_regression) + SE 0.483 = ngưỡng 5.765
+Số cấu hình có MAE ≤ ngưỡng: 147/236
+CHỌN (đơn giản nhất trong ngưỡng): linear_regression  MAE 5.451 ± 0.756 (SE 0.338)  RMSE 7.532  R² 0.438  {"skill_top_k": 0, "experience": "numeric", "log_target": false}
+Đối chiếu – quy tắc 1-SD cũ: ngưỡng 6.362, 236/236 cấu hình lọt, sẽ chọn linear_regression {"skill_top_k": 0, "experience": "numeric", "log_target": false}
+
+Đã ghi reports\gd4_selected_model.json, gd4_ablation.csv và model_results.csv

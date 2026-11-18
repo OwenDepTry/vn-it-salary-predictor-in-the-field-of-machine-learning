@@ -1,0 +1,19 @@
+NESTED CV – SAI SỐ CỦA CẢ QUY TRÌNH CHỌN MÔ HÌNH (chỉ tập train, không dùng test)
+Ngày chạy: 2026-11-18 20:42
+Train: 370 tin, 345 nhóm; ngoài 5 fold × trong 5 fold × 236 cấu hình (có thể mất 10–20 phút)
+
+  fold ngoài 1/5: 1-SE chọn linear_regression {"skill_top_k": 0, "experience": "numeric", "log_target": false} -> MAE 4.758
+  fold ngoài 2/5: 1-SE chọn linear_regression {"skill_top_k": 0, "experience": "numeric", "log_target": false} -> MAE 5.724
+  fold ngoài 3/5: 1-SE chọn linear_regression {"skill_top_k": 0, "experience": "numeric", "log_target": false} -> MAE 5.636
+  fold ngoài 4/5: 1-SE chọn linear_regression {"skill_top_k": 0, "experience": "numeric", "log_target": false} -> MAE 6.482
+  fold ngoài 5/5: 1-SE chọn linear_regression {"skill_top_k": 0, "experience": "numeric", "log_target": false} -> MAE 4.656
+
+Quy trình GĐ4 (grid + 1-SE)      MAE 5.451 ± 0.756 (SE 0.338), R² 0.438
+Chọn cấu hình MAE CV nhỏ nhất    MAE 5.442 ± 0.669 (SE 0.299), R² 0.422
+Baseline trung vị                MAE 7.820 ± 0.343 (SE 0.153), R² -0.047
+
+Cấu hình được chọn ở từng fold ngoài (độ ổn định của quy trình):
+cau_hinh_chon_1se
+linear_regression {"skill_top_k": 0, "experience": "numeric", "log_target": false}    5
+
+Đây là ước lượng sai số trên dữ liệu chưa thấy KHÔNG phụ thuộc vào tập test (tập test đã được chấm nhiều lần, xem reports/test_set_log.csv).

@@ -1,9 +1,11 @@
 {
   "model": "linear_regression",
   "params": {
-    "skill_top_k": 15
+    "skill_top_k": 0,
+    "experience": "numeric",
+    "log_target": false
   },
-  "selected_by": "1-SD: mô hình đơn giản nhất có MAE CV ≤ MAE nhỏ nhất + 1 độ lệch chuẩn",
+  "selected_by": "1-SE: mô hình đơn giản nhất có MAE CV ≤ MAE nhỏ nhất + 1 sai số chuẩn",
   "feature_columns": [
     "job_category",
     "city",
@@ -16,8 +18,7 @@
     "job_category",
     "city",
     "seniority_coarse",
-    "experience_years",
-    "skills"
+    "experience_years"
   ],
   "target": "salary_label",
   "unit": "triệu VND/tháng",
@@ -84,46 +85,56 @@
     0.0,
     6.0
   ],
-  "skills_vocabulary": [
-    "git",
-    "javascript",
-    "python",
-    "java",
-    "docker",
-    "sql",
-    "postgresql",
-    "react",
-    "html",
-    "css",
-    "rest api",
-    "sql server",
-    "mysql",
-    "kubernetes",
-    "mongodb"
-  ],
+  "skills_vocabulary": [],
   "label_range_train": [
     3.5,
     70.0
   ],
   "residual_interval_oof": {
-    "p10": -8.255843883943076,
-    "p90": 9.418458739861263,
+    "scale": "log",
+    "p10": -8.127022813196831,
+    "p90": 8.446101748666354,
+    "log_p10": -0.43876078829444715,
+    "log_p90": 0.3187796083813339,
+    "diagnostics": {
+      "additive": {
+        "oof_coverage": 0.8,
+        "oof_tercile_coverage": [
+          0.893,
+          0.793,
+          0.717
+        ],
+        "worst_tercile_gap": 0.09344262295081962,
+        "mean_width": 16.57312456186318
+      },
+      "log": {
+        "oof_coverage": 0.8,
+        "oof_tercile_coverage": [
+          0.73,
+          0.818,
+          0.85
+        ],
+        "worst_tercile_gap": 0.07049180327868854,
+        "mean_width": 16.50257316544686
+      }
+    },
     "test_coverage": 0.872093023255814
   },
+  "test_set_uses": 5,
   "cv_metrics": {
-    "mae_mean": 5.521596014880309,
-    "mae_std": 0.8210400900932114,
-    "mae_se": 0.3671802907401945,
-    "rmse_mean": 7.615151011337327,
-    "r2_mean": 0.4274383555695486,
+    "mae_mean": 5.451134419966699,
+    "mae_std": 0.7556647774932068,
+    "mae_se": 0.3379435621354127,
+    "rmse_mean": 7.53188314291984,
+    "r2_mean": 0.43794332370859124,
     "n_folds": 5
   },
   "test_metrics": {
-    "mae_mean": 4.712624966072892,
-    "rmse": 5.8609334438690714,
-    "r2": 0.522245888078937,
-    "mae_ci_low": 3.9701749727452498,
-    "mae_ci_high": 5.48752598831573,
+    "mae_mean": 4.3359752374864815,
+    "rmse": 5.494976579690501,
+    "r2": 0.5800452035162986,
+    "mae_ci_low": 3.659192595765873,
+    "mae_ci_high": 5.105044215399977,
     "n_test": 86
   },
   "baseline_test_metrics": {
@@ -136,7 +147,6 @@
     "vietjobs": "85862b06fda4e814fe0c1d8622f173d189c92758345f77df16d1232d0c49d477",
     "it_job_posting": "68c70420d9a12381a5731f0dbee1cc2b4d2123a94882eb95bd0104a1201e8b69"
   },
-  "created_utc": "2026-11-09T21:14:49+00:00",
-  "disclaimer": "Kết quả chỉ mang tính tham khảo, phản ánh mức lương ĐĂNG TUYỂN trong dữ liệu VietJobs, không phải mức lương thực nhận.",
-  "test_set_uses": 4
+  "created_utc": "2026-11-18T14:21:34+00:00",
+  "disclaimer": "Kết quả chỉ mang tính tham khảo, phản ánh mức lương ĐĂNG TUYỂN trong dữ liệu VietJobs, không phải mức lương thực nhận."
 }

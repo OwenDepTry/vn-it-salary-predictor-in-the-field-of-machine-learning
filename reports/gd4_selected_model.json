@@ -1,24 +1,26 @@
 {
   "model": "linear_regression",
   "params": {
-    "skill_top_k": 15
+    "skill_top_k": 0,
+    "experience": "numeric",
+    "log_target": false
   },
-  "cv_mae_mean": 5.521596014880308,
-  "cv_mae_std": 0.8210400900932111,
-  "cv_mae_se": 0.3671802907401943,
-  "cv_r2_mean": 0.4274383555695486,
-  "rule": "1-SD: mô hình đơn giản nhất có MAE CV ≤ MAE nhỏ nhất + 1 độ lệch chuẩn",
-  "best_model": "random_forest",
+  "cv_mae_mean": 5.451134419966699,
+  "cv_mae_std": 0.7556647774932068,
+  "cv_mae_se": 0.3379435621354127,
+  "cv_r2_mean": 0.43794332370859124,
+  "rule": "1-SE: mô hình đơn giản nhất có MAE CV ≤ MAE nhỏ nhất + 1 sai số chuẩn",
+  "best_model": "linear_regression",
   "best_params": {
-    "skill_top_k": 50,
-    "n_estimators": 300,
-    "max_depth": 10,
-    "min_samples_leaf": 5,
-    "max_features": 0.5
+    "skill_top_k": 0,
+    "experience": "group",
+    "log_target": true
   },
-  "best_mae_mean": 5.323734143825801,
-  "threshold": 6.074425761204559,
+  "best_mae_mean": 5.281391300722569,
+  "threshold": 5.764517999257972,
+  "n_eligible": 147,
+  "n_configs": 236,
   "n_splits": 5,
   "random_state": 42,
-  "created_at": "2026-11-16T04:10:57"
+  "created_at": "2026-11-18T20:42:25"
 }

@@ -1,42 +1,45 @@
-GĐ5 – ĐÁNH GIÁ CUỐI TRÊN TẬP TEST (chạy một lần)
-Ngày chạy: 2026-11-10 04:14
-Mô hình đã chọn ở GĐ4: linear_regression {'skill_top_k': 15}
+GĐ5 – ĐÁNH GIÁ TRÊN TẬP TEST (lần chấm test thứ 5, xem reports/test_set_log.csv)
+Ngày chạy: 2026-11-18 21:21
+Mô hình đã chọn ở GĐ4: linear_regression {'skill_top_k': 0, 'experience': 'numeric', 'log_target': False}
 Train: 370 tin / 345 nhóm; Test: 86 tin / 85 nhóm
-CV train (GroupKFold 5): MAE 5.522 ± 0.821, R² 0.427
-TEST: MAE 4.713 triệu (CI95% theo nhóm 3.970–5.488), RMSE 5.861, R² 0.522
+CV train (GroupKFold 5): MAE 5.451 ± 0.756, R² 0.438
+TEST: MAE 4.336 triệu (CI95% theo nhóm 3.659–5.105), RMSE 5.495, R² 0.580
 Baseline dummy_median trên test: MAE 5.935, R² -0.001
-Khoảng phần dư OOF 10%–90%: [-8.26, 9.42] triệu; trên test khoảng này chứa 87% tin
+Khoảng dự đoán ~80% từ phần dư OOF (chọn trên train theo độ phủ ở 3 mức lương dự đoán):
+  additive độ phủ OOF 80%, theo mức thấp/vừa/cao [0.893, 0.793, 0.717], độ rộng TB 16.57 triệu
+  log      độ phủ OOF 80%, theo mức thấp/vừa/cao [0.73, 0.818, 0.85], độ rộng TB 16.50 triệu  <- chọn
+  additive: [ŷ-8.13, ŷ+8.45] triệu; log: ŷ×[0.64, 1.38] (xấp xỉ)
+  Trên test, khoảng đã chọn chứa 87% tin
 
 MAE theo nhóm trên test (nhóm n < 10: không kết luận):
           column                          group  n   mae  mae_dummy  median_label  median_pred     kết luận?
-experience_group                          2 năm 33  4.04       3.11         20.00        21.24            có
-experience_group                          1 năm 20  4.01       4.95         15.50        15.82            có
-experience_group                          3 năm 16  6.03       4.59         20.75        26.53            có
-experience_group              0 (không yêu cầu)  7  4.29      11.85          9.00        11.88 không (n nhỏ)
-experience_group                         4+ năm  7  7.63      17.86         32.50        35.96 không (n nhỏ)
-experience_group                         <1 năm  3  3.96       9.17          9.50        15.82 không (n nhỏ)
-    job_category            Phát triển phần mềm 30  4.23       5.82         18.50        20.49            có
-    job_category Quản lý & phân tích (PM/BA/PO) 20  5.54       7.05         20.00        24.24            có
-    job_category      Hạ tầng, DevOps & bảo mật 10  5.12       4.10         20.25        22.14            có
-    job_category               Triển khai & ERP  9  3.76       4.44         17.00        18.96 không (n nhỏ)
-    job_category     Hỗ trợ kỹ thuật & IT chung  7  4.03       6.86         12.50        17.99 không (n nhỏ)
-    job_category                   Dữ liệu & AI  5  5.59       8.80         22.50        22.68 không (n nhỏ)
-    job_category                  Kiểm thử & QA  5  5.25       4.40         20.00        20.40 không (n nhỏ)
-            city                         Hà Nội 66  4.36       5.49         20.00        20.79            có
-            city                         TP.HCM 15  5.41       5.56         17.00        21.15            có
-            city                           Khác  3  1.71       6.83         11.50        14.98 không (n nhỏ)
-            city                        Đà Nẵng  2 15.55      22.00         38.00        30.97 không (n nhỏ)
-seniority_coarse                        unknown 71  4.51       5.05         20.00        21.11            có
-seniority_coarse                          entry  9  4.20       8.11         12.50        14.81 không (n nhỏ)
-seniority_coarse                         senior  4  5.53       6.62         25.00        24.05 không (n nhỏ)
-seniority_coarse                   lead_manager  2 12.65      26.25         46.25        33.60 không (n nhỏ)
+experience_group                          2 năm 33  3.67       3.11         20.00        22.16            có
+experience_group                          1 năm 20  3.87       4.95         15.50        17.96            có
+experience_group                          3 năm 16  5.27       4.59         20.75        26.79            có
+experience_group              0 (không yêu cầu)  7  3.84      11.85          9.00        10.75 không (n nhỏ)
+experience_group                         4+ năm  7  7.35      17.86         32.50        34.72 không (n nhỏ)
+experience_group                         <1 năm  3  3.87       9.17          9.50        16.22 không (n nhỏ)
+    job_category            Phát triển phần mềm 30  3.71       5.82         18.50        22.16            có
+    job_category Quản lý & phân tích (PM/BA/PO) 20  5.62       7.05         20.00        24.50            có
+    job_category      Hạ tầng, DevOps & bảo mật 10  4.46       4.10         20.25        23.69            có
+    job_category               Triển khai & ERP  9  3.20       4.44         17.00        19.97 không (n nhỏ)
+    job_category     Hỗ trợ kỹ thuật & IT chung  7  3.88       6.86         12.50        17.94 không (n nhỏ)
+    job_category                   Dữ liệu & AI  5  5.40       8.80         22.50        23.88 không (n nhỏ)
+    job_category                  Kiểm thử & QA  5  4.34       4.40         20.00        19.25 không (n nhỏ)
+            city                         Hà Nội 66  4.00       5.49         20.00        22.16            có
+            city                         TP.HCM 15  4.86       5.56         17.00        21.68            có
+            city                           Khác  3  1.80       6.83         11.50        15.43 không (n nhỏ)
+            city                        Đà Nẵng  2 15.34      22.00         38.00        30.89 không (n nhỏ)
+seniority_coarse                        unknown 71  4.29       5.05         20.00        22.16            có
+seniority_coarse                          entry  9  3.06       8.11         12.50        13.00 không (n nhỏ)
+seniority_coarse                         senior  4  4.23       6.62         25.00        24.81 không (n nhỏ)
+seniority_coarse                   lead_manager  2 12.11      26.25         46.25        34.14 không (n nhỏ)
 
 Permutation importance (MAE tăng bao nhiêu khi xáo trộn cột):
          feature  mae_increase   std
-experience_years         2.319 0.252
-seniority_coarse         0.640 0.156
-    job_category         0.412 0.161
-            city         0.082 0.107
-          skills        -0.165 0.162
+experience_years         2.555 0.279
+seniority_coarse         0.571 0.157
+    job_category         0.402 0.162
+            city         0.104 0.102
 
 Đã lưu models/salary_model.joblib và models/model_card.json
