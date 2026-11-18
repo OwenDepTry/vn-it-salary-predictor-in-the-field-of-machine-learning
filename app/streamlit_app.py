@@ -193,17 +193,15 @@ def page_data():
         it = interim[interim["is_it"]]
         funnel = it["model_reason"].value_counts().rename_axis("Kết quả").reset_index(name="Số tin")
         st.write(f"Có **{len(it):,}** tin được xếp là IT theo chức danh. Lý do giữ/loại:")
-        st.dataframe(funnel, hide_index=True)
+        st.table(funnel.set_index("Kết quả"))
 
     if clean is not None:
         st.subheader(f"Tập dùng cho mô hình: {len(clean):,} tin")
         c1, c2 = st.columns(2)
         c1.write("Theo nhóm nghề")
-        c1.dataframe(clean["job_category"].value_counts().rename_axis("Nhóm nghề").reset_index(name="Số tin"),
-                     hide_index=True)
+        c1.table(clean["job_category"].value_counts().rename_axis("Nhóm nghề").to_frame("Số tin"))
         c2.write("Theo thành phố")
-        c2.dataframe(clean["city"].value_counts().rename_axis("Thành phố").reset_index(name="Số tin"),
-                     hide_index=True)
+        c2.table(clean["city"].value_counts().rename_axis("Thành phố").to_frame("Số tin"))
         st.write("Phân bố lương đăng tuyển (trung điểm, triệu VND/tháng)")
         bins = pd.cut(clean["salary_label"], bins=[0, 5, 10, 15, 20, 25, 30, 40, 50, 100], right=False)
         counts = bins.value_counts().sort_index()  # sắp theo khoảng số, không theo chữ cái
@@ -298,7 +296,7 @@ def page_analysis():
         view = view.copy()
         for c in num:  # chuyển sẵn thành chuỗi: mọi phiên bản Streamlit đều hiện "—" thay vì "None"
             view[c] = view[c].map(lambda v: "—" if pd.isna(v) else f"{v:.3f}")
-        st.dataframe(view, hide_index=True)
+        st.table(view.set_index(["model", "stage"]))
         st.caption("stage = cv_train: GroupKFold 5 fold trên train (mae_std = độ lệch giữa các fold). "
                    "stage = test: đánh giá cuối, CI 95% bằng bootstrap theo nhóm.")
 
@@ -325,7 +323,8 @@ def page_analysis():
         names = {"experience_group": "Kinh nghiệm", "job_category": "Nhóm nghề", "city": "Thành phố",
                  "seniority_coarse": "Cấp bậc (gộp)"}
         col = st.selectbox("Nhóm theo", list(names), format_func=names.get)
-        st.dataframe(gm[gm["column"] == col].drop(columns="column").round(2), hide_index=True)
+        gtab = gm[gm["column"] == col].drop(columns="column").set_index("group")
+        st.table(gtab.style.format({c: "{:.2f}" for c in gtab.select_dtypes("float").columns}))
         st.caption("Nhóm có n < 10 tin: chỉ để tham khảo, không đủ để kết luận.")
 
     perm = load_csv(str(PERM_PATH))
