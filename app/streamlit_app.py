@@ -101,15 +101,21 @@ def page_predict():
     cities = [c for c in allowed["city"] if c not in HIDDEN_CITIES]
     exp_max = card["experience_years_range"][1]
 
+    def most_common_index(options, counts):
+        """Mặc định chọn giá trị có nhiều tin train nhất, để lần dự đoán đầu nằm trong vùng nhiều dữ liệu."""
+        return max(range(len(options)), key=lambda i: counts.get(options[i], 0)) if options else 0
+
     with st.form("predict_form"):
         job = st.selectbox("Nhóm nghề", allowed["job_category"],
+                           index=most_common_index(allowed["job_category"], tcount["job_category"]),
                            format_func=lambda c: f"{c} ({tcount['job_category'].get(c, 0)} tin train)")
-        city = st.selectbox("Thành phố", cities,
+        city = st.selectbox("Thành phố", cities, index=most_common_index(cities, tcount["city"]),
                             format_func=lambda c: f"{c} ({tcount['city'].get(c, 0)} tin train)")
         exp = st.select_slider("Kinh nghiệm yêu cầu", options=experience_options(exp_max), value=1.0,
                                format_func=experience_label,
                                help=f"Giới hạn 0–{exp_max:g} năm: đúng phạm vi dữ liệu huấn luyện.")
         seniority = st.selectbox("Cấp bậc ghi trong chức danh", allowed["seniority"],
+                                 index=allowed["seniority"].index("unknown") if "unknown" in allowed["seniority"] else 0,
                                  format_func=lambda s: SENIORITY_LABELS.get(s, s),
                                  help="Phần lớn tin không ghi cấp bậc; chọn 'Không ghi rõ' nếu không chắc.")
         if card["skills_vocabulary"]:
