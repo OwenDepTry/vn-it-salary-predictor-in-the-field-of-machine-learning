@@ -5,7 +5,9 @@
 - **Bộ dữ liệu chính:** [VietJobs](https://huggingface.co/datasets/dinhieufam/VietJobs) (48.092 bản ghi, 18 cột)
 - **Bộ dữ liệu phụ (chỉ để khảo sát):** IT-Job-Posting (3.101 bản ghi, không có cột lương)
 - **Tập sạch sau lọc IT và tạo nhãn:** 456 tin; train 370 tin, test 86 tin
-- **Kết quả trên tập test:** Linear Regression, MAE ≈ 4,71 triệu, R² ≈ 0,52 (tập test đã được chấm 4 lần; sai số kỳ vọng nên lấy theo cross-validation, xem mục *Nguyên tắc tái lập*)
+- **Mô hình:** Linear Regression trên nhóm nghề, thành phố, số năm kinh nghiệm và cấp bậc (không dùng kỹ năng, xem mục *Kết quả*)
+- **Sai số kỳ vọng (nested cross-validation):** MAE ≈ **5,45 triệu**, R² ≈ 0,44; baseline trung vị 7,82 triệu
+- **Trên tập test:** MAE ≈ 4,34 triệu, R² ≈ 0,58 (tập test đã được chấm 5 lần, nên con số chính lấy theo nested CV; xem mục *Nguyên tắc tái lập*)
 
 > ⚠️ Kết quả dự đoán chỉ mang tính tham khảo, phản ánh mức lương *đăng tuyển* trong dữ liệu, không phải mức lương thực nhận.
 
@@ -170,6 +172,44 @@ Khoảng dự đoán ~80% học từ phần dư out-of-fold trên train, có hai
 
 ---
 
+## Kết quả
+
+Mọi con số dưới đây lấy từ `reports/gd4_train_output.txt`, `gd4_ablation.csv`, `gd4_nested_output.txt` và `gd5_final_output.txt` (chạy ngày 18/11/2026).
+
+**Tốt nhất của từng họ mô hình** (GroupKFold 5 fold trên 370 tin train, 236 cấu hình):
+
+| Mô hình | MAE CV (triệu) | SE | R² |
+|---|---|---|---|
+| Baseline trung vị | 7,82 | 0,15 | −0,05 |
+| Linear Regression | 5,28 | 0,48 | 0,44 |
+| Ridge | 5,28 | 0,48 | 0,44 |
+| Decision Tree | 5,62 | 0,42 | 0,39 |
+| Random Forest | 5,32 | 0,34 | 0,45 |
+| **Được chọn (1-SE): Linear Regression, không kỹ năng, kinh nghiệm dạng số, lương gốc** | **5,45** | **0,34** | **0,44** |
+
+**Mô hình được chọn.** Ngưỡng 1-SE là 5,28 + 0,48 = 5,77 triệu, có 147/236 cấu hình lọt ngưỡng; mô hình đơn giản nhất trong số đó được chọn. Quy tắc 1-SD cũ cho **cả 236/236** cấu hình lọt ngưỡng, tức là không còn tác dụng chọn lọc.
+
+**Kỹ năng không giúp dự đoán.** Với Linear Regression và Ridge, thêm 15 kỹ năng phổ biến làm MAE CV **tăng rõ** (+0,21 ± 0,04 triệu, so theo cặp fold); 30–50 kỹ năng cũng không tốt hơn. Với Decision Tree và Random Forest, có hay không có kỹ năng không khác nhau rõ. Với 370 tin train, danh sách kỹ năng trên tin tuyển dụng không cho thêm thông tin về lương ngoài nhóm nghề, kinh nghiệm, cấp bậc và thành phố. Đây là kết luận về dữ liệu này, không phải về giá trị của kỹ năng ngoài thị trường.
+
+**Log(lương) và kinh nghiệm dạng nhóm** cho MAE CV thấp nhất (5,28), tốt hơn mô hình được chọn 0,17 ± 0,18 triệu, chưa đủ bằng chứng (dưới 2 SE). Cấu hình này cũng dao động giữa các fold nhiều hơn (SD 1,08 so với 0,76).
+
+**Nested cross-validation** (chạy lại toàn bộ grid + 1-SE trong từng fold ngoài): MAE **5,45 ± 0,76 triệu**, R² 0,44. Cả 5 fold ngoài đều chọn cùng một cấu hình. Vì vòng ngoài dùng đúng 5 fold của GĐ4, con số này trùng với MAE CV của mô hình được chọn: việc chọn mô hình không làm sai số bị ước lượng thấp đi. Chọn theo 1-SE (5,451) gần như bằng chọn cấu hình có MAE CV nhỏ nhất (5,442).
+
+**Trên tập test** (86 tin, lần chấm thứ 5): MAE **4,34 triệu** (khoảng tin cậy 95% theo nhóm: 3,66–5,11), RMSE 5,49, R² 0,58; baseline trung vị 5,94. Ở cả 5 lần chấm, MAE test đều thấp hơn MAE CV, có lẽ vì tập test tập trung ở Hà Nội (66/86 tin).
+
+**Đặc trưng quan trọng** (permutation importance trên test, MAE tăng khi xáo trộn): số năm kinh nghiệm 2,56 triệu; cấp bậc 0,57; nhóm nghề 0,40; thành phố 0,10.
+
+**Khoảng dự đoán ~80%:** kiểu theo tỉ lệ (log) được chọn vì độ phủ OOF đều hơn ở ba mức lương thấp/vừa/cao (73% / 82% / 85%, so với 89% / 79% / 72% của kiểu cộng). Trên test, khoảng này chứa 87% tin.
+
+### Hạn chế
+
+- **Dữ liệu ít và lệch:** 456 tin sau khi lọc (từ 48.092 bản ghi), 77% tin test ở Hà Nội, Đà Nẵng chỉ có vài tin; 71/86 tin test không ghi cấp bậc. Mô hình chủ yếu phản ánh thị trường Hà Nội và TP.HCM, kinh nghiệm 0–6 năm.
+- **Dự đoán cao hơn thực tế ở mức kinh nghiệm phổ biến:** trên test, trung vị dự đoán cao hơn trung vị thực tế ở hầu hết các nhóm (nhóm 2 năm: 22,2 so với 20,0; nhóm 3 năm: 26,8 so với 20,8). Ở nhóm 2–3 năm và nhóm Hạ tầng/DevOps, MAE còn cao hơn baseline. Nguyên nhân: hồi quy tuyến tính trên lương gốc dự đoán giá trị trung bình, trong khi lương lệch phải, và kinh nghiệm được mô hình hóa tuyến tính nên độ dốc bị các tin lương cao kéo lên. Log(lương) và kinh nghiệm dạng nhóm là hướng khắc phục, nhưng ở GĐ4 chưa đủ bằng chứng để chọn. Dự án **không đổi mô hình sau khi thấy kết quả này trên test**, để tránh chọn mô hình theo tập test.
+- **Tập test đã bị xem 5 lần** (xem bên dưới), nên chỉ dùng để đối chiếu.
+- Lương là lương **đăng tuyển** (trung điểm khoảng lương trên tin), không phải lương thực nhận.
+
+---
+
 ## Sử dụng mô hình
 
 ### Ứng dụng web
@@ -180,7 +220,7 @@ streamlit run app/streamlit_app.py
 
 Ứng dụng gồm 3 trang:
 
-1. **Dự đoán** – nhập nhóm nghề, thành phố, số năm kinh nghiệm, cấp bậc, kỹ năng để nhận mức lương dự đoán kèm khoảng sai số.
+1. **Dự đoán** – nhập nhóm nghề, thành phố, số năm kinh nghiệm, cấp bậc để nhận mức lương dự đoán kèm khoảng ~80%. Ô kỹ năng tự ẩn khi mô hình được chọn không dùng kỹ năng (như hiện tại).
 2. **Dữ liệu & Giới hạn** – mô tả dữ liệu, luật làm sạch và phạm vi áp dụng của mô hình.
 3. **Phân tích mô hình** – so sánh kết quả CV và test, MAE theo nhóm, mức độ quan trọng của đặc trưng.
 
@@ -227,7 +267,7 @@ Kết quả mong đợi: **112 passed**. GitHub Actions tự chạy bộ test v�
 - `random_state=42` ở mọi bước.
 - `split.csv` chỉ tạo một lần, **không tạo lại**, và được lưu trong repo để mọi người chạy ra cùng kết quả; các tin đăng lại (kể cả bắc cầu) được gộp cùng nhóm và luôn nằm cùng phía train hoặc test.
 - Tập test **không dùng để chọn mô hình**: mô hình được chọn chỉ dựa trên cross-validation trong tập train (GĐ4), sau đó mới chấm trên test.
-- Theo lịch sử git, tập test (luôn là cùng 86 tin) đã được chấm **4 lần**, ghi trong `reports/test_set_log.csv`:
+- Tập test (luôn là cùng 86 tin) đã được chấm **5 lần**, ghi trong `reports/test_set_log.csv` (lần 1–4 lấy theo lịch sử git):
 
   | Lần | Ngày | Mô hình | MAE test | Bối cảnh |
   |---|---|---|---|---|
@@ -235,8 +275,9 @@ Kết quả mong đợi: **112 passed**. GitHub Actions tự chạy bộ test v�
   | 2 | 07/11 | Linear Regression | 4,641 | Đổi sang quy tắc 1-SD, thêm LR và `skill_top_k` vào grid |
   | 3 | 07/11 | Linear Regression | 4,641 | Chạy lại cùng mô hình để thêm bảng MAE theo nhóm |
   | 4 | 10/11 | Linear Regression | 4,713 | Sửa bộ lọc IT (thêm 7 tin an ninh mạng / lập trình nhúng vào train) |
+  | 5 | 18/11 | Linear Regression, không kỹ năng | 4,336 | Quy tắc 1-SE + lưới mở rộng (kỹ năng 0, kinh nghiệm dạng nhóm, log lương); mô hình chọn hoàn toàn bằng CV trước khi chấm |
 
-  Quy tắc chọn mô hình đã bị đổi **sau** lần chấm 1. Lần đổi này không làm kết quả test đẹp hơn: Decision Tree chọn ban đầu có MAE test thấp hơn. Dù vậy, tập test **không còn là tập chưa từng thấy**. Vì thế dự án quay lại quy tắc 1-SE chuẩn và thêm nested CV (bước 6b) làm ước lượng sai số không phụ thuộc tập test. Ngày 16/11, GĐ4 được chạy lại để thêm Ridge (sau lần chấm 4); mô hình được chọn không đổi nên GĐ5 không chạy lại.
+  Quy tắc chọn mô hình đã bị đổi **sau** lần chấm 1. Lần đổi này không làm kết quả test đẹp hơn: Decision Tree chọn ban đầu có MAE test thấp hơn. Dù vậy, tập test **không còn là tập chưa từng thấy**. Vì thế dự án quay lại quy tắc 1-SE chuẩn và thêm nested CV (bước 6b) làm ước lượng sai số không phụ thuộc tập test. Ngày 16/11, GĐ4 được chạy lại để thêm Ridge (sau lần chấm 4); mô hình được chọn không đổi nên GĐ5 không chạy lại. Ngày 18/11, GĐ4 chạy với quy tắc 1-SE và lưới mở rộng chọn mô hình mới (bỏ kỹ năng), nên GĐ5 được chấm lại (lần 5).
 - Tập test không dùng để chọn mô hình hay tham số. Mỗi lần chấm lại test (`python src/evaluate.py --force`) được tự động ghi vào `reports/test_set_log.csv` và phải được nêu trong báo cáo.
 - Từ vựng kỹ năng và tiền xử lý chỉ học từ dữ liệu train.
 - Mọi con số trong báo cáo đều lấy từ file trong `reports/`.
